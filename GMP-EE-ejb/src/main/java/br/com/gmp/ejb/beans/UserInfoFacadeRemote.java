@@ -5,7 +5,7 @@
  */
 package br.com.gmp.ejb.beans;
 
-import br.com.gmp.ejb.entity.UserBase;
+import br.com.gmp.ejb.entity.UserInfo;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -14,19 +14,19 @@ import javax.ejb.Remote;
  * @author kaciano
  */
 @Remote
-public interface UserBaseFacadeRemote {
+public interface UserInfoFacadeRemote {
 
-    void create(UserBase userBase);
+    void create(UserInfo userBase);
 
-    void edit(UserBase userBase);
+    void edit(UserInfo userBase);
 
-    void remove(UserBase userBase);
+    void remove(UserInfo userBase);
 
-    UserBase find(Object id);
+    UserInfo find(Object id);
 
-    List<UserBase> findAll();
+    List<UserInfo> findAll();
 
-    List<UserBase> findRange(int[] range);
+    List<UserInfo> findRange(int[] range);
 
     int count();
 

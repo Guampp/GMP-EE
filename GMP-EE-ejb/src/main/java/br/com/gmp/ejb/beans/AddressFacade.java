@@ -5,8 +5,7 @@
  */
 package br.com.gmp.ejb.beans;
 
-import br.com.gmp.ejb.entity.UserBase;
-import br.com.gmp.ejb.enums.EntityBeans;
+import br.com.gmp.ejb.entity.Address;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,8 +14,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author kaciano
  */
-@Stateless(mappedName = EntityBeans.USER_BASE_BEAN, name = "UserBaseFacade")
-public class UserBaseFacade extends AbstractFacade<UserBase> implements UserBaseFacadeRemote {
+@Stateless(mappedName = "EJB/AddressFacade", name = "AddressFacade")
+public class AddressFacade extends AbstractFacade<Address> implements AddressFacadeRemote {
 
     @PersistenceContext(unitName = "GMP-EJB-PU")
     private EntityManager em;
@@ -26,8 +25,8 @@ public class UserBaseFacade extends AbstractFacade<UserBase> implements UserBase
         return em;
     }
 
-    public UserBaseFacade() {
-        super(UserBase.class);
+    public AddressFacade() {
+        super(Address.class);
     }
 
 }

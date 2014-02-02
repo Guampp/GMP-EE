@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package br.com.gmp.ejb.beans;
 
-import br.com.gmp.ejb.entity.UserBase;
+import br.com.gmp.ejb.entity.Company;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -14,20 +15,20 @@ import javax.ejb.Remote;
  * @author kaciano
  */
 @Remote
-public interface UserBaseFacadeRemote {
+public interface CompanyFacadeRemote {
 
-    void create(UserBase userBase);
+    void create(Company company);
 
-    void edit(UserBase userBase);
+    void edit(Company company);
 
-    void remove(UserBase userBase);
+    void remove(Company company);
 
-    UserBase find(Object id);
+    Company find(Object id);
 
-    List<UserBase> findAll();
+    List<Company> findAll();
 
-    List<UserBase> findRange(int[] range);
+    List<Company> findRange(int[] range);
 
     int count();
-
+    
 }
