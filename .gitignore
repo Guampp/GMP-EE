@@ -4,3 +4,7 @@
 *.jar
 *.war
 *.ear
+/GMP-EE-desktop/Comps/build/
+/GMP-EE-desktop/Comps/dist/
+/GMP-EE-desktop/Comps/nbproject/private/
+/GMP-EE-desktop/GMPComps/target/
