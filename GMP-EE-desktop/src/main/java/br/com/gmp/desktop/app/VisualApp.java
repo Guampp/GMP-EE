@@ -1,9 +1,4 @@
-package br.com.gmp.desktop;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+package br.com.gmp.desktop.app;
 
 /**
  *
@@ -18,7 +13,7 @@ public class VisualApp extends javax.swing.JFrame {
      */
     public VisualApp() {
         initComponents();
-        appBean = new VisualAppBean();
+        appBean = new VisualAppBean(this);
     }
 
     /**
@@ -97,6 +92,11 @@ public class VisualApp extends javax.swing.JFrame {
         gBConfirm.setStartColor(new java.awt.Color(51, 102, 255));
         gBConfirm.setToolTipText("Confirmar");
         gBConfirm.setVerticalTextPosition(3);
+        gBConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBConfirmActionPerformed(evt);
+            }
+        });
         jTBFunctions.add(gBConfirm);
 
         gBDiscard.setIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/src/main/resources/IKONS/16/invert/circle_delete.png")); // NOI18N
@@ -106,6 +106,11 @@ public class VisualApp extends javax.swing.JFrame {
         gBDiscard.setStartColor(new java.awt.Color(51, 102, 255));
         gBDiscard.setToolTipText("Descartar");
         gBDiscard.setVerticalTextPosition(3);
+        gBDiscard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBDiscardActionPerformed(evt);
+            }
+        });
         jTBFunctions.add(gBDiscard);
 
         gBProcess.setIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/src/main/resources/IKONS/16/invert/cog.png")); // NOI18N
@@ -115,6 +120,11 @@ public class VisualApp extends javax.swing.JFrame {
         gBProcess.setStartColor(new java.awt.Color(51, 102, 255));
         gBProcess.setToolTipText("Processar");
         gBProcess.setVerticalTextPosition(3);
+        gBProcess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBProcessActionPerformed(evt);
+            }
+        });
         jTBFunctions.add(gBProcess);
 
         desktop.setBackground(new java.awt.Color(51, 153, 255));
@@ -143,6 +153,11 @@ public class VisualApp extends javax.swing.JFrame {
         gBSearch.setStartColor(new java.awt.Color(51, 102, 255));
         gBSearch.setToolTipText("Procurar");
         gBSearch.setVerticalTextPosition(3);
+        gBSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBSearchActionPerformed(evt);
+            }
+        });
         jTBSearch.add(gBSearch);
 
         jTBMsg.setFloatable(false);
@@ -161,6 +176,11 @@ public class VisualApp extends javax.swing.JFrame {
         gBLogout.setStartColor(new java.awt.Color(51, 102, 255));
         gBLogout.setToolTipText("Trocar usuário");
         gBLogout.setVerticalTextPosition(3);
+        gBLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBLogoutActionPerformed(evt);
+            }
+        });
         jTBUser.add(gBLogout);
         jTBUser.add(jSeparator1);
 
@@ -249,6 +269,26 @@ public class VisualApp extends javax.swing.JFrame {
     private void jMIMotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIMotifActionPerformed
         changeLAF("CDE/Motif");
     }//GEN-LAST:event_jMIMotifActionPerformed
+
+    private void gBConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBConfirmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gBConfirmActionPerformed
+
+    private void gBDiscardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBDiscardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gBDiscardActionPerformed
+
+    private void gBProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBProcessActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gBProcessActionPerformed
+
+    private void gBLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBLogoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gBLogoutActionPerformed
+
+    private void gBSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gBSearchActionPerformed
 
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
     /**

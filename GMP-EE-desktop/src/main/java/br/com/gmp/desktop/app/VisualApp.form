@@ -213,6 +213,9 @@
             <Property name="toolTipText" type="java.lang.String" value="Confirmar"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBConfirmActionPerformed"/>
+          </Events>
         </Component>
         <Component class="comps.button.GMPButton" name="gBDiscard">
           <Properties>
@@ -232,6 +235,9 @@
             <Property name="toolTipText" type="java.lang.String" value="Descartar"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBDiscardActionPerformed"/>
+          </Events>
         </Component>
         <Component class="comps.button.GMPButton" name="gBProcess">
           <Properties>
@@ -251,6 +257,9 @@
             <Property name="toolTipText" type="java.lang.String" value="Processar"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBProcessActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -313,6 +322,9 @@
             <Property name="toolTipText" type="java.lang.String" value="Procurar"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBSearchActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -367,6 +379,9 @@
             <Property name="toolTipText" type="java.lang.String" value="Trocar usu&#xe1;rio"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBLogoutActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator1">
         </Component>

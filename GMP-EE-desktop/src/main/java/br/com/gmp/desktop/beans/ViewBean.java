@@ -1,40 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.gmp.desktop.beans;
 
 import br.com.gmp.desktop.beans.interfaces.IViewBean;
-import br.com.gmp.desktop.views.interfaces.View;
+import br.com.gmp.desktop.views.events.ViewEvent;
 
 /**
  *
  * @author kaciano
  */
-public abstract class ViewBean implements IViewBean {
+public class ViewBean implements IViewBean {
 
-    public void confirm(View view) {
+    public void confirm(ViewEvent viewEvent) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void discard(View view) {
+    public void discard(ViewEvent viewEvent) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void process(View view) {
+    public void process(ViewEvent viewEvent) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void load(View view) {
+    public void load(ViewEvent viewEvent) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void reload(View view) {
+    public void reload(ViewEvent viewEvent) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public boolean validateView(View view) {
+    public boolean validateView(ViewEvent viewEvent) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

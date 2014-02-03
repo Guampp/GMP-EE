@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.gmp.desktop.views.interfaces;
 
+import br.com.gmp.desktop.beans.ViewBean;
+
 /**
+ * Interface das Views do sistema
  *
  * @author kaciano
  */
@@ -22,6 +20,8 @@ public interface View {
     void reload();
 
     boolean validateView();
-    
+
     Object getView();
+
+    ViewBean getViewBean();
 }

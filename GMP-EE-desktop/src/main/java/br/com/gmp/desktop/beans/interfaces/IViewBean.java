@@ -5,7 +5,7 @@
  */
 package br.com.gmp.desktop.beans.interfaces;
 
-import br.com.gmp.desktop.views.interfaces.View;
+import br.com.gmp.desktop.views.events.ViewEvent;
 
 /**
  *
@@ -13,15 +13,15 @@ import br.com.gmp.desktop.views.interfaces.View;
  */
 public interface IViewBean {
 
-    void confirm(View view);
+    void confirm(ViewEvent viewEvent);
 
-    void discard(View view);
+    void discard(ViewEvent viewEvent);
 
-    void process(View view);
+    void process(ViewEvent viewEvent);
 
-    void load(View view);
+    void load(ViewEvent viewEvent);
 
-    void reload(View view);
+    void reload(ViewEvent viewEvent);
 
-    boolean validateView(View view);
+    boolean validateView(ViewEvent viewEvent);
 }
