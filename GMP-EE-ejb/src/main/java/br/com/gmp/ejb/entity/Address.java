@@ -7,7 +7,7 @@
 package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -73,9 +73,9 @@ public class Address implements Serializable {
     @Column(name = "country")
     private String country;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "address")
-    private Collection<UserInfo> userInfoCollection;
+    private List<UserInfo> userInfoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "address")
-    private Collection<CompanyInfo> companyInfoCollection;
+    private List<CompanyInfo> companyInfoList;
 
     public Address() {
     }
@@ -157,21 +157,21 @@ public class Address implements Serializable {
     }
 
     @XmlTransient
-    public Collection<UserInfo> getUserInfoCollection() {
-        return userInfoCollection;
+    public List<UserInfo> getUserInfoList() {
+        return userInfoList;
     }
 
-    public void setUserInfoCollection(Collection<UserInfo> userInfoCollection) {
-        this.userInfoCollection = userInfoCollection;
+    public void setUserInfoList(List<UserInfo> userInfoList) {
+        this.userInfoList = userInfoList;
     }
 
     @XmlTransient
-    public Collection<CompanyInfo> getCompanyInfoCollection() {
-        return companyInfoCollection;
+    public List<CompanyInfo> getCompanyInfoList() {
+        return companyInfoList;
     }
 
-    public void setCompanyInfoCollection(Collection<CompanyInfo> companyInfoCollection) {
-        this.companyInfoCollection = companyInfoCollection;
+    public void setCompanyInfoList(List<CompanyInfo> companyInfoList) {
+        this.companyInfoList = companyInfoList;
     }
 
     @Override

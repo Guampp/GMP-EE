@@ -8,7 +8,7 @@ package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -51,7 +51,7 @@ public class Demand implements Serializable {
     @Column(name = "title")
     private String title;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "demand")
-    private Collection<DemandInfo> demandInfoCollection;
+    private List<DemandInfo> demandInfoList;
     @JoinColumn(name = "id_user_base", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private UserBase idUserBase;
@@ -88,12 +88,12 @@ public class Demand implements Serializable {
     }
 
     @XmlTransient
-    public Collection<DemandInfo> getDemandInfoCollection() {
-        return demandInfoCollection;
+    public List<DemandInfo> getDemandInfoList() {
+        return demandInfoList;
     }
 
-    public void setDemandInfoCollection(Collection<DemandInfo> demandInfoCollection) {
-        this.demandInfoCollection = demandInfoCollection;
+    public void setDemandInfoList(List<DemandInfo> demandInfoList) {
+        this.demandInfoList = demandInfoList;
     }
 
     public UserBase getIdUserBase() {

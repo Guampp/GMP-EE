@@ -7,7 +7,7 @@
 package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,7 +45,7 @@ public class CompanyType implements Serializable {
     @Column(name = "title")
     private String title;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyType")
-    private Collection<CompanyInfo> companyInfoCollection;
+    private List<CompanyInfo> companyInfoList;
 
     public CompanyType() {
     }
@@ -71,12 +71,12 @@ public class CompanyType implements Serializable {
     }
 
     @XmlTransient
-    public Collection<CompanyInfo> getCompanyInfoCollection() {
-        return companyInfoCollection;
+    public List<CompanyInfo> getCompanyInfoList() {
+        return companyInfoList;
     }
 
-    public void setCompanyInfoCollection(Collection<CompanyInfo> companyInfoCollection) {
-        this.companyInfoCollection = companyInfoCollection;
+    public void setCompanyInfoList(List<CompanyInfo> companyInfoList) {
+        this.companyInfoList = companyInfoList;
     }
 
     @Override

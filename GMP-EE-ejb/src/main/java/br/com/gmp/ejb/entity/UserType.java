@@ -7,7 +7,7 @@
 package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -48,7 +48,7 @@ public class UserType implements Serializable {
     @Column(name = "title")
     private String title;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userType")
-    private Collection<UserInfo> userInfoCollection;
+    private List<UserInfo> userInfoList;
 
     public UserType() {
     }
@@ -79,12 +79,12 @@ public class UserType implements Serializable {
     }
 
     @XmlTransient
-    public Collection<UserInfo> getUserInfoCollection() {
-        return userInfoCollection;
+    public List<UserInfo> getUserInfoList() {
+        return userInfoList;
     }
 
-    public void setUserInfoCollection(Collection<UserInfo> userInfoCollection) {
-        this.userInfoCollection = userInfoCollection;
+    public void setUserInfoList(List<UserInfo> userInfoList) {
+        this.userInfoList = userInfoList;
     }
 
     @Override

@@ -7,7 +7,7 @@
 package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,7 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Profile.findAll", query = "SELECT p FROM Profile p"),
     @NamedQuery(name = "Profile.findById", query = "SELECT p FROM Profile p WHERE p.id = :id"),
     @NamedQuery(name = "Profile.findByTitle", query = "SELECT p FROM Profile p WHERE p.title = :title"),
-    @NamedQuery(name = "Profile.findByActive", query = "SELECT p FROM Profile p WHERE p.active = :active")})
+    @NamedQuery(name = "Profile.findByActive", query = "SELECT p FROM Profile p WHERE p.active = :active"),
+    @NamedQuery(name = "Profile.findByLevel", query = "SELECT p FROM Profile p WHERE p.level = :level")})
 public class Profile implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,17 +44,21 @@ public class Profile implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Size(max = 64)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
     @Column(name = "title")
     private String title;
     @Basic(optional = false)
     @NotNull
     @Column(name = "active")
     private boolean active;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "level")
+    private short level;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "profile")
-    private Collection<UserInfo> userInfoCollection;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "profile")
-    private ProfileAccess profileAccess;
+    private List<UserInfo> userInfoList;
 
     public Profile() {
     }
@@ -63,9 +67,11 @@ public class Profile implements Serializable {
         this.id = id;
     }
 
-    public Profile(Long id, boolean active) {
+    public Profile(Long id, String title, boolean active, short level) {
         this.id = id;
+        this.title = title;
         this.active = active;
+        this.level = level;
     }
 
     public Long getId() {
@@ -92,21 +98,21 @@ public class Profile implements Serializable {
         this.active = active;
     }
 
+    public short getLevel() {
+        return level;
+    }
+
+    public void setLevel(short level) {
+        this.level = level;
+    }
+
     @XmlTransient
-    public Collection<UserInfo> getUserInfoCollection() {
-        return userInfoCollection;
+    public List<UserInfo> getUserInfoList() {
+        return userInfoList;
     }
 
-    public void setUserInfoCollection(Collection<UserInfo> userInfoCollection) {
-        this.userInfoCollection = userInfoCollection;
-    }
-
-    public ProfileAccess getProfileAccess() {
-        return profileAccess;
-    }
-
-    public void setProfileAccess(ProfileAccess profileAccess) {
-        this.profileAccess = profileAccess;
+    public void setUserInfoList(List<UserInfo> userInfoList) {
+        this.userInfoList = userInfoList;
     }
 
     @Override

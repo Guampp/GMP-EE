@@ -7,7 +7,7 @@
 package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,7 +45,7 @@ public class DemandPriority implements Serializable {
     @Column(name = "title")
     private String title;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "demandPriority")
-    private Collection<DemandInfo> demandInfoCollection;
+    private List<DemandInfo> demandInfoList;
 
     public DemandPriority() {
     }
@@ -71,12 +71,12 @@ public class DemandPriority implements Serializable {
     }
 
     @XmlTransient
-    public Collection<DemandInfo> getDemandInfoCollection() {
-        return demandInfoCollection;
+    public List<DemandInfo> getDemandInfoList() {
+        return demandInfoList;
     }
 
-    public void setDemandInfoCollection(Collection<DemandInfo> demandInfoCollection) {
-        this.demandInfoCollection = demandInfoCollection;
+    public void setDemandInfoList(List<DemandInfo> demandInfoList) {
+        this.demandInfoList = demandInfoList;
     }
 
     @Override

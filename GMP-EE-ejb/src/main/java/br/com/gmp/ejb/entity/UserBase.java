@@ -7,7 +7,7 @@
 package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,11 +40,11 @@ public class UserBase implements Serializable {
     @Column(name = "id")
     private Long id;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userBase")
-    private Collection<UserInfo> userInfoCollection;
+    private List<UserInfo> userInfoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUserBase")
-    private Collection<DemandInfo> demandInfoCollection;
+    private List<DemandInfo> demandInfoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUserBase")
-    private Collection<Demand> demandCollection;
+    private List<Demand> demandList;
 
     public UserBase() {
     }
@@ -62,30 +62,30 @@ public class UserBase implements Serializable {
     }
 
     @XmlTransient
-    public Collection<UserInfo> getUserInfoCollection() {
-        return userInfoCollection;
+    public List<UserInfo> getUserInfoList() {
+        return userInfoList;
     }
 
-    public void setUserInfoCollection(Collection<UserInfo> userInfoCollection) {
-        this.userInfoCollection = userInfoCollection;
-    }
-
-    @XmlTransient
-    public Collection<DemandInfo> getDemandInfoCollection() {
-        return demandInfoCollection;
-    }
-
-    public void setDemandInfoCollection(Collection<DemandInfo> demandInfoCollection) {
-        this.demandInfoCollection = demandInfoCollection;
+    public void setUserInfoList(List<UserInfo> userInfoList) {
+        this.userInfoList = userInfoList;
     }
 
     @XmlTransient
-    public Collection<Demand> getDemandCollection() {
-        return demandCollection;
+    public List<DemandInfo> getDemandInfoList() {
+        return demandInfoList;
     }
 
-    public void setDemandCollection(Collection<Demand> demandCollection) {
-        this.demandCollection = demandCollection;
+    public void setDemandInfoList(List<DemandInfo> demandInfoList) {
+        this.demandInfoList = demandInfoList;
+    }
+
+    @XmlTransient
+    public List<Demand> getDemandList() {
+        return demandList;
+    }
+
+    public void setDemandList(List<Demand> demandList) {
+        this.demandList = demandList;
     }
 
     @Override

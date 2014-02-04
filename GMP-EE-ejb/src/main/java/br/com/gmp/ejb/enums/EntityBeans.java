@@ -25,7 +25,6 @@ public interface EntityBeans {
     public static final String DEMAND_TYPE_BEAN = "EJB/DemandTypeFacade";
     public static final String MENU_BEAN = "EJB/MenuFacade";
     public static final String MENU_ITEM_BEAN = "EJB/MenuItemFacade";
-    public static final String PROFILE_ACCESS_BEAN = "EJB/ProfileAccessFacade";
     public static final String PROFILEs_BEAN = "EJB/ProfileFacade";
     public static final String USER_BASE_BEAN = "EJB/UserBaseFacade";
     public static final String USER_INFO_BEAN = "EJB/UserInfoFacade";

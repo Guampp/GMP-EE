@@ -30,8 +30,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "MenuItem.findAll", query = "SELECT m FROM MenuItem m"),
     @NamedQuery(name = "MenuItem.findById", query = "SELECT m FROM MenuItem m WHERE m.id = :id"),
+    @NamedQuery(name = "MenuItem.findByPrefix", query = "SELECT m FROM MenuItem m WHERE m.prefix = :prefix"),
     @NamedQuery(name = "MenuItem.findByTitle", query = "SELECT m FROM MenuItem m WHERE m.title = :title"),
     @NamedQuery(name = "MenuItem.findByIco", query = "SELECT m FROM MenuItem m WHERE m.ico = :ico"),
+    @NamedQuery(name = "MenuItem.findByLevel", query = "SELECT m FROM MenuItem m WHERE m.level = :level"),
     @NamedQuery(name = "MenuItem.findByIdMenu", query = "SELECT m FROM MenuItem m WHERE m.idMenu = :idMenu")})
 public class MenuItem implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -39,12 +41,21 @@ public class MenuItem implements Serializable {
     @NotNull
     @Column(name = "id")
     private long id;
-    @Size(max = 64)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
+    @Column(name = "prefix")
+    private String prefix;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
     @Column(name = "title")
     private String title;
     @Size(max = 64)
     @Column(name = "ico")
     private String ico;
+    @Column(name = "level")
+    private Short level;
     @Id
     @Basic(optional = false)
     @NotNull
@@ -61,9 +72,11 @@ public class MenuItem implements Serializable {
         this.idMenu = idMenu;
     }
 
-    public MenuItem(Long idMenu, long id) {
+    public MenuItem(Long idMenu, long id, String prefix, String title) {
         this.idMenu = idMenu;
         this.id = id;
+        this.prefix = prefix;
+        this.title = title;
     }
 
     public long getId() {
@@ -72,6 +85,14 @@ public class MenuItem implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
     public String getTitle() {
@@ -88,6 +109,14 @@ public class MenuItem implements Serializable {
 
     public void setIco(String ico) {
         this.ico = ico;
+    }
+
+    public Short getLevel() {
+        return level;
+    }
+
+    public void setLevel(Short level) {
+        this.level = level;
     }
 
     public Long getIdMenu() {
