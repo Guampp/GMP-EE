@@ -24,5 +24,6 @@
     <module>GMP-EE-web</module>
     <module>GMP-EE-ejb</module>
     <module>GMP-EE-desktop</module>
+    <module>GMPUtils</module>
   </modules>
 </project>
