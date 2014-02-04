@@ -63,4 +63,5 @@
             <version>SNAPSHOT</version>
         </dependency>
     </dependencies>
+    <description>Aplicação desktop do Guampp</description>
 </project>

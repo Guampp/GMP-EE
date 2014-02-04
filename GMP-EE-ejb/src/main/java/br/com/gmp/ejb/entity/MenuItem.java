@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "MenuItem.findByPrefix", query = "SELECT m FROM MenuItem m WHERE m.prefix = :prefix"),
     @NamedQuery(name = "MenuItem.findByTitle", query = "SELECT m FROM MenuItem m WHERE m.title = :title"),
     @NamedQuery(name = "MenuItem.findByIco", query = "SELECT m FROM MenuItem m WHERE m.ico = :ico"),
-    @NamedQuery(name = "MenuItem.findByLevel", query = "SELECT m FROM MenuItem m WHERE m.level = :level"),
+    @NamedQuery(name = "MenuItem.findByAccesslevel", query = "SELECT m FROM MenuItem m WHERE m.accesslevel = :accesslevel"),
     @NamedQuery(name = "MenuItem.findByIdMenu", query = "SELECT m FROM MenuItem m WHERE m.idMenu = :idMenu")})
 public class MenuItem implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -54,8 +54,8 @@ public class MenuItem implements Serializable {
     @Size(max = 64)
     @Column(name = "ico")
     private String ico;
-    @Column(name = "level")
-    private Short level;
+    @Column(name = "accesslevel")
+    private Integer accesslevel;
     @Id
     @Basic(optional = false)
     @NotNull
@@ -111,12 +111,12 @@ public class MenuItem implements Serializable {
         this.ico = ico;
     }
 
-    public Short getLevel() {
-        return level;
+    public Integer getAccesslevel() {
+        return accesslevel;
     }
 
-    public void setLevel(Short level) {
-        this.level = level;
+    public void setAccesslevel(Integer accesslevel) {
+        this.accesslevel = accesslevel;
     }
 
     public Long getIdMenu() {

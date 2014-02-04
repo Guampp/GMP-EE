@@ -59,4 +59,5 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
+    <description>Ponto de montagem da aplicação Guampp</description>
 </project>

@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Menu.findByTitle", query = "SELECT m FROM Menu m WHERE m.title = :title"),
     @NamedQuery(name = "Menu.findByIco", query = "SELECT m FROM Menu m WHERE m.ico = :ico"),
     @NamedQuery(name = "Menu.findByFather", query = "SELECT m FROM Menu m WHERE m.father = :father"),
-    @NamedQuery(name = "Menu.findByLevel", query = "SELECT m FROM Menu m WHERE m.level = :level")})
+    @NamedQuery(name = "Menu.findByAccesslevel", query = "SELECT m FROM Menu m WHERE m.accesslevel = :accesslevel")})
 public class Menu implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,8 +61,10 @@ public class Menu implements Serializable {
     @NotNull
     @Column(name = "father")
     private int father;
-    @Column(name = "level")
-    private Short level;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "accesslevel")
+    private int accesslevel;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "menu")
     private MenuItem menuItem;
 
@@ -73,11 +75,12 @@ public class Menu implements Serializable {
         this.id = id;
     }
 
-    public Menu(Long id, String prefix, String title, int father) {
+    public Menu(Long id, String prefix, String title, int father, int accesslevel) {
         this.id = id;
         this.prefix = prefix;
         this.title = title;
         this.father = father;
+        this.accesslevel = accesslevel;
     }
 
     public Long getId() {
@@ -120,12 +123,12 @@ public class Menu implements Serializable {
         this.father = father;
     }
 
-    public Short getLevel() {
-        return level;
+    public int getAccesslevel() {
+        return accesslevel;
     }
 
-    public void setLevel(Short level) {
-        this.level = level;
+    public void setAccesslevel(int accesslevel) {
+        this.accesslevel = accesslevel;
     }
 
     public MenuItem getMenuItem() {

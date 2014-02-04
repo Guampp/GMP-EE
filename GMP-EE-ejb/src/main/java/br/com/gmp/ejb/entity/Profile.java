@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Profile.findById", query = "SELECT p FROM Profile p WHERE p.id = :id"),
     @NamedQuery(name = "Profile.findByTitle", query = "SELECT p FROM Profile p WHERE p.title = :title"),
     @NamedQuery(name = "Profile.findByActive", query = "SELECT p FROM Profile p WHERE p.active = :active"),
-    @NamedQuery(name = "Profile.findByLevel", query = "SELECT p FROM Profile p WHERE p.level = :level")})
+    @NamedQuery(name = "Profile.findByAccesslevel", query = "SELECT p FROM Profile p WHERE p.accesslevel = :accesslevel")})
 public class Profile implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,8 +55,8 @@ public class Profile implements Serializable {
     private boolean active;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "level")
-    private short level;
+    @Column(name = "accesslevel")
+    private int accesslevel;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "profile")
     private List<UserInfo> userInfoList;
 
@@ -67,11 +67,11 @@ public class Profile implements Serializable {
         this.id = id;
     }
 
-    public Profile(Long id, String title, boolean active, short level) {
+    public Profile(Long id, String title, boolean active, int accesslevel) {
         this.id = id;
         this.title = title;
         this.active = active;
-        this.level = level;
+        this.accesslevel = accesslevel;
     }
 
     public Long getId() {
@@ -98,12 +98,12 @@ public class Profile implements Serializable {
         this.active = active;
     }
 
-    public short getLevel() {
-        return level;
+    public int getAccesslevel() {
+        return accesslevel;
     }
 
-    public void setLevel(short level) {
-        this.level = level;
+    public void setAccesslevel(int accesslevel) {
+        this.accesslevel = accesslevel;
     }
 
     @XmlTransient
