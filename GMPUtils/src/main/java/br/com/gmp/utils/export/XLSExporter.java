@@ -1,6 +1,7 @@
 package br.com.gmp.utils.export;
 
 import br.com.gmp.utils.test.Test;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -38,6 +39,9 @@ public class XLSExporter {
         WritableWorkbook xls = getXLS(list, title, sheettitle);
         xls.write();
         xls.close();
+        if (Desktop.isDesktopSupported()) {
+            Desktop.getDesktop().open(new File(title + ".xls"));
+        }
     }
 
     /**
@@ -55,6 +59,9 @@ public class XLSExporter {
         WritableWorkbook xls = getXLS(list, path + "/" + title, sheettitle);
         xls.write();
         xls.close();
+        if (Desktop.isDesktopSupported()) {
+            Desktop.getDesktop().open(new File(path + "/" + title + ".xls"));
+        }
     }
 
     /**
@@ -100,7 +107,7 @@ public class XLSExporter {
         WritableSheet sheet = workBook.createSheet(sheettitle, 0);
         try {
             Field[] fields = cl.getDeclaredFields();
-            for (int i = 0; i < fields.length; i++) {                
+            for (int i = 0; i < fields.length; i++) {
                 sheet.addCell(new Label(i, 0, fields[i].getName().toUpperCase()));
             }
         } catch (RowsExceededException e) {
