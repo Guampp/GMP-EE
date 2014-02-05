@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jxl.Workbook;
+import jxl.format.CellFormat;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
@@ -99,7 +100,7 @@ public class XLSExporter {
         WritableSheet sheet = workBook.createSheet(sheettitle, 0);
         try {
             Field[] fields = cl.getDeclaredFields();
-            for (int i = 0; i < fields.length; i++) {
+            for (int i = 0; i < fields.length; i++) {                
                 sheet.addCell(new Label(i, 0, fields[i].getName().toUpperCase()));
             }
         } catch (RowsExceededException e) {
