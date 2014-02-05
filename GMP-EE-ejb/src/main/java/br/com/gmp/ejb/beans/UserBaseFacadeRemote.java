@@ -6,8 +6,11 @@
 package br.com.gmp.ejb.beans;
 
 import br.com.gmp.ejb.entity.UserBase;
+import br.com.gmp.ejb.entity.UserInfo;
+import br.com.gmp.utils.collections.Pair;
 import java.util.List;
 import javax.ejb.Remote;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -15,6 +18,8 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface UserBaseFacadeRemote {
+
+    
 
     void create(UserBase userBase);
 

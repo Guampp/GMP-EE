@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package comps.tabbedpane;
 
 import comps.BaseColors;
 import comps.button.ButtonTabComponent;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
@@ -20,43 +16,145 @@ import javax.swing.UIManager;
  */
 public class GMPJTabbedPane extends JTabbedPane {
 
-    Component locked;
+    private Component locked;
+    private Color borderColor;
+    private Color darkShadow;
+    private Color light;
+    private Color highlight;
+    private Color focus;
+    private Color selected;
+    private Color unselectedBackground;
+    private Color selectHighlight;
+    private Color borderHightlightColor;
 
+    /**
+     * Cria nova instancia de GMPJTabbedPane
+     */
     public GMPJTabbedPane() {
+        defaultColoring();
         initComponents();
         changeTabbedPane();
     }
 
+    /**
+     * Cria nova instancia de GMPJTabbedPane
+     *
+     * @param locked Componente que não pode ser fechado
+     */
     public GMPJTabbedPane(Component locked) {
         this.locked = locked;
+        defaultColoring();
         initComponents();
         changeTabbedPane();
     }
 
+    /**
+     * Cria nova instancia de GMPJTabbedPane
+     *
+     * @param borderColor Cor da borda
+     * @param darkShadow Cor da sombra
+     * @param light Cor mais clara
+     * @param highlight Cor de destacamento
+     * @param focus Cor de foco
+     * @param selected Cor de seleção
+     * @param unselectedBackground Cor de fundo para não selecionados
+     * @param selectHighlight Cor de destaque para selecionados
+     * @param borderHightlightColor Cor de destaque para borda de selecionados
+     */
+    public GMPJTabbedPane(Color borderColor, Color darkShadow, Color light, Color highlight, Color focus, Color selected, Color unselectedBackground, Color selectHighlight, Color borderHightlightColor) {
+        this.borderColor = borderColor;
+        this.darkShadow = darkShadow;
+        this.light = light;
+        this.highlight = highlight;
+        this.focus = focus;
+        this.selected = selected;
+        this.unselectedBackground = unselectedBackground;
+        this.selectHighlight = selectHighlight;
+        this.borderHightlightColor = borderHightlightColor;
+    }
+
+    /**
+     * Cria nova instancia de GMPJTabbedPane
+     *
+     * @param locked Componente que não pode ser fechado
+     * @param borderColor Cor da borda
+     * @param darkShadow Cor da sombra
+     * @param light Cor mais clara
+     * @param highlight Cor de destacamento
+     * @param focus Cor de foco
+     * @param selected Cor de seleção
+     * @param unselectedBackground Cor de fundo para não selecionados
+     * @param selectHighlight Cor de destaque para selecionados
+     * @param borderHightlightColor Cor de destaque para borda de selecionados
+     */
+    public GMPJTabbedPane(Component locked, Color borderColor, Color darkShadow, Color light, Color highlight, Color focus, Color selected, Color unselectedBackground, Color selectHighlight, Color borderHightlightColor) {
+        this.locked = locked;
+        this.borderColor = borderColor;
+        this.darkShadow = darkShadow;
+        this.light = light;
+        this.highlight = highlight;
+        this.focus = focus;
+        this.selected = selected;
+        this.unselectedBackground = unselectedBackground;
+        this.selectHighlight = selectHighlight;
+        this.borderHightlightColor = borderHightlightColor;
+    }
+
+    /**
+     * Inicializa as cores padrão
+     */
+    private void defaultColoring() {
+        borderColor = BaseColors.darkColor;
+        darkShadow = BaseColors.darkColor;
+        light = BaseColors.lightColor;
+        highlight = BaseColors.lightColor;
+        focus = BaseColors.lightColor;
+        selected = BaseColors.systemColor;
+        unselectedBackground = BaseColors.lightColor;
+        selectHighlight = BaseColors.lightColor;
+        borderHightlightColor = BaseColors.lightColor;
+    }
+
+    /**
+     * Mudanças aplicadas no UIManager para customização do tabbedpane
+     */
     private void changeTabbedPane() {
-        UIManager.put("TabbedPane.borderColor", BaseColors.darkColor);
-        UIManager.put("TabbedPane.darkShadow", BaseColors.darkColor);
-        UIManager.put("TabbedPane.light", BaseColors.lightColor);
-        UIManager.put("TabbedPane.highlight", BaseColors.lightColor);
-        UIManager.put("TabbedPane.focus", BaseColors.lightColor);
-        UIManager.put("TabbedPane.selected", BaseColors.systemColor);
-        UIManager.put("TabbedPane.unselectedBackground", BaseColors.lightColor);
-        UIManager.put("TabbedPane.selectHighlight", BaseColors.lightColor);
-        UIManager.put("TabbedPane.borderHightlightColor", BaseColors.lightColor);
+        UIManager.put("TabbedPane.borderColor", borderColor);
+        UIManager.put("TabbedPane.darkShadow", darkShadow);
+        UIManager.put("TabbedPane.light", light);
+        UIManager.put("TabbedPane.highlight", highlight);
+        UIManager.put("TabbedPane.focus", focus);
+        UIManager.put("TabbedPane.selected", selected);
+        UIManager.put("TabbedPane.unselectedBackground", unselectedBackground);
+        UIManager.put("TabbedPane.selectHighlight", selectHighlight);
+        UIManager.put("TabbedPane.borderHightlightColor", borderHightlightColor);
         UIManager.put("TabbedPane.contentBorderInsets", new Insets(1, 1, 1, 1));
     }
-    //==========================================================================
-    //    
-    //<editor-fold desc="Determinar componente com lock" defaultstate="collapsed">    
 
+    /**
+     * Retorna componente que não pode ser fechado
+     *
+     * @return Componente
+     */
+    public Component getLocked() {
+        return locked;
+    }
+
+    /**
+     * Determina componente que não pode ser fechado
+     *
+     * @param locked Componente que não pode ser fechado
+     */
     public void setLocked(Component locked) {
         this.locked = locked;
     }
-    //</editor-fold>      
-    //==========================================================================
-    //    
-    //<editor-fold desc="Retorna o index do componente" defaultstate="collapsed">    
 
+    /**
+     * Retorna o index de tab do componente referenciado
+     *
+     * @param component Componente referenciado
+     * @return Index do componente
+     */
     public int getComponentTabIndex(Component component) {
         int index = 0;
         this.indexOfTabComponent(component);
@@ -69,29 +167,193 @@ public class GMPJTabbedPane extends JTabbedPane {
         }
         return index;
     }
-    //</editor-fold>  
-    //==========================================================================
-    //    
-    //<editor-fold desc="Adicionar tab removivel" defaultstate="collapsed">    
 
+    /**
+     * Adiciona nova tab com botão para fechar
+     *
+     * @param title Titulo da tab
+     * @param icon Icone da tab
+     * @param component Componente da tab
+     * @param tooltip Dica da tab
+     */
     public void addClosableTab(String title, Icon icon, Component component, String tooltip) {
-        this.addTab(title, icon, component, tooltip);
+        if (icon != null) {
+            this.addTab(title, icon, component, tooltip);
+        } else {
+            this.addTab(title, component);
+        }
         int index = getComponentTabIndex(component);
         this.setTabComponentAt(index, new ButtonTabComponent(this, icon));
     }
-    //</editor-fold>  
-    //==========================================================================
-    //    
-    //<editor-fold desc="Remover tab" defaultstate="collapsed">    
 
+    /**
+     * Adiciona nova tab com botão para fechar
+     *
+     * @param title Titulo da tab
+     * @param component Componente da tab
+     */
+    public void addClosableTab(String title, Component component) {
+        this.addTab(title, component);
+        int index = getComponentTabIndex(component);
+        this.setTabComponentAt(index, new ButtonTabComponent(this, null));
+    }
+
+    /**
+     * Remove a tab selecionada
+     *
+     * @param evt MouseEvent
+     */
     public void removeTab(MouseEvent evt) {
-        Component selected = this.getSelectedComponent();
-        if (selected != null && !selected.equals(locked)
+        Component sel = this.getSelectedComponent();
+        if (sel != null && !sel.equals(locked)
                 && evt.getButton() == MouseEvent.BUTTON2) {
-            this.remove(selected);
+            this.remove(sel);
         }
     }
-    //</editor-fold>     
+
+    /**
+     *
+     * @return
+     */
+    public Color getBorderColor() {
+        return borderColor;
+    }
+
+    /**
+     *
+     * @param borderColor
+     */
+    public void setBorderColor(Color borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getDarkShadow() {
+        return darkShadow;
+    }
+
+    /**
+     *
+     * @param darkShadow
+     */
+    public void setDarkShadow(Color darkShadow) {
+        this.darkShadow = darkShadow;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getLight() {
+        return light;
+    }
+
+    /**
+     *
+     * @param light
+     */
+    public void setLight(Color light) {
+        this.light = light;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getHighlight() {
+        return highlight;
+    }
+
+    /**
+     *
+     * @param highlight
+     */
+    public void setHighlight(Color highlight) {
+        this.highlight = highlight;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getFocus() {
+        return focus;
+    }
+
+    /**
+     *
+     * @param focus
+     */
+    public void setFocus(Color focus) {
+        this.focus = focus;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getSelected() {
+        return selected;
+    }
+
+    /**
+     *
+     * @param selected
+     */
+    public void setSelected(Color selected) {
+        this.selected = selected;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getUnselectedBackground() {
+        return unselectedBackground;
+    }
+
+    /**
+     *
+     * @param unselectedBackground
+     */
+    public void setUnselectedBackground(Color unselectedBackground) {
+        this.unselectedBackground = unselectedBackground;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getSelectHighlight() {
+        return selectHighlight;
+    }
+
+    /**
+     *
+     * @param selectHighlight
+     */
+    public void setSelectHighlight(Color selectHighlight) {
+        this.selectHighlight = selectHighlight;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getBorderHightlightColor() {
+        return borderHightlightColor;
+    }
+
+    /**
+     *
+     * @param borderHightlightColor
+     */
+    public void setBorderHightlightColor(Color borderHightlightColor) {
+        this.borderHightlightColor = borderHightlightColor;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

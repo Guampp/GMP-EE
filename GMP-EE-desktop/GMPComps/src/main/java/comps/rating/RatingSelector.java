@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
 /**
+ * Seletor de niveis de 7 estrelas
  *
  * @author kaciano
  */
@@ -17,26 +18,56 @@ public class RatingSelector extends JComponent {
 
     private boolean editable = true;
 
+    /**
+     * Cria nova instancia do seletor de nivel
+     */
     public RatingSelector() {
         initComponents();
         addListeners();
         updateRating();
     }
 
+    /**
+     * Cria nova instancia do seletor de nivel
+     *
+     * @param rate Nivel inicial
+     */
     public RatingSelector(int rate) {
         initComponents();
         addListeners();
         updateRating();
         setSelectedRating(rate);
     }
-    
+
+    /**
+     * Cria nova instancia do seletor de nivel
+     *
+     * @param editable Editavel?
+     */
     public RatingSelector(boolean editable) {
         initComponents();
         addListeners();
         updateRating();
-        this.editable = editable;        
+        this.editable = editable;
     }
-    
+
+    /**
+     * Cria nova instancia do seletor de nivel
+     *
+     * @param rate Nivel inicial
+     * @param editable Editavel?
+     */
+    public RatingSelector(int rate, boolean editable) {
+        initComponents();
+        addListeners();
+        updateRating();
+        setSelectedRating(rate);
+        this.editable = editable;
+    }
+
+    /**
+     * Adiciona os listeners especificos
+     */
     private void addListeners() {
         for (JToggleButton c : componentArray()) {
             final JToggleButton button = (JToggleButton) c;
@@ -72,6 +103,9 @@ public class RatingSelector extends JComponent {
         }
     }
 
+    /**
+     * Atualiza o nivel atual
+     */
     private void updateRating() {
         for (JToggleButton c : componentArray()) {
             final JToggleButton button = (JToggleButton) c;
@@ -92,6 +126,11 @@ public class RatingSelector extends JComponent {
         }
     }
 
+    /**
+     * Retorna o nivel atual
+     *
+     * @return Nivel atual
+     */
     public int getSelectedRating() {
         for (JToggleButton bt : componentArray()) {
             if (bt.isSelected()) {
@@ -101,6 +140,11 @@ public class RatingSelector extends JComponent {
         return 0;
     }
 
+    /**
+     * Modifica o nivel atual
+     *
+     * @param rating Novo nivel
+     */
     public void setSelectedRating(int rating) {
         try {
             componentArray()[rating - 1].setSelected(true);
@@ -110,11 +154,21 @@ public class RatingSelector extends JComponent {
         }
     }
 
+    /**
+     * Array dos ToggleButton's
+     *
+     * @return Array dos ToggleButton's
+     */
     public JToggleButton[] componentArray() {
-        return new JToggleButton[]{jBStar1, jBStar2, jBStar3, jBStar4, jBStar5};
+        return new JToggleButton[]{jBStar1, jBStar2, jBStar3, jBStar4, jBStar5, jBStar6, jBStar7};
 
     }
 
+    /**
+     * Mapa dos ToggleButton's
+     *
+     * @return Mapa dos ToggleButton's
+     */
     public HashMap<JToggleButton, Integer> ratings() {
         HashMap<JToggleButton, Integer> rating = new HashMap<>();
         rating.put(jBStar1, 1);
@@ -122,6 +176,8 @@ public class RatingSelector extends JComponent {
         rating.put(jBStar3, 3);
         rating.put(jBStar4, 4);
         rating.put(jBStar5, 5);
+        rating.put(jBStar6, 6);
+        rating.put(jBStar7, 7);
         return rating;
     }
 
@@ -151,13 +207,15 @@ public class RatingSelector extends JComponent {
         jBStar3 = new javax.swing.JToggleButton();
         jBStar4 = new javax.swing.JToggleButton();
         jBStar5 = new javax.swing.JToggleButton();
+        jBStar6 = new javax.swing.JToggleButton();
+        jBStar7 = new javax.swing.JToggleButton();
 
-        setMaximumSize(new java.awt.Dimension(125, 25));
-        setMinimumSize(new java.awt.Dimension(125, 25));
+        setMaximumSize(new java.awt.Dimension(175, 25));
+        setMinimumSize(new java.awt.Dimension(175, 25));
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(125, 25));
+        setPreferredSize(new java.awt.Dimension(175, 25));
         setRequestFocusEnabled(false);
-        setLayout(new java.awt.GridLayout(1, 5));
+        setLayout(new java.awt.GridLayout(1, 7));
 
         buttonGroup.add(jBStar1);
         jBStar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/comps/res/Star_Empty.png"))); // NOI18N
@@ -194,6 +252,20 @@ public class RatingSelector extends JComponent {
         jBStar5.setContentAreaFilled(false);
         jBStar5.setFocusPainted(false);
         add(jBStar5);
+
+        buttonGroup.add(jBStar6);
+        jBStar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/comps/res/Star_Empty.png"))); // NOI18N
+        jBStar6.setBorderPainted(false);
+        jBStar6.setContentAreaFilled(false);
+        jBStar6.setFocusPainted(false);
+        add(jBStar6);
+
+        buttonGroup.add(jBStar7);
+        jBStar7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/comps/res/Star_Empty.png"))); // NOI18N
+        jBStar7.setBorderPainted(false);
+        jBStar7.setContentAreaFilled(false);
+        jBStar7.setFocusPainted(false);
+        add(jBStar7);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup;
@@ -202,6 +274,8 @@ public class RatingSelector extends JComponent {
     private javax.swing.JToggleButton jBStar3;
     private javax.swing.JToggleButton jBStar4;
     private javax.swing.JToggleButton jBStar5;
+    private javax.swing.JToggleButton jBStar6;
+    private javax.swing.JToggleButton jBStar7;
     // End of variables declaration//GEN-END:variables
 
     public boolean isEditable() {
@@ -259,4 +333,21 @@ public class RatingSelector extends JComponent {
     public void setjBStar5(javax.swing.JToggleButton jBStar5) {
         this.jBStar5 = jBStar5;
     }
+
+    public JToggleButton getjBStar6() {
+        return jBStar6;
+    }
+
+    public void setjBStar6(JToggleButton jBStar6) {
+        this.jBStar6 = jBStar6;
+    }
+
+    public JToggleButton getjBStar7() {
+        return jBStar7;
+    }
+
+    public void setjBStar7(JToggleButton jBStar7) {
+        this.jBStar7 = jBStar7;
+    }
+
 }

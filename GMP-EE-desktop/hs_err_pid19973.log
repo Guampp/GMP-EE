@@ -1,0 +1,865 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f344a303320, pid=19973, tid=139862666249984
+#
+# JRE version: Java(TM) SE Runtime Environment (7.0_45-b18) (build 1.7.0_45-b18)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.45-b08 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# C  0x00007f344a303320
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread is native thread
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0x00007f344a303320
+
+Registers:
+RAX=0x00007f344a303320, RBX=0x00007f34508a0a38, RCX=0x0000000000000001, RDX=0x0000000000000001
+RSP=0x00007f345089fe68, RBP=0x00007f34658cb308, RSI=0x00007f34508a0700, RDI=0x00007f340c044760
+R8 =0x0000000000000000, R9 =0x0000000000004e19, R10=0x0000000000000008, R11=0x0000000000000246
+R12=0x000000000000001e, R13=0x0000000000000000, R14=0x00007f34658cb2e0, R15=0x0000000000000004
+RIP=0x00007f344a303320, EFLAGS=0x0000000000010202, CSGSFS=0x0000000000000033, ERR=0x0000000000000014
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f345089fe68)
+0x00007f345089fe68:   00007f34656bad72 0000000000000000
+0x00007f345089fe78:   0000000000000000 0000000000000000
+0x00007f345089fe88:   0000000000000000 00007f3465af3060
+0x00007f345089fe98:   00007f3465ad0580 0000000000000000
+0x00007f345089fea8:   00007f34656baf7c 0000000000000000
+0x00007f345089feb8:   00007f34508a0700 00007f34508a0700
+0x00007f345089fec8:   01a485d2aae25952 0000000000000000
+0x00007f345089fed8:   00007f3465af3060 00007f3465ad0580
+0x00007f345089fee8:   0000000000000000 ffcc24c157825952
+0x00007f345089fef8:   ffcc4f05f48c5952 0000000000000000
+0x00007f345089ff08:   0000000000000000 0000000000000000
+0x00007f345089ff18:   0000000000000000 0000000000000000
+0x00007f345089ff28:   0000000000000000 0000000000000000
+0x00007f345089ff38:   0000000000000000 0000000000000000
+0x00007f345089ff48:   0000000000000000 0000000000000000
+0x00007f345089ff58:   0000000000000000 0000000000000000
+0x00007f345089ff68:   0000000000000000 0000000000000000
+0x00007f345089ff78:   0000000000000000 0000000000000000
+0x00007f345089ff88:   0000000000000000 0000000000000000
+0x00007f345089ff98:   0000000000000000 0000000000000000
+0x00007f345089ffa8:   0000000000000000 00007f34508a0700
+0x00007f345089ffb8:   00007f3464fca9cd 0000000000000000
+0x00007f345089ffc8:   0000000000000000 0000000000000000
+0x00007f345089ffd8:   0000000000000000 0000000000000000
+0x00007f345089ffe8:   0000000000000000 0000000000000000
+0x00007f345089fff8:   0000000000000000 0000000000000000
+0x00007f34508a0008:   0000000000000000 0000000000000000
+0x00007f34508a0018:   0000000000000000 0000000000000000
+0x00007f34508a0028:   0000000000000000 0000000000000000
+0x00007f34508a0038:   0000000000000000 0000000000000000
+0x00007f34508a0048:   0000000000000000 0000000000000000
+0x00007f34508a0058:   0000000000000000 0000000000000000 
+
+Instructions: (pc=0x00007f344a303320)
+0x00007f344a303300:   
+[error occurred during error reporting (printing registers, top of stack, instructions near pc), id 0xb]
+
+Register to memory mapping:
+
+RAX=0x00007f344a303320 is an unknown value
+RBX=0x00007f34508a0a38 is an unknown value
+RCX=0x0000000000000001 is an unknown value
+RDX=0x0000000000000001 is an unknown value
+RSP=0x00007f345089fe68 is an unknown value
+RBP=0x00007f34658cb308: <offset 0x218308> in /lib/x86_64-linux-gnu/libpthread.so.0 at 0x00007f34656b3000
+RSI=0x00007f34508a0700 is an unknown value
+RDI=0x00007f340c044760 is an unknown value
+R8 =0x0000000000000000 is an unknown value
+R9 =0x0000000000004e19 is an unknown value
+R10=0x0000000000000008 is an unknown value
+R11=0x0000000000000246 is an unknown value
+R12=0x000000000000001e is an unknown value
+R13=0x0000000000000000 is an unknown value
+R14=0x00007f34658cb2e0: <offset 0x2182e0> in /lib/x86_64-linux-gnu/libpthread.so.0 at 0x00007f34656b3000
+R15=0x0000000000000004 is an unknown value
+
+
+Stack: [0x00007f34507a0000,0x00007f34508a1000],  sp=0x00007f345089fe68,  free space=1023k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  0x00007f344a303320
+
+
+---------------  P R O C E S S  ---------------
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 17920K, used 6837K [0x00000000ec000000, 0x00000000ee300000, 0x0000000100000000)
+  eden space 15360K, 27% used [0x00000000ec000000,0x00000000ec431068,0x00000000ecf00000)
+  from space 2560K, 99% used [0x00000000ecf00000,0x00000000ed17c538,0x00000000ed180000)
+  to   space 2560K, 0% used [0x00000000ee080000,0x00000000ee080000,0x00000000ee300000)
+ ParOldGen       total 40960K, used 1211K [0x00000000c4000000, 0x00000000c6800000, 0x00000000ec000000)
+  object space 40960K, 2% used [0x00000000c4000000,0x00000000c412ee40,0x00000000c6800000)
+ PSPermGen       total 21504K, used 11910K [0x00000000bee00000, 0x00000000c0300000, 0x00000000c4000000)
+  object space 21504K, 55% used [0x00000000bee00000,0x00000000bf9a1b98,0x00000000c0300000)
+
+Card table byte_map: [0x00007f3462ac4000,0x00007f3462cce000] byte_map_base: 0x00007f34624cd000
+
+Polling page: 0x00007f3465aef000
+
+Code Cache  [0x00007f3459000000, 0x00007f3459270000, 0x00007f345c000000)
+ total_blobs=551 nmethods=87 adapters=417 free_code_cache=48424Kb largest_free_block=49571136
+
+Compilation events (10 events):
+Event: 0,728 Thread 0x00007f345c099800 nmethod 77 0x00007f34590b1910 code [0x00007f34590b1c80, 0x00007f34590b4308]
+Event: 0,732 Thread 0x00007f345c09c000 nmethod 83 0x00007f34590a6510 code [0x00007f34590a66a0, 0x00007f34590a6aa8]
+Event: 0,735 Thread 0x00007f345c099800   84             java.util.HashMap::getEntry (86 bytes)
+Event: 0,737 Thread 0x00007f345c09c000   85             java.util.HashMap::get (29 bytes)
+Event: 0,738 Thread 0x00007f345c099800 nmethod 84 0x00007f345909ee90 code [0x00007f345909f000, 0x00007f345909f208]
+Event: 0,738 Thread 0x00007f345c099800   86             java.lang.Float::compare (46 bytes)
+Event: 0,739 Thread 0x00007f345c099800 nmethod 86 0x00007f34590a9710 code [0x00007f34590a9840, 0x00007f34590a98d8]
+Event: 0,740 Thread 0x00007f345c09c000 nmethod 85 0x00007f345909e8d0 code [0x00007f345909ea40, 0x00007f345909ec58]
+Event: 0,810 Thread 0x00007f345c099800   87             java.lang.String::toCharArray (25 bytes)
+Event: 0,811 Thread 0x00007f345c099800 nmethod 87 0x00007f34590b9790 code [0x00007f34590b98e0, 0x00007f34590b9a18]
+
+GC Heap History (6 events):
+Event: 0,254 GC heap before
+{Heap before GC invocations=1 (full 0):
+ PSYoungGen      total 17920K, used 15360K [0x00000000ec000000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 15360K, 100% used [0x00000000ec000000,0x00000000ecf00000,0x00000000ecf00000)
+  from space 2560K, 0% used [0x00000000ed180000,0x00000000ed180000,0x00000000ed400000)
+  to   space 2560K, 0% used [0x00000000ecf00000,0x00000000ecf00000,0x00000000ed180000)
+ ParOldGen       total 40960K, used 0K [0x00000000c4000000, 0x00000000c6800000, 0x00000000ec000000)
+  object space 40960K, 0% used [0x00000000c4000000,0x00000000c4000000,0x00000000c6800000)
+ PSPermGen       total 21504K, used 3110K [0x00000000bee00000, 0x00000000c0300000, 0x00000000c4000000)
+  object space 21504K, 14% used [0x00000000bee00000,0x00000000bf109a18,0x00000000c0300000)
+Event: 0,257 GC heap after
+Heap after GC invocations=1 (full 0):
+ PSYoungGen      total 17920K, used 1815K [0x00000000ec000000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 15360K, 0% used [0x00000000ec000000,0x00000000ec000000,0x00000000ecf00000)
+  from space 2560K, 70% used [0x00000000ecf00000,0x00000000ed0c5f98,0x00000000ed180000)
+  to   space 2560K, 0% used [0x00000000ed180000,0x00000000ed180000,0x00000000ed400000)
+ ParOldGen       total 40960K, used 8K [0x00000000c4000000, 0x00000000c6800000, 0x00000000ec000000)
+  object space 40960K, 0% used [0x00000000c4000000,0x00000000c4002000,0x00000000c6800000)
+ PSPermGen       total 21504K, used 3110K [0x00000000bee00000, 0x00000000c0300000, 0x00000000c4000000)
+  object space 21504K, 14% used [0x00000000bee00000,0x00000000bf109a18,0x00000000c0300000)
+}
+Event: 0,400 GC heap before
+{Heap before GC invocations=2 (full 0):
+ PSYoungGen      total 17920K, used 17175K [0x00000000ec000000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 15360K, 100% used [0x00000000ec000000,0x00000000ecf00000,0x00000000ecf00000)
+  from space 2560K, 70% used [0x00000000ecf00000,0x00000000ed0c5f98,0x00000000ed180000)
+  to   space 2560K, 0% used [0x00000000ed180000,0x00000000ed180000,0x00000000ed400000)
+ ParOldGen       total 40960K, used 8K [0x00000000c4000000, 0x00000000c6800000, 0x00000000ec000000)
+  object space 40960K, 0% used [0x00000000c4000000,0x00000000c4002000,0x00000000c6800000)
+ PSPermGen       total 21504K, used 3156K [0x00000000bee00000, 0x00000000c0300000, 0x00000000c4000000)
+  object space 21504K, 14% used [0x00000000bee00000,0x00000000bf1151a8,0x00000000c0300000)
+Event: 0,402 GC heap after
+Heap after GC invocations=2 (full 0):
+ PSYoungGen      total 17920K, used 2476K [0x00000000ec000000, 0x00000000ee300000, 0x0000000100000000)
+  eden space 15360K, 0% used [0x00000000ec000000,0x00000000ec000000,0x00000000ecf00000)
+  from space 2560K, 96% used [0x00000000ed180000,0x00000000ed3eb1b8,0x00000000ed400000)
+  to   space 2560K, 0% used [0x00000000ecf00000,0x00000000ecf00000,0x00000000ed180000)
+ ParOldGen       total 40960K, used 16K [0x00000000c4000000, 0x00000000c6800000, 0x00000000ec000000)
+  object space 40960K, 0% used [0x00000000c4000000,0x00000000c4004000,0x00000000c6800000)
+ PSPermGen       total 21504K, used 3156K [0x00000000bee00000, 0x00000000c0300000, 0x00000000c4000000)
+  object space 21504K, 14% used [0x00000000bee00000,0x00000000bf1151a8,0x00000000c0300000)
+}
+Event: 0,661 GC heap before
+{Heap before GC invocations=3 (full 0):
+ PSYoungGen      total 17920K, used 17836K [0x00000000ec000000, 0x00000000ee300000, 0x0000000100000000)
+  eden space 15360K, 100% used [0x00000000ec000000,0x00000000ecf00000,0x00000000ecf00000)
+  from space 2560K, 96% used [0x00000000ed180000,0x00000000ed3eb1b8,0x00000000ed400000)
+  to   space 2560K, 0% used [0x00000000ecf00000,0x00000000ecf00000,0x00000000ed180000)
+ ParOldGen       total 40960K, used 16K [0x00000000c4000000, 0x00000000c6800000, 0x00000000ec000000)
+  object space 40960K, 0% used [0x00000000c4000000,0x00000000c4004000,0x00000000c6800000)
+ PSPermGen       total 21504K, used 9139K [0x00000000bee00000, 0x00000000c0300000, 0x00000000c4000000)
+  object space 21504K, 42% used [0x00000000bee00000,0x00000000bf6ece58,0x00000000c0300000)
+Event: 0,666 GC heap after
+Heap after GC invocations=3 (full 0):
+ PSYoungGen      total 17920K, used 2545K [0x00000000ec000000, 0x00000000ee300000, 0x0000000100000000)
+  eden space 15360K, 0% used [0x00000000ec000000,0x00000000ec000000,0x00000000ecf00000)
+  from space 2560K, 99% used [0x00000000ecf00000,0x00000000ed17c538,0x00000000ed180000)
+  to   space 2560K, 0% used [0x00000000ee080000,0x00000000ee080000,0x00000000ee300000)
+ ParOldGen       total 40960K, used 1211K [0x00000000c4000000, 0x00000000c6800000, 0x00000000ec000000)
+  object space 40960K, 2% used [0x00000000c4000000,0x00000000c412ee40,0x00000000c6800000)
+ PSPermGen       total 21504K, used 9139K [0x00000000bee00000, 0x00000000c0300000, 0x00000000c4000000)
+  object space 21504K, 42% used [0x00000000bee00000,0x00000000bf6ece58,0x00000000c0300000)
+}
+
+Deoptimization events (10 events):
+Event: 0,439 Thread 0x00007f345c012000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f3459070258 method=java.net.URL.<init>(Ljava/net/URL;Ljava/lang/String;Ljava/net/URLStreamHandler;)V @ 504
+Event: 0,443 Thread 0x00007f345c012000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f3459070258 method=java.net.URL.<init>(Ljava/net/URL;Ljava/lang/String;Ljava/net/URLStreamHandler;)V @ 504
+Event: 0,445 Thread 0x00007f345c012000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f3459070258 method=java.net.URL.<init>(Ljava/net/URL;Ljava/lang/String;Ljava/net/URLStreamHandler;)V @ 504
+Event: 0,446 Thread 0x00007f345c012000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f3459070258 method=java.net.URL.<init>(Ljava/net/URL;Ljava/lang/String;Ljava/net/URLStreamHandler;)V @ 504
+Event: 0,470 Thread 0x00007f345c012000 Uncommon trap: reason=null_check action=make_not_entrant pc=0x00007f3459074a60 method=java.lang.String.equals(Ljava/lang/Object;)Z @ 8
+Event: 0,492 Thread 0x00007f345c012000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f3459083ab4 method=java.util.Properties$LineReader.readLine()I @ 62
+Event: 0,493 Thread 0x00007f345c012000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f3459083ab4 method=java.util.Properties$LineReader.readLine()I @ 62
+Event: 0,494 Thread 0x00007f345c012000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f3459083ab4 method=java.util.Properties$LineReader.readLine()I @ 62
+Event: 0,618 Thread 0x00007f345c901800 Uncommon trap: reason=unreached action=reinterpret pc=0x00007f34590633c0 method=java.lang.AbstractStringBuilder.append(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder; @ 1
+Event: 0,619 Thread 0x00007f345c901800 Uncommon trap: reason=unreached action=reinterpret pc=0x00007f3459063efc method=java.lang.AbstractStringBuilder.append(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder; @ 1
+
+Internal exceptions (10 events):
+Event: 0,731 Thread 0x00007f345c901800 Threw 0x00000000ec25dd90 at /HUDSON/workspace/7u-2-build-linux-amd64/jdk7u45/229/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0,759 Thread 0x00007f345c901800 Threw 0x00000000ec29e0d0 at /HUDSON/workspace/7u-2-build-linux-amd64/jdk7u45/229/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0,761 Thread 0x00007f345c901800 Threw 0x00000000ec2a0908 at /HUDSON/workspace/7u-2-build-linux-amd64/jdk7u45/229/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0,763 Thread 0x00007f345c901800 Threw 0x00000000ec2a2f80 at /HUDSON/workspace/7u-2-build-linux-amd64/jdk7u45/229/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0,766 Thread 0x00007f345c901800 Threw 0x00000000ec2a5880 at /HUDSON/workspace/7u-2-build-linux-amd64/jdk7u45/229/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0,802 Thread 0x00007f345c901800 Threw 0x00000000ec2fa138 at /HUDSON/workspace/7u-2-build-linux-amd64/jdk7u45/229/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0,806 Thread 0x00007f345c901800 Threw 0x00000000ec2fd5e8 at /HUDSON/workspace/7u-2-build-linux-amd64/jdk7u45/229/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0,807 Thread 0x00007f345c901800 Threw 0x00000000ec30e9a0 at /HUDSON/workspace/7u-2-build-linux-amd64/jdk7u45/229/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0,808 Thread 0x00007f345c901800 Threw 0x00000000ec3740d8 at /HUDSON/workspace/7u-2-build-linux-amd64/jdk7u45/229/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0,810 Thread 0x00007f345c901800 Threw 0x00000000ec393688 at /HUDSON/workspace/7u-2-build-linux-amd64/jdk7u45/229/hotspot/src/share/vm/prims/jvm.cpp:1248
+
+Events (10 events):
+Event: 0,810 loading class 0x00007f346024b010 done
+Event: 0,810 loading class 0x00007f346024ada0 done
+Event: 0,810 loading class 0x00007f3424165cc0
+Event: 0,810 loading class 0x00007f3424165cc0 done
+Event: 1,812 loading class 0x00007f34241656b0
+Event: 1,812 loading class 0x00007f34241656b0 done
+Event: 1,812 loading class 0x00007f345c0daa80
+Event: 1,812 loading class 0x00007f345c0daa80 done
+Event: 1,812 Thread 0x00007f345c900000 Thread exited: 0x00007f345c900000
+Event: 1,812 Thread 0x00007f345c901800 Thread exited: 0x00007f345c901800
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:02 1574217                            /opt/jdk1.7u45/bin/java
+00600000-00601000 rw-p 00000000 08:02 1574217                            /opt/jdk1.7u45/bin/java
+00f98000-00fb9000 rw-p 00000000 00:00 0                                  [heap]
+bee00000-c0300000 rw-p 00000000 00:00 0 
+c0300000-c4000000 rw-p 00000000 00:00 0 
+c4000000-c6800000 rw-p 00000000 00:00 0 
+c6800000-ec000000 rw-p 00000000 00:00 0 
+ec000000-ee300000 rw-p 00000000 00:00 0 
+ee300000-100000000 rw-p 00000000 00:00 0 
+7f3404000000-7f3404021000 rw-p 00000000 00:00 0 
+7f3404021000-7f3408000000 ---p 00000000 00:00 0 
+7f340c000000-7f340c070000 rw-p 00000000 00:00 0 
+7f340c070000-7f3410000000 ---p 00000000 00:00 0 
+7f3410000000-7f3410038000 rw-p 00000000 00:00 0 
+7f3410038000-7f3414000000 ---p 00000000 00:00 0 
+7f3414000000-7f3414021000 rw-p 00000000 00:00 0 
+7f3414021000-7f3418000000 ---p 00000000 00:00 0 
+7f3418000000-7f3418021000 rw-p 00000000 00:00 0 
+7f3418021000-7f341c000000 ---p 00000000 00:00 0 
+7f341c000000-7f341c021000 rw-p 00000000 00:00 0 
+7f341c021000-7f3420000000 ---p 00000000 00:00 0 
+7f3420000000-7f3420021000 rw-p 00000000 00:00 0 
+7f3420021000-7f3424000000 ---p 00000000 00:00 0 
+7f3424000000-7f3424316000 rw-p 00000000 00:00 0 
+7f3424316000-7f3428000000 ---p 00000000 00:00 0 
+7f3428000000-7f3428021000 rw-p 00000000 00:00 0 
+7f3428021000-7f342c000000 ---p 00000000 00:00 0 
+7f342c000000-7f342c021000 rw-p 00000000 00:00 0 
+7f342c021000-7f3430000000 ---p 00000000 00:00 0 
+7f3430000000-7f343044f000 rw-p 00000000 00:00 0 
+7f343044f000-7f3434000000 ---p 00000000 00:00 0 
+7f3434000000-7f3434021000 rw-p 00000000 00:00 0 
+7f3434021000-7f3438000000 ---p 00000000 00:00 0 
+7f3438000000-7f3438021000 rw-p 00000000 00:00 0 
+7f3438021000-7f343c000000 ---p 00000000 00:00 0 
+7f343c000000-7f343c021000 rw-p 00000000 00:00 0 
+7f343c021000-7f3440000000 ---p 00000000 00:00 0 
+7f3440000000-7f3440021000 rw-p 00000000 00:00 0 
+7f3440021000-7f3444000000 ---p 00000000 00:00 0 
+7f3444000000-7f3444021000 rw-p 00000000 00:00 0 
+7f3444021000-7f3448000000 ---p 00000000 00:00 0 
+7f344c000000-7f344c021000 rw-p 00000000 00:00 0 
+7f344c021000-7f3450000000 ---p 00000000 00:00 0 
+7f345059e000-7f34505a1000 ---p 00000000 00:00 0 
+7f34505a1000-7f345069f000 rw-p 00000000 00:00 0 
+7f345069f000-7f34506a2000 ---p 00000000 00:00 0 
+7f34506a2000-7f34507a0000 rw-p 00000000 00:00 0                          [stack:19994]
+7f34507a0000-7f34507a3000 ---p 00000000 00:00 0 
+7f34507a3000-7f34508a1000 rw-p 00000000 00:00 0                          [stack:19993]
+7f34508a1000-7f34508a2000 r--s 00000000 08:02 4727013                    /var/cache/fontconfig/c05880de57d1f5e948fdfacc138775d9-le64.cache-4
+7f34508a2000-7f34508ad000 r--s 00000000 08:02 4727006                    /var/cache/fontconfig/945677eb7aeaf62f1d50efc3fb3ec7d8-le64.cache-4
+7f34508ad000-7f34508af000 r--s 00000000 08:02 4727008                    /var/cache/fontconfig/99e8ed0e538f840c565b6ed5dad60d56-le64.cache-4
+7f34508af000-7f34508b5000 r--s 00000000 08:02 4726991                    /var/cache/fontconfig/2cd17615ca594fa2959ae173292e504c-le64.cache-4
+7f34508b5000-7f34508b6000 r--s 00000000 08:02 4727023                    /var/cache/fontconfig/e7071f4a29fa870f4323321c154eba04-le64.cache-4
+7f34508b6000-7f34508b7000 r--s 00000000 08:02 4726988                    /var/cache/fontconfig/0d8c3b2ac0904cb8a57a757ad11a4a08-le64.cache-4
+7f34508b7000-7f34508be000 r--s 00000000 08:02 4727010                    /var/cache/fontconfig/a755afe4a08bf5b97852ceb7400b47bc-le64.cache-4
+7f34508be000-7f34508ca000 r--s 00000000 08:02 4727001                    /var/cache/fontconfig/6d41288fd70b0be22e8c3a91e032eec0-le64.cache-4
+7f34508ca000-7f34508de000 r--s 00000000 08:02 4726986                    /var/cache/fontconfig/04aabc0a78ac019cf9454389977116d2-le64.cache-4
+7f34508de000-7f34508df000 r--s 00000000 08:02 4726990                    /var/cache/fontconfig/1ac9eb803944fde146138c791f5cc56a-le64.cache-4
+7f34508df000-7f34508e3000 r--s 00000000 08:02 4726994                    /var/cache/fontconfig/385c0604a188198f04d133e54aba7fe7-le64.cache-4
+7f34508e3000-7f34508e4000 r--s 00000000 08:02 4727020                    /var/cache/fontconfig/dc05db6664285cc2f12bf69c139ae4c3-le64.cache-4
+7f34508e4000-7f34508e6000 r--s 00000000 08:02 4727003                    /var/cache/fontconfig/767a8244fc0220cfb567a839d0392e0b-le64.cache-4
+7f34508e6000-7f34508e9000 r--s 00000000 08:02 4727005                    /var/cache/fontconfig/8801497958630a81b71ace7c5f9b32a8-le64.cache-4
+7f34508e9000-7f34508fc000 r--s 00000000 08:02 4727017                    /var/cache/fontconfig/d52a8644073d54c13679302ca1180695-le64.cache-4
+7f34509e0000-7f34509e3000 ---p 00000000 00:00 0 
+7f34509e3000-7f3450ae1000 rw-p 00000000 00:00 0 
+7f3450ae1000-7f3450ae4000 ---p 00000000 00:00 0 
+7f3450ae4000-7f3450be2000 rw-p 00000000 00:00 0                          [stack:19991]
+7f3450be2000-7f3450be7000 r-xp 00000000 08:02 4463878                    /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f3450be7000-7f3450de6000 ---p 00005000 08:02 4463878                    /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f3450de6000-7f3450de7000 r--p 00004000 08:02 4463878                    /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f3450de7000-7f3450de8000 rw-p 00005000 08:02 4463878                    /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f3450de8000-7f3450df1000 r-xp 00000000 08:02 4463870                    /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f3450df1000-7f3450ff0000 ---p 00009000 08:02 4463870                    /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f3450ff0000-7f3450ff1000 r--p 00008000 08:02 4463870                    /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f3450ff1000-7f3450ff2000 rw-p 00009000 08:02 4463870                    /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f3451008000-7f345100c000 r--s 000f7000 08:02 1574937                    /opt/jdk1.7u45/jre/lib/ext/localedata.jar
+7f345100c000-7f345101c000 r-xp 00000000 08:02 1575031                    /opt/jdk1.7u45/jre/lib/amd64/libnio.so
+7f345101c000-7f345121c000 ---p 00010000 08:02 1575031                    /opt/jdk1.7u45/jre/lib/amd64/libnio.so
+7f345121c000-7f345121d000 rw-p 00010000 08:02 1575031                    /opt/jdk1.7u45/jre/lib/amd64/libnio.so
+7f345121d000-7f3451233000 r-xp 00000000 08:02 1574982                    /opt/jdk1.7u45/jre/lib/amd64/libnet.so
+7f3451233000-7f3451433000 ---p 00016000 08:02 1574982                    /opt/jdk1.7u45/jre/lib/amd64/libnet.so
+7f3451433000-7f3451434000 rw-p 00016000 08:02 1574982                    /opt/jdk1.7u45/jre/lib/amd64/libnet.so
+7f3451434000-7f3451437000 ---p 00000000 00:00 0 
+7f3451437000-7f3451535000 rw-p 00000000 00:00 0                          [stack:19990]
+7f3451535000-7f345154a000 r-xp 00000000 08:02 1048589                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f345154a000-7f3451749000 ---p 00015000 08:02 1048589                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f3451749000-7f345174a000 r--p 00014000 08:02 1048589                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f345174a000-7f345174b000 rw-p 00015000 08:02 1048589                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f345174b000-7f345174c000 r--s 00000000 08:02 4727478                    /var/cache/fontconfig/4794a0821666d79190d59a36cb4f44b5-le64.cache-4
+7f345174c000-7f3451753000 r--s 00000000 08:02 4726992                    /var/cache/fontconfig/3047814df9a2f067bd2d96a2b9c36e5a-le64.cache-4
+7f3451753000-7f3451759000 r--s 00000000 08:02 4727011                    /var/cache/fontconfig/b47c4e1ecd0709278f4910c18777a504-le64.cache-4
+7f3451759000-7f3451765000 r--s 00000000 08:02 4727018                    /var/cache/fontconfig/d589a48862398ed80a3d6066f4f56f4c-le64.cache-4
+7f3451765000-7f34517c5000 r-xp 00000000 08:02 1575025                    /opt/jdk1.7u45/jre/lib/amd64/libfontmanager.so
+7f34517c5000-7f34519c4000 ---p 00060000 08:02 1575025                    /opt/jdk1.7u45/jre/lib/amd64/libfontmanager.so
+7f34519c4000-7f34519c8000 rw-p 0005f000 08:02 1575025                    /opt/jdk1.7u45/jre/lib/amd64/libfontmanager.so
+7f34519c8000-7f34519d9000 rw-p 00000000 00:00 0 
+7f34519d9000-7f34519fb000 r--p 00000000 08:02 4990550                    /usr/share/locale-langpack/pt_BR/LC_MESSAGES/libc.mo
+7f34519fb000-7f3451a00000 r-xp 00000000 08:02 4463874                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f3451a00000-7f3451bff000 ---p 00005000 08:02 4463874                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f3451bff000-7f3451c00000 r--p 00004000 08:02 4463874                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f3451c00000-7f3451c01000 rw-p 00005000 08:02 4463874                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f3451c01000-7f3451c03000 r-xp 00000000 08:02 4463863                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f3451c03000-7f3451e03000 ---p 00002000 08:02 4463863                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f3451e03000-7f3451e04000 r--p 00002000 08:02 4463863                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f3451e04000-7f3451e05000 rw-p 00003000 08:02 4463863                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f3451e05000-7f3451e22000 r-xp 00000000 08:02 4464915                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f3451e22000-7f3452021000 ---p 0001d000 08:02 4464915                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f3452021000-7f3452022000 r--p 0001c000 08:02 4464915                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f3452022000-7f3452023000 rw-p 0001d000 08:02 4464915                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f3452023000-7f3452032000 r-xp 00000000 08:02 4463884                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f3452032000-7f3452231000 ---p 0000f000 08:02 4463884                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f3452231000-7f3452232000 r--p 0000e000 08:02 4463884                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f3452232000-7f3452233000 rw-p 0000f000 08:02 4463884                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f3452233000-7f3452238000 r-xp 00000000 08:02 4463902                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f3452238000-7f3452437000 ---p 00005000 08:02 4463902                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f3452437000-7f3452438000 r--p 00004000 08:02 4463902                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f3452438000-7f3452439000 rw-p 00005000 08:02 4463902                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f3452439000-7f3452442000 r-xp 00000000 08:02 4463896                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f3452442000-7f3452641000 ---p 00009000 08:02 4463896                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f3452641000-7f3452642000 r--p 00008000 08:02 4463896                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f3452642000-7f3452643000 rw-p 00009000 08:02 4463896                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f3452643000-7f3452773000 r-xp 00000000 08:02 4463859                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f3452773000-7f3452973000 ---p 00130000 08:02 4463859                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f3452973000-7f3452974000 r--p 00130000 08:02 4463859                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f3452974000-7f3452978000 rw-p 00131000 08:02 4463859                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f3452978000-7f3452989000 r-xp 00000000 08:02 4463876                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f3452989000-7f3452b88000 ---p 00011000 08:02 4463876                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f3452b88000-7f3452b89000 r--p 00010000 08:02 4463876                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f3452b89000-7f3452b8a000 rw-p 00011000 08:02 4463876                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f3452b8a000-7f3452b8b000 r--s 00000000 08:02 4726998                    /var/cache/fontconfig/56cf4f4769d0f4abc89a4895d7bd3ae1-le64.cache-4
+7f3452b8b000-7f3452b8c000 r--s 00000000 08:02 4727012                    /var/cache/fontconfig/b9d506c9ac06c20b433354fa67a72993-le64.cache-4
+7f3452b8c000-7f3452b8d000 r--s 00000000 08:02 4728804                    /var/cache/fontconfig/89034621ae2a8922916bb6bfa5799546-le64.cache-4
+7f3452b8d000-7f3452b95000 r--s 00000000 08:02 4726995                    /var/cache/fontconfig/3f7329c5293ffd510edef78f73874cfd-le64.cache-4
+7f3452b95000-7f3452b96000 r--s 00000000 08:02 4726987                    /var/cache/fontconfig/0c9eb80ebd1c36541ebe2852d3bb0c49-le64.cache-4
+7f3452b96000-7f3452b99000 r--s 00000000 08:02 4727131                    /var/cache/fontconfig/e13b20fdb08344e0e664864cc2ede53d-le64.cache-4
+7f3452b99000-7f3452b9d000 r--s 00000000 08:02 4728801                    /var/cache/fontconfig/7ef2298fde41cc6eeb7af42e48b7d293-le64.cache-4
+7f3452b9d000-7f3452ba4000 r--s 00000000 08:02 4853370                    /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+7f3452ba4000-7f3452bf4000 r-xp 00000000 08:02 1575034                    /opt/jdk1.7u45/jre/lib/amd64/xawt/libmawt.so
+7f3452bf4000-7f3452df4000 ---p 00050000 08:02 1575034                    /opt/jdk1.7u45/jre/lib/amd64/xawt/libmawt.so
+7f3452df4000-7f3452df8000 rw-p 00050000 08:02 1575034                    /opt/jdk1.7u45/jre/lib/amd64/xawt/libmawt.so
+7f3452df8000-7f3452df9000 rw-p 00000000 00:00 0 
+7f3452df9000-7f3452e9b000 r-xp 00000000 08:02 1574990                    /opt/jdk1.7u45/jre/lib/amd64/libawt.so
+7f3452e9b000-7f345309b000 ---p 000a2000 08:02 1574990                    /opt/jdk1.7u45/jre/lib/amd64/libawt.so
+7f345309b000-7f34530a7000 rw-p 000a2000 08:02 1574990                    /opt/jdk1.7u45/jre/lib/amd64/libawt.so
+7f34530a7000-7f34530cb000 rw-p 00000000 00:00 0 
+7f34530cb000-7f34530d6000 r--s 0037c000 08:02 1574273                    /opt/jdk1.7u45/jre/lib/charsets.jar
+7f34530d6000-7f34530da000 r--s 0003b000 08:02 3805475                    /home/kaciano/.m2/repository/unknown/binary/GMPComps-1.0/SNAPSHOT/GMPComps-1.0-SNAPSHOT.jar
+7f34530da000-7f34530f7000 r--s 00151000 08:02 4197907                    /home/kaciano/.m2/repository/org/swinglabs/swingx/swingx-all/1.6.5-1/swingx-all-1.6.5-1.jar
+7f34530f7000-7f3453102000 r--s 0008b000 08:02 1576293                    /home/kaciano/.m2/repository/net/sourceforge/jexcelapi/jxl/2.5.7/jxl-2.5.7.jar
+7f3453102000-7f3453103000 r--s 00000000 08:02 5517672                    /home/kaciano/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar
+7f3453103000-7f3453104000 r--s 00001000 08:02 5645633                    /home/kaciano/.m2/repository/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar
+7f3453104000-7f3453105000 r--s 00001000 08:02 5645611                    /home/kaciano/.m2/repository/org/jboss/spec/javax/interceptor/jboss-interceptors-api_1.1_spec/1.0.0.Beta1/jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar
+7f3453105000-7f3453107000 r--s 00007000 08:02 5645596                    /home/kaciano/.m2/repository/javax/el/el-api/2.2/el-api-2.2.jar
+7f3453107000-7f345310b000 r--s 0000e000 08:02 5645626                    /home/kaciano/.m2/repository/javax/enterprise/cdi-api/1.1/cdi-api-1.1.jar
+7f345310b000-7f345310c000 r--s 00004000 08:02 5645593                    /home/kaciano/.m2/repository/org/jboss/spec/javax/annotation/jboss-annotations-api_1.2_spec/1.0.0.Alpha1/jboss-annotations-api_1.2_spec-1.0.0.Alpha1.jar
+7f345310c000-7f345310e000 r--s 00010000 08:02 5517670                    /home/kaciano/.m2/repository/javax/el/javax.el-api/3.0-b08/javax.el-api-3.0-b08.jar
+7f345310e000-7f3453110000 r--s 00005000 08:02 4472078                    /home/kaciano/.m2/repository/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2.jar
+7f3453110000-7f3453112000 r--s 00006000 08:02 5645608                    /home/kaciano/.m2/repository/ch/qos/cal10n/cal10n-api/0.7.7/cal10n-api-0.7.7.jar
+7f3453112000-7f3453114000 r--s 00009000 08:02 4472071                    /home/kaciano/.m2/repository/org/slf4j/slf4j-ext/1.7.2/slf4j-ext-1.7.2.jar
+7f3453114000-7f3453115000 r--s 00003000 08:02 5645581                    /home/kaciano/.m2/repository/org/jboss/spec/javax/interceptor/jboss-interceptors-api_1.2_spec/1.0.0.Alpha3/jboss-interceptors-api_1.2_spec-1.0.0.Alpha3.jar
+7f3453115000-7f3453139000 r--s 001aa000 08:02 5645598                    /home/kaciano/.m2/repository/com/google/guava/guava/13.0.1/guava-13.0.1.jar
+7f3453139000-7f345313c000 r--s 00018000 08:02 5645650                    /home/kaciano/.m2/repository/org/jboss/classfilewriter/jboss-classfilewriter/1.0.4.Final/jboss-classfilewriter-1.0.4.Final.jar
+7f345313c000-7f3453157000 r--s 00126000 08:02 5645653                    /home/kaciano/.m2/repository/org/jboss/weld/weld-core/2.0.0.SP1/weld-core-2.0.0.SP1.jar
+7f3453157000-7f3453159000 r--s 00004000 08:02 5645652                    /home/kaciano/.m2/repository/org/jboss/weld/weld-api/2.0.Final/weld-api-2.0.Final.jar
+7f3453159000-7f345315d000 r--s 0000d000 08:02 5645651                    /home/kaciano/.m2/repository/org/jboss/weld/weld-spi/2.0.Final/weld-spi-2.0.Final.jar
+7f345315d000-7f345315f000 r--s 00007000 08:02 5645584                    /home/kaciano/.m2/repository/org/jboss/weld/se/weld-se-core/2.0.0.SP1/weld-se-core-2.0.0.SP1.jar
+7f345315f000-7f3453162000 r--s 00011000 08:02 5645577                    /home/kaciano/.m2/repository/org/glassfish/javax.json/1.0/javax.json-1.0.jar
+7f3453162000-7f3453163000 r--s 00005000 08:02 5517665                    /home/kaciano/.m2/repository/javax/interceptor/javax.interceptor-api/1.2/javax.interceptor-api-1.2.jar
+7f3453163000-7f3453164000 r--s 00004000 08:02 5645575                    /home/kaciano/.m2/repository/org/glassfish/main/resources/javamail-runtime/4.0/javamail-runtime-4.0.jar
+7f3453164000-7f3453168000 r--s 0002b000 08:02 5517663                    /home/kaciano/.m2/repository/javax/mail/javax.mail-api/1.5.0/javax.mail-api-1.5.0.jar
+7f3453168000-7f345316b000 r--s 0000d000 08:02 5517661                    /home/kaciano/.m2/repository/org/glassfish/main/resourcebase/resources/nucleus-resources/4.0/nucleus-resources-4.0.jar
+7f345316b000-7f345316e000 r--s 00018000 08:02 5517659                    /home/kaciano/.m2/repository/org/glassfish/main/resources/resources-connector/4.0/resources-connector-4.0.jar
+7f345316e000-7f3453170000 r--s 00005000 08:02 5517658                    /home/kaciano/.m2/repository/org/glassfish/main/resources/javamail-connector/4.0/javamail-connector-4.0.jar
+7f3453170000-7f3453172000 r--s 00001000 08:02 5645558                    /home/kaciano/.m2/repository/org/glassfish/main/appclient/server/appclient-connector/4.0/appclient-connector-4.0.jar
+7f3453172000-7f3453174000 r--s 0000a000 08:02 5645564                    /home/kaciano/.m2/repository/javax/xml/registry/javax.xml.registry-api/1.0.5/javax.xml.registry-api-1.0.5.jar
+7f3453174000-7f3453177000 r--s 00010000 08:02 5517655                    /home/kaciano/.m2/repository/org/glassfish/metro/webservices-api-osgi/2.3/webservices-api-osgi-2.3.jar
+7f3453177000-7f345318b000 r--s 000e0000 08:02 5645556                    /home/kaciano/.m2/repository/com/sun/xml/bind/jaxb-extra-osgi/2.2.7/jaxb-extra-osgi-2.2.7.jar
+7f345318b000-7f34531cb000 r--s 0032f000 08:02 5517654                    /home/kaciano/.m2/repository/com/sun/xml/bind/jaxb-osgi/2.2.7/jaxb-osgi-2.2.7.jar
+7f34531cb000-7f34531cf000 r--s 00018000 08:02 5517651                    /home/kaciano/.m2/repository/javax/xml/bind/jaxb-api-osgi/2.2.7/jaxb-api-osgi-2.2.7.jar
+7f34531cf000-7f34531d1000 r--s 00005000 08:02 5517649                    /home/kaciano/.m2/repository/javax/annotation/javax.annotation-api/1.2/javax.annotation-api-1.2.jar
+7f34531d1000-7f34531d3000 r--s 00004000 08:02 5517647                    /home/kaciano/.m2/repository/org/glassfish/main/persistence/cmp/cmp-internal-api/4.0/cmp-internal-api-4.0.jar
+7f34531d3000-7f34531d5000 r--s 00006000 08:02 5517645                    /home/kaciano/.m2/repository/org/glassfish/main/deployment/deployment-javaee-core/4.0/deployment-javaee-core-4.0.jar
+7f34531d5000-7f34531d6000 r--s 00006000 08:02 5517644                    /home/kaciano/.m2/repository/org/glassfish/main/persistence/persistence-common/4.0/persistence-common-4.0.jar
+7f34531d6000-7f34531d7000 r--s 0000a000 08:02 5517641                    /home/kaciano/.m2/repository/org/glassfish/main/persistence/jpa-container/4.0/jpa-container-4.0.jar
+7f34531d7000-7f34531de000 r--s 0003c000 08:02 5517637                    /home/kaciano/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.asm/2.5.0/org.eclipse.persistence.asm-2.5.0.jar
+7f34531de000-7f34531e3000 r--s 0002a000 08:02 5517633                    /home/kaciano/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.antlr/2.5.0/org.eclipse.persistence.antlr-2.5.0.jar
+7f34531e3000-7f34531e6000 r--s 00013000 08:02 5517634                    /home/kaciano/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.oracle/2.5.0/org.eclipse.persistence.oracle-2.5.0.jar
+7f34531e6000-7f34531ec000 r--s 0003f000 08:02 5517629                    /home/kaciano/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.dbws/2.5.0/org.eclipse.persistence.dbws-2.5.0.jar
+7f34531ec000-7f34531f3000 r--s 00071000 08:02 5517674                    /home/kaciano/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.moxy/2.5.0/org.eclipse.persistence.moxy-2.5.0.jar
+7f34531f3000-7f34531f5000 r--s 0000b000 08:02 5517676                    /home/kaciano/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.jpa.modelgen.processor/2.5.0/org.eclipse.persistence.jpa.modelgen.processor-2.5.0.jar
+7f34531f5000-7f3453213000 r--s 00137000 08:02 5517675                    /home/kaciano/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.jpa.jpql/2.5.0/org.eclipse.persistence.jpa.jpql-2.5.0.jar
+7f3453213000-7f3453222000 r--s 00108000 08:02 5517388                    /home/kaciano/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.jpa/2.5.0/org.eclipse.persistence.jpa-2.5.0.jar
+7f3453222000-7f3453260000 r--s 00482000 08:02 5517382                    /home/kaciano/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.core/2.5.0/org.eclipse.persistence.core-2.5.0.jar
+7f3453260000-7f3453263000 r--s 0000d000 08:02 5517622                    /home/kaciano/.m2/repository/javax/jms/javax.jms-api/2.0/javax.jms-api-2.0.jar
+7f3453263000-7f3453264000 r--s 00004000 08:02 5517619                    /home/kaciano/.m2/repository/org/glassfish/main/ejb/gf-ejb-connector/4.0/gf-ejb-connector-4.0.jar
+7f3453264000-7f3453265000 r--s 00003000 08:02 5517617                    /home/kaciano/.m2/repository/org/glassfish/main/jms/gf-jms-connector/4.0/gf-jms-connector-4.0.jar
+7f3453265000-7f3453267000 r--s 00014000 08:02 5517614                    /home/kaciano/.m2/repository/org/glassfish/main/jms/jms-core/4.0/jms-core-4.0.jar
+7f3453267000-7f3453269000 r--s 0000f000 08:02 5517615                    /home/kaciano/.m2/repository/org/glassfish/main/transaction/jta/4.0/jta-4.0.jar
+7f3453269000-7f345326f000 r--s 0005a000 08:02 5517611                    /home/kaciano/.m2/repository/org/glassfish/main/transaction/jts/4.0/jts-4.0.jar
+7f345326f000-7f3453271000 r--s 00006000 08:02 5517609                    /home/kaciano/.m2/repository/org/glassfish/main/appclient/acc-config/4.0/acc-config-4.0.jar
+7f3453271000-7f3453272000 r--s 00002000 08:02 5517608                    /home/kaciano/.m2/repository/org/glassfish/main/common/simple-glassfish-api/4.0/simple-glassfish-api-4.0.jar
+7f3453272000-7f3453275000 r--s 0001d000 08:02 5517605                    /home/kaciano/.m2/repository/org/glassfish/main/core/glassfish/4.0/glassfish-4.0.jar
+7f3453275000-7f345327b000 r--s 00051000 08:02 5517604                    /home/kaciano/.m2/repository/org/glassfish/pfl/pfl-asm/4.0.0-b003/pfl-asm-4.0.0-b003.jar
+7f345327b000-7f345327e000 r--s 00008000 08:02 5385316                    /home/kaciano/.m2/repository/org/shoal/shoal-gms-api/1.6.18/shoal-gms-api-1.6.18.jar
+7f345327e000-7f3453280000 r--s 00005000 08:02 5517601                    /home/kaciano/.m2/repository/org/glassfish/main/cluster/gms-bootstrap/4.0/gms-bootstrap-4.0.jar
+7f3453280000-7f3453282000 r--s 00014000 08:02 5517599                    /home/kaciano/.m2/repository/org/glassfish/main/orb/orb-iiop/4.0/orb-iiop-4.0.jar
+7f3453282000-7f3453284000 r--s 00004000 08:02 5385314                    /home/kaciano/.m2/repository/org/glassfish/gmbal/gmbal-api-only/3.0.0-b023/gmbal-api-only-3.0.0-b023.jar
+7f3453284000-7f3453293000 r--s 000a5000 08:02 5517596                    /home/kaciano/.m2/repository/org/glassfish/grizzly/grizzly-framework/2.2.10/grizzly-framework-2.2.10.jar
+7f3453293000-7f345329b000 r--s 0004d000 08:02 5517597                    /home/kaciano/.m2/repository/org/glassfish/pfl/pfl-dynamic/4.0.0-b003/pfl-dynamic-4.0.0-b003.jar
+7f345329b000-7f345329d000 r--s 0000d000 08:02 4594019                    /home/kaciano/.m2/repository/org/apache/felix/org.osgi.core/1.2.0/org.osgi.core-1.2.0.jar
+7f345329d000-7f345329e000 r--s 00001000 08:02 5517594                    /home/kaciano/.m2/repository/org/glassfish/corba/exception-annotation-processor/4.0.0-b007/exception-annotation-processor-4.0.0-b007.jar
+7f345329e000-7f34532a2000 r--s 00019000 08:02 5517591                    /home/kaciano/.m2/repository/org/glassfish/corba/glassfish-corba-csiv2-idl/4.0.0-b007/glassfish-corba-csiv2-idl-4.0.0-b007.jar
+7f34532a2000-7f34532bf000 r--s 0016b000 08:02 5517590                    /home/kaciano/.m2/repository/org/glassfish/corba/glassfish-corba-orb/4.0.0-b007/glassfish-corba-orb-4.0.0-b007.jar
+7f34532bf000-7f34532c1000 r--s 0000f000 08:02 5517587                    /home/kaciano/.m2/repository/org/glassfish/main/webservices/webservices-connector/4.0/webservices-connector-4.0.jar
+7f34532c1000-7f34532c4000 r--s 00016000 08:02 5517585                    /home/kaciano/.m2/repository/org/glassfish/main/admin/monitoring-core/4.0/monitoring-core-4.0.jar
+7f34532c4000-7f34532c6000 r--s 00005000 08:02 5517583                    /home/kaciano/.m2/repository/org/glassfish/corba/glassfish-corba-internal-api/4.0.0-b007/glassfish-corba-internal-api-4.0.0-b007.jar
+7f34532c6000-7f34532da000 r--s 000b5000 08:02 5517580                    /home/kaciano/.m2/repository/org/glassfish/corba/glassfish-corba-omgapi/4.0.0-b007/glassfish-corba-omgapi-4.0.0-b007.jar
+7f34532da000-7f34532e0000 r--s 00028000 08:02 5517581                    /home/kaciano/.m2/repository/org/glassfish/pfl/pfl-basic/4.0.0-b003/pfl-basic-4.0.0-b003.jar
+7f34532e0000-7f34532e2000 r--s 00002000 08:02 5517576                    /home/kaciano/.m2/repository/org/glassfish/main/orb/orb-enabler/4.0/orb-enabler-4.0.jar
+7f34532e2000-7f34532e5000 r--s 0000c000 08:02 5517574                    /home/kaciano/.m2/repository/org/glassfish/main/orb/orb-connector/4.0/orb-connector-4.0.jar
+7f34532e5000-7f34532e7000 r--s 00001000 08:02 5517572                    /home/kaciano/.m2/repository/org/glassfish/main/ejb/ejb-internal-api/4.0/ejb-internal-api-4.0.jar
+7f34532e7000-7f34532e9000 r--s 00001000 08:02 5517571                    /home/kaciano/.m2/repository/org/glassfish/main/connectors/gf-connectors-connector/4.0/gf-connectors-connector-4.0.jar
+7f34532e9000-7f34532f1000 r--s 0007a000 08:02 5517579                    /home/kaciano/.m2/repository/org/glassfish/main/connectors/connectors-runtime/4.0/connectors-runtime-4.0.jar
+7f34532f1000-7f34532f3000 r--s 00006000 08:02 5517568                    /home/kaciano/.m2/repository/org/glassfish/main/connectors/connectors-inbound-runtime/4.0/connectors-inbound-runtime-4.0.jar
+7f34532f3000-7f34532f5000 r--s 0000b000 08:02 5517566                    /home/kaciano/.m2/repository/javax/security/auth/message/javax.security.auth.message-api/1.1/javax.security.auth.message-api-1.1.jar
+7f34532f5000-7f34532f7000 r--s 0000b000 08:02 5517563                    /home/kaciano/.m2/repository/org/glassfish/pfl/pfl-tf-tools/4.0.0-b003/pfl-tf-tools-4.0.0-b003.jar
+7f34532f7000-7f34532f9000 r--s 00010000 08:02 5517562                    /home/kaciano/.m2/repository/org/glassfish/pfl/pfl-basic-tools/4.0.0-b003/pfl-basic-tools-4.0.0-b003.jar
+7f34532f9000-7f34532fc000 r--s 00015000 08:02 5517560                    /home/kaciano/.m2/repository/org/glassfish/pfl/pfl-tf/4.0.0-b003/pfl-tf-4.0.0-b003.jar
+7f34532fc000-7f3453301000 r--s 0002d000 08:02 5385312                    /home/kaciano/.m2/repository/org/glassfish/gmbal/gmbal/4.0.0-b001/gmbal-4.0.0-b001.jar
+7f3453301000-7f3453302000 r--s 00005000 08:02 5517557                    /home/kaciano/.m2/repository/org/glassfish/main/transaction/transaction-internal-api/4.0/transaction-internal-api-4.0.jar
+7f3453302000-7f3453304000 r--s 00009000 08:02 5517555                    /home/kaciano/.m2/repository/org/glassfish/main/connectors/work-management/4.0/work-management-4.0.jar
+7f3453304000-7f3453306000 r--s 00015000 08:02 5517553                    /home/kaciano/.m2/repository/org/glassfish/main/common/glassfish-naming/4.0/glassfish-naming-4.0.jar
+7f3453306000-7f345330a000 r--s 0002e000 08:02 5517551                    /home/kaciano/.m2/repository/org/glassfish/grizzly/grizzly-http-servlet/2.3.1/grizzly-http-servlet-2.3.1.jar
+7f345330a000-7f345330e000 r--s 00039000 08:02 5517550                    /home/kaciano/.m2/repository/org/glassfish/main/webservices/jsr109-impl/4.0/jsr109-impl-4.0.jar
+7f345330e000-7f3453310000 r--s 0000a000 08:02 5517548                    /home/kaciano/.m2/repository/org/glassfish/main/security/websecurity/4.0/websecurity-4.0.jar
+7f3453310000-7f3453312000 r--s 0000d000 08:02 5517639                    /home/kaciano/.m2/repository/org/jvnet/mimepull/mimepull/1.9.1/mimepull-1.9.1.jar
+7f3453312000-7f3453316000 r--s 00029000 08:02 5517544                    /home/kaciano/.m2/repository/org/codehaus/woodstox/stax2-api/3.1.1/stax2-api-3.1.1.jar
+7f3453316000-7f345331b000 r--s 00070000 08:02 5517541                    /home/kaciano/.m2/repository/org/codehaus/woodstox/woodstox-core-asl/4.1.2/woodstox-core-asl-4.1.2.jar
+7f345331b000-7f345331d000 r--s 00000000 08:02 5517623                    /home/kaciano/.m2/repository/org/glassfish/metro/webservices-extra-jdk-packages/2.3/webservices-extra-jdk-packages-2.3.jar
+7f345331d000-7f3453320000 r--s 00009000 08:02 5517632                    /home/kaciano/.m2/repository/javax/xml/rpc/javax.xml.rpc-api/1.1/javax.xml.rpc-api-1.1.jar
+7f3453320000-7f34533d6000 r--s 00b30000 08:02 5517533                    /home/kaciano/.m2/repository/org/glassfish/metro/webservices-osgi/2.3/webservices-osgi-2.3.jar
+7f34533d6000-7f34533d8000 r--s 00004000 08:02 5517534                    /home/kaciano/.m2/repository/org/glassfish/main/web/web-sse/4.0/web-sse-4.0.jar
+7f34533d8000-7f34533da000 r--s 00006000 08:02 5517529                    /home/kaciano/.m2/repository/org/glassfish/main/web/gf-web-connector/4.0/gf-web-connector-4.0.jar
+7f34533da000-7f34533dc000 r--s 00006000 08:02 5517530                    /home/kaciano/.m2/repository/org/glassfish/main/web/web-embed-api/4.0/web-embed-api-4.0.jar
+7f34533dc000-7f34533de000 r--s 00008000 08:02 5517527                    /home/kaciano/.m2/repository/org/glassfish/main/web/web-gui-plugin-common/4.0/web-gui-plugin-common-4.0.jar
+7f34533de000-7f34533e0000 r--s 00001000 08:02 5517525                    /home/kaciano/.m2/repository/org/glassfish/main/admin/admin-core/4.0/admin-core-4.0.jar
+7f34533e0000-7f34533e4000 r--s 00033000 08:02 5517523                    /home/kaciano/.m2/repository/org/glassfish/javax.el/3.0.0/javax.el-3.0.0.jar
+7f34533e4000-7f34533eb000 r--s 0007f000 08:02 5385308                    /home/kaciano/.m2/repository/org/glassfish/web/javax.servlet.jsp/2.3.2/javax.servlet.jsp-2.3.2.jar
+7f34533eb000-7f34533f9000 r--s 00103000 08:02 5517520                    /home/kaciano/.m2/repository/org/glassfish/main/web/web-core/4.0/web-core-4.0.jar
+7f34533f9000-7f34533fb000 r--s 00018000 08:02 5517518                    /home/kaciano/.m2/repository/org/glassfish/main/web/web-naming/4.0/web-naming-4.0.jar
+7f34533fb000-7f34533fd000 r--s 0000b000 08:02 5517517                    /home/kaciano/.m2/repository/javax/servlet/jsp/javax.servlet.jsp-api/2.3.1/javax.servlet.jsp-api-2.3.1.jar
+7f34533fd000-7f34533ff000 r--s 00018000 08:02 5517464                    /home/kaciano/.m2/repository/org/glassfish/main/web/war-util/4.0/war-util-4.0.jar
+7f34533ff000-7f3453404000 r--s 00038000 08:02 5517515                    /home/kaciano/.m2/repository/org/glassfish/main/external/jmxremote_optional-repackaged/4.0/jmxremote_optional-repackaged-4.0.jar
+7f3453404000-7f3453406000 r--s 0000f000 08:02 5517512                    /home/kaciano/.m2/repository/org/glassfish/main/common/glassfish-mbeanserver/4.0/glassfish-mbeanserver-4.0.jar
+7f3453406000-7f345340e000 r--s 00066000 08:02 5517513                    /home/kaciano/.m2/repository/org/glassfish/main/common/amx-core/4.0/amx-core-4.0.jar
+7f345340e000-7f3453410000 r--s 00006000 08:02 5517509                    /home/kaciano/.m2/repository/javax/management/j2ee/javax.management.j2ee-api/1.1.1/javax.management.j2ee-api-1.1.1.jar
+7f3453410000-7f3453414000 r--s 00011000 08:02 5517507                    /home/kaciano/.m2/repository/org/glassfish/main/common/amx-javaee/4.0/amx-javaee-4.0.jar
+7f3453414000-7f3453418000 r--s 0002a000 08:02 5517396                    /home/kaciano/.m2/repository/org/glassfish/main/web/web-cli/4.0/web-cli-4.0.jar
+7f3453418000-7f3453422000 r--s 00094000 08:02 5517457                    /home/kaciano/.m2/repository/org/glassfish/main/web/web-glue/4.0/web-glue-4.0.jar
+7f3453422000-7f3453424000 r--s 00000000 08:02 5517536                    /home/kaciano/.m2/repository/org/glassfish/main/core/api-exporter/4.0/api-exporter-4.0.jar
+7f3453424000-7f3453428000 r--s 00029000 08:02 5517500                    /home/kaciano/.m2/repository/org/glassfish/main/core/logging/4.0/logging-4.0.jar
+7f3453428000-7f345342c000 r--s 0001f000 08:02 5517499                    /home/kaciano/.m2/repository/org/glassfish/main/flashlight/flashlight-framework/4.0/flashlight-framework-4.0.jar
+7f345342c000-7f3453436000 r--s 000a3000 08:02 5517496                    /home/kaciano/.m2/repository/org/glassfish/main/core/kernel/4.0/kernel-4.0.jar
+7f3453436000-7f3453438000 r--s 00011000 08:02 5517448                    /home/kaciano/.m2/repository/org/glassfish/main/security/webservices.security/4.0/webservices.security-4.0.jar
+7f3453438000-7f345343a000 r--s 00009000 08:02 5517492                    /home/kaciano/.m2/repository/org/glassfish/external/management-api/3.2.0-b001/management-api-3.2.0-b001.jar
+7f345343a000-7f345343d000 r--s 0001b000 08:02 5517441                    /home/kaciano/.m2/repository/org/glassfish/grizzly/grizzly-config/2.3.1/grizzly-config-2.3.1.jar
+7f345343d000-7f3453441000 r--s 0002c000 08:02 5517488                    /home/kaciano/.m2/repository/org/glassfish/grizzly/grizzly-http-server/2.3.1/grizzly-http-server-2.3.1.jar
+7f3453441000-7f3453446000 r--s 00049000 08:02 5517485                    /home/kaciano/.m2/repository/org/glassfish/grizzly/grizzly-http/2.3.1/grizzly-http-2.3.1.jar
+7f3453446000-7f3453448000 r--s 00003000 08:02 5517484                    /home/kaciano/.m2/repository/org/glassfish/grizzly/grizzly-portunif/2.3.1/grizzly-portunif-2.3.1.jar
+7f3453448000-7f345344a000 r--s 00001000 08:02 5517482                    /home/kaciano/.m2/repository/org/glassfish/grizzly/grizzly-rcm/2.3.1/grizzly-rcm-2.3.1.jar
+7f345344a000-7f3453463000 r--s 00149000 08:02 5517438                    /home/kaciano/.m2/repository/org/glassfish/main/grizzly/nucleus-grizzly-all/4.0/nucleus-grizzly-all-4.0.jar
+7f3453463000-7f3453466000 r--s 00013000 08:02 5517478                    /home/kaciano/.m2/repository/org/glassfish/hk2/class-model/2.1.92/class-model-2.1.92.jar
+7f3453466000-7f3453468000 r--s 00006000 08:02 5517477                    /home/kaciano/.m2/repository/org/glassfish/hk2/hk2-runlevel/2.1.92/hk2-runlevel-2.1.92.jar
+7f3453468000-7f3453479000 r--s 000a7000 08:02 5517474                    /home/kaciano/.m2/repository/org/glassfish/hk2/external/bean-validator/2.1.92/bean-validator-2.1.92.jar
+7f3453479000-7f345347b000 r--s 00003000 08:02 5517472                    /home/kaciano/.m2/repository/org/jvnet/tiger-types/1.4/tiger-types-1.4.jar
+7f345347b000-7f3453480000 r--s 0002d000 08:02 5517440                    /home/kaciano/.m2/repository/org/glassfish/hk2/hk2-config/2.1.92/hk2-config-2.1.92.jar
+7f3453480000-7f3453481000 r--s 00001000 08:02 5517425                    /home/kaciano/.m2/repository/org/glassfish/hk2/config-types/2.1.92/config-types-2.1.92.jar
+7f3453481000-7f3453482000 r--s 00000000 08:02 5517471                    /home/kaciano/.m2/repository/org/glassfish/hk2/hk2/2.1.92/hk2-2.1.92.jar
+7f3453482000-7f3453484000 r--s 00002000 08:02 5517460                    /home/kaciano/.m2/repository/org/glassfish/main/common/scattered-archive-api/4.0/scattered-archive-api-4.0.jar
+7f3453484000-7f345348c000 r--s 00026000 08:02 5517503                    /home/kaciano/.m2/repository/org/glassfish/main/common/glassfish-api/4.0/glassfish-api-4.0.jar
+7f345348c000-7f345348f000 r--s 00015000 08:02 5517431                    /home/kaciano/.m2/repository/org/glassfish/main/security/ejb.security/4.0/ejb.security-4.0.jar
+7f345348f000-7f3453493000 r--s 000d3000 08:02 5517429                    /home/kaciano/.m2/repository/org/glassfish/main/external/libpam4j-repackaged/4.0/libpam4j-repackaged-4.0.jar
+7f3453493000-7f3453495000 r--s 0000d000 08:02 5517456                    /home/kaciano/.m2/repository/org/glassfish/main/security/jaspic.provider.framework/4.0/jaspic.provider.framework-4.0.jar
+7f3453495000-7f3453496000 r--s 0000c000 08:02 5517435                    /home/kaciano/.m2/repository/javax/security/jacc/javax.security.jacc-api/1.5/javax.security.jacc-api-1.5.jar
+7f3453496000-7f345349d000 r--s 0004d000 08:02 5517444                    /home/kaciano/.m2/repository/org/glassfish/main/security/security-ee/4.0/security-ee-4.0.jar
+7f345349d000-7f345349f000 r--s 00009000 08:02 5517445                    /home/kaciano/.m2/repository/org/glassfish/main/common/annotation-framework/4.0/annotation-framework-4.0.jar
+7f345349f000-7f34534a3000 r--s 00027000 08:02 5517443                    /home/kaciano/.m2/repository/org/glassfish/main/deployment/deployment-common/4.0/deployment-common-4.0.jar
+7f34534a3000-7f34534a6000 r--s 0000d000 08:02 5517406                    /home/kaciano/.m2/repository/javax/ejb/javax.ejb-api/3.2/javax.ejb-api-3.2.jar
+7f34534a6000-7f34534aa000 r--s 0000e000 08:02 5517486                    /home/kaciano/.m2/repository/javax/resource/javax.resource-api/1.7/javax.resource-api-1.7.jar
+7f34534aa000-7f34534b0000 r--s 00022000 08:02 5385300                    /home/kaciano/.m2/repository/org/eclipse/persistence/javax.persistence/2.1.0/javax.persistence-2.1.0.jar
+7f34534b0000-7f34534b3000 r--s 0000a000 08:02 5517414                    /home/kaciano/.m2/repository/javax/enterprise/deploy/javax.enterprise.deploy-api/1.6/javax.enterprise.deploy-api-1.6.jar
+7f34534b3000-7f34534b5000 r--s 00006000 08:02 5517468                    /home/kaciano/.m2/repository/javax/transaction/javax.transaction-api/1.2/javax.transaction-api-1.2.jar
+7f34534b5000-7f34534c3000 r--s 000ac000 08:02 5517469                    /home/kaciano/.m2/repository/org/glassfish/main/deployment/dol/4.0/dol-4.0.jar
+7f34534c3000-7f34534c5000 r--s 00007000 08:02 5385310                    /home/kaciano/.m2/repository/org/glassfish/ha/ha-api/3.1.8/ha-api-3.1.8.jar
+7f34534c5000-7f34534c8000 r--s 00016000 08:02 5517373                    /home/kaciano/.m2/repository/org/glassfish/main/connectors/connectors-internal-api/4.0/connectors-internal-api-4.0.jar
+7f34534c8000-7f34534cb000 r--s 0000b000 08:02 5517462                    /home/kaciano/.m2/repository/org/glassfish/main/external/ldapbp-repackaged/4.0/ldapbp-repackaged-4.0.jar
+7f34534cb000-7f34534cd000 r--s 00003000 08:02 5517375                    /home/kaciano/.m2/repository/org/glassfish/main/security/ssl-impl/4.0/ssl-impl-4.0.jar
+7f34534cd000-7f34534d5000 r--s 0006d000 08:02 5517423                    /home/kaciano/.m2/repository/org/glassfish/main/security/security/4.0/security-4.0.jar
+7f34534d5000-7f34534d7000 r--s 0000e000 08:02 5384357                    /home/kaciano/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar
+7f34534d7000-7f34534df000 r--s 00078000 08:02 5384355                    /home/kaciano/.m2/repository/com/sun/mail/javax.mail/1.5.0/javax.mail-1.5.0.jar
+7f34534df000-7f34534e3000 r--s 00035000 08:02 5517434                    /home/kaciano/.m2/repository/org/codehaus/jackson/jackson-core-asl/1.9.11/jackson-core-asl-1.9.11.jar
+7f34534e3000-7f34534e8000 r--s 00017000 08:02 5517427                    /home/kaciano/.m2/repository/org/glassfish/main/security/security-services/4.0/security-services-4.0.jar
+7f34534e8000-7f34534ef000 r--s 0004d000 08:02 5517415                    /home/kaciano/.m2/repository/org/glassfish/main/admin/admin-util/4.0/admin-util-4.0.jar
+7f34534ef000-7f34534fb000 r--s 0007f000 08:02 5517399                    /home/kaciano/.m2/repository/org/glassfish/main/admin/config-api/4.0/config-api-4.0.jar
+7f34534fb000-7f34534ff000 r--s 0001d000 08:02 5517402                    /home/kaciano/.m2/repository/org/glassfish/main/common/internal-api/4.0/internal-api-4.0.jar
+7f34534ff000-7f3453502000 r--s 00015000 08:02 5517426                    /home/kaciano/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+7f3453502000-7f3453509000 r--s 00027000 08:02 5517405                    /home/kaciano/.m2/repository/org/glassfish/main/common/container-common/4.0/container-common-4.0.jar
+7f3453509000-7f345350d000 r--s 00011000 08:02 5517409                    /home/kaciano/.m2/repository/org/glassfish/main/common/stats77/4.0/stats77-4.0.jar
+7f345350d000-7f345351a000 r--s 000d8000 08:02 5517403                    /home/kaciano/.m2/repository/org/glassfish/main/ejb/ejb-container/4.0/ejb-container-4.0.jar
+7f345351a000-7f345351c000 r--s 00010000 08:02 5517412                    /home/kaciano/.m2/repository/org/glassfish/main/ejb/ejb-full-container/4.0/ejb-full-container-4.0.jar
+7f345351c000-7f3453526000 r--s 0006f000 08:02 5517398                    /home/kaciano/.m2/repository/org/glassfish/main/common/common-util/4.0/common-util-4.0.jar
+7f3453526000-7f345352d000 r--s 0003f000 08:02 5517389                    /home/kaciano/.m2/repository/org/glassfish/hk2/external/cglib/2.1.92/cglib-2.1.92.jar
+7f345352d000-7f345352e000 ---p 00000000 00:00 0 
+7f345352e000-7f345362e000 rw-p 00000000 00:00 0                          [stack:19989]
+7f345362e000-7f3453631000 ---p 00000000 00:00 0 
+7f3453631000-7f345372f000 rw-p 00000000 00:00 0                          [stack:19988]
+7f345372f000-7f3453732000 ---p 00000000 00:00 0 
+7f3453732000-7f3453830000 rw-p 00000000 00:00 0                          [stack:19987]
+7f3453830000-7f3453833000 ---p 00000000 00:00 0 
+7f3453833000-7f3453931000 rw-p 00000000 00:00 0                          [stack:19986]
+7f3453931000-7f3453934000 ---p 00000000 00:00 0 
+7f3453934000-7f3453a32000 rw-p 00000000 00:00 0                          [stack:19985]
+7f3453a32000-7f3453cfd000 r--p 00000000 08:02 4462468                    /usr/lib/locale/locale-archive
+7f3453cfd000-7f3453d00000 ---p 00000000 00:00 0 
+7f3453d00000-7f3453dfe000 rw-p 00000000 00:00 0                          [stack:19984]
+7f3453dfe000-7f3453e01000 ---p 00000000 00:00 0 
+7f3453e01000-7f3453eff000 rw-p 00000000 00:00 0                          [stack:19983]
+7f3453eff000-7f3453f00000 ---p 00000000 00:00 0 
+7f3453f00000-7f3454000000 rw-p 00000000 00:00 0                          [stack:19982]
+7f3454000000-7f3454021000 rw-p 00000000 00:00 0 
+7f3454021000-7f3458000000 ---p 00000000 00:00 0 
+7f3458000000-7f3458001000 r--s 00002000 08:02 5517495                    /home/kaciano/.m2/repository/org/glassfish/main/common/glassfish-ee-api/4.0/glassfish-ee-api-4.0.jar
+7f3458001000-7f3459000000 rw-p 00000000 00:00 0 
+7f3459000000-7f3459270000 rwxp 00000000 00:00 0 
+7f3459270000-7f345c903000 rw-p 00000000 00:00 0 
+7f345c903000-7f3460000000 ---p 00000000 00:00 0 
+7f3460000000-7f3460001000 r--s 00004000 08:02 5517450                    /home/kaciano/.m2/repository/org/glassfish/main/security/appclient.security/4.0/appclient.security-4.0.jar
+7f3460001000-7f3460004000 r--s 00019000 08:02 5517376                    /home/kaciano/.m2/repository/org/glassfish/hk2/hk2-api/2.1.92/hk2-api-2.1.92.jar
+7f3460004000-7f3460009000 r--s 00047000 08:02 5517390                    /home/kaciano/.m2/repository/org/glassfish/hk2/external/asm-all-repackaged/2.1.92/asm-all-repackaged-2.1.92.jar
+7f3460009000-7f34601c5000 r--s 039b2000 08:02 1574746                    /opt/jdk1.7u45/jre/lib/rt.jar
+7f34601c5000-7f3462557000 rw-p 00000000 00:00 0 
+7f3462557000-7f3462558000 ---p 00000000 00:00 0 
+7f3462558000-7f3462658000 rw-p 00000000 00:00 0                          [stack:19981]
+7f3462658000-7f3462659000 ---p 00000000 00:00 0 
+7f3462659000-7f3462759000 rw-p 00000000 00:00 0                          [stack:19980]
+7f3462759000-7f346275a000 ---p 00000000 00:00 0 
+7f346275a000-7f346285a000 rw-p 00000000 00:00 0                          [stack:19979]
+7f346285a000-7f346285b000 ---p 00000000 00:00 0 
+7f346285b000-7f3462966000 rw-p 00000000 00:00 0                          [stack:19978]
+7f3462966000-7f3462984000 rw-p 00000000 00:00 0 
+7f3462984000-7f3462998000 rw-p 00000000 00:00 0 
+7f3462998000-7f3462ac4000 rw-p 00000000 00:00 0 
+7f3462ac4000-7f3462acf000 rw-p 00000000 00:00 0 
+7f3462acf000-7f3462aed000 rw-p 00000000 00:00 0 
+7f3462aed000-7f3462b01000 rw-p 00000000 00:00 0 
+7f3462b01000-7f3462c2d000 rw-p 00000000 00:00 0 
+7f3462c2d000-7f3462c3f000 rw-p 00000000 00:00 0 
+7f3462c3f000-7f3462ccd000 rw-p 00000000 00:00 0 
+7f3462ccd000-7f3462cce000 rw-p 00000000 00:00 0 
+7f3462cce000-7f3462ce8000 r-xp 00000000 08:02 1575007                    /opt/jdk1.7u45/jre/lib/amd64/libzip.so
+7f3462ce8000-7f3462ee8000 ---p 0001a000 08:02 1575007                    /opt/jdk1.7u45/jre/lib/amd64/libzip.so
+7f3462ee8000-7f3462ee9000 rw-p 0001a000 08:02 1575007                    /opt/jdk1.7u45/jre/lib/amd64/libzip.so
+7f3462ee9000-7f3462ef5000 r-xp 00000000 08:02 1052613                    /lib/x86_64-linux-gnu/libnss_files-2.17.so
+7f3462ef5000-7f34630f4000 ---p 0000c000 08:02 1052613                    /lib/x86_64-linux-gnu/libnss_files-2.17.so
+7f34630f4000-7f34630f5000 r--p 0000b000 08:02 1052613                    /lib/x86_64-linux-gnu/libnss_files-2.17.so
+7f34630f5000-7f34630f6000 rw-p 0000c000 08:02 1052613                    /lib/x86_64-linux-gnu/libnss_files-2.17.so
+7f34630f6000-7f3463101000 r-xp 00000000 08:02 1052617                    /lib/x86_64-linux-gnu/libnss_nis-2.17.so
+7f3463101000-7f3463300000 ---p 0000b000 08:02 1052617                    /lib/x86_64-linux-gnu/libnss_nis-2.17.so
+7f3463300000-7f3463301000 r--p 0000a000 08:02 1052617                    /lib/x86_64-linux-gnu/libnss_nis-2.17.so
+7f3463301000-7f3463302000 rw-p 0000b000 08:02 1052617                    /lib/x86_64-linux-gnu/libnss_nis-2.17.so
+7f3463302000-7f3463319000 r-xp 00000000 08:02 1052607                    /lib/x86_64-linux-gnu/libnsl-2.17.so
+7f3463319000-7f3463518000 ---p 00017000 08:02 1052607                    /lib/x86_64-linux-gnu/libnsl-2.17.so
+7f3463518000-7f3463519000 r--p 00016000 08:02 1052607                    /lib/x86_64-linux-gnu/libnsl-2.17.so
+7f3463519000-7f346351a000 rw-p 00017000 08:02 1052607                    /lib/x86_64-linux-gnu/libnsl-2.17.so
+7f346351a000-7f346351c000 rw-p 00000000 00:00 0 
+7f346351c000-7f3463524000 r-xp 00000000 08:02 1052609                    /lib/x86_64-linux-gnu/libnss_compat-2.17.so
+7f3463524000-7f3463723000 ---p 00008000 08:02 1052609                    /lib/x86_64-linux-gnu/libnss_compat-2.17.so
+7f3463723000-7f3463724000 r--p 00007000 08:02 1052609                    /lib/x86_64-linux-gnu/libnss_compat-2.17.so
+7f3463724000-7f3463725000 rw-p 00008000 08:02 1052609                    /lib/x86_64-linux-gnu/libnss_compat-2.17.so
+7f3463725000-7f346374e000 r-xp 00000000 08:02 1574998                    /opt/jdk1.7u45/jre/lib/amd64/libjava.so
+7f346374e000-7f346394e000 ---p 00029000 08:02 1574998                    /opt/jdk1.7u45/jre/lib/amd64/libjava.so
+7f346394e000-7f3463950000 rw-p 00029000 08:02 1574998                    /opt/jdk1.7u45/jre/lib/amd64/libjava.so
+7f3463950000-7f346395d000 r-xp 00000000 08:02 1574987                    /opt/jdk1.7u45/jre/lib/amd64/libverify.so
+7f346395d000-7f3463b5c000 ---p 0000d000 08:02 1574987                    /opt/jdk1.7u45/jre/lib/amd64/libverify.so
+7f3463b5c000-7f3463b5e000 rw-p 0000c000 08:02 1574987                    /opt/jdk1.7u45/jre/lib/amd64/libverify.so
+7f3463b5e000-7f3463b65000 r-xp 00000000 08:02 1052660                    /lib/x86_64-linux-gnu/librt-2.17.so
+7f3463b65000-7f3463d64000 ---p 00007000 08:02 1052660                    /lib/x86_64-linux-gnu/librt-2.17.so
+7f3463d64000-7f3463d65000 r--p 00006000 08:02 1052660                    /lib/x86_64-linux-gnu/librt-2.17.so
+7f3463d65000-7f3463d66000 rw-p 00007000 08:02 1052660                    /lib/x86_64-linux-gnu/librt-2.17.so
+7f3463d66000-7f3463e69000 r-xp 00000000 08:02 1052588                    /lib/x86_64-linux-gnu/libm-2.17.so
+7f3463e69000-7f3464068000 ---p 00103000 08:02 1052588                    /lib/x86_64-linux-gnu/libm-2.17.so
+7f3464068000-7f3464069000 r--p 00102000 08:02 1052588                    /lib/x86_64-linux-gnu/libm-2.17.so
+7f3464069000-7f346406a000 rw-p 00103000 08:02 1052588                    /lib/x86_64-linux-gnu/libm-2.17.so
+7f346406a000-7f3464bcc000 r-xp 00000000 08:02 1575005                    /opt/jdk1.7u45/jre/lib/amd64/server/libjvm.so
+7f3464bcc000-7f3464dcc000 ---p 00b62000 08:02 1575005                    /opt/jdk1.7u45/jre/lib/amd64/server/libjvm.so
+7f3464dcc000-7f3464e8f000 rw-p 00b62000 08:02 1575005                    /opt/jdk1.7u45/jre/lib/amd64/server/libjvm.so
+7f3464e8f000-7f3464ed0000 rw-p 00000000 00:00 0 
+7f3464ed0000-7f346508d000 r-xp 00000000 08:02 1052537                    /lib/x86_64-linux-gnu/libc-2.17.so
+7f346508d000-7f346528d000 ---p 001bd000 08:02 1052537                    /lib/x86_64-linux-gnu/libc-2.17.so
+7f346528d000-7f3465291000 r--p 001bd000 08:02 1052537                    /lib/x86_64-linux-gnu/libc-2.17.so
+7f3465291000-7f3465293000 rw-p 001c1000 08:02 1052537                    /lib/x86_64-linux-gnu/libc-2.17.so
+7f3465293000-7f3465298000 rw-p 00000000 00:00 0 
+7f3465298000-7f346529b000 r-xp 00000000 08:02 1052552                    /lib/x86_64-linux-gnu/libdl-2.17.so
+7f346529b000-7f346549a000 ---p 00003000 08:02 1052552                    /lib/x86_64-linux-gnu/libdl-2.17.so
+7f346549a000-7f346549b000 r--p 00002000 08:02 1052552                    /lib/x86_64-linux-gnu/libdl-2.17.so
+7f346549b000-7f346549c000 rw-p 00003000 08:02 1052552                    /lib/x86_64-linux-gnu/libdl-2.17.so
+7f346549c000-7f34654b2000 r-xp 00000000 08:02 1573828                    /opt/jdk1.7u45/lib/amd64/jli/libjli.so
+7f34654b2000-7f34656b2000 ---p 00016000 08:02 1573828                    /opt/jdk1.7u45/lib/amd64/jli/libjli.so
+7f34656b2000-7f34656b3000 rw-p 00016000 08:02 1573828                    /opt/jdk1.7u45/lib/amd64/jli/libjli.so
+7f34656b3000-7f34656ca000 r-xp 00000000 08:02 1052652                    /lib/x86_64-linux-gnu/libpthread-2.17.so
+7f34656ca000-7f34658ca000 ---p 00017000 08:02 1052652                    /lib/x86_64-linux-gnu/libpthread-2.17.so
+7f34658ca000-7f34658cb000 r--p 00017000 08:02 1052652                    /lib/x86_64-linux-gnu/libpthread-2.17.so
+7f34658cb000-7f34658cc000 rw-p 00018000 08:02 1052652                    /lib/x86_64-linux-gnu/libpthread-2.17.so
+7f34658cc000-7f34658d0000 rw-p 00000000 00:00 0 
+7f34658d0000-7f34658f3000 r-xp 00000000 08:02 1052513                    /lib/x86_64-linux-gnu/ld-2.17.so
+7f34658f3000-7f34658f5000 r--s 0000b000 08:02 5517397                    /home/kaciano/.m2/repository/org/glassfish/hk2/hk2-utils/2.1.92/hk2-utils-2.1.92.jar
+7f34658f5000-7f34658f8000 r--s 0001d000 08:02 5517374                    /home/kaciano/.m2/repository/org/glassfish/hk2/hk2-locator/2.1.92/hk2-locator-2.1.92.jar
+7f34658f8000-7f34658fc000 r--s 0001a000 08:02 5517380                    /home/kaciano/.m2/repository/org/glassfish/hk2/core/2.1.92/core-2.1.92.jar
+7f34658fc000-7f346591b000 rw-p 00000000 00:00 0 
+7f346591b000-7f34659d1000 rw-p 00000000 00:00 0 
+7f34659d1000-7f34659d4000 ---p 00000000 00:00 0 
+7f34659d4000-7f3465ad6000 rw-p 00000000 00:00 0                          [stack:19977]
+7f3465ad6000-7f3465ad7000 r--s 00004000 08:02 5517393                    /home/kaciano/.m2/repository/org/glassfish/hk2/osgi-resource-locator/1.0.1/osgi-resource-locator-1.0.1.jar
+7f3465ad7000-7f3465ad8000 r--s 00001000 08:02 5517378                    /home/kaciano/.m2/repository/org/glassfish/hk2/external/javax.inject/2.1.92/javax.inject-2.1.92.jar
+7f3465ad8000-7f3465ae5000 r--s 0019a000 08:02 5517368                    /home/kaciano/.m2/repository/org/glassfish/main/appclient/gf-client-module/4.0/gf-client-module-4.0.jar
+7f3465ae5000-7f3465ae6000 r--s 00005000 08:02 5517379                    /home/kaciano/.m2/repository/org/glassfish/main/appclient/gf-client/4.0/gf-client-4.0.jar
+7f3465ae6000-7f3465aee000 rw-s 00000000 08:02 2232939                    /tmp/hsperfdata_kaciano/19973
+7f3465aee000-7f3465aef000 rw-p 00000000 00:00 0 
+7f3465aef000-7f3465af0000 r--p 00000000 00:00 0 
+7f3465af0000-7f3465af2000 rw-p 00000000 00:00 0 
+7f3465af2000-7f3465af3000 r--p 00022000 08:02 1052513                    /lib/x86_64-linux-gnu/ld-2.17.so
+7f3465af3000-7f3465af5000 rw-p 00023000 08:02 1052513                    /lib/x86_64-linux-gnu/ld-2.17.so
+7fff09bf4000-7fff09c19000 rw-p 00000000 00:00 0                          [stack]
+7fff09dbd000-7fff09dbf000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+java_command: br.com.gmp.desktop.app.VisualApp
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/opt/jdk1.7u45
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+USERNAME=kaciano
+LD_LIBRARY_PATH=/opt/jdk1.7u45/jre/lib/amd64:/opt/jdk1.7u45/jre/lib/i386:
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x9935b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x9935b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x810330], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x810330], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x810330], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x810330], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x811820], sa_mask[0]=0x00000004, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x812790], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: SIG_IGN, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGTERM: [libjvm.so+0x812790], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x812790], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:wheezy/sid
+
+uname:Linux 3.11.0-12-generic #19-Ubuntu SMP Wed Oct 9 16:20:46 UTC 2013 x86_64
+libc:glibc 2.17 NPTL 2.17 
+rlimit: STACK 8192k, CORE 0k, NPROC 29080, NOFILE 4096, AS infinity
+load average:1,00 0,81 0,71
+
+/proc/meminfo:
+MemTotal:        3931680 kB
+MemFree:          372772 kB
+Buffers:           38496 kB
+Cached:          1254196 kB
+SwapCached:         2624 kB
+Active:          2282552 kB
+Inactive:        1032416 kB
+Active(anon):    1679116 kB
+Inactive(anon):   612288 kB
+Active(file):     603436 kB
+Inactive(file):   420128 kB
+Unevictable:         128 kB
+Mlocked:             128 kB
+SwapTotal:       7812092 kB
+SwapFree:        7788432 kB
+Dirty:             13144 kB
+Writeback:             0 kB
+AnonPages:       2019996 kB
+Mapped:           231612 kB
+Shmem:            269112 kB
+Slab:             150208 kB
+SReclaimable:     118328 kB
+SUnreclaim:        31880 kB
+KernelStack:        4576 kB
+PageTables:        34484 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     9777932 kB
+Committed_AS:    5513064 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      431276 kB
+VmallocChunk:   34359301116 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       88280 kB
+DirectMap2M:     4061184 kB
+
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, erms, ht, tsc, tscinvbit, tscinv
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 1200.000
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4988.78
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 2501.000
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4988.78
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 1200.000
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4988.78
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 2501.000
+cache size	: 3072 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4988.78
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 3931680k(372772k free), swap 7812092k(7788432k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.45-b08) for linux-amd64 JRE (1.7.0_45-b18), built on Oct  8 2013 05:44:25 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Wed Feb  5 10:25:56 2014
+elapsed time: 1 seconds
+

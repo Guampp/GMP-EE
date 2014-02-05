@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package comps.button;
 
 /**
@@ -17,8 +13,12 @@ public class ButtonTabComponent extends JPanel {
 
     private final JTabbedPane pane;
 
+    /**
+     * Constroi nova instancia de ButtonTabComponent
+     *
+     * @param pane Painel de tabs
+     */
     public ButtonTabComponent(final JTabbedPane pane) {
-        //unset default FlowLayout' gaps  
         super(new FlowLayout(FlowLayout.LEFT, 0, 0));
         if (pane == null) {
             throw new NullPointerException("TabbedPane is null");
@@ -28,10 +28,16 @@ public class ButtonTabComponent extends JPanel {
         setOpaque(false);
 
         initialize(null);
-    }//Fim do construtor.  
+    }
 
+    /**
+     * Constroi nova instancia de ButtonTabComponent
+     *
+     * @param pane Painel de tabs
+     * @param icon Icone do componente
+     */
     public ButtonTabComponent(final JTabbedPane pane, Icon icon) {
-        //unset default FlowLayout' gaps  
+
         super(new FlowLayout(FlowLayout.LEFT, 0, 0));
         if (pane == null) {
             throw new NullPointerException("TabbedPane is null");
@@ -43,8 +49,12 @@ public class ButtonTabComponent extends JPanel {
         initialize(icon);
     }
 
+    /**
+     * Inicializa o componente
+     *
+     * @param icon Icone do componente
+     */
     private void initialize(Icon icon) {
-        //faz a JLabel ler o título do JTabbedPane  
         JLabel label = new JLabel() {
             @Override
             public String getText() {
@@ -55,15 +65,15 @@ public class ButtonTabComponent extends JPanel {
                 return null;
             }
         };
-        String path = "/res/Icons/set1/16/Search.png";
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource(path));
-        label.setIcon(icon == null ? imageIcon : icon);
-        add(label);
-        //----------------------------------------------------------------------
-        //adiciona mais espaço entre a label e o botão  
+        if (icon != null) {
+            label.setIcon(icon);
+            add(label);
+        } else {
+            add(label);
+        }
+
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
-        //----------------------------------------------------------------------
-        //tab button  
+
         JButton button = new TabButton();
         add(button);
         //----------------------------------------------------------------------
@@ -71,6 +81,9 @@ public class ButtonTabComponent extends JPanel {
         //setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
     }
 
+    /**
+     * Construção da UI do TabButton
+     */
     private class TabButton extends JButton implements ActionListener {
 
         public TabButton() {
@@ -116,6 +129,9 @@ public class ButtonTabComponent extends JPanel {
             g2.dispose();
         }
     }
+    /**
+     * Listeners do componente
+     */
     private final static MouseListener buttonMouseListener = new MouseAdapter() {
         @Override
         public void mouseEntered(MouseEvent e) {

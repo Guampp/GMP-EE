@@ -58,9 +58,9 @@
             <version>1.6.5-1</version>
         </dependency>
         <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>GMPComps-1.0</artifactId>
-            <version>SNAPSHOT</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>GMPComps</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
     <description>Aplicação desktop do Guampp</description>

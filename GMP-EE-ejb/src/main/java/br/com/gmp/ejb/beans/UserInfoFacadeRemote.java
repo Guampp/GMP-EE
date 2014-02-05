@@ -6,6 +6,7 @@
 package br.com.gmp.ejb.beans;
 
 import br.com.gmp.ejb.entity.UserInfo;
+import br.com.gmp.utils.collections.Pair;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -15,7 +16,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface UserInfoFacadeRemote {
-
+Pair<Boolean, UserInfo> authenticate(String userid, String passoword);
     void create(UserInfo userBase);
 
     void edit(UserInfo userBase);
