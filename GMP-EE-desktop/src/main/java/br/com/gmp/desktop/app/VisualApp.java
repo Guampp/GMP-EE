@@ -1,5 +1,8 @@
 package br.com.gmp.desktop.app;
 
+import br.com.gmp.desktop.beans.ViewBean;
+import br.com.gmp.desktop.views.GMPJInternalFrame;
+
 /**
  *
  * @author kaciano
@@ -14,6 +17,17 @@ public class VisualApp extends javax.swing.JFrame {
     public VisualApp() {
         initComponents();
         appBean = new VisualAppBean(this);
+        GMPJInternalFrame frame = new GMPJInternalFrame(appBean, new ViewBean());
+        frame.setName("Teste");
+        frame.setSize(200, 250);
+        frame.setVisible(true);
+        GMPJInternalFrame frame2 = new GMPJInternalFrame(appBean, new ViewBean());
+        frame2.setName("Teste2");
+        frame2.setSize(200, 250);
+        frame2.setVisible(true);
+        desktop.add(frame);
+        desktop.add(frame2);
+        desktop.setSelectedFrame(frame);
     }
 
     /**
@@ -29,13 +43,7 @@ public class VisualApp extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VisualApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VisualApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VisualApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VisualApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         this.getContentPane().repaint();
@@ -65,6 +73,9 @@ public class VisualApp extends javax.swing.JFrame {
         gBLogout = new comps.button.GMPButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jLUser = new javax.swing.JLabel();
+        jTBSystem = new javax.swing.JToolBar();
+        jLWeb = new javax.swing.JLabel();
+        jLSystem = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMOption = new javax.swing.JMenu();
         jMILogoff = new javax.swing.JMenuItem();
@@ -189,6 +200,21 @@ public class VisualApp extends javax.swing.JFrame {
         jLUser.setMaximumSize(new java.awt.Dimension(32767, 32767));
         jTBUser.add(jLUser);
 
+        jTBSystem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTBSystem.setFloatable(false);
+
+        jLWeb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLWeb.setIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/src/main/resources/IKONS/16/globe.png")); // NOI18N
+        jLWeb.setMaximumSize(new java.awt.Dimension(30, 32678));
+        jLWeb.setMinimumSize(new java.awt.Dimension(30, 15));
+        jTBSystem.add(jLWeb);
+
+        jLSystem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLSystem.setIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/src/main/resources/IKONS/16/wifi_3.png")); // NOI18N
+        jLSystem.setMaximumSize(new java.awt.Dimension(30, 32678));
+        jLSystem.setMinimumSize(new java.awt.Dimension(30, 15));
+        jTBSystem.add(jLSystem);
+
         jMOption.setIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/src/main/resources/IKONS/16/list_2.png")); // NOI18N
         jMOption.setText("Opções");
 
@@ -237,12 +263,15 @@ public class VisualApp extends javax.swing.JFrame {
                     .addComponent(TaskContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTBUser, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTBMsg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(desktop)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTBFunctions, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                        .addComponent(jTBFunctions, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
-                        .addComponent(jTBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jTBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTBMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jTBSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,9 +283,11 @@ public class VisualApp extends javax.swing.JFrame {
                             .addComponent(jTBFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(desktop)))
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTBMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTBUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jTBUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTBSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -271,15 +302,15 @@ public class VisualApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIMotifActionPerformed
 
     private void gBConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBConfirmActionPerformed
-        // TODO add your handling code here:
+        appBean.confirm();
     }//GEN-LAST:event_gBConfirmActionPerformed
 
     private void gBDiscardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBDiscardActionPerformed
-        // TODO add your handling code here:
+        appBean.discard();
     }//GEN-LAST:event_gBDiscardActionPerformed
 
     private void gBProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBProcessActionPerformed
-        // TODO add your handling code here:
+        appBean.process();
     }//GEN-LAST:event_gBProcessActionPerformed
 
     private void gBLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBLogoutActionPerformed
@@ -474,7 +505,9 @@ public class VisualApp extends javax.swing.JFrame {
     private comps.button.GMPButton gBProcess;
     private comps.button.GMPButton gBSearch;
     private javax.swing.JLabel jLMsg;
+    private javax.swing.JLabel jLSystem;
     private javax.swing.JLabel jLUser;
+    private javax.swing.JLabel jLWeb;
     private javax.swing.JMenuItem jMIExit;
     private javax.swing.JMenuItem jMILogoff;
     private javax.swing.JRadioButtonMenuItem jMIMetal;
@@ -486,6 +519,7 @@ public class VisualApp extends javax.swing.JFrame {
     private javax.swing.JToolBar jTBFunctions;
     private javax.swing.JToolBar jTBMsg;
     private javax.swing.JToolBar jTBSearch;
+    private javax.swing.JToolBar jTBSystem;
     private javax.swing.JToolBar jTBUser;
     private javax.swing.JTextField jTSearchField;
     // End of variables declaration//GEN-END:variables

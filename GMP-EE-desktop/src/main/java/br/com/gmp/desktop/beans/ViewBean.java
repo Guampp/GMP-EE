@@ -1,6 +1,7 @@
 package br.com.gmp.desktop.beans;
 
 import br.com.gmp.desktop.beans.interfaces.IViewBean;
+import br.com.gmp.desktop.views.GMPJInternalFrame;
 import br.com.gmp.desktop.views.events.ViewEvent;
 
 /**
@@ -9,28 +10,35 @@ import br.com.gmp.desktop.views.events.ViewEvent;
  */
 public class ViewBean implements IViewBean {
 
+    @Override
     public void confirm(ViewEvent viewEvent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(((GMPJInternalFrame) viewEvent.getView()).getName() + " Confirm");
     }
 
+    @Override
     public void discard(ViewEvent viewEvent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(((GMPJInternalFrame) viewEvent.getView()).getName() + " Discard");
     }
 
+    @Override
     public void process(ViewEvent viewEvent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(((GMPJInternalFrame) viewEvent.getView()).getName() + " Process");
     }
 
+    @Override
     public void load(ViewEvent viewEvent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(((GMPJInternalFrame) viewEvent.getView()).getName() + " Load");
     }
 
+    @Override
     public void reload(ViewEvent viewEvent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(((GMPJInternalFrame) viewEvent.getView()).getName() + " Reload");
     }
 
+    @Override
     public boolean validateView(ViewEvent viewEvent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(((GMPJInternalFrame) viewEvent.getView()).getName() + " Validated");
+        return true;
     }
 
 }

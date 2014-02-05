@@ -5,6 +5,7 @@ import br.com.gmp.desktop.beans.ViewBean;
 import br.com.gmp.desktop.views.events.ViewEvent;
 import br.com.gmp.desktop.views.interfaces.View;
 import javax.swing.JInternalFrame;
+import javax.swing.border.Border;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
@@ -28,10 +29,11 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
      * @param viewBean Bean da view
      */
     public GMPJInternalFrame(VisualAppBean appBean, ViewBean viewBean) {
-        setListeners();
         this.appBean = appBean;
         this.viewBean = viewBean;
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        initComponents();
+        init();
+        setListeners();
     }
 
     /**
@@ -49,8 +51,23 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
         this.canConfirm = canConfirm;
         this.canDiscard = canDiscard;
         this.canProcess = canProcess;
+        initComponents();
+        init();
         setListeners();
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+    }
+
+    /**
+     * Metodo de inicialização
+     */
+    private void init() {
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+    }
+
+    @Override
+    public Border getBorder() {
+        return javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153));
     }
 
     /**
@@ -59,7 +76,8 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
      * @param e Dados do evento
      */
     public void iconified(InternalFrameEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("Event: Iconified");
+        appBean.setActiveView(null);
     }
 
     /**
@@ -68,7 +86,8 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
      * @param e Dados do evento
      */
     public void deiconified(InternalFrameEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("Event: Deiconified");
+        appBean.setActiveView(this);
     }
 
     /**
@@ -77,7 +96,8 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
      * @param e Dados do evento
      */
     public void activated(InternalFrameEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("Event: Activated");
+        appBean.setActiveView(this);
     }
 
     /**
@@ -86,7 +106,18 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
      * @param e Dados do evento
      */
     public void deactivated(InternalFrameEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("Event: Deactivated");
+        appBean.setActiveView(null);
+    }
+
+    /**
+     * Ação executada o frame fecha
+     *
+     * @param e Dados do evento
+     */
+    public void closed(InternalFrameEvent e) {
+        System.out.println("Event: Closed");
+        appBean.setActiveView(null);
     }
 
     /**
@@ -114,12 +145,19 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
             public void internalFrameDeactivated(InternalFrameEvent event) {
                 deactivated(event);
             }
+
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                closed(e);
+            }
+
         });
     }
 
     /**
      * Confirma os dados da view
      */
+    @Override
     public void confirm() {
         viewBean.confirm(new ViewEvent(this, null));
     }
@@ -127,6 +165,7 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
     /**
      * Descarta os dados da view
      */
+    @Override
     public void discard() {
         viewBean.discard(new ViewEvent(this, null));
     }
@@ -134,6 +173,7 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
     /**
      * Processa os dados da view
      */
+    @Override
     public void process() {
         viewBean.process(new ViewEvent(this, null));
     }
@@ -141,6 +181,7 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
     /**
      * Carrega a view
      */
+    @Override
     public void load() {
         viewBean.load(new ViewEvent(this, null));
     }
@@ -148,6 +189,7 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
     /**
      * Recarrega a view
      */
+    @Override
     public void reload() {
         viewBean.reload(new ViewEvent(this, null));
     }
@@ -156,6 +198,7 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
      *
      * @return Retorno da validação do bean
      */
+    @Override
     public boolean validateView() {
         return viewBean.validateView(new ViewEvent(this, null));
     }
@@ -164,6 +207,7 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
      *
      * @return
      */
+    @Override
     public Object getView() {
         return this;
     }
@@ -172,6 +216,7 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
      *
      * @return
      */
+    @Override
     public ViewBean getViewBean() {
         return viewBean;
     }

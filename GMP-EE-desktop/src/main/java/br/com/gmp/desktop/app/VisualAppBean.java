@@ -25,27 +25,37 @@ public class VisualAppBean implements IVisualAppBean {
     /**
      * Ativa o evento de confirmação
      */
+    @Override
     public void confirm() {
-        activeView.confirm();
+        if (!checkNull()) {
+            activeView.confirm();
+        }
     }
 
     /**
      * Ativa o evento de descarte
      */
+    @Override
     public void discard() {
-        activeView.discard();
+        if (!checkNull()) {
+            activeView.discard();
+        }
     }
 
     /**
      * Ativa o evento de processamento
      */
+    @Override
     public void process() {
-        activeView.process();
+        if (!checkNull()) {
+            activeView.process();
+        }
     }
 
     /**
      * Carrega os dados
      */
+    @Override
     public void load() {
 
     }
@@ -53,8 +63,18 @@ public class VisualAppBean implements IVisualAppBean {
     /**
      * Recarrega os dados
      */
+    @Override
     public void reload() {
 
+    }
+
+    /**
+     * Verifica existencia de activeView
+     *
+     * @return activeView existe?
+     */
+    public boolean checkNull() {
+        return activeView == null;
     }
 
     public VisualApp getVisualApp() {
