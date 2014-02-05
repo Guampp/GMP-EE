@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.gmp.desktop.app.dialogs;
 
 /**
@@ -14,6 +13,9 @@ public class VisualMenuControl extends javax.swing.JDialog {
 
     /**
      * Creates new form VisualMenuControl
+     *
+     * @param parent
+     * @param modal
      */
     public VisualMenuControl(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -29,39 +31,21 @@ public class VisualMenuControl extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jPopMenu = new javax.swing.JPopupMenu();
+        jMIAddMenu = new javax.swing.JMenuItem();
+        jMIRemoveMenu = new javax.swing.JMenuItem();
+        gMPTableBeanInfo1 = new comps.table.GMPTableBeanInfo();
         jScrollPane1 = new javax.swing.JScrollPane();
         gMPTable1 = new comps.table.GMPTable();
-        gMPComboBox1 = new comps.combobox.GMPComboBox();
-        gMPComboBox2 = new comps.combobox.GMPComboBox();
+
+        jMIAddMenu.setText("jMenuItem1");
+        jPopMenu.add(jMIAddMenu);
+
+        jMIRemoveMenu.setText("jMenuItem1");
+        jPopMenu.add(jMIRemoveMenu);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Titulo: *");
-
-        jLabel2.setText("Pai:");
-
-        jLabel3.setText("Icone: *");
-
-        gMPTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Titulo", "Pai", "Icone"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         jScrollPane1.setViewportView(gMPTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -70,38 +54,14 @@ public class VisualMenuControl extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gMPComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gMPComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(gMPComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(gMPComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -151,13 +111,11 @@ public class VisualMenuControl extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private comps.combobox.GMPComboBox gMPComboBox1;
-    private comps.combobox.GMPComboBox gMPComboBox2;
     private comps.table.GMPTable gMPTable1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private comps.table.GMPTableBeanInfo gMPTableBeanInfo1;
+    private javax.swing.JMenuItem jMIAddMenu;
+    private javax.swing.JMenuItem jMIRemoveMenu;
+    private javax.swing.JPopupMenu jPopMenu;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,6 +3,7 @@ package comps.table;
 import comps.BaseColors;
 import comps.model.GMPTableModel;
 import comps.ui.MyTableHeaderUI;
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
@@ -10,12 +11,15 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
+ * Tabela customizada
  *
  * @author kaciano
  */
 public class GMPTable extends JTable {
 
     private GMPTableModel gmpModel;
+    private Color startHeaderColor;
+    private Color endHeaderColor;
 
     public GMPTable() {
         gmpModel = new GMPTableModel(new Object());
@@ -29,6 +33,18 @@ public class GMPTable extends JTable {
         initialize();
     }
 
+    public GMPTable(Color startHeaderColor, Color endHeaderColor) {
+        gmpModel = new GMPTableModel(new Object());
+        this.startHeaderColor = startHeaderColor;
+        this.endHeaderColor = endHeaderColor;
+    }
+
+    public GMPTable(GMPTableModel gmpModel, Color startHeaderColor, Color endHeaderColor) {
+        this.gmpModel = gmpModel;
+        this.startHeaderColor = startHeaderColor;
+        this.endHeaderColor = endHeaderColor;
+    }
+
     private void initialize() {
         initComponents();
         this.getTableHeader().setUI(new MyTableHeaderUI());
@@ -37,12 +53,12 @@ public class GMPTable extends JTable {
         this.setGridColor(BaseColors.lightColor);
         this.setRowHeight(25);
         this.setDefaultEditor(Boolean.TYPE, new DefaultCellEditor(new JCheckBox()));
-        this.setDefaultRenderer(Boolean.TYPE, new DefaultTableCellRenderer(){
+        this.setDefaultRenderer(Boolean.TYPE, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 return new JCheckBox();
-            }            
-        });                
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -60,4 +76,21 @@ public class GMPTable extends JTable {
     public void setGmpModel(GMPTableModel gmpModel) {
         this.gmpModel = gmpModel;
     }
+
+    public Color getStartHeaderColor() {
+        return startHeaderColor;
+    }
+
+    public void setStartHeaderColor(Color startHeaderColor) {
+        this.startHeaderColor = startHeaderColor;
+    }
+
+    public Color getEndHeaderColor() {
+        return endHeaderColor;
+    }
+
+    public void setEndHeaderColor(Color endHeaderColor) {
+        this.endHeaderColor = endHeaderColor;
+    }
+
 }

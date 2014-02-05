@@ -18,12 +18,36 @@ import javax.swing.plaf.basic.BasicTableHeaderUI;
  */
 public class MyTableHeaderUI extends BasicTableHeaderUI {
 
-    private Color startColor = BaseColors.darkColor.darker();
-    private Color endColor = BaseColors.darkColor;
-    private Color disabledColor = new Color(192, 192, 192);
-    private Color normalColor = Color.white;
-    private Color highlightColor = BaseColors.systemColor;
+    private Color startColor;
+    private Color endColor;
+    private Color disabledColor;
+    private Color normalColor;
+    private Color highlightColor;
     private GradientPaint GP;
+
+    public MyTableHeaderUI() {
+        startColor = BaseColors.darkColor.darker();
+        endColor = BaseColors.darkColor;
+        disabledColor = new Color(192, 192, 192);
+        normalColor = Color.white;
+        highlightColor = BaseColors.systemColor;
+    }
+
+    public MyTableHeaderUI(Color startColor, Color endColor) {
+        this.startColor = startColor;
+        this.endColor = endColor;
+        disabledColor = new Color(192, 192, 192);
+        normalColor = Color.white;
+        highlightColor = BaseColors.systemColor;
+    }
+
+    public MyTableHeaderUI(Color startColor, Color endColor, Color disabledColor, Color normalColor, Color highlightColor) {
+        this.startColor = startColor;
+        this.endColor = endColor;
+        this.disabledColor = disabledColor;
+        this.normalColor = normalColor;
+        this.highlightColor = highlightColor;
+    }
 
     @Override
     public void paint(Graphics g, final JComponent c) {
@@ -109,4 +133,3 @@ public class MyTableHeaderUI extends BasicTableHeaderUI {
     }
 
 }
-
