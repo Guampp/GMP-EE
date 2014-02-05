@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jxl.Workbook;
-import jxl.format.CellFormat;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
