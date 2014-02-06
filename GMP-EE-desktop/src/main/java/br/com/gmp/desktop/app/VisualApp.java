@@ -2,7 +2,7 @@ package br.com.gmp.desktop.app;
 
 import br.com.gmp.desktop.beans.ViewBean;
 import br.com.gmp.desktop.views.GMPJInternalFrame;
-import br.com.gmp.utils.interaction.WindowUtil;
+import br.com.gmp.utils.interact.WindowUtil;
 import comps.tabbedpane.GMPJTabbedPane;
 import javax.swing.JTabbedPane;
 

@@ -2,6 +2,7 @@ package comps.tabbedpane;
 
 import comps.BaseColors;
 import comps.button.ButtonTabComponent;
+import comps.ui.CustomTabbedPaneUI;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Insets;
@@ -71,6 +72,7 @@ public class GMPJTabbedPane extends JTabbedPane {
         this.unselectedBackground = unselectedBackground;
         this.selectHighlight = selectHighlight;
         this.borderHightlightColor = borderHightlightColor;
+        changeTabbedPane();
     }
 
     /**
@@ -98,6 +100,7 @@ public class GMPJTabbedPane extends JTabbedPane {
         this.unselectedBackground = unselectedBackground;
         this.selectHighlight = selectHighlight;
         this.borderHightlightColor = borderHightlightColor;
+        changeTabbedPane();
     }
 
     /**
@@ -119,16 +122,17 @@ public class GMPJTabbedPane extends JTabbedPane {
      * Mudanças aplicadas no UIManager para customização do tabbedpane
      */
     private void changeTabbedPane() {
-        UIManager.put("TabbedPane.borderColor", borderColor);
-        UIManager.put("TabbedPane.darkShadow", darkShadow);
-        UIManager.put("TabbedPane.light", light);
-        UIManager.put("TabbedPane.highlight", highlight);
-        UIManager.put("TabbedPane.focus", focus);
-        UIManager.put("TabbedPane.selected", selected);
-        UIManager.put("TabbedPane.unselectedBackground", unselectedBackground);
-        UIManager.put("TabbedPane.selectHighlight", selectHighlight);
-        UIManager.put("TabbedPane.borderHightlightColor", borderHightlightColor);
-        UIManager.put("TabbedPane.contentBorderInsets", new Insets(1, 1, 1, 1));
+        this.setUI(new CustomTabbedPaneUI());
+//        UIManager.put("TabbedPane.borderColor", borderColor);
+//        UIManager.put("TabbedPane.darkShadow", darkShadow);
+//        UIManager.put("TabbedPane.light", light);
+//        UIManager.put("TabbedPane.highlight", highlight);
+//        UIManager.put("TabbedPane.focus", focus);
+//        UIManager.put("TabbedPane.selected", selected);
+//        UIManager.put("TabbedPane.unselectedBackground", unselectedBackground);
+//        UIManager.put("TabbedPane.selectHighlight", selectHighlight);
+//        UIManager.put("TabbedPane.borderHightlightColor", borderHightlightColor);
+//        UIManager.put("TabbedPane.contentBorderInsets", new Insets(1, 1, 1, 1));
     }
 
     /**

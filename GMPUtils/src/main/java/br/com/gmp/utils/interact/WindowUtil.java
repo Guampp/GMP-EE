@@ -1,4 +1,4 @@
-package br.com.gmp.utils.interaction;
+package br.com.gmp.utils.interact;
 
 import java.awt.Component;
 import javax.swing.JOptionPane;
