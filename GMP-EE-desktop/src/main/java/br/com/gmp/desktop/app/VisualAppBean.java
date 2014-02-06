@@ -92,6 +92,7 @@ public class VisualAppBean implements IVisualAppBean {
         GMPJTabbedPane tabs = visualApp.getgTPDesktops();
         tabs.addClosableTab("Área " + tabs.getComponentCount(), icon, desktop,
                 "Área de trabalho");
+        tabs.setSelectedComponent(desktop);
     }
 
     /**
@@ -108,18 +109,52 @@ public class VisualAppBean implements IVisualAppBean {
 
     }
 
+    /**
+     * Retorna desktop ativo
+     *
+     * @return Desktop ativo
+     */
+    public JDesktopPane getActiveDesktop() {
+        JDesktopPane selected = (JDesktopPane) visualApp.getgTPDesktops()
+                .getSelectedComponent();
+        if (selected != null) {
+            return (JDesktopPane) visualApp.getgTPDesktops()
+                    .getSelectedComponent();
+        } else {
+            addDesktop();
+            return (JDesktopPane) visualApp.getgTPDesktops()
+                    .getSelectedComponent();
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
     public VisualApp getVisualApp() {
         return visualApp;
     }
 
+    /**
+     *
+     * @param visualApp
+     */
     public void setVisualApp(VisualApp visualApp) {
         this.visualApp = visualApp;
     }
 
+    /**
+     *
+     * @return
+     */
     public View getActiveView() {
         return activeView;
     }
 
+    /**
+     *
+     * @param activeView
+     */
     public void setActiveView(View activeView) {
         this.activeView = activeView;
     }

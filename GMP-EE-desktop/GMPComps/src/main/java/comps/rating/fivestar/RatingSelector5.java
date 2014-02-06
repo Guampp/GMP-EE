@@ -1,4 +1,4 @@
-package comps.rating;
+package comps.rating.fivestar;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -14,14 +14,14 @@ import javax.swing.JToggleButton;
  *
  * @author kaciano
  */
-public class RatingSelector extends JComponent {
+public class RatingSelector5 extends JComponent {
 
     private boolean editable = true;
 
     /**
      * Cria nova instancia do seletor de nivel
      */
-    public RatingSelector() {
+    public RatingSelector5() {
         initComponents();
         addListeners();
         updateRating();
@@ -32,7 +32,7 @@ public class RatingSelector extends JComponent {
      *
      * @param rate Nivel inicial
      */
-    public RatingSelector(int rate) {
+    public RatingSelector5(int rate) {
         initComponents();
         addListeners();
         updateRating();
@@ -44,7 +44,7 @@ public class RatingSelector extends JComponent {
      *
      * @param editable Editavel?
      */
-    public RatingSelector(boolean editable) {
+    public RatingSelector5(boolean editable) {
         initComponents();
         addListeners();
         updateRating();
@@ -57,7 +57,7 @@ public class RatingSelector extends JComponent {
      * @param rate Nivel inicial
      * @param editable Editavel?
      */
-    public RatingSelector(int rate, boolean editable) {
+    public RatingSelector5(int rate, boolean editable) {
         initComponents();
         addListeners();
         updateRating();
@@ -160,7 +160,7 @@ public class RatingSelector extends JComponent {
      * @return Array dos ToggleButton's
      */
     public JToggleButton[] componentArray() {
-        return new JToggleButton[]{jBStar1, jBStar2, jBStar3, jBStar4, jBStar5, jBStar6, jBStar7};
+        return new JToggleButton[]{jBStar1, jBStar2, jBStar3, jBStar4, jBStar5};
 
     }
 
@@ -176,8 +176,6 @@ public class RatingSelector extends JComponent {
         rating.put(jBStar3, 3);
         rating.put(jBStar4, 4);
         rating.put(jBStar5, 5);
-        rating.put(jBStar6, 6);
-        rating.put(jBStar7, 7);
         return rating;
     }
 
@@ -207,13 +205,11 @@ public class RatingSelector extends JComponent {
         jBStar3 = new javax.swing.JToggleButton();
         jBStar4 = new javax.swing.JToggleButton();
         jBStar5 = new javax.swing.JToggleButton();
-        jBStar6 = new javax.swing.JToggleButton();
-        jBStar7 = new javax.swing.JToggleButton();
 
-        setMaximumSize(new java.awt.Dimension(175, 25));
-        setMinimumSize(new java.awt.Dimension(175, 25));
+        setMaximumSize(new java.awt.Dimension(125, 25));
+        setMinimumSize(new java.awt.Dimension(125, 25));
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(175, 25));
+        setPreferredSize(new java.awt.Dimension(125, 25));
         setRequestFocusEnabled(false);
         setLayout(new java.awt.GridLayout(1, 7));
 
@@ -252,20 +248,6 @@ public class RatingSelector extends JComponent {
         jBStar5.setContentAreaFilled(false);
         jBStar5.setFocusPainted(false);
         add(jBStar5);
-
-        buttonGroup.add(jBStar6);
-        jBStar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Star_Empty.png"))); // NOI18N
-        jBStar6.setBorderPainted(false);
-        jBStar6.setContentAreaFilled(false);
-        jBStar6.setFocusPainted(false);
-        add(jBStar6);
-
-        buttonGroup.add(jBStar7);
-        jBStar7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Star_Empty.png"))); // NOI18N
-        jBStar7.setBorderPainted(false);
-        jBStar7.setContentAreaFilled(false);
-        jBStar7.setFocusPainted(false);
-        add(jBStar7);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup;
@@ -274,8 +256,6 @@ public class RatingSelector extends JComponent {
     private javax.swing.JToggleButton jBStar3;
     private javax.swing.JToggleButton jBStar4;
     private javax.swing.JToggleButton jBStar5;
-    private javax.swing.JToggleButton jBStar6;
-    private javax.swing.JToggleButton jBStar7;
     // End of variables declaration//GEN-END:variables
 
     public boolean isEditable() {
@@ -332,22 +312,6 @@ public class RatingSelector extends JComponent {
 
     public void setjBStar5(javax.swing.JToggleButton jBStar5) {
         this.jBStar5 = jBStar5;
-    }
-
-    public JToggleButton getjBStar6() {
-        return jBStar6;
-    }
-
-    public void setjBStar6(JToggleButton jBStar6) {
-        this.jBStar6 = jBStar6;
-    }
-
-    public JToggleButton getjBStar7() {
-        return jBStar7;
-    }
-
-    public void setjBStar7(JToggleButton jBStar7) {
-        this.jBStar7 = jBStar7;
     }
 
 }
