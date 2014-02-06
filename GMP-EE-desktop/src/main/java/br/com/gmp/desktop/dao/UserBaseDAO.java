@@ -1,13 +1,8 @@
 package br.com.gmp.desktop.dao;
 
 import br.com.gmp.ejb.beans.UserBaseFacadeRemote;
-import br.com.gmp.ejb.entity.UserInfo;
 import br.com.gmp.ejb.enums.EntityBeans;
 import javax.naming.NamingException;
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 /**
  *

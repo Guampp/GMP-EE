@@ -1,8 +1,10 @@
 package comps.menuitem;
 
+import comps.BaseColors;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JMenuItem;
@@ -17,6 +19,8 @@ public class GMPMenuItem extends JMenuItem {
 
     private String prefix;
     private String title;
+    private Color high;
+    private Color base;
 
     /**
      * Cria nova instancia de GMPMenuItem
@@ -27,6 +31,9 @@ public class GMPMenuItem extends JMenuItem {
     public GMPMenuItem(String prefix, String title) {
         initComponents();
         setTitle(prefix, title);
+        this.high = BaseColors.systemColor;
+        this.base = new JMenuItem().getBackground();
+        addListener();
     }
 
     /**
@@ -41,6 +48,9 @@ public class GMPMenuItem extends JMenuItem {
         this.prefix = prefix;
         this.title = title;
         setTitle(prefix, title);
+        this.high = BaseColors.systemColor;
+        this.base = new JMenuItem().getBackground();
+        addListener();
     }
 
     /**
@@ -55,6 +65,96 @@ public class GMPMenuItem extends JMenuItem {
         this.prefix = prefix;
         this.title = title;
         setTitle(prefix, title);
+        this.high = BaseColors.systemColor;
+        this.base = new JMenuItem().getBackground();
+        addListener();
+    }
+
+    /**
+     *
+     * @param highlight
+     */
+    public GMPMenuItem(Color highlight) {
+        this.high = highlight;
+        this.base = new JMenuItem().getBackground();
+        addListener();
+    }
+
+    /**
+     *
+     * @param icon
+     * @param highlight
+     */
+    public GMPMenuItem(Icon icon, Color highlight) {
+        super(icon);
+        this.high = highlight;
+        this.base = new JMenuItem().getBackground();
+        addListener();
+    }
+
+    /**
+     *
+     * @param string
+     * @param icon
+     */
+    public GMPMenuItem(String string, Icon icon) {
+        super(string, icon);
+        this.high = BaseColors.systemColor;
+        this.base = new JMenuItem().getBackground();
+        addListener();
+    }
+
+    /**
+     *
+     * @param string
+     */
+    public GMPMenuItem(String string) {
+        super(string);
+        this.high = BaseColors.systemColor;
+        this.base = new JMenuItem().getBackground();
+        addListener();
+    }
+
+    /**
+     *
+     * @param string
+     * @param icon
+     * @param highlight
+     */
+    public GMPMenuItem(String string, Icon icon, Color highlight) {
+        super(string, icon);
+        this.high = highlight;
+        this.base = new JMenuItem().getBackground();
+        addListener();
+    }
+
+    /**
+     *
+     */
+    private void addListener() {
+        this.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent me) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent me) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent me) {
+                setBackground(high);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent me) {
+                setBackground(base);
+            }
+        });
     }
 
     /**
@@ -65,41 +165,6 @@ public class GMPMenuItem extends JMenuItem {
      */
     private void setTitle(String prefix, String title) {
         super.setText("<html><b>" + prefix + "</b> " + title + "</html>");
-    }
-
-    /**
-     * Adiciona os listeners especificos
-     */
-    private void addListeners() {
-        this.setBorder(new LineBorder(Color.gray));
-
-        this.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                setBackground(Color.orange);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                setBackground(new JMenuItem().getBackground());
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                setBackground(Color.red.darker());
-            }
-
-//            @Override
-//            public void mouseReleased(MouseEvent e) {
-//                super.mouseReleased(e);
-//                setBackground(new JMenuItem().getBackground());
-//            }
-
-        });
     }
 
     /**
@@ -152,4 +217,37 @@ public class GMPMenuItem extends JMenuItem {
         this.title = title;
         setTitle(prefix, title);
     }
+
+    /**
+     *
+     * @return
+     */
+    public Color getHigh() {
+        return high;
+    }
+
+    /**
+     *
+     * @param high
+     */
+    public void setHigh(Color high) {
+        this.high = high;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getBase() {
+        return base;
+    }
+
+    /**
+     *
+     * @param base
+     */
+    public void setBase(Color base) {
+        this.base = base;
+    }
+
 }

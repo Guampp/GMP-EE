@@ -2,6 +2,10 @@ package br.com.gmp.desktop.app;
 
 import br.com.gmp.desktop.app.interfaces.IVisualAppBean;
 import br.com.gmp.desktop.views.interfaces.View;
+import comps.tabbedpane.GMPJTabbedPane;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 
 /**
  * Bean do VisualApp
@@ -75,6 +79,33 @@ public class VisualAppBean implements IVisualAppBean {
      */
     public boolean checkNull() {
         return activeView == null;
+    }
+
+    /**
+     * Adiciona novo desktop
+     */
+    public void addDesktop() {
+        ImageIcon icon = new ImageIcon(getClass()
+                .getResource("/IKONS/16/imac.png"));
+        JDesktopPane desktop = new JDesktopPane();
+        desktop.setBackground(new Color(51, 153, 255));
+        GMPJTabbedPane tabs = visualApp.getgTPDesktops();
+        tabs.addClosableTab("Área " + tabs.getComponentCount(), icon, desktop,
+                "Área de trabalho");
+    }
+
+    /**
+     * Remove todos os desktops
+     */
+    public void removeAllDesktops() {
+        visualApp.getgTPDesktops().removeAll();
+    }
+
+    /**
+     * Adiciona View aos favoritos
+     */
+    public void favoriteView() {
+
     }
 
     public VisualApp getVisualApp() {

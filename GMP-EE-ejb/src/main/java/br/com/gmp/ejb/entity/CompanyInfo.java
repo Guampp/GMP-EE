@@ -33,7 +33,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "CompanyInfo.findAll", query = "SELECT c FROM CompanyInfo c"),
     @NamedQuery(name = "CompanyInfo.findByActive", query = "SELECT c FROM CompanyInfo c WHERE c.active = :active"),
-    @NamedQuery(name = "CompanyInfo.findByCompName", query = "SELECT c FROM CompanyInfo c WHERE c.compName = :compName"),
     @NamedQuery(name = "CompanyInfo.findByPhone", query = "SELECT c FROM CompanyInfo c WHERE c.phone = :phone"),
     @NamedQuery(name = "CompanyInfo.findByTpcomp", query = "SELECT c FROM CompanyInfo c WHERE c.tpcomp = :tpcomp"),
     @NamedQuery(name = "CompanyInfo.findByNmbcomp", query = "SELECT c FROM CompanyInfo c WHERE c.nmbcomp = :nmbcomp"),
@@ -52,9 +51,6 @@ public class CompanyInfo implements Serializable {
     @NotNull
     @Column(name = "active")
     private boolean active;
-    @Size(max = 64)
-    @Column(name = "comp_name")
-    private String compName;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Formato de telefone/fax inválido, deve ser xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Size(max = 14)
     @Column(name = "phone")
@@ -117,14 +113,6 @@ public class CompanyInfo implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public String getCompName() {
-        return compName;
-    }
-
-    public void setCompName(String compName) {
-        this.compName = compName;
     }
 
     public String getPhone() {

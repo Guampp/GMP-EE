@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -31,7 +32,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c"),
-    @NamedQuery(name = "Company.findById", query = "SELECT c FROM Company c WHERE c.id = :id")})
+    @NamedQuery(name = "Company.findById", query = "SELECT c FROM Company c WHERE c.id = :id"),
+    @NamedQuery(name = "Company.findByCompName", query = "SELECT c FROM Company c WHERE c.compName = :compName")})
 public class Company implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,6 +41,9 @@ public class Company implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
+    @Size(max = 64)
+    @Column(name = "comp_name")
+    private String compName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<UserInfo> userInfoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
@@ -57,6 +62,14 @@ public class Company implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCompName() {
+        return compName;
+    }
+
+    public void setCompName(String compName) {
+        this.compName = compName;
     }
 
     @XmlTransient
