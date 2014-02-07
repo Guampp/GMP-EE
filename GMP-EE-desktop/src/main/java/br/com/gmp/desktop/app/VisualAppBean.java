@@ -90,7 +90,7 @@ public class VisualAppBean implements IVisualAppBean {
         JDesktopPane desktop = new JDesktopPane();
         desktop.setBackground(new Color(51, 153, 255));
         GMPJTabbedPane tabs = visualApp.getgTPDesktops();
-        tabs.addClosableTab("Área " + tabs.getComponentCount(), icon, desktop,
+        tabs.addClosableTab("", icon, desktop,
                 "Área de trabalho");
         tabs.setSelectedComponent(desktop);
     }
