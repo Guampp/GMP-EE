@@ -291,6 +291,7 @@ public class VisualApp extends javax.swing.JFrame {
 
         gTPDesktops.setBackground(new java.awt.Color(51, 153, 255));
         gTPDesktops.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        gTPDesktops.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         gTPDesktops.setTabPlacement(JTabbedPane.TOP);
 
         jTBFunctions.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));

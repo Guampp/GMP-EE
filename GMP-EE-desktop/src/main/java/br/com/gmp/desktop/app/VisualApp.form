@@ -528,6 +528,9 @@
             <EmptyBorder/>
           </Border>
         </Property>
+        <Property name="tabLayoutPolicy" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="JTabbedPane.SCROLL_TAB_LAYOUT" type="code"/>
+        </Property>
         <Property name="tabPlacement" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="JTabbedPane.TOP" type="code"/>
         </Property>

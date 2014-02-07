@@ -5,7 +5,6 @@ package comps.button;
  * @author Kaciano
  */
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -84,20 +83,23 @@ public class ButtonTabComponent extends JPanel {
     /**
      * Construção da UI do TabButton
      */
-    private class TabButton extends JButton implements ActionListener {
+    private class TabButton extends GMPButton implements ActionListener {
 
         public TabButton() {
-            int size = 15;
+            int size = 16;
             setPreferredSize(new Dimension(size, size));
-            setToolTipText("Fechar esta aba!");
-            setUI(new BasicButtonUI());
-            setContentAreaFilled(false);
-            setFocusable(false);
+            setToolTipText("Fechar esta aba");
+//            setUI(new BasicButtonUI());
+//            setContentAreaFilled(false);
+//            setFocusable(false);
             setBorder(BorderFactory.createEtchedBorder());
-            setBorderPainted(false);
-            setBackground(Color.red);
+//            setBorderPainted(false);
+//            setBackground(Color.red);
             addMouseListener(buttonMouseListener);
             setRolloverEnabled(true);
+            setText("x");
+            setStartColor(new Color(204, 0, 51));
+            setEndColor(Color.RED);
             addActionListener(this);
         }
 
@@ -109,25 +111,6 @@ public class ButtonTabComponent extends JPanel {
             }
         }
 
-        //pinta o X  
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Graphics2D g2 = (Graphics2D) g.create();
-            //mudança na imagem para botões pressionados  
-            if (getModel().isPressed()) {
-                g2.translate(1, 2);
-            }
-            g2.setStroke(new BasicStroke(1));
-            g2.setColor(Color.BLACK);
-            if (getModel().isRollover()) {
-                g2.setColor(Color.RED);
-            }
-            int delta = 5;
-            g2.drawLine(delta, delta, getWidth() - delta - 1, getHeight() - delta - 1);
-            g2.drawLine(getWidth() - delta - 1, delta, delta, getHeight() - delta - 1);
-            g2.dispose();
-        }
     }
     /**
      * Listeners do componente
@@ -138,7 +121,7 @@ public class ButtonTabComponent extends JPanel {
             Component component = e.getComponent();
             if (component instanceof AbstractButton) {
                 AbstractButton button = (AbstractButton) component;
-                button.setBorderPainted(true);
+                //button.setBorderPainted(true);
             }
         }
 
@@ -147,7 +130,7 @@ public class ButtonTabComponent extends JPanel {
             Component component = e.getComponent();
             if (component instanceof AbstractButton) {
                 AbstractButton button = (AbstractButton) component;
-                button.setBorderPainted(false);
+                //button.setBorderPainted(false);
             }
         }
     };

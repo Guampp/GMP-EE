@@ -2,7 +2,9 @@ package comps.ui;
 
 import comps.BaseColors;
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.Rectangle;
 import javax.swing.plaf.InsetsUIResource;
@@ -73,14 +75,27 @@ public class GMPTabbedPaneUI extends BasicTabbedPaneUI {
     protected void installDefaults() {
         super.installDefaults();
         contentBorderInsets = new InsetsUIResource(i1, i2, i3, i4);
+        tabInsets = new InsetsUIResource(1, 2, 1, 2);
+
+    }
+
+    @Override
+    protected int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {
+        return super.calculateTabHeight(tabPlacement, tabIndex, fontHeight) + 5;
     }
 
     @Override
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         Color savedColor = g.getColor();
+        Graphics2D g2D = (Graphics2D) g;
+        GradientPaint gs;
         int selected = tabPane.getSelectedIndex();
         if (selected == tabIndex) {
             g.setColor(TabbedColors.selectColor);
+//            gs = new GradientPaint(rects[tabIndex].x, rects[tabIndex].y, 
+//                    TabbedColors.selectColor, rects[tabIndex].x, 
+//                    rects[tabIndex].y, TabbedColors.deSelectColor);
+//            g2D.setPaint(gs);
             g.fillRect(rects[tabIndex].x, rects[tabIndex].y,
                     rects[tabIndex].width, rects[tabIndex].height);
         } else {
