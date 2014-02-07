@@ -1,12 +1,14 @@
 package comps.ui;
 
-import comps.BaseColors;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
 import javax.swing.plaf.InsetsUIResource;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
@@ -87,26 +89,27 @@ public class GMPTabbedPaneUI extends BasicTabbedPaneUI {
     @Override
     protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
         Color savedColor = g.getColor();
-        Graphics2D g2D = (Graphics2D) g;
-        GradientPaint gs;
+        //Graphics2D g2D = (Graphics2D) g;
+        int x = rects[tabIndex].x;
+        int y = rects[tabIndex].y;
+        int w = rects[tabIndex].width;
+        int h = rects[tabIndex].height;
+//        GradientPaint gp = new GradientPaint(x, y, selectColor, w, h, deSelectColor, true);
+//        GradientPaint gp2 = new GradientPaint(x, y, deSelectColor, w, h, selectColor, true);
         int selected = tabPane.getSelectedIndex();
         if (selected == tabIndex) {
             g.setColor(TabbedColors.selectColor);
-//            gs = new GradientPaint(rects[tabIndex].x, rects[tabIndex].y, 
-//                    TabbedColors.selectColor, rects[tabIndex].x, 
-//                    rects[tabIndex].y, TabbedColors.deSelectColor);
-//            g2D.setPaint(gs);
-            g.fillRect(rects[tabIndex].x, rects[tabIndex].y,
-                    rects[tabIndex].width, rects[tabIndex].height);
+            g.fillRect(x, y, w, h);
+            //g2D.setPaint(gp);
         } else {
             g.setColor(TabbedColors.deSelectColor);
-            g.fillRect(rects[tabIndex].x, rects[tabIndex].y,
-                    rects[tabIndex].width, rects[tabIndex].height);
+            g.fillRect(x, y, w, h);
+            //g2D.setPaint(gp2);
         }
         g.setColor(Color.BLUE);
-        g.drawRect(rects[tabIndex].x, rects[tabIndex].y,
-                rects[tabIndex].width, rects[tabIndex].height);
+        g.drawRect(x, y, w, h);
         g.setColor(savedColor);
+        //g2D.dispose();
     }
 
     public Color getSelectColor() {
