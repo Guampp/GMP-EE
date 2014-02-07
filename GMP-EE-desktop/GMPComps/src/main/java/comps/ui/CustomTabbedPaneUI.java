@@ -30,7 +30,7 @@ public class CustomTabbedPaneUI extends BasicTabbedPaneUI {
     private int inclTab = 4;
     private int anchoFocoV = inclTab;
     private int anchoFocoH = 4;
-    private int anchoCarpetas = 27;
+    private int anchoCarpetas = 18;
     private Polygon shape;
 
     public static ComponentUI createUI(JComponent c) {
@@ -40,10 +40,9 @@ public class CustomTabbedPaneUI extends BasicTabbedPaneUI {
     @Override
     protected void installDefaults() {
         super.installDefaults();
-        selectColor = new Color(1, 113, 215);
-        deSelectColor = new Color(51, 153, 255);
+        selectColor = new Color(250, 192, 192);
+        deSelectColor = new Color(197, 193, 168);
         tabAreaInsets.right = anchoCarpetas;
-        contentBorderInsets = new Insets(1, 1, 1, 1);
     }
 
     @Override
@@ -104,23 +103,23 @@ public class CustomTabbedPaneUI extends BasicTabbedPaneUI {
             case LEFT:
                 xp = new int[]{x, x, x + w, x + w, x};
                 yp = new int[]{y, y + h - 3, y + h - 3, y, y};
-                gradientShadow = new GradientPaint(x, y, selectColor, x, y + h, selectColor);
+                gradientShadow = new GradientPaint(x, y, new Color(100, 100, 255), x, y + h, Color.BLUE);
                 break;
             case RIGHT:
                 xp = new int[]{x, x, x + w - 2, x + w - 2, x};
                 yp = new int[]{y, y + h - 3, y + h - 3, y, y};
-                gradientShadow = new GradientPaint(x, y, selectColor, x, y + h, selectColor);
+                gradientShadow = new GradientPaint(x, y, new Color(100, 100, 255), x, y + h, new Color(153, 186, 243));
                 break;
             case BOTTOM:
                 xp = new int[]{x, x, x + 3, x + w - inclTab - 6, x + w - inclTab - 2, x + w - inclTab, x + w - 3, x};
                 yp = new int[]{y, y + h - 3, y + h, y + h, y + h - 1, y + h - 3, y, y};
-                gradientShadow = new GradientPaint(x, y, selectColor, x, y + h, Color.BLUE);
+                gradientShadow = new GradientPaint(x, y, new Color(100, 100, 255), x, y + h, Color.BLUE);
                 break;
             case TOP:
             default:
                 xp = new int[]{x, x, x + 3, x + w - inclTab - 6, x + w - inclTab - 2, x + w - inclTab, x + w - inclTab, x};
                 yp = new int[]{y + h, y + 3, y, y, y + 1, y + 3, y + h, y + h};
-                gradientShadow = new GradientPaint(0, 0, selectColor, 0, y + h / 2, deSelectColor);
+                gradientShadow = new GradientPaint(0, 0, Color.BLUE, 0, y + h / 2, new Color(240, 255, 210));
                 break;
         }
         // ;
@@ -131,10 +130,10 @@ public class CustomTabbedPaneUI extends BasicTabbedPaneUI {
         } else {
             if (tabPane.isEnabled() && tabPane.isEnabledAt(tabIndex)) {
                 g2D.setColor(deSelectColor);
-                GradientPaint gradientShadowTmp = new GradientPaint(0, 0, selectColor, 0, y + h / 2, selectColor);
+                GradientPaint gradientShadowTmp = new GradientPaint(0, 0, new Color(255, 255, 200), 0, y + h / 2, new Color(240, 255, 210));
                 g2D.setPaint(gradientShadowTmp);
             } else {
-                GradientPaint gradientShadowTmp = new GradientPaint(0, 0, selectColor.brighter(), 0, y + 15 + h / 2, selectColor.brighter());
+                GradientPaint gradientShadowTmp = new GradientPaint(0, 0, new Color(240, 255, 210), 0, y + 15 + h / 2, new Color(204, 204, 204));
                 g2D.setPaint(gradientShadowTmp);
             }
         }
@@ -218,7 +217,6 @@ public class CustomTabbedPaneUI extends BasicTabbedPaneUI {
 
     @Override
     protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
-        //g.drawRect(x, y, h, h);
     }
 
     @Override

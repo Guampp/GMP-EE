@@ -1,4 +1,4 @@
-package br.com.gmp.desktop.app;
+package br.com.gmp.desktop.app.session;
 
 import br.com.gmp.ejb.entity.Profile;
 import br.com.gmp.ejb.entity.UserBase;

@@ -3,6 +3,7 @@ package comps.tabbedpane;
 import comps.BaseColors;
 import comps.button.ButtonTabComponent;
 import comps.ui.CustomTabbedPaneUI;
+import comps.ui.GMPTabbedPaneUI;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Insets;
@@ -122,17 +123,7 @@ public class GMPJTabbedPane extends JTabbedPane {
      * Mudanças aplicadas no UIManager para customização do tabbedpane
      */
     private void changeTabbedPane() {
-        this.setUI(new CustomTabbedPaneUI());
-//        UIManager.put("TabbedPane.borderColor", borderColor);
-//        UIManager.put("TabbedPane.darkShadow", darkShadow);
-//        UIManager.put("TabbedPane.light", light);
-//        UIManager.put("TabbedPane.highlight", highlight);
-//        UIManager.put("TabbedPane.focus", focus);
-//        UIManager.put("TabbedPane.selected", selected);
-//        UIManager.put("TabbedPane.unselectedBackground", unselectedBackground);
-//        UIManager.put("TabbedPane.selectHighlight", selectHighlight);
-//        UIManager.put("TabbedPane.borderHightlightColor", borderHightlightColor);
-//        UIManager.put("TabbedPane.contentBorderInsets", new Insets(1, 1, 1, 1));
+        this.setUI(new GMPTabbedPaneUI());
     }
 
     /**
@@ -362,6 +353,8 @@ public class GMPJTabbedPane extends JTabbedPane {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
     }// </editor-fold>//GEN-END:initComponents
 
 

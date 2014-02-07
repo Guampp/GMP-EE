@@ -1,15 +1,11 @@
 package comps.ui;
 
+import comps.BaseColors;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Insets;
-import java.awt.Polygon;
 import java.awt.Rectangle;
-import javax.swing.JComponent;
-import javax.swing.JTabbedPane;
-import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.InsetsUIResource;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 /**
@@ -18,157 +14,143 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
  */
 public class GMPTabbedPaneUI extends BasicTabbedPaneUI {
 
-    private static final Insets TAB_INSETS = new Insets(1, 0, 0, 0);
+    private Color selectColor;
+    private Color deSelectColor;
+    private int i1;
+    private int i2;
+    private int i3;
+    private int i4;
 
     /**
-     * The font to use for the selected tab
+     * Cria nova instancia de GMPTabbedPaneUI
      */
-    private Font boldFont;
+    public GMPTabbedPaneUI() {
+        this.i1 = 1;
+        this.i2 = 1;
+        this.i3 = 1;
+        this.i4 = 1;
+        selectColor = new Color(1, 113, 215);
+        deSelectColor = new Color(51, 153, 255);
+    }
 
     /**
-     * The font metrics for the selected font
+     * Cria nova instancia de GMPTabbedPaneUI
+     *
+     * @param i1 Espessura da borda no topo
+     * @param i2 Espessura da borda na esquerda
+     * @param i3 Espessura da borda na base
+     * @param i4 Espessura da borda na direita
      */
-    private FontMetrics boldFontMetrics;
+    public GMPTabbedPaneUI(int i1, int i2, int i3, int i4) {
+        this.i1 = i1;
+        this.i2 = i2;
+        this.i3 = i3;
+        this.i4 = i4;
+        selectColor = new Color(1, 113, 215);
+        deSelectColor = new Color(51, 153, 255);
+    }
 
     /**
-     * The color to use to fill in the background
+     * Cria nova instancia de GMPTabbedPaneUI
+     *
+     * @param selectColor Cor quando selecionado
+     * @param deSelectColor Cor quando não selecionado
+     * @param i1 Espessura da borda no topo
+     * @param i2 Espessura da borda na esquerda
+     * @param i3 Espessura da borda na base
+     * @param i4 Espessura da borda na direita
      */
-    private Color selectedColor;
-
-    /**
-     * The color to use to fill in the background
-     */
-    private Color unselectedColor;
-
-    // ------------------------------------------------------------------------------------------------------------------
-    //  Custom installation methods
-    // ------------------------------------------------------------------------------------------------------------------
-    public static ComponentUI createUI(JComponent c) {
-        return new GMPTabbedPaneUI();
+    public GMPTabbedPaneUI(Color selectColor, Color deSelectColor, int i1, int i2, int i3, int i4) {
+        this.selectColor = selectColor;
+        this.deSelectColor = deSelectColor;
+        this.i1 = i1;
+        this.i2 = i2;
+        this.i3 = i3;
+        this.i4 = i4;
     }
 
     @Override
-    public void installDefaults() {
+    protected void installDefaults() {
         super.installDefaults();
-        tabAreaInsets.left = (calculateTabHeight(0, 0, tabPane.getFont().getSize()) / 4) + 1;
-        selectedTabPadInsets = new Insets(0, 0, 0, 0);
-
-        selectedColor = Color.WHITE;
-        unselectedColor = tabPane.getBackground().darker();
-
-        boldFont = tabPane.getFont().deriveFont(Font.BOLD);
-        boldFontMetrics = tabPane.getFontMetrics(boldFont);
-    }
-
-    // ------------------------------------------------------------------------------------------------------------------
-    //  Custom sizing methods
-    // ------------------------------------------------------------------------------------------------------------------
-    @Override
-    public int getTabRunCount(JTabbedPane pane) {
-        return 1;
+        contentBorderInsets = new InsetsUIResource(i1, i2, i3, i4);
     }
 
     @Override
-    public Insets getContentBorderInsets(int tabPlacement) {
-        return TAB_INSETS;
-    }
-
-    @Override
-    public int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {
-        int vHeight = fontHeight + 2;
-        if (vHeight % 2 == 0) {
-            vHeight += 1;
-        }
-        return vHeight;
-    }
-
-    @Override
-    public int calculateTabWidth(int tabPlacement, int tabIndex, FontMetrics metrics) {
-        return super.calculateTabWidth(tabPlacement, tabIndex, metrics) + metrics.getHeight();
-    }
-
-    // ------------------------------------------------------------------------------------------------------------------
-    //  Custom painting methods
-    // ------------------------------------------------------------------------------------------------------------------
-    // ------------------------------------------------------------------------------------------------------------------
-    //  Methods that we want to suppress the behaviour of the superclass
-    // ------------------------------------------------------------------------------------------------------------------
-    @Override
-    public void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
-        Polygon shape = new Polygon();
-
-        shape.addPoint(x - (h / 4), y + h);
-        shape.addPoint(x + (h / 4), y);
-        shape.addPoint(x + w - (h / 4), y);
-
-        if (isSelected || (tabIndex == (rects.length - 1))) {
-            if (isSelected) {
-                g.setColor(selectedColor);
-            } else {
-                g.setColor(unselectedColor);
-            }
-            shape.addPoint(x + w + (h / 4), y + h);
+    protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
+        Color savedColor = g.getColor();
+        int selected = tabPane.getSelectedIndex();
+        if (selected == tabIndex) {
+            g.setColor(TabbedColors.selectColor);
+            g.fillRect(rects[tabIndex].x, rects[tabIndex].y,
+                    rects[tabIndex].width, rects[tabIndex].height);
         } else {
-            g.setColor(unselectedColor);
-            shape.addPoint(x + w, y + (h / 2));
-            shape.addPoint(x + w - (h / 4), y + h);
+            g.setColor(TabbedColors.deSelectColor);
+            g.fillRect(rects[tabIndex].x, rects[tabIndex].y,
+                    rects[tabIndex].width, rects[tabIndex].height);
         }
-
-        g.fillPolygon(shape);
+        g.setColor(Color.BLUE);
+        g.drawRect(rects[tabIndex].x, rects[tabIndex].y,
+                rects[tabIndex].width, rects[tabIndex].height);
+        g.setColor(savedColor);
     }
 
-    @Override
-    public void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
-        g.setColor(darkShadow);
-        g.drawLine(x - (h / 4), y + h, x + (h / 4), y);
-        g.drawLine(x + (h / 4), y, x + w - (h / 4), y);
-        g.drawLine(x + w - (h / 4), y, x + w + (h / 4), y + h);
+    public Color getSelectColor() {
+        return selectColor;
     }
 
-    @Override
-    public void paintContentBorderTopEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y, int w, int h) {
-        Rectangle selectedRect = selectedIndex < 0 ? null : getTabBounds(selectedIndex, calcRect);
-        g.setColor(darkShadow);
-        g.drawLine(x, y, selectedRect.x - (selectedRect.height / 4), y);
-        g.drawLine(selectedRect.x + selectedRect.width + (selectedRect.height / 4), y, x + w, y);
-        g.setColor(selectedColor);
-        g.drawLine(selectedRect.x - (selectedRect.height / 4) + 1, y, selectedRect.x + selectedRect.width + (selectedRect.height / 4) - 1, y);
-
+    public void setSelectColor(Color selectColor) {
+        this.selectColor = selectColor;
     }
 
-    @Override
-    public void paintContentBorderRightEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y, int w, int h) {
-
+    public Color getDeSelectColor() {
+        return deSelectColor;
     }
 
-    @Override
-    public void paintContentBorderLeftEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y, int w, int h) {
-
+    public void setDeSelectColor(Color deSelectColor) {
+        this.deSelectColor = deSelectColor;
     }
 
-    @Override
-    public void paintContentBorderBottomEdge(Graphics g, int tabPlacement, int selectedIndex, int x, int y, int w, int h) {
-
+    public int getI1() {
+        return i1;
     }
 
-    @Override
-    public void paintFocusIndicator(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect, boolean isSelected) {
-        // Do nothing
+    public void setI1(int i1) {
+        this.i1 = i1;
     }
 
-    @Override
-    public void paintText(Graphics g, int tabPlacement, Font font, FontMetrics metrics, int tabIndex, String title, Rectangle textRect, boolean isSelected) {
-        if (isSelected) {
-            int vDifference = (int) (boldFontMetrics.getStringBounds(title, g).getWidth()) - textRect.width;
-            textRect.x -= (vDifference / 2);
-            super.paintText(g, tabPlacement, boldFont, boldFontMetrics, tabIndex, title, textRect, isSelected);
-        } else {
-            super.paintText(g, tabPlacement, font, metrics, tabIndex, title, textRect, isSelected);
-        }
+    public int getI2() {
+        return i2;
     }
 
-    @Override
-    public int getTabLabelShiftY(int tabPlacement, int tabIndex, boolean isSelected) {
-        return 0;
+    public void setI2(int i2) {
+        this.i2 = i2;
     }
+
+    public int getI3() {
+        return i3;
+    }
+
+    public void setI3(int i3) {
+        this.i3 = i3;
+    }
+
+    public int getI4() {
+        return i4;
+    }
+
+    public void setI4(int i4) {
+        this.i4 = i4;
+    }
+
+}
+
+/**
+ *
+ * @author kaciano
+ */
+class TabbedColors {
+
+    public static final Color selectColor = new Color(1, 113, 215);
+    public static final Color deSelectColor = new Color(51, 153, 255);
+
 }

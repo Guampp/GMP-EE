@@ -750,10 +750,10 @@ public class RatingSelector5BeanInfo extends SimpleBeanInfo {
     private static java.awt.Image iconColor32 = null;
     private static java.awt.Image iconMono16 = null;
     private static java.awt.Image iconMono32 = null;//GEN-END:IconsDef
-    private static String iconNameC16 = null;//GEN-BEGIN:Icons
-    private static String iconNameC32 = null;
-    private static String iconNameM16 = null;
-    private static String iconNameM32 = null;//GEN-END:Icons
+    private static String iconNameC16 = "/res/Star_Full_16.png";//GEN-BEGIN:Icons
+    private static String iconNameC32 = "/res/Star_Full_32.png";
+    private static String iconNameM16 = "/res/Star_Empty_16.png";
+    private static String iconNameM32 = "/res/Star_Empty_32.png";//GEN-END:Icons
 
     private static final int defaultPropertyIndex = -1;//GEN-BEGIN:Idx
     private static final int defaultEventIndex = -1;//GEN-END:Idx

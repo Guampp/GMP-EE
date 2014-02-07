@@ -1,6 +1,6 @@
 package br.com.gmp.desktop.app.dialogs.login;
 
-import br.com.gmp.desktop.app.Session;
+import br.com.gmp.desktop.app.session.Session;
 import br.com.gmp.utils.interact.WindowUtil;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
