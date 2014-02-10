@@ -7,8 +7,8 @@ import java.util.Objects;
  * Classe dos pares
  *
  * @author kaciano
- * @param <V>
- * @param <K>
+ * @param <V> Primeiro TYPE de Objeto
+ * @param <K> Segundo TYPE de Objeto
  */
 public class Pair<V, K> {
 
