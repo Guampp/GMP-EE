@@ -26,7 +26,7 @@ public class VisualApp extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * Adiciona teste
      */
     private void addTest() {
         GMPJInternalFrame frame = new GMPJInternalFrame(appBean, new ViewBean());
