@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
  *
  * @author kaciano
  */
-public class ConfirmAction extends GMPAction {
+public class ConfirmAction extends FrameAction {
 
     public ConfirmAction(String name, VisualApp visualApp) {
         super(name, visualApp);

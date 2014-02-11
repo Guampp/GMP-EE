@@ -9,7 +9,7 @@ import javax.swing.AbstractAction;
  *
  * @author kaciano
  */
-public class GMPAction extends AbstractAction {
+public class FrameAction extends AbstractAction {
 
     private VisualApp visualApp;
 
@@ -19,7 +19,7 @@ public class GMPAction extends AbstractAction {
      * @param name Nome da ação
      * @param visualApp VisualApp da ação
      */
-    public GMPAction(String name, VisualApp visualApp) {
+    public FrameAction(String name, VisualApp visualApp) {
         super(name);
         this.visualApp = visualApp;
     }

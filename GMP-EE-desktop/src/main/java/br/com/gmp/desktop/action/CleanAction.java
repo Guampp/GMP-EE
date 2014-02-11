@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
  *
  * @author kaciano
  */
-public class CleanAction extends GMPAction {
+public class CleanAction extends FrameAction {
 
     public CleanAction(String name, VisualApp visualApp) {
         super(name, visualApp);

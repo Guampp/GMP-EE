@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
  *
  * @author kaciano
  */
-public class ProcessAction extends GMPAction {
+public class ProcessAction extends FrameAction {
 
     public ProcessAction(String name, VisualApp visualApp) {
         super(name, visualApp);

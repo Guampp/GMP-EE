@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
  *
  * @author kaciano
  */
-public class DiscardAction extends GMPAction {
+public class DiscardAction extends FrameAction {
 
 
     /**
