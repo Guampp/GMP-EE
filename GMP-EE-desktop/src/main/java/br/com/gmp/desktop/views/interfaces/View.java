@@ -15,6 +15,8 @@ public interface View {
 
     void process();
 
+    void clean();
+    
     void load();
 
     void reload();

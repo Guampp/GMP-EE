@@ -19,6 +19,8 @@ public interface IViewBean {
 
     void process(ViewEvent viewEvent);
 
+    void clean(ViewEvent viewEvent);
+
     void load(ViewEvent viewEvent);
 
     void reload(ViewEvent viewEvent);

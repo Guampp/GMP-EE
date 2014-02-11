@@ -13,6 +13,8 @@ public interface IVisualAppBean {
 
     void process();
 
+    void clean();
+
     void load();
 
     void reload();

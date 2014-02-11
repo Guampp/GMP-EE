@@ -2,9 +2,16 @@ package br.com.gmp.desktop.app;
 
 import br.com.gmp.desktop.beans.ViewBean;
 import br.com.gmp.desktop.views.GMPJInternalFrame;
+import br.com.gmp.desktop.action.MessageAction;
 import br.com.gmp.utils.interact.WindowUtil;
 import comps.tabbedpane.GMPJTabbedPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JTabbedPane;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 
 /**
  * Aplicação Visual Principal
@@ -16,6 +23,14 @@ import javax.swing.JTabbedPane;
 public class VisualApp extends javax.swing.JFrame {
 
     private VisualAppBean appBean;
+    private final String confirmAct = "confirm";
+    private final String discardAct = "discard";
+    private final String processAct = "process";
+    private final String cleanAct = "clean";
+    private Action confirmAction;
+    private Action discardAction;
+    private Action processAction;
+    private Action cleanAction;
 
     /**
      * Creates new form VisualApp
@@ -23,6 +38,51 @@ public class VisualApp extends javax.swing.JFrame {
     public VisualApp() {
         initComponents();
         appBean = new VisualAppBean(this);
+        constructActions();
+        addKeyEvents();
+    }
+
+    private void constructActions() {
+        this.cleanAction = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Limpando...");
+            }
+        };
+        //----------------------------------------------------------------------
+        this.processAction = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Processando...");
+            }
+        };
+        //----------------------------------------------------------------------
+        this.discardAction = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Descartando...");
+            }
+        };
+        //----------------------------------------------------------------------
+        this.confirmAction = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Confirmando...");
+            }
+        };
+    }
+
+    private void addKeyEvents() {
+        addKeyInput(confirmAct, KeyEvent.VK_F2, confirmAction);
+        addKeyInput(discardAct, KeyEvent.VK_F4, discardAction);
+        addKeyInput(processAct, KeyEvent.VK_F6, processAction);
+        addKeyInput(cleanAct, KeyEvent.VK_F10, cleanAction);
+    }
+
+    private void addKeyInput(String act, int keycode, Action action) {
+        this.getRootPane().getActionMap().put(act, action);
+        this.getRootPane().getInputMap()
+                .put(KeyStroke.getKeyStroke(keycode, 0), act);
     }
 
     /**
@@ -43,8 +103,9 @@ public class VisualApp extends javax.swing.JFrame {
     }
 
     /**
+     * Muda o LookAndFeel
      *
-     * @param laf
+     * @param laf <code>String</code> Nome do LookAndFeel
      */
     private void changeLAF(String laf) {
         try {
@@ -60,6 +121,7 @@ public class VisualApp extends javax.swing.JFrame {
         }
         this.getContentPane().repaint();
         this.getContentPane().revalidate();
+        SwingUtilities.updateComponentTreeUI(this);
     }
 
     /**

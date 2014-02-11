@@ -57,6 +57,16 @@ public class VisualAppBean implements IVisualAppBean {
     }
 
     /**
+     * Ativa o evento de limpeza
+     */
+    @Override
+    public void clean() {
+        if (!checkNull()) {
+            activeView.clean();
+        }
+    }
+
+    /**
      * Carrega os dados
      */
     @Override
@@ -158,4 +168,5 @@ public class VisualAppBean implements IVisualAppBean {
     public void setActiveView(View activeView) {
         this.activeView = activeView;
     }
+
 }

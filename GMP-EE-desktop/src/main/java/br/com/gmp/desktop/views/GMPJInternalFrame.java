@@ -179,6 +179,14 @@ public class GMPJInternalFrame extends JInternalFrame implements View {
     }
 
     /**
+     * Limpa os dados da view
+     */
+    @Override
+    public void clean() {
+        viewBean.clean(new ViewEvent(this, null));
+    }
+
+    /**
      * Carrega a view
      */
     @Override
