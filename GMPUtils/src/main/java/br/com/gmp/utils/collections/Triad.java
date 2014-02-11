@@ -6,9 +6,9 @@ import java.util.Objects;
  * Classe das tríades
  *
  * @author kaciano
- * @param <V>
- * @param <K>
- * @param <T>
+ * @param <V> Primeiro TYPE de Objeto
+ * @param <K> Segundo TYPE de Objeto
+ * @param <T> Terceiro TYPE de Objeto
  */
 public class Triad<V, K, T> {
 
