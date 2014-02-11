@@ -9,7 +9,7 @@
     </parent>
     <groupId>br.com.gmp</groupId>
     <artifactId>GMP-EE-desktop</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1</version>
     <name>GMP-EE-desktop</name>
     <url>http://maven.apache.org</url>
     <build>
@@ -48,11 +48,6 @@
             <version>4.0</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>GMP-EE-ejb</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.swinglabs.swingx</groupId>
             <artifactId>swingx-all</artifactId>
             <version>1.6.5-1</version>
@@ -60,7 +55,12 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>GMPComps</artifactId>
-            <version>1.0</version>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>GMP-EE-ejb</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <description>Aplicação desktop do Guampp</description>

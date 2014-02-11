@@ -9,7 +9,7 @@
 
     <groupId>br.com.gmp</groupId>
     <artifactId>GMP-EE-web</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>war</packaging>
 
     <name>GMP-EE-web</name>
