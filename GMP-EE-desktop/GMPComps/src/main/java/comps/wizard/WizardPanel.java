@@ -51,45 +51,127 @@ public class WizardPanel extends JPanel {
     private void initComponents() {
 
         jPCommand = new javax.swing.JPanel();
-        jBPrevious = new javax.swing.JButton();
-        jBNext = new javax.swing.JButton();
+        gBPrevious = new comps.button.GMPButton();
+        gBNext = new comps.button.GMPButton();
+        gBCancel = new comps.button.GMPButton();
+        gBInfo = new comps.button.GMPButton();
         jPContent = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         wizardTaskList1 = new comps.wizard.task.list.WizardTaskList();
+        jPanel1 = new javax.swing.JPanel();
+        jLTaskTitle = new javax.swing.JLabel();
+        jLTaskDescription = new javax.swing.JLabel();
 
         jPCommand.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
-        jBPrevious.setText("Anterior");
-        jPCommand.add(jBPrevious);
+        gBPrevious.setText("Anterior");
+        gBPrevious.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBPreviousActionPerformed(evt);
+            }
+        });
+        jPCommand.add(gBPrevious);
 
-        jBNext.setText("Próximo");
-        jPCommand.add(jBNext);
+        gBNext.setText("Próximo");
+        gBNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBNextActionPerformed(evt);
+            }
+        });
+        jPCommand.add(gBNext);
+
+        gBCancel.setText("Cancelar");
+        gBCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBCancelActionPerformed(evt);
+            }
+        });
+        jPCommand.add(gBCancel);
+
+        gBInfo.setText("Informações");
+        gBInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBInfoActionPerformed(evt);
+            }
+        });
+        jPCommand.add(gBInfo);
 
         jPContent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPContent.setLayout(new java.awt.GridLayout(1, 1));
 
         jScrollPane1.setViewportView(wizardTaskList1);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+
+        jLTaskTitle.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTaskTitle.setText("Titulo");
+
+        jLTaskDescription.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jLTaskDescription.setText("Descrição");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLTaskTitle)
+                    .addComponent(jLTaskDescription))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLTaskTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLTaskDescription)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPCommand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPCommand, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPCommand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void gBPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBPreviousActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gBPreviousActionPerformed
+
+    private void gBNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBNextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gBNextActionPerformed
+
+    private void gBCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBCancelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gBCancelActionPerformed
+
+    private void gBInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBInfoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gBInfoActionPerformed
 
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
     public List<WizardTask> getTaskList() {
@@ -102,10 +184,15 @@ public class WizardPanel extends JPanel {
 
     //</editor-fold>
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBNext;
-    private javax.swing.JButton jBPrevious;
+    private comps.button.GMPButton gBCancel;
+    private comps.button.GMPButton gBInfo;
+    private comps.button.GMPButton gBNext;
+    private comps.button.GMPButton gBPrevious;
+    private javax.swing.JLabel jLTaskDescription;
+    private javax.swing.JLabel jLTaskTitle;
     private javax.swing.JPanel jPCommand;
     private javax.swing.JPanel jPContent;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private comps.wizard.task.list.WizardTaskList wizardTaskList1;
     // End of variables declaration//GEN-END:variables
