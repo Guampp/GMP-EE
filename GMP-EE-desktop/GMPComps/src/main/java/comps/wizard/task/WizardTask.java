@@ -1,6 +1,7 @@
 package comps.wizard.task;
 
 import java.util.Objects;
+import javax.swing.JPanel;
 
 /**
  * Objeto padrão para a lista de tarefas dos Wizards
@@ -12,7 +13,8 @@ public class WizardTask {
 
     private String title;
     private String description;
-    private Boolean completed;
+    private Boolean completed = false;
+    private JPanel taskpanel;
 
     /**
      * Cria nova instancia da tarefa
@@ -31,6 +33,21 @@ public class WizardTask {
         this.title = title;
         this.description = description;
         this.completed = completed;
+    }
+
+    /**
+     * Cria nova instancia da tarefa
+     *
+     * @param title Titulo da tarefa
+     * @param description Descrição da tarefa
+     * @param completed Status de conclusão
+     * @param taskpanel Painel da task
+     */
+    public WizardTask(String title, String description, Boolean completed, JPanel taskpanel) {
+        this.title = title;
+        this.description = description;
+        this.completed = completed;
+        this.taskpanel = taskpanel;
     }
 
     @Override
@@ -90,6 +107,14 @@ public class WizardTask {
 
     public void setCompleted(Boolean completed) {
         this.completed = completed;
+    }
+
+    public JPanel getTaskpanel() {
+        return taskpanel;
+    }
+
+    public void setTaskpanel(JPanel taskpanel) {
+        this.taskpanel = taskpanel;
     }
 
 }

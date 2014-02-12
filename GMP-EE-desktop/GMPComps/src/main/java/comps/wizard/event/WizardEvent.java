@@ -1,29 +1,38 @@
 package comps.wizard.event;
 
+import comps.wizard.task.WizardTask;
+import java.util.List;
+
 /**
  *
  * @author kaciano
  */
-public class WizardEvent implements IWizardEvent {
+public interface WizardEvent {
 
-    @Override
-    public void previous() {
+    /**
+     * Voltar para a task anterior
+     */
+    void previous();
 
-    }
+    /**
+     * Ir para próxima task
+     */
+    void next();
 
-    @Override
-    public void next() {
+    /**
+     * Cancelar o Wizard
+     */
+    void cancel();
 
-    }
+    /**
+     * Mostrar informações
+     */
+    void info();
 
-    @Override
-    public void cancel() {
-
-    }
-
-    @Override
-    public void info() {
-
-    }
-
+    /**
+     * Retorna a lista das tarefas
+     *
+     * @return Lista das tarefas
+     */
+    List<WizardTask> getTaskList();
 }

@@ -1,24 +1,68 @@
 package comps.wizard;
 
+import comps.wizard.event.WizardEvent;
 import comps.wizard.task.WizardTask;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JPanel;
 
 /**
+ * Painel de gerenciamento para fluxo de processos
  *
  * @author kaciano
+ * @version 1.0
+ * @since 1.0
  */
 public class WizardPanel extends JPanel {
 
+    private WizardEvent event;
     private List<WizardTask> taskList;
 
     /**
-     * Creates new form WizardPanel
+     * Cria nova instancia de WizardPanel
      */
     public WizardPanel() {
+        this.event = null;
         this.taskList = new LinkedList<>();
         initComponents();
+        initialize();
+    }
+
+    /**
+     * Cria nova instancia de WizardPanel
+     *
+     * @param event WizardEvent
+     */
+    public WizardPanel(WizardEvent event) {
+        this.event = event;
+        this.taskList = event.getTaskList();
+        initComponents();
+        initialize();
+    }
+
+    /**
+     * Cria nova instancia de WizardPanel
+     *
+     * @param event WizardEvent
+     * @param taskList Lista de tarefas
+     */
+    public WizardPanel(WizardEvent event, List<WizardTask> taskList) {
+        this.event = event;
+        this.taskList = taskList;
+        initComponents();
+        initialize();
+    }
+
+    /**
+     * Inicializa os dados
+     */
+    private void initialize() {
+        this.wizardTaskList.setTaskList(taskList);
+        if (!taskList.isEmpty()) {
+            setHeader(taskList.get(0));
+        } else {
+            System.out.println("TaskList empty!");
+        }
     }
 
     /**
@@ -28,6 +72,7 @@ public class WizardPanel extends JPanel {
      */
     public void addTask(WizardTask task) {
         this.taskList.add(task);
+        setHeader(taskList.get(0));
     }
 
     /**
@@ -39,6 +84,46 @@ public class WizardPanel extends JPanel {
         if (this.taskList.contains(task)) {
             this.taskList.remove(task);
         }
+    }
+
+    /**
+     * Modifica o painel da tarefa atual
+     *
+     * @param panel JPanel
+     */
+    public void setTaskPanel(JPanel panel) {
+        this.jPContent.removeAll();
+        this.jPContent.add(panel);
+    }
+
+    /**
+     * Modifica os dados do cabeçalho
+     *
+     * @param title Titulo do cabeçalho
+     * @param description Descrição do cabeçalho
+     */
+    public void setHeader(String title, String description) {
+        this.jLTaskTitle.setText(title);
+        this.jLTaskDescription.setText(description);
+    }
+
+    /**
+     * Modifica os dados do cabeçalho
+     *
+     * @param task WizardTask
+     */
+    public void setHeader(WizardTask task) {
+        this.jLTaskTitle.setText(task.getTitle());
+        this.jLTaskDescription.setText(task.getDescription());
+    }
+
+    /**
+     * Carrega a lista de tarefas
+     *
+     * @param tasklist Lista de tarefas
+     */
+    public void loadTaskList(List<WizardTask> tasklist) {
+        this.wizardTaskList.setTaskList(taskList);
     }
 
     /**
@@ -57,8 +142,8 @@ public class WizardPanel extends JPanel {
         gBInfo = new comps.button.GMPButton();
         jPContent = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        wizardTaskList1 = new comps.wizard.task.list.WizardTaskList();
-        jPanel1 = new javax.swing.JPanel();
+        wizardTaskList = new comps.wizard.task.list.WizardTaskList();
+        jPHeader = new javax.swing.JPanel();
         jLTaskTitle = new javax.swing.JLabel();
         jLTaskDescription = new javax.swing.JLabel();
 
@@ -99,9 +184,9 @@ public class WizardPanel extends JPanel {
         jPContent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jPContent.setLayout(new java.awt.GridLayout(1, 1));
 
-        jScrollPane1.setViewportView(wizardTaskList1);
+        jScrollPane1.setViewportView(wizardTaskList);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPHeader.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         jLTaskTitle.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLTaskTitle.setText("Titulo");
@@ -109,20 +194,20 @@ public class WizardPanel extends JPanel {
         jLTaskDescription.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLTaskDescription.setText("Descrição");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPHeaderLayout = new javax.swing.GroupLayout(jPHeader);
+        jPHeader.setLayout(jPHeaderLayout);
+        jPHeaderLayout.setHorizontalGroup(
+            jPHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPHeaderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLTaskTitle)
                     .addComponent(jLTaskDescription))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPHeaderLayout.setVerticalGroup(
+            jPHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPHeaderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLTaskTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -140,7 +225,7 @@ public class WizardPanel extends JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +233,7 @@ public class WizardPanel extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -158,19 +243,19 @@ public class WizardPanel extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gBPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBPreviousActionPerformed
-        // TODO add your handling code here:
+        event.previous();
     }//GEN-LAST:event_gBPreviousActionPerformed
 
     private void gBNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBNextActionPerformed
-        // TODO add your handling code here:
+        event.next();
     }//GEN-LAST:event_gBNextActionPerformed
 
     private void gBCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBCancelActionPerformed
-        // TODO add your handling code here:
+        event.cancel();
     }//GEN-LAST:event_gBCancelActionPerformed
 
     private void gBInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBInfoActionPerformed
-        // TODO add your handling code here:
+        event.info();
     }//GEN-LAST:event_gBInfoActionPerformed
 
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
@@ -180,6 +265,19 @@ public class WizardPanel extends JPanel {
 
     public void setTaskList(List<WizardTask> taskList) {
         this.taskList = taskList;
+        if (!taskList.isEmpty()) {
+            setHeader(taskList.get(0));
+        } else {
+            System.out.println("TaskList empty!");
+        }
+    }
+
+    public WizardEvent getEvent() {
+        return event;
+    }
+
+    public void setEvent(WizardEvent event) {
+        this.event = event;
     }
 
     //</editor-fold>
@@ -192,8 +290,8 @@ public class WizardPanel extends JPanel {
     private javax.swing.JLabel jLTaskTitle;
     private javax.swing.JPanel jPCommand;
     private javax.swing.JPanel jPContent;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPHeader;
     private javax.swing.JScrollPane jScrollPane1;
-    private comps.wizard.task.list.WizardTaskList wizardTaskList1;
+    private comps.wizard.task.list.WizardTaskList wizardTaskList;
     // End of variables declaration//GEN-END:variables
 }
