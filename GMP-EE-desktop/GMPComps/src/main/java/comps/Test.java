@@ -5,7 +5,9 @@
  */
 package comps;
 
-import java.awt.BorderLayout;
+import comps.wizard.task.WizardTask;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JPanel;
 
 /**
@@ -14,6 +16,8 @@ import javax.swing.JPanel;
  */
 public class Test extends javax.swing.JFrame {
 
+    List<WizardTask> list;
+
     /**
      * Creates new form Test
      */
@@ -21,6 +25,12 @@ public class Test extends javax.swing.JFrame {
         initComponents();
         //jTextField1.add(jToggleButton1, BorderLayout.EAST);
         jMenuItem1.setText("<html><b>GMP001</b> Screen</html>");
+        list = new LinkedList<>();
+        list.add(new WizardTask("Teste 1", " Teste 1", false));
+        list.add(new WizardTask("Teste 2", " Teste 2", true));
+        list.add(new WizardTask("Teste 3", " Teste 3", false));
+        list.add(new WizardTask("Teste 4", " Teste 4", true));
+        wizardTaskList.setTaskList(list);
     }
 
     /**
@@ -38,7 +48,9 @@ public class Test extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         gMPButton1 = new comps.button.GMPButton();
         ratingSelector51 = new comps.rating.fivestar.RatingSelector5();
-        gMPTextField2 = new comps.textfield.GMPTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        wizardTaskList = new comps.wizard.task.list.WizardTaskList();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -52,7 +64,7 @@ public class Test extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 278, Short.MAX_VALUE)
+            .addGap(0, 231, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,7 +77,7 @@ public class Test extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 278, Short.MAX_VALUE)
+            .addGap(0, 231, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,7 +93,14 @@ public class Test extends javax.swing.JFrame {
             }
         });
 
-        gMPTextField2.setText("gMPTextField2");
+        jScrollPane2.setViewportView(wizardTaskList);
+
+        jButton1.setText("Confirma 1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
 
@@ -112,12 +131,13 @@ public class Test extends javax.swing.JFrame {
                         .addComponent(ratingSelector51, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(gMPTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,9 +150,11 @@ public class Test extends javax.swing.JFrame {
                     .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(gMPJTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(gMPTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,6 +163,11 @@ public class Test extends javax.swing.JFrame {
     private void gMPButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gMPButton1ActionPerformed
         gMPJTabbedPane1.addClosableTab("Tab", new JPanel());
     }//GEN-LAST:event_gMPButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        list.get(0).setCompleted(!list.get(0).isCompleted());
+        wizardTaskList.setTaskList(list);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,14 +208,16 @@ public class Test extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private comps.button.GMPButton gMPButton1;
     private comps.tabbedpane.GMPJTabbedPane gMPJTabbedPane1;
-    private comps.textfield.GMPTextField gMPTextField2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private comps.rating.RatingSelector ratingSelector1;
     private comps.rating.fivestar.RatingSelector5 ratingSelector51;
+    private comps.wizard.task.list.WizardTaskList wizardTaskList;
     // End of variables declaration//GEN-END:variables
 }
