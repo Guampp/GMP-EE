@@ -5,6 +5,7 @@
  */
 package comps;
 
+import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 /**
@@ -18,6 +19,7 @@ public class Test extends javax.swing.JFrame {
      */
     public Test() {
         initComponents();
+        //jTextField1.add(jToggleButton1, BorderLayout.EAST);
         jMenuItem1.setText("<html><b>GMP001</b> Screen</html>");
     }
 
@@ -36,7 +38,7 @@ public class Test extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         gMPButton1 = new comps.button.GMPButton();
         ratingSelector51 = new comps.rating.fivestar.RatingSelector5();
-        gMPTextField1 = new comps.textfield.GMPTextField();
+        gMPTextField2 = new comps.textfield.GMPTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -50,7 +52,7 @@ public class Test extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addGap(0, 278, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -63,7 +65,7 @@ public class Test extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addGap(0, 278, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,7 +81,7 @@ public class Test extends javax.swing.JFrame {
             }
         });
 
-        gMPTextField1.setPlaceholder("Teste");
+        gMPTextField2.setText("gMPTextField2");
 
         jMenu1.setText("File");
 
@@ -113,8 +115,8 @@ public class Test extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(gMPTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(gMPTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -128,9 +130,9 @@ public class Test extends javax.swing.JFrame {
                     .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(gMPJTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(gMPTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(gMPTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
@@ -179,7 +181,7 @@ public class Test extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private comps.button.GMPButton gMPButton1;
     private comps.tabbedpane.GMPJTabbedPane gMPJTabbedPane1;
-    private comps.textfield.GMPTextField gMPTextField1;
+    private comps.textfield.GMPTextField gMPTextField2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

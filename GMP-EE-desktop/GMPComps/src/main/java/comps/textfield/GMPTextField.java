@@ -26,7 +26,7 @@ import javax.swing.text.Document;
  * @version 1.0
  * @since 1.0
  */
-public class GMPTextField extends JTextField implements ValidableComponent, KeyListener, FocusListener {
+public class GMPTextField extends JTextField implements ValidableComponent, KeyListener {
 
     private String placeholder = "";
     private Icon icon = new ImageIcon();
@@ -39,37 +39,6 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
      * Cria nova instancia de GMPTextField
      */
     public GMPTextField() {
-        initComponents();
-    }
-
-    /**
-     * Cria nova instancia de GMPTextField
-     *
-     * @param text <code>String</code> Texto do componente
-     */
-    public GMPTextField(String text) {
-        super(text);
-        initComponents();
-    }
-
-    /**
-     * Cria nova instancia de GMPTextField
-     *
-     * @param columns <code>int</code> Quantidade de colunas
-     */
-    public GMPTextField(int columns) {
-        super(columns);
-        initComponents();
-    }
-
-    /**
-     * Cria nova instancia de GMPTextField
-     *
-     * @param text <code>String</code> Texto do componente
-     * @param columns <code>int</code> Quantidade de colunas
-     */
-    public GMPTextField(String text, int columns) {
-        super(text, columns);
         initComponents();
     }
 
@@ -95,6 +64,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
     public GMPTextField(String placeholder, Icon icon) {
         this.placeholder = placeholder;
         this.icon = icon;
+        initComponents();
     }
 
     /**
@@ -103,8 +73,8 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
      * @param icon <code>Icon</code> Icone do componente
      */
     public GMPTextField(Icon icon) {
-
         this.icon = icon;
+        initComponents();
     }
 
     /**
@@ -118,6 +88,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         this.minimallength = minimallength;
         this.maximumlength = maximumlength;
         this.force = force;
+        initComponents();
     }
 
     /**
@@ -137,47 +108,25 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         this.minimallength = minimallength;
         this.maximumlength = maximumlength;
         this.force = force;
+        initComponents();
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        int txtX = 2;
-        //----------------------------------------------------------------------
-        // Adiciona o icone no campo, caso exista algum...
-        if (this.icon != null) {
-            int iWidth = icon.getIconWidth();
-            int iHeight = icon.getIconHeight();
-            int x = newInsets.left + 5;
-            txtX = x + iWidth + 2;
-            int y = (this.getHeight() - iHeight) / 2;
-            icon.paintIcon(this, g, x, y);
-        }
-        setMargin(new Insets(2, txtX, 2, 2));
-        //----------------------------------------------------------------------
-        // Adiciona a dica no campo, caso exista alguma...
-//        if (this.getText().equals("") && !placeholder.equals("")) {
-//            int width = this.getWidth();
-//            int height = this.getHeight();
-//            Font prev = g.getFont();
-//            Font italic = prev.deriveFont(Font.ITALIC);
-//            Color prevColor = g.getColor();
-//            g.setFont(italic);
-//            g.setColor(UIManager.getColor("textInactiveText"));
-//            int h = g.getFontMetrics().getHeight();
-//            int txtBottom = (height - h) / 2 + h - 4;
-//            int x = this.getInsets().left;
-//            Graphics2D g2d = (Graphics2D) g;
-//            RenderingHints hints = g2d.getRenderingHints();
-//            g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-//                    RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-//            g2d.drawString(placeholder, x, txtBottom);
-//            g2d.setRenderingHints(hints);
-//            g.setFont(prev);
-//            g.setColor(prevColor);
+//    @Override
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        int txtX = 2;
+//        //----------------------------------------------------------------------
+//        // Adiciona o icone no campo, caso exista algum...
+//        if (this.icon != null) {
+//            int iWidth = icon.getIconWidth();
+//            int iHeight = icon.getIconHeight();
+//            int x = newInsets.left + 5;
+//            txtX = x + iWidth + 2;
+//            int y = (this.getHeight() - iHeight) / 2;
+//            icon.paintIcon(this, g, x, y);
 //        }
-    }
-
+//        setMargin(new Insets(2, txtX, 2, 2));
+//    }
     /**
      * Retorna os Insets do componente
      */
@@ -234,15 +183,26 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         }
     }
 
-    @Override
+    /**
+     * Ação de componente em foco
+     *
+     * @param e FocusEvent
+     */
     public void focusGained(FocusEvent e) {
+        this.setBackground(new Color(255, 230, 166));
         if (this.getText().equals(this.placeholder)) {
+            this.setForeground(new JTextField().getForeground());
             this.setText("");
         }
     }
 
-    @Override
+    /**
+     * Ação de componente sem foco
+     *
+     * @param e FocusEvent
+     */
     public void focusLost(FocusEvent e) {
+        this.setBackground(new JTextField().getBackground());
         if (this.getText().equals("") && !this.placeholder.equals("")) {
             this.setForeground(Color.GRAY.brighter());
             this.setText(this.placeholder);
@@ -261,6 +221,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         jMICut = new javax.swing.JMenuItem();
         jMIPaste = new javax.swing.JMenuItem();
 
+        jMICopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/textfield/16/documents.png"))); // NOI18N
         jMICopy.setMnemonic('c');
         jMICopy.setText("<html>Copiar <b>Ctrl+C</b></html>");
         jMICopy.setToolTipText("Copiar conteudo para a área de transferencia");
@@ -271,6 +232,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         });
         jPopActions.add(jMICopy);
 
+        jMICut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/textfield/16/document_remove.png"))); // NOI18N
         jMICut.setMnemonic('x');
         jMICut.setText("<html>Recortar <b>Ctrl+X</b></html>");
         jMICut.setToolTipText("Recortar conteudo para a área de transferencia");
@@ -281,6 +243,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         });
         jPopActions.add(jMICut);
 
+        jMIPaste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/textfield/16/document_add.png"))); // NOI18N
         jMIPaste.setMnemonic('v');
         jMIPaste.setText("<html>Colar <b>Ctrl+V</b></html>");
         jMIPaste.setToolTipText("Colar conteudo da área de transferencia");
@@ -295,6 +258,14 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         setComponentPopupMenu(jPopActions);
         setMinimumSize(new java.awt.Dimension(5, 28));
         setPreferredSize(new java.awt.Dimension(100, 28));
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                formFocusLost(evt);
+            }
+        });
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMICopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICopyActionPerformed
@@ -308,6 +279,14 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
     private void jMIPasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIPasteActionPerformed
         this.paste();
     }//GEN-LAST:event_jMIPasteActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        focusGained(evt);
+    }//GEN-LAST:event_formFocusGained
+
+    private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
+        focusLost(evt);
+    }//GEN-LAST:event_formFocusLost
 
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
     public String getPlaceholder() {
