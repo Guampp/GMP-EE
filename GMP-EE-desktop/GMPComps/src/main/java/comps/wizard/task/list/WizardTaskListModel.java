@@ -1,6 +1,5 @@
 package comps.wizard.task.list;
 
-import comps.wizard.task.WizardTask;
 import comps.wizard.task.panel.WizardTaskPanel;
 import java.util.List;
 import javax.swing.AbstractListModel;
@@ -10,7 +9,7 @@ import javax.swing.AbstractListModel;
  *
  * @author kaciano
  */
-public class WizardTaskListModel extends AbstractListModel<WizardTask> {
+public class WizardTaskListModel extends AbstractListModel<WizardTaskPanel> {
 
     private List<WizardTaskPanel> taskList;
 
@@ -53,7 +52,7 @@ public class WizardTaskListModel extends AbstractListModel<WizardTask> {
     }
 
     @Override
-    public WizardTask getElementAt(int index) {
+    public WizardTaskPanel getElementAt(int index) {
         return taskList.get(index);
     }
 
@@ -63,7 +62,7 @@ public class WizardTaskListModel extends AbstractListModel<WizardTask> {
      * @param index Endereço da WizardTask
      * @return WizardTask
      */
-    public WizardTask getTaskAt(int index) {
+    public WizardTaskPanel getTaskAt(int index) {
         return taskList.get(index);
     }
 

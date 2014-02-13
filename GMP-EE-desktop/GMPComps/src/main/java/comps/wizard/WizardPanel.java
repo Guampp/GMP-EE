@@ -191,7 +191,7 @@ public class WizardPanel extends JPanel implements WizardListener {
      * @param tasklist Lista de tarefas
      */
     private void loadTaskList(List<WizardTaskPanel> tasklist) {
-        this.wizardTaskList.setTaskList(taskList);
+        this.wizardTaskList.setTaskList(tasklist);
     }
 
     /**
@@ -200,8 +200,15 @@ public class WizardPanel extends JPanel implements WizardListener {
      * @param task <b>WizardTaskPanel</b> Task atual
      */
     private void setActualTask(WizardTaskPanel task) {
-        this.wizardTaskList.setSelectedIndex(
-                wizardTaskList.getTaskList().lastIndexOf(task));
+//        int index = taskList.indexOf(task);
+//        for (WizardTaskPanel t : taskList) {
+//            if (t.equals(task)) {
+//                taskList.get(index).setCompleted(true);
+//            } else {
+//                taskList.get(index).setCompleted(false);
+//            }
+//        }
+        this.loadTaskList(taskList);
     }
 
     /**

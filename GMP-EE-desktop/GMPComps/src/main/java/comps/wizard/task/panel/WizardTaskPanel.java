@@ -1,18 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package comps.wizard.task.panel;
 
-import comps.wizard.task.WizardTask;
+import java.util.Objects;
+import javax.swing.JPanel;
 
 /**
+ * Objeto padrão para a lista de tarefas dos Wizards
  *
  * @author kaciano
+ * @since 1.0
  */
-public class WizardTaskPanel extends WizardTask {
+public class WizardTaskPanel extends JPanel {
+
+    private String title;
+    private String description;
+    private Boolean completed = false;
 
     /**
      * Creates new form WizardTaskPanel
@@ -21,8 +22,60 @@ public class WizardTaskPanel extends WizardTask {
         initComponents();
     }
 
+    /**
+     * Cria nova instancia da tarefa
+     *
+     * @param title Titulo da tarefa
+     * @param description Descrição da tarefa
+     */
+    public WizardTaskPanel(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
+    /**
+     * Cria nova instancia da tarefa
+     *
+     * @param title Titulo da tarefa
+     * @param description Descrição da tarefa
+     * @param completed Status de conclusão
+     */
     public WizardTaskPanel(String title, String description, Boolean completed) {
-        super(title, description, completed);
+        this.title = title;
+        this.description = description;
+        this.completed = completed;
+    }
+
+    /**
+     * Valida a ação da Task
+     *
+     * @return
+     */
+    public boolean validateTask() {        
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.title);
+        hash = 97 * hash + Objects.hashCode(this.description);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final WizardTaskPanel other = (WizardTaskPanel) obj;
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        return Objects.equals(this.description, other.description);
     }
 
     /**
@@ -35,7 +88,55 @@ public class WizardTaskPanel extends WizardTask {
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
 
+    //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
+    /**
+     *
+     * @return
+     */
+    public String getTitle() {
+        return title;
+    }
 
+    /**
+     *
+     * @param title
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     *
+     * @param description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Boolean isCompleted() {
+        return completed;
+    }
+
+    /**
+     *
+     * @param completed
+     */
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
+    }
+    //</editor-fold>
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

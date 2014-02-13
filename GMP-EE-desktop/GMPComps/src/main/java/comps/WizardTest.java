@@ -2,7 +2,6 @@ package comps;
 
 import comps.wizard.listener.WizardListener;
 import comps.wizard.task.panel.WizardTaskPanel;
-import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,21 +18,6 @@ public class WizardTest extends javax.swing.JFrame implements WizardListener {
      */
     public WizardTest() {
         initComponents();
-        WizardTaskPanel test = new WizardTaskPanel("Test1", "Test description 1", false);
-        test.setBackground(Color.red);
-        test.setSize(200, 200);
-        test.setName("Teste 1");
-        taskList.add(test);
-        WizardTaskPanel test2 = new WizardTaskPanel("Test2", "Test description 2", true);
-        test2.setSize(200, 200);
-        test2.setBackground(Color.blue);
-        test2.setName("Teste 2");
-        taskList.add(test2);
-        WizardTaskPanel test3 = new WizardTaskPanel("Test3", "Test description 3", false);
-        test3.setSize(200, 200);
-        test3.setBackground(Color.green);
-        test3.setName("Teste 3");
-        taskList.add(test3);
         taskList.add(wizardTaskPanel1);
         taskList.add(wizardTaskPanel2);
         wizard.setTaskList(taskList);        
@@ -49,7 +33,7 @@ public class WizardTest extends javax.swing.JFrame implements WizardListener {
     private void initComponents() {
 
         wizardTaskPanel1 = new comps.wizard.task.panel.WizardTaskPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jT1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -62,11 +46,11 @@ public class WizardTest extends javax.swing.JFrame implements WizardListener {
         jTable1 = new javax.swing.JTable();
         wizard = new comps.wizard.WizardPanel();
 
-        wizardTaskPanel1.setCompleted(java.lang.Boolean.TRUE);
+        wizardTaskPanel1.setCompleted(java.lang.Boolean.FALSE);
         wizardTaskPanel1.setDescription("Teste descrição dos infernos");
         wizardTaskPanel1.setTitle("Teste 1");
 
-        jTextField1.setText("jTextField1");
+        jT1.setText("jTextField1");
 
         jLabel1.setText("jLabel1");
 
@@ -93,7 +77,7 @@ public class WizardTest extends javax.swing.JFrame implements WizardListener {
                     .addGroup(wizardTaskPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jT1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(wizardTaskPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -111,7 +95,7 @@ public class WizardTest extends javax.swing.JFrame implements WizardListener {
             .addGroup(wizardTaskPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(wizardTaskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jT1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox1)
@@ -217,8 +201,8 @@ public class WizardTest extends javax.swing.JFrame implements WizardListener {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jT1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private comps.wizard.WizardPanel wizard;
