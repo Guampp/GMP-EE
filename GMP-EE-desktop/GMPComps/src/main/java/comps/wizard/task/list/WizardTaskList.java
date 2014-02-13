@@ -1,6 +1,6 @@
 package comps.wizard.task.list;
 
-import comps.wizard.task.WizardTask;
+import comps.wizard.task.panel.WizardTaskPanel;
 import java.awt.Component;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,7 +19,7 @@ import javax.swing.ListModel;
  */
 public class WizardTaskList extends JList {
 
-    private List<WizardTask> taskList;
+    private List<WizardTaskPanel> taskList;
     private WizardTaskListModel taskmodel;
 
     /**
@@ -27,7 +27,7 @@ public class WizardTaskList extends JList {
      */
     public WizardTaskList() {
         taskList = new LinkedList<>();
-        taskList.add(new WizardTask("Test", "Test description", false));
+        taskList.add(new WizardTaskPanel("Test", "Test description", false));
         initComponents();
         refresh();
     }
@@ -37,7 +37,7 @@ public class WizardTaskList extends JList {
      *
      * @param taskList
      */
-    public WizardTaskList(List<WizardTask> taskList) {
+    public WizardTaskList(List<WizardTaskPanel> taskList) {
         this.taskList = taskList;
         initComponents();
         refresh();
@@ -77,7 +77,17 @@ public class WizardTaskList extends JList {
      */
     private void refresh() {
         taskmodel = new WizardTaskListModel(taskList);
-        this.setModel(new WizardTaskListModel(taskList));
+        this.setModel(taskmodel);
+    }
+
+    /**
+     * Recarrega os dados
+     *
+     * @param taskList Nova lista de tarefas
+     */
+    private void refresh(List<WizardTaskPanel> taskList) {
+        taskmodel = new WizardTaskListModel(taskList);
+        this.setModel(taskmodel);
     }
 
     /**
@@ -85,6 +95,15 @@ public class WizardTaskList extends JList {
      */
     public void update() {
         refresh();
+    }
+
+    /**
+     * Atualiza os dados
+     *
+     * @param taskList Nova lista de tarefas
+     */
+    public void update(List<WizardTaskPanel> taskList) {
+        refresh(taskList);
     }
 
     /**
@@ -113,11 +132,11 @@ public class WizardTaskList extends JList {
     }// </editor-fold>//GEN-END:initComponents
 
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
-    public List<WizardTask> getTaskList() {
+    public List<WizardTaskPanel> getTaskList() {
         return taskList;
     }
 
-    public void setTaskList(List<WizardTask> taskList) {
+    public void setTaskList(List<WizardTaskPanel> taskList) {
         this.taskList = taskList;
         refresh();
     }

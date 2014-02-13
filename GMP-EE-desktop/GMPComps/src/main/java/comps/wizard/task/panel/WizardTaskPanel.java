@@ -6,19 +6,23 @@
 
 package comps.wizard.task.panel;
 
-import javax.swing.JPanel;
+import comps.wizard.task.WizardTask;
 
 /**
  *
  * @author kaciano
  */
-public class WizardTaskPanel extends JPanel {
+public class WizardTaskPanel extends WizardTask {
 
     /**
      * Creates new form WizardTaskPanel
      */
     public WizardTaskPanel() {
         initComponents();
+    }
+
+    public WizardTaskPanel(String title, String description, Boolean completed) {
+        super(title, description, completed);
     }
 
     /**

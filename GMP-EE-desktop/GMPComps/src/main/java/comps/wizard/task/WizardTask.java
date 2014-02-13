@@ -9,12 +9,11 @@ import javax.swing.JPanel;
  * @author kaciano
  * @since 1.0
  */
-public class WizardTask {
+public class WizardTask extends JPanel {
 
     private String title;
     private String description;
     private Boolean completed = false;
-    private JPanel taskpanel;
 
     /**
      * Cria nova instancia da tarefa
@@ -33,21 +32,6 @@ public class WizardTask {
         this.title = title;
         this.description = description;
         this.completed = completed;
-    }
-
-    /**
-     * Cria nova instancia da tarefa
-     *
-     * @param title Titulo da tarefa
-     * @param description Descrição da tarefa
-     * @param completed Status de conclusão
-     * @param taskpanel Painel da task
-     */
-    public WizardTask(String title, String description, Boolean completed, JPanel taskpanel) {
-        this.title = title;
-        this.description = description;
-        this.completed = completed;
-        this.taskpanel = taskpanel;
     }
 
     @Override
@@ -85,36 +69,52 @@ public class WizardTask {
                 + ", completed=" + completed + '}';
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     *
+     * @param title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean isCompleted() {
         return completed;
     }
 
+    /**
+     *
+     * @param completed
+     */
     public void setCompleted(Boolean completed) {
         this.completed = completed;
-    }
-
-    public JPanel getTaskpanel() {
-        return taskpanel;
-    }
-
-    public void setTaskpanel(JPanel taskpanel) {
-        this.taskpanel = taskpanel;
     }
 
 }

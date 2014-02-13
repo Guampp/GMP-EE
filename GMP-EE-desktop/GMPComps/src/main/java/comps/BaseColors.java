@@ -5,7 +5,7 @@ import javax.swing.plaf.ColorUIResource;
 
 /**
  *
- * @author Kaciano
+ * @author kaciano
  */
 public class BaseColors {
 

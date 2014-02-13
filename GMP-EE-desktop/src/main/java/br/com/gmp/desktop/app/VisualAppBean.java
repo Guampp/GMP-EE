@@ -1,6 +1,5 @@
 package br.com.gmp.desktop.app;
 
-import br.com.gmp.desktop.app.interfaces.IVisualAppBean;
 import br.com.gmp.desktop.views.interfaces.View;
 import comps.tabbedpane.GMPJTabbedPane;
 import java.awt.Color;
@@ -12,7 +11,7 @@ import javax.swing.JDesktopPane;
  *
  * @author kaciano
  */
-public class VisualAppBean implements IVisualAppBean {
+public class VisualAppBean {
 
     private VisualApp visualApp;
     private View activeView;
@@ -29,7 +28,6 @@ public class VisualAppBean implements IVisualAppBean {
     /**
      * Ativa o evento de confirmação
      */
-    @Override
     public void confirm() {
         if (!checkNull()) {
             activeView.confirm();
@@ -39,7 +37,6 @@ public class VisualAppBean implements IVisualAppBean {
     /**
      * Ativa o evento de descarte
      */
-    @Override
     public void discard() {
         if (!checkNull()) {
             activeView.discard();
@@ -49,7 +46,6 @@ public class VisualAppBean implements IVisualAppBean {
     /**
      * Ativa o evento de processamento
      */
-    @Override
     public void process() {
         if (!checkNull()) {
             activeView.process();
@@ -59,7 +55,6 @@ public class VisualAppBean implements IVisualAppBean {
     /**
      * Ativa o evento de limpeza
      */
-    @Override
     public void clean() {
         if (!checkNull()) {
             activeView.clean();
@@ -69,7 +64,6 @@ public class VisualAppBean implements IVisualAppBean {
     /**
      * Carrega os dados
      */
-    @Override
     public void load() {
 
     }
@@ -77,7 +71,6 @@ public class VisualAppBean implements IVisualAppBean {
     /**
      * Recarrega os dados
      */
-    @Override
     public void reload() {
 
     }

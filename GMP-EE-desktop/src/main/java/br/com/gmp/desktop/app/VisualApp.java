@@ -2,13 +2,13 @@ package br.com.gmp.desktop.app;
 
 import br.com.gmp.desktop.beans.ViewBean;
 import br.com.gmp.desktop.views.GMPJInternalFrame;
-import br.com.gmp.desktop.action.MessageAction;
 import br.com.gmp.utils.interact.WindowUtil;
 import comps.tabbedpane.GMPJTabbedPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
@@ -638,6 +638,15 @@ public class VisualApp extends javax.swing.JFrame {
      */
     public GMPJTabbedPane getgTPDesktops() {
         return gTPDesktops;
+    }
+
+    /**
+     * Retorna a barra de mensagens
+     *
+     * @return
+     */
+    public JLabel getjLMsg() {
+        return jLMsg;
     }
 
     //</editor-fold>

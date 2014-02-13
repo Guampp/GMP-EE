@@ -1,38 +1,25 @@
 package comps.wizard.event;
 
-import comps.wizard.task.WizardTask;
-import java.util.List;
+import comps.wizard.task.panel.WizardTaskPanel;
 
 /**
  *
  * @author kaciano
  */
-public interface WizardEvent {
+public class WizardEvent {
 
-    /**
-     * Voltar para a task anterior
-     */
-    void previous();
+    WizardTaskPanel task;
 
-    /**
-     * Ir para próxima task
-     */
-    void next();
+    public WizardEvent(WizardTaskPanel task) {
+        this.task = task;
+    }
 
-    /**
-     * Cancelar o Wizard
-     */
-    void cancel();
+    public WizardTaskPanel getTask() {
+        return task;
+    }
 
-    /**
-     * Mostrar informações
-     */
-    void info();
+    public void setTask(WizardTaskPanel task) {
+        this.task = task;
+    }
 
-    /**
-     * Retorna a lista das tarefas
-     *
-     * @return Lista das tarefas
-     */
-    List<WizardTask> getTaskList();
 }

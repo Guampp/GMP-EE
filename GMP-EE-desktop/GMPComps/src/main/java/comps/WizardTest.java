@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package comps;
 
-import comps.wizard.event.WizardEvent;
-import comps.wizard.task.WizardTask;
+import comps.wizard.listener.WizardListener;
+import comps.wizard.task.panel.WizardTaskPanel;
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,18 +10,33 @@ import java.util.List;
  *
  * @author kaciano
  */
-public class WizardTest extends javax.swing.JFrame implements WizardEvent {
+public class WizardTest extends javax.swing.JFrame implements WizardListener {
 
-    private List<WizardTask> taskList = new LinkedList<>();
+    private List<WizardTaskPanel> taskList = new LinkedList<>();
 
     /**
      * Creates new form WizardTest
      */
     public WizardTest() {
         initComponents();
-        taskList.add(new WizardTask("Test", "Test description", false));
-        wizard.setTaskList(taskList);
-        wizard.setTaskPanel(teste);
+        WizardTaskPanel test = new WizardTaskPanel("Test1", "Test description 1", false);
+        test.setBackground(Color.red);
+        test.setSize(200, 200);
+        test.setName("Teste 1");
+        taskList.add(test);
+        WizardTaskPanel test2 = new WizardTaskPanel("Test2", "Test description 2", true);
+        test2.setSize(200, 200);
+        test2.setBackground(Color.blue);
+        test2.setName("Teste 2");
+        taskList.add(test2);
+        WizardTaskPanel test3 = new WizardTaskPanel("Test3", "Test description 3", false);
+        test3.setSize(200, 200);
+        test3.setBackground(Color.green);
+        test3.setName("Teste 3");
+        taskList.add(test3);
+        taskList.add(wizardTaskPanel1);
+        taskList.add(wizardTaskPanel2);
+        wizard.setTaskList(taskList);        
     }
 
     /**
@@ -37,80 +48,151 @@ public class WizardTest extends javax.swing.JFrame implements WizardEvent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        teste = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
+        wizardTaskPanel1 = new comps.wizard.task.panel.WizardTaskPanel();
         jTextField1 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        wizard = new comps.wizard.WizardPanel(this);
+        jTextField4 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        wizardTaskPanel2 = new comps.wizard.task.panel.WizardTaskPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        wizard = new comps.wizard.WizardPanel();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        wizardTaskPanel1.setCompleted(java.lang.Boolean.TRUE);
+        wizardTaskPanel1.setDescription("Teste descrição dos infernos");
+        wizardTaskPanel1.setTitle("Teste 1");
 
         jTextField1.setText("jTextField1");
 
-        jRadioButton1.setText("jRadioButton1");
-
         jLabel1.setText("jLabel1");
 
-        jLabel2.setText("jLabel2");
+        jTextField3.setText("jTextField1");
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("jLabel1");
 
-        javax.swing.GroupLayout testeLayout = new javax.swing.GroupLayout(teste);
-        teste.setLayout(testeLayout);
-        testeLayout.setHorizontalGroup(
-            testeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(testeLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(testeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(testeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
-        );
-        testeLayout.setVerticalGroup(
-            testeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(testeLayout.createSequentialGroup()
+        jTextField4.setText("jTextField1");
+
+        jLabel4.setText("jLabel1");
+
+        jButton1.setText("jButton1");
+
+        jCheckBox1.setText("jCheckBox1");
+
+        javax.swing.GroupLayout wizardTaskPanel1Layout = new javax.swing.GroupLayout(wizardTaskPanel1);
+        wizardTaskPanel1.setLayout(wizardTaskPanel1Layout);
+        wizardTaskPanel1Layout.setHorizontalGroup(
+            wizardTaskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(wizardTaskPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(testeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(wizardTaskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox1)
+                    .addGroup(wizardTaskPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(wizardTaskPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(wizardTaskPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(wizardTaskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        wizardTaskPanel1Layout.setVerticalGroup(
+            wizardTaskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(wizardTaskPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(wizardTaskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(testeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(testeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
+                .addGroup(wizardTaskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(wizardTaskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(151, Short.MAX_VALUE))
+        );
+
+        wizardTaskPanel2.setDescription("Teste descrição dos infernos demoniacos");
+        wizardTaskPanel2.setTitle("Teste 2");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout wizardTaskPanel2Layout = new javax.swing.GroupLayout(wizardTaskPanel2);
+        wizardTaskPanel2.setLayout(wizardTaskPanel2Layout);
+        wizardTaskPanel2Layout.setHorizontalGroup(
+            wizardTaskPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+        );
+        wizardTaskPanel2Layout.setVerticalGroup(
+            wizardTaskPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(wizard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(wizard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        getContentPane().add(wizard, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -119,29 +201,6 @@ public class WizardTest extends javax.swing.JFrame implements WizardEvent {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WizardTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WizardTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WizardTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WizardTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -152,14 +211,19 @@ public class WizardTest extends javax.swing.JFrame implements WizardEvent {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JPanel teste;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private comps.wizard.WizardPanel wizard;
+    private comps.wizard.task.panel.WizardTaskPanel wizardTaskPanel1;
+    private comps.wizard.task.panel.WizardTaskPanel wizardTaskPanel2;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -183,7 +247,7 @@ public class WizardTest extends javax.swing.JFrame implements WizardEvent {
     }
 
     @Override
-    public List<WizardTask> getTaskList() {
+    public List<WizardTaskPanel> getTaskList() {
         return this.taskList;
     }
 }

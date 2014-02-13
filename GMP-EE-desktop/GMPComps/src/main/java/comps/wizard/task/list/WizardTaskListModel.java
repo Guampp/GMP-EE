@@ -1,6 +1,7 @@
 package comps.wizard.task.list;
 
 import comps.wizard.task.WizardTask;
+import comps.wizard.task.panel.WizardTaskPanel;
 import java.util.List;
 import javax.swing.AbstractListModel;
 
@@ -11,14 +12,14 @@ import javax.swing.AbstractListModel;
  */
 public class WizardTaskListModel extends AbstractListModel<WizardTask> {
 
-    private List<WizardTask> taskList;
+    private List<WizardTaskPanel> taskList;
 
     /**
      * Cria novo Modelo da WizardTaskList
      *
      * @param taskList Lista de WizardTasks
      */
-    public WizardTaskListModel(List<WizardTask> taskList) {
+    public WizardTaskListModel(List<WizardTaskPanel> taskList) {
         this.taskList = taskList;
     }
 
@@ -27,7 +28,7 @@ public class WizardTaskListModel extends AbstractListModel<WizardTask> {
      *
      * @param task WizardTask
      */
-    public void add(WizardTask task) {
+    public void add(WizardTaskPanel task) {
         taskList.add(task);
     }
 
@@ -37,7 +38,7 @@ public class WizardTaskListModel extends AbstractListModel<WizardTask> {
      * @param task WizardTask
      * @return A lista contem a WizardTask?
      */
-    public boolean remove(WizardTask task) {
+    public boolean remove(WizardTaskPanel task) {
         if (taskList.contains(task)) {
             taskList.remove(task);
             return true;
@@ -70,7 +71,7 @@ public class WizardTaskListModel extends AbstractListModel<WizardTask> {
      *
      * @return
      */
-    public List<WizardTask> getTaskList() {
+    public List<WizardTaskPanel> getTaskList() {
         return taskList;
     }
 
@@ -78,7 +79,7 @@ public class WizardTaskListModel extends AbstractListModel<WizardTask> {
      *
      * @param taskList
      */
-    public void setTaskList(List<WizardTask> taskList) {
+    public void setTaskList(List<WizardTaskPanel> taskList) {
         this.taskList = taskList;
     }
 

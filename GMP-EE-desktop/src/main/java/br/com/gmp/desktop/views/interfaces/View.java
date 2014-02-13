@@ -2,6 +2,8 @@ package br.com.gmp.desktop.views.interfaces;
 
 import br.com.gmp.desktop.beans.ViewBean;
 
+
+
 /**
  * Interface das Views do sistema
  *
