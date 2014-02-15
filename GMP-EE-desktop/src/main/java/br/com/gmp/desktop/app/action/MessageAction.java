@@ -1,4 +1,4 @@
-package br.com.gmp.desktop.action;
+package br.com.gmp.desktop.app.action;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;

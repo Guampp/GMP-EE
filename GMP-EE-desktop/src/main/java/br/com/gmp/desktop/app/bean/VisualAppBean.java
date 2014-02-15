@@ -1,8 +1,10 @@
-package br.com.gmp.desktop.app;
+package br.com.gmp.desktop.app.bean;
 
+import br.com.gmp.desktop.app.VisualApp;
+import br.com.gmp.comps.tabbedpane.GMPJTabbedPane;
 import br.com.gmp.desktop.views.interfaces.View;
-import comps.tabbedpane.GMPJTabbedPane;
 import java.awt.Color;
+import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 
@@ -13,6 +15,7 @@ import javax.swing.JDesktopPane;
  */
 public class VisualAppBean {
 
+    public static final String IS_ON_DESKTOP = "A view já está no desktop!";
     private VisualApp visualApp;
     private View activeView;
 
@@ -78,7 +81,8 @@ public class VisualAppBean {
     /**
      * Verifica existencia de activeView
      *
-     * @return activeView existe?
+     * @return activeView <code><b>boolean</b></code> Existe uma View ativa?
+     * <code>(true, false)</code>
      */
     public boolean checkNull() {
         return activeView == null;
@@ -131,32 +135,68 @@ public class VisualAppBean {
     }
 
     /**
+     * Insere View no desktop ativo
      *
-     * @return
+     * @param view <code><b>View</b></code> View a ser adicionada
+     */
+    public void insertView(View view) {
+        if (!isOnDesktop(view)) {
+
+        } else {
+            System.out.println(IS_ON_DESKTOP);
+        }
+    }
+
+    /**
+     * Verifica se o desktop ativo já possui a View em questão
+     *
+     * @param view <code><b>View</b></code> View a ser adicionada
+     * @return <code><b>boolean</b></code> Está no desktop ativo?
+     * <code>(true, false)</code>
+     */
+    private boolean isOnDesktop(View view) {
+        for (Component c : getActiveDesktop().getComponents()) {
+            if (c instanceof View) {
+                View v = (View) c;
+                if (v == view) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Retorna o aplicativo visual do bean
+     *
+     * @return Aplicativo visual do bean
      */
     public VisualApp getVisualApp() {
         return visualApp;
     }
 
     /**
+     * Modifica o aplicativo visual do bean
      *
-     * @param visualApp
+     * @param visualApp <code><b>VisualApp</b></code> Aplicativo visual do bean
      */
     public void setVisualApp(VisualApp visualApp) {
         this.visualApp = visualApp;
     }
 
     /**
+     * Retorna a View Ativa do desktop
      *
-     * @return
+     * @return <code><b>View</b></code> View Ativa do desktop
      */
     public View getActiveView() {
         return activeView;
     }
 
     /**
+     * Modifica a View Ativa do desktop
      *
-     * @param activeView
+     * @param activeView <code><b>View</b></code> View Ativa do desktop
      */
     public void setActiveView(View activeView) {
         this.activeView = activeView;

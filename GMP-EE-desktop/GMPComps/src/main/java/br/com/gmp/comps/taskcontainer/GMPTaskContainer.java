@@ -1,138 +1,249 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.gmp.comps.taskcontainer;
 
-import br.com.gmp.comps.BaseColors;
-import br.com.gmp.comps.BaseColors;
+import br.com.gmp.comps.taskpane.GMPTaskPane;
 import br.com.gmp.comps.ui.GMPTaskPaneUI;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
+import java.util.List;
 import org.jdesktop.swingx.JXTaskPane;
-import org.jdesktop.swingx.JXTaskPaneContainer;
 
 /**
+ * Componente responsavel pelo agrupamento das JXTaskPanes
  *
  * @author kaciano
+ * @since 1.0
+ * @version 1.0
  */
-public class GMPTaskContainer extends JXTaskPaneContainer {
+public class GMPTaskContainer extends org.jdesktop.swingx.JXTaskPaneContainer {
 
-    private Color color;
-    private final Color defaultColor = BaseColors.systemColor;
-    private static final Color staticColor = BaseColors.systemColor;
+    private boolean accordion;
+    private Color initialColor;
+    private Color finalColor;
+    private Color textColor;
+    private Color highlight;
 
+    /**
+     * Cria novo GMPTaskContainer
+     */
     public GMPTaskContainer() {
         initComponents();
     }
 
+    /**
+     * Cria novo GMPTaskContainer
+     *
+     * @param highlight Cor de realce
+     */
     public GMPTaskContainer(Color highlight) {
-        this.color = highlight;
+        this.highlight = highlight;
         initComponents();
     }
 
-    public GMPTaskContainer(ArrayList<JXTaskPane> tasks) {
+    /**
+     * Cria novo GMPTaskContainer
+     *
+     * @param tasks Lista de JXTaskPane's
+     */
+    public GMPTaskContainer(List<JXTaskPane> tasks) {
         initComponents();
+        addMultiple(tasks);
+    }
+
+    @Override
+    public Component add(Component comp) {
+        if (comp instanceof JXTaskPane) {
+            JXTaskPane task = (JXTaskPane) comp;
+            this.formatTask(task);
+            return super.add(task);
+        } else if (comp instanceof GMPTaskPane) {
+            GMPTaskPane task = (GMPTaskPane) comp;
+            addListeners(task);
+            return super.add(task);
+        } else {
+            return super.add(comp);
+        }
+    }
+
+    /**
+     * Adiciona multiplas JXTaskPane's
+     *
+     * @param tasks Lista de JXTaskPane's
+     */
+    private void addMultiple(List<JXTaskPane> tasks) {
         for (JXTaskPane task : tasks) {
             this.add(task);
             this.revalidate();
             this.repaint();
         }
-        for (Component c : this.getComponents()) {
-            JXTaskPane task;
-            task = (JXTaskPane) c;
-            task.setUI(new GMPTaskPaneUI(color != null ? color : defaultColor));
-            task.addMouseListener(ml);
-            task.setCollapsed(true);
+    }
+
+    /**
+     * Adiciona multiplas JXTaskPane's
+     *
+     * @param tasks List<JXTaskPane> Lista de Tasks
+     */
+    public void addMultipleTasks(List<JXTaskPane> tasks) {
+        addMultiple(tasks);
+    }
+
+    /**
+     * Modifica a JXTaskPane para entrar no layout
+     *
+     * @param task JXTaskPane a ser formatada
+     */
+    public void formatTask(JXTaskPane task) {
+        task.setUI(new GMPTaskPaneUI());
+        addListeners(task);
+        task.setCollapsed(true);
+    }
+
+    /**
+     * Adiciona os listeners especificos
+     *
+     * @param task JXTaskPane Receptor do listener
+     */
+    public void addListeners(JXTaskPane task) {
+        if (accordion) {
+            task.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent me) {
+                    JXTaskPane task;
+                    for (Component c : getComponents()) {
+                        if (c instanceof JXTaskPane) {
+                            task = (JXTaskPane) c;
+                            if (task != me.getComponent()) {
+                                task.setCollapsed(true);
+                            }
+                        }
+                    }
+                }
+            });
         }
     }
 
-    public void addCustomTask(JXTaskPane task) {
-        this.add(task);
-        task.setUI(new GMPTaskPaneUI(color != null ? color : defaultColor));
-        task.addMouseListener(ml);
-        task.setCollapsed(true);
-        this.revalidate();
-        this.repaint();
-    }
-
-    public void setList(ArrayList<JXTaskPane> tasks) {
+    /**
+     * Modifica a JXTaskPane para entrar no layout
+     *
+     * @param tasks List<JXTaskPane> Lista a ser formatada
+     */
+    public void formatTasks(List<JXTaskPane> tasks) {
         for (JXTaskPane task : tasks) {
-            this.add(task);
-        }
-        for (Component c : this.getComponents()) {
-            JXTaskPane task;
-            task = (JXTaskPane) c;
-            task.setUI(new GMPTaskPaneUI(color != null ? color : defaultColor));
-            task.addMouseListener(ml);
+            task.setUI(new GMPTaskPaneUI());
+            if (accordion) {
+                task.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent me) {
+                        JXTaskPane task;
+                        for (Component c : getComponents()) {
+                            if (c instanceof JXTaskPane) {
+                                task = (JXTaskPane) c;
+                                if (task != me.getComponent()) {
+                                    task.setCollapsed(true);
+                                }
+                            }
+                        }
+                    }
+                });
+            }
             task.setCollapsed(true);
         }
     }
-    MouseListener ml = new MouseAdapter() {
-        @Override
-        public void mouseReleased(MouseEvent me) {
-            JXTaskPane task;
-            for (Component c : getComponents()) {
-                if (c instanceof JXTaskPane) {
-                    task = (JXTaskPane) c;
-                    if (task != me.getComponent()) {
-                        task.setCollapsed(true);
-                    }
-                }
-            }
-        }
-    };
 
-    public static void generateCustomTask(final JXTaskPane parent, JXTaskPane task) {
-        task.setUI(new GMPTaskPaneUI(BaseColors.systemColor));
-        task.setCollapsed(true);
-        task.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent me) {
-                JXTaskPane t;
-                for (Component c : parent.getComponents()) {
-                    if (c instanceof JXTaskPane) {
-                        t = (JXTaskPane) c;
-                        if (t != me.getComponent()) {
-                            t.setCollapsed(true);
-                        }
-                    }
-                }
-            }
-        });        
+    //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
+    /**
+     *
+     * @return
+     */
+    public boolean isAccordion() {
+        return accordion;
     }
 
-    public static void generateCustomTask(final GMPTaskContainer parent, JXTaskPane task) {
-        task.setUI(new GMPTaskPaneUI(BaseColors.systemColor));
-        task.setCollapsed(true);
-        task.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent me) {
-                JXTaskPane t;
-                for (Component c : parent.getComponents()) {
-                    if (c instanceof JXTaskPane) {
-                        t = (JXTaskPane) c;
-                        if (t != me.getComponent()) {
-                            t.setCollapsed(true);
-                        }
-                    }
-                }
-            }
-        });        
-    }    
+    /**
+     *
+     * @param accordion
+     */
+    public void setAccordion(boolean accordion) {
+        this.accordion = accordion;
+    }
+
+    public Color getInitialColor() {
+        return initialColor;
+    }
+
+    /**
+     *
+     * @param initialColor
+     */
+    public void setInitialColor(Color initialColor) {
+        this.initialColor = initialColor;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getFinalColor() {
+        return finalColor;
+    }
+
+    /**
+     *
+     * @param finalColor
+     */
+    public void setFinalColor(Color finalColor) {
+        this.finalColor = finalColor;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getTextColor() {
+        return textColor;
+    }
+
+    /**
+     *
+     * @param textColor
+     */
+    public void setTextColor(Color textColor) {
+        this.textColor = textColor;
+    }
+
+    /**
+     * Retorna a cor de realce
+     *
+     * @return Color Cor de realce
+     */
+    public Color getHighlight() {
+        return this.highlight;
+    }
+
+    /**
+     * Modifica a cor de realce
+     *
+     * @param highlight Nova cor de realce
+     */
+    public void setHighlight(Color highlight) {
+        this.highlight = highlight;
+    }
+
+    //</editor-fold>
+    /**
+     * Dados gerados automaticamente pelo IDE
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(153, 153, 153));
+        setBackground(new java.awt.Color(51, 102, 255));
         org.jdesktop.swingx.VerticalLayout verticalLayout1 = new org.jdesktop.swingx.VerticalLayout();
         verticalLayout1.setGap(14);
         setLayout(verticalLayout1);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
 }

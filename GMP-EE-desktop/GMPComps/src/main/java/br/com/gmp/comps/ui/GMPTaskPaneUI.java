@@ -1,5 +1,6 @@
 package br.com.gmp.comps.ui;
 
+import br.com.gmp.comps.BaseColors;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -13,18 +14,47 @@ import org.jdesktop.swingx.JXTaskPane;
 import org.jdesktop.swingx.plaf.basic.BasicTaskPaneUI;
 
 /**
+ * UI customizada para GMPTaskPane
  *
  * @author Kaciano
  */
 public class GMPTaskPaneUI extends BasicTaskPaneUI {
-    Color color;
+
+    private Color initialColor;
+    private Color finalColor;
+    private Color textColor;
+    private Color highlight;
+
+    /**
+     * Cria nova instancia de GMPTaskPaneUI
+     */
     public GMPTaskPaneUI() {
+        initialColor = BaseColors.lightColor;
+        finalColor = BaseColors.darkColor;
+        textColor = Color.white;
+        highlight = BaseColors.systemColor;
     }
 
-    public GMPTaskPaneUI(Color color) {
-        this.color = color;
+    /**
+     * Cria nova instancia de GMPTaskPaneUI
+     *
+     * @param initialColor Color Cor inicial do gradiente
+     * @param finalColor Color Cor final do gradiente
+     * @param textColor Color Cor do texto
+     * @param highlight Color Cor do realce
+     */
+    public GMPTaskPaneUI(Color initialColor, Color finalColor, Color textColor, Color highlight) {
+        this.initialColor = initialColor;
+        this.finalColor = finalColor;
+        this.textColor = textColor;
+        this.highlight = highlight;        
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     public static ComponentUI createUI(JComponent c) {
         return new GMPTaskPaneUI();
     }
@@ -37,15 +67,20 @@ public class GMPTaskPaneUI extends BasicTaskPaneUI {
 
     @Override
     protected Border createPaneBorder() {
-        return new MetalPaneBorder();
+        return new CustomPaneBorder(initialColor, finalColor, textColor, highlight);
     }
 
-    class MetalPaneBorder extends PaneBorder {
+    /**
+     * Borda de painel customizada
+     */
+    class CustomPaneBorder extends PaneBorder {
 
-        public MetalPaneBorder() {
-            titleBackgroundGradientStart = Color.GRAY;
-            titleForeground = Color.white;
-            titleOver = color != null ? color : Color.orange;
+        public CustomPaneBorder(Color start, Color end, Color foreground, Color highlight) {
+            titleBackgroundGradientStart = start != null ? start : BaseColors.lightColor;
+            titleBackgroundGradientEnd = end != null ? end : BaseColors.darkColor;
+            titleForeground = foreground != null ? foreground : Color.white;
+            titleOver = highlight != null ? highlight : BaseColors.systemColor;          
+            
         }
 
         @Override
@@ -67,4 +102,69 @@ public class GMPTaskPaneUI extends BasicTaskPaneUI {
             return true;
         }
     }
+
+    /**
+     *
+     * @return
+     */
+    public Color getInitialColor() {
+        return initialColor;
+    }
+
+    /**
+     *
+     * @param initialColor
+     */
+    public void setInitialColor(Color initialColor) {
+        this.initialColor = initialColor;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getFinalColor() {
+        return finalColor;
+    }
+
+    /**
+     *
+     * @param finalColor
+     */
+    public void setFinalColor(Color finalColor) {
+        this.finalColor = finalColor;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getTextColor() {
+        return textColor;
+    }
+
+    /**
+     *
+     * @param textColor
+     */
+    public void setTextColor(Color textColor) {
+        this.textColor = textColor;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Color getHighlight() {
+        return highlight;
+    }
+
+    /**
+     *
+     * @param highlight
+     */
+    public void setHighlight(Color highlight) {
+        this.highlight = highlight;
+    }
+
 }

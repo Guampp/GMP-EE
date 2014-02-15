@@ -1,6 +1,7 @@
-package br.com.gmp.desktop.action;
+package br.com.gmp.desktop.app.action;
 
 import br.com.gmp.desktop.app.VisualApp;
+import br.com.gmp.desktop.app.action.FrameAction;
 import java.awt.event.ActionEvent;
 
 /**

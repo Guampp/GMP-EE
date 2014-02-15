@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.gmp.ejb.enums;
 
 /**
@@ -10,10 +5,10 @@ package br.com.gmp.ejb.enums;
  *
  * @author kaciano
  * @since 1.0
- *
  */
 public interface EntityBeans {
 
+    // Entidades
     public static final String ADDRESS_BEAN = "EJB/AddressFacade";
     public static final String COMPANY_BEAN = "EJB/CompanyFacade";
     public static final String COMPANY_INFO_BEAN = "EJB/CompanyInfoFacade";
@@ -29,4 +24,6 @@ public interface EntityBeans {
     public static final String USER_BASE_BEAN = "EJB/UserBaseFacade";
     public static final String USER_INFO_BEAN = "EJB/UserInfoFacade";
     public static final String USER_TYPE_BEAN = "EJB/UserTypeFacade";
+    // Controles
+    public static final String MENU_CONTROLER = "EJB/MenuControler";
 }

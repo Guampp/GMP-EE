@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author kaciano
  */
 @Stateless(mappedName = "EJB/MenuFacade", name = "MenuFacade")
-public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeRemote {
+public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal, MenuFacadeRemote {
 
     @PersistenceContext(unitName = "GMP-EJB-PU")
     private EntityManager em;

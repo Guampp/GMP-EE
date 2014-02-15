@@ -32,7 +32,7 @@ public class GMPButtonUI extends BasicButtonUI {
 
     @Override
     public void paint(Graphics g, JComponent c) {
-        JButton button = (JButton) c;        
+        JButton button = (JButton) c;
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
@@ -41,8 +41,8 @@ public class GMPButtonUI extends BasicButtonUI {
 
         ButtonModel otherModel = button.getModel();
         if (!otherModel.isEnabled()) {
-            button.setForeground(Color.GRAY);
-            GP = new GradientPaint(0, 0, new Color(192, 192, 192), 0, h, new Color(192, 192, 192),
+            button.setForeground(BaseColors.darkColor.brighter());
+            GP = new GradientPaint(0, 0, BaseColors.darkColor, 0, h, BaseColors.darkColor,
                     true);
         } else {
             button.setForeground(Color.WHITE);

@@ -1,16 +1,16 @@
-package br.com.gmp.desktop.action;
+package br.com.gmp.desktop.app.action;
 
 import br.com.gmp.desktop.app.VisualApp;
 import java.awt.event.ActionEvent;
 
 /**
- * Ação de limpeza
+ * Ação de processamento
  *
  * @author kaciano
  */
-public class CleanAction extends FrameAction {
+public class ProcessAction extends FrameAction {
 
-    public CleanAction(String name, VisualApp visualApp) {
+    public ProcessAction(String name, VisualApp visualApp) {
         super(name, visualApp);
     }
 

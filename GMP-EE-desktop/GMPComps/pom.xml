@@ -46,6 +46,11 @@
             <version>1.6.5-1</version>
         </dependency>
         <dependency>
+            <groupId>net.java.balloontip</groupId>
+            <artifactId>balloontip</artifactId>
+            <version>1.2.4.1</version>
+        </dependency>        
+        <dependency>
             <groupId>br.com.gmp</groupId>
             <artifactId>GMPUtils</artifactId>
             <version>1.1</version>

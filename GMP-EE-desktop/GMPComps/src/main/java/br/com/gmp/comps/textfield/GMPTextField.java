@@ -1,18 +1,16 @@
 package br.com.gmp.comps.textfield;
 
+import br.com.gmp.comps.baloontip.src.BalloonUtil;
 import br.com.gmp.comps.interfaces.ValidableComponent;
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Insets;
-import java.awt.RenderingHints;
 import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
@@ -29,6 +27,7 @@ import javax.swing.text.Document;
 public class GMPTextField extends JTextField implements ValidableComponent, KeyListener {
 
     private String placeholder = "";
+    private String invalidMsg = "Invalido";
     private Icon icon = new ImageIcon();
     private int minimallength = 0;
     private int maximumlength = 999999;
@@ -39,7 +38,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
      * Cria nova instancia de GMPTextField
      */
     public GMPTextField() {
-        initComponents();
+        initialize();
     }
 
     /**
@@ -51,7 +50,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
      */
     public GMPTextField(Document doc, String text, int columns) {
         super(doc, text, columns);
-        initComponents();
+        initialize();
     }
 
     /**
@@ -64,7 +63,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
     public GMPTextField(String placeholder, Icon icon) {
         this.placeholder = placeholder;
         this.icon = icon;
-        initComponents();
+        initialize();
     }
 
     /**
@@ -74,7 +73,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
      */
     public GMPTextField(Icon icon) {
         this.icon = icon;
-        initComponents();
+        initialize();
     }
 
     /**
@@ -88,7 +87,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         this.minimallength = minimallength;
         this.maximumlength = maximumlength;
         this.force = force;
-        initComponents();
+        initialize();
     }
 
     /**
@@ -108,25 +107,20 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         this.minimallength = minimallength;
         this.maximumlength = maximumlength;
         this.force = force;
-        initComponents();
+        initialize();
     }
 
-//    @Override
-//    protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        int txtX = 2;
-//        //----------------------------------------------------------------------
-//        // Adiciona o icone no campo, caso exista algum...
-//        if (this.icon != null) {
-//            int iWidth = icon.getIconWidth();
-//            int iHeight = icon.getIconHeight();
-//            int x = newInsets.left + 5;
-//            txtX = x + iWidth + 2;
-//            int y = (this.getHeight() - iHeight) / 2;
-//            icon.paintIcon(this, g, x, y);
-//        }
-//        setMargin(new Insets(2, txtX, 2, 2));
-//    }
+    /**
+     * Inicializa o componente
+     */
+    private void initialize() {
+        initComponents();
+        if (icon != null) {
+            this.setLayout(new BorderLayout());
+            this.add(new JLabel(icon), BorderLayout.EAST);
+        }
+    }
+
     /**
      * Retorna os Insets do componente
      */
@@ -148,6 +142,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
     public boolean validateComponent() {
         if (this.minimallength < this.getText().length()) {
             invalidAction();
+            BalloonUtil.showTimedBallon(this, invalidMsg, new Long(5000));
             return false;
         } else {
             validAction();
@@ -289,6 +284,14 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
     }//GEN-LAST:event_formFocusLost
 
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
+    public String getInvalidMsg() {
+        return invalidMsg;
+    }
+
+    public void setInvalidMsg(String invalidMsg) {
+        this.invalidMsg = invalidMsg;
+    }
+
     public String getPlaceholder() {
         return placeholder;
     }

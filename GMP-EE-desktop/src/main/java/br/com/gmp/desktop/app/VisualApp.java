@@ -1,17 +1,29 @@
 package br.com.gmp.desktop.app;
 
-import br.com.gmp.desktop.beans.ViewBean;
-import br.com.gmp.desktop.views.GMPJInternalFrame;
 import br.com.gmp.utils.interact.WindowUtil;
-import comps.tabbedpane.GMPJTabbedPane;
+import br.com.gmp.desktop.app.bean.VisualAppBean;
+import br.com.gmp.comps.tabbedpane.GMPJTabbedPane;
+import br.com.gmp.comps.taskcontainer.GMPTaskContainer;
+import java.awt.AWTException;
+import java.awt.Image;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.SystemTray;
+import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 /**
  * Aplicação Visual Principal
@@ -33,27 +45,80 @@ public class VisualApp extends javax.swing.JFrame {
     private Action cleanAction;
 
     /**
-     * Creates new form VisualApp
+     * Cria nova instancia de VisualApp
+     *
+     * @see javax.swing.JFrame
      */
     public VisualApp() {
         initComponents();
         appBean = new VisualAppBean(this);
-        constructActions();
-        addKeyEvents();
+        initialize();
     }
 
-    private void constructActions() {
-        this.cleanAction = new AbstractAction() {
+    /**
+     * Inicializa o Frame
+     *
+     * @see br.com.gmp.desktop.app.VisualApp#addKeyEvents()
+     * @see br.com.gmp.desktop.app.VisualApp#constructActions()
+     */
+    private void initialize() {
+        try {
+            generateTrayIcon();
+        } catch (AWTException e) {
+            Logger.getLogger(this.getClass().getName())
+                    .log(Level.SEVERE, e.getMessage(), e);
+        } finally {
+            constructActions();
+            addKeyEvents();
+            
+        }
+    }
+
+    /**
+     * Gera o icone da barra de ferramentas
+     *
+     * @see java.awt.SystemTray
+     * @see java.awt.TrayIcon
+     * @throws AWTException
+     */
+    private void generateTrayIcon() throws AWTException {
+        SystemTray sysTray = SystemTray.getSystemTray();
+        URL url = getClass().getResource("/logo/guampp24.png");
+        Image icon = new ImageIcon(url).getImage();
+        TrayIcon tray = new TrayIcon(icon);
+        PopupMenu pop = new PopupMenu();
+        MenuItem item = new MenuItem("Fechar");
+
+        // Adiciona os comandos no MenuItem
+        item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Limpando...");
+                System.out.println("Fechando o sistema");
+                System.exit(0);
             }
-        };
-        //----------------------------------------------------------------------
-        this.processAction = new AbstractAction() {
+        });
+
+        // Adiciona os itens no PopUp
+        pop.add(item);
+        pop.add(new MenuItem());
+
+        // Adiciona o PopUp no Tray
+        tray.setPopupMenu(pop);
+        tray.setToolTip("Guampp");        
+        tray.setImageAutoSize(true);
+
+        // Adiciona o Tray no SystemTray
+        sysTray.add(tray);
+    }
+
+    /**
+     * Constroi as ações da tela
+     */
+    private void constructActions() {
+        this.confirmAction = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Processando...");
+                System.out.println("Confirmando...");
             }
         };
         //----------------------------------------------------------------------
@@ -64,42 +129,44 @@ public class VisualApp extends javax.swing.JFrame {
             }
         };
         //----------------------------------------------------------------------
-        this.confirmAction = new AbstractAction() {
+        this.processAction = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Confirmando...");
+                System.out.println("Processando...");
+            }
+        };
+        //----------------------------------------------------------------------
+        this.cleanAction = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Limpando...");
             }
         };
     }
 
+    /**
+     * Adiciona os KeyEvents
+     *
+     * @see br.com.gmp.desktop.app.VisualApp#addKeyInput(String, int, Action)
+     */
     private void addKeyEvents() {
         addKeyInput(confirmAct, KeyEvent.VK_F2, confirmAction);
         addKeyInput(discardAct, KeyEvent.VK_F4, discardAction);
         addKeyInput(processAct, KeyEvent.VK_F6, processAction);
-        addKeyInput(cleanAct, KeyEvent.VK_F10, cleanAction);
-    }
-
-    private void addKeyInput(String act, int keycode, Action action) {
-        this.getRootPane().getActionMap().put(act, action);
-        this.getRootPane().getInputMap()
-                .put(KeyStroke.getKeyStroke(keycode, 0), act);
+        addKeyInput(cleanAct, KeyEvent.VK_F8, cleanAction);
     }
 
     /**
-     * Adiciona teste
+     * Adiciona as ações especificas de cada tecla
+     *
+     * @param name <b><code>String</code></b> Nome da ação
+     * @param keycode <b><code>KeyEvent</code></b> Código da tecla
+     * @param action <b><code>Action</code></b> Ação da tecla
      */
-    private void addTest() {
-        GMPJInternalFrame frame = new GMPJInternalFrame(appBean, new ViewBean());
-        frame.setName("Teste");
-        frame.setSize(200, 250);
-        frame.setVisible(true);
-        GMPJInternalFrame frame2 = new GMPJInternalFrame(appBean, new ViewBean());
-        frame2.setName("Teste2");
-        frame2.setSize(200, 250);
-        frame2.setVisible(true);
-        desktop.add(frame);
-        desktop.add(frame2);
-        desktop.setSelectedFrame(frame);
+    private void addKeyInput(String name, int keycode, Action action) {
+        this.getRootPane().getActionMap().put(name, action);
+        this.getRootPane().getInputMap()
+                .put(KeyStroke.getKeyStroke(keycode, 0), name);
     }
 
     /**
@@ -109,9 +176,9 @@ public class VisualApp extends javax.swing.JFrame {
      */
     private void changeLAF(String laf) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if (laf.equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     System.out.println(laf);
                     break;
                 }
@@ -160,31 +227,42 @@ public class VisualApp extends javax.swing.JFrame {
         jMIAdd = new javax.swing.JMenuItem();
         jMICloseAll = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JSeparator();
-        TaskContainer = new org.jdesktop.swingx.JXTaskPaneContainer();
+        jPopTray = new javax.swing.JPopupMenu();
+        jMIInfo = new javax.swing.JMenuItem();
+        jMIClose = new javax.swing.JMenuItem();
         jTBDesktop = new javax.swing.JToolBar();
-        gBAddDesk = new comps.button.GMPButton();
-        gBRemoveDesks = new comps.button.GMPButton();
+        gBAddDesk = new br.com.gmp.comps.button.GMPButton();
+        gBRemoveDesks = new br.com.gmp.comps.button.GMPButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
-        gBOrganize = new comps.button.GMPButton();
+        gBOrganize = new br.com.gmp.comps.button.GMPButton();
+        jSeparator6 = new javax.swing.JToolBar.Separator();
+        jLActualMenu = new javax.swing.JLabel();
+        jLActualView = new javax.swing.JLabel();
         jTBSearch = new javax.swing.JToolBar();
         jTSearchField = new javax.swing.JTextField();
-        gBSearch = new comps.button.GMPButton();
+        gBSearch = new br.com.gmp.comps.button.GMPButton();
         jTBMsg = new javax.swing.JToolBar();
         jLMsg = new javax.swing.JLabel();
         jTBUser = new javax.swing.JToolBar();
-        gBLogout = new comps.button.GMPButton();
+        gBLogout = new br.com.gmp.comps.button.GMPButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jLUser = new javax.swing.JLabel();
         jTBSystem = new javax.swing.JToolBar();
         jLWeb = new javax.swing.JLabel();
         jLSystem = new javax.swing.JLabel();
-        gTPDesktops = new comps.tabbedpane.GMPJTabbedPane();
         jTBFunctions = new javax.swing.JToolBar();
-        gBFavorite = new comps.button.GMPButton();
+        gBFavorite = new br.com.gmp.comps.button.GMPButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
-        gBDiscard = new comps.button.GMPButton();
-        gBConfirm = new comps.button.GMPButton();
-        gBProcess = new comps.button.GMPButton();
+        gBConfirm = new br.com.gmp.comps.button.GMPButton();
+        gBDiscard = new br.com.gmp.comps.button.GMPButton();
+        gBProcess = new br.com.gmp.comps.button.GMPButton();
+        jSeparator5 = new javax.swing.JToolBar.Separator();
+        gBClean = new br.com.gmp.comps.button.GMPButton();
+        jSplit = new javax.swing.JSplitPane();
+        MenuContainer = new br.com.gmp.comps.taskcontainer.GMPTaskContainer();
+        gMPTaskPane1 = new br.com.gmp.comps.taskpane.GMPTaskPane();
+        gMPTaskPane2 = new br.com.gmp.comps.taskpane.GMPTaskPane();
+        gTPDesktops = new br.com.gmp.comps.tabbedpane.GMPJTabbedPane();
         jMenuBar = new javax.swing.JMenuBar();
         jMOption = new javax.swing.JMenu();
         jMILogoff = new javax.swing.JMenuItem();
@@ -226,15 +304,16 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jPopDesktop.add(jMICloseAll);
 
+        jMIInfo.setText("Informações");
+        jPopTray.add(jMIInfo);
+
+        jMIClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/close.png"))); // NOI18N
+        jMIClose.setText("Fechar");
+        jPopTray.add(jMIClose);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Guampp 1.0");
         setMinimumSize(new java.awt.Dimension(750, 475));
-
-        TaskContainer.setBackground(new java.awt.Color(51, 102, 255));
-        TaskContainer.setMinimumSize(new java.awt.Dimension(200, 10));
-        org.jdesktop.swingx.VerticalLayout verticalLayout1 = new org.jdesktop.swingx.VerticalLayout();
-        verticalLayout1.setGap(14);
-        TaskContainer.setLayout(verticalLayout1);
 
         jTBDesktop.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTBDesktop.setFloatable(false);
@@ -284,6 +363,19 @@ public class VisualApp extends javax.swing.JFrame {
             }
         });
         jTBDesktop.add(gBOrganize);
+        jTBDesktop.add(jSeparator6);
+
+        jLActualMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLActualMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/arrow_right.png"))); // NOI18N
+        jLActualMenu.setText("Menu Atual");
+        jLActualMenu.setMaximumSize(new java.awt.Dimension(32178, 100));
+        jTBDesktop.add(jLActualMenu);
+
+        jLActualView.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLActualView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/arrow_right.png"))); // NOI18N
+        jLActualView.setText("View Atual");
+        jLActualView.setMaximumSize(new java.awt.Dimension(32178, 100));
+        jTBDesktop.add(jLActualView);
 
         jTBSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTBSearch.setFloatable(false);
@@ -319,7 +411,7 @@ public class VisualApp extends javax.swing.JFrame {
         gBLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/logout.png"))); // NOI18N
         gBLogout.setEndColor(new java.awt.Color(51, 153, 255));
         gBLogout.setHorizontalTextPosition(0);
-        gBLogout.setPressedIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/src/main/resources/IKONS/16/logout.png")); // NOI18N
+        gBLogout.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/logout.png"))); // NOI18N
         gBLogout.setStartColor(new java.awt.Color(51, 102, 255));
         gBLogout.setToolTipText("Trocar usuário");
         gBLogout.setVerticalTextPosition(3);
@@ -351,11 +443,6 @@ public class VisualApp extends javax.swing.JFrame {
         jLSystem.setMinimumSize(new java.awt.Dimension(30, 15));
         jTBSystem.add(jLSystem);
 
-        gTPDesktops.setBackground(new java.awt.Color(51, 153, 255));
-        gTPDesktops.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        gTPDesktops.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-        gTPDesktops.setTabPlacement(JTabbedPane.TOP);
-
         jTBFunctions.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTBFunctions.setFloatable(false);
 
@@ -374,24 +461,10 @@ public class VisualApp extends javax.swing.JFrame {
         jTBFunctions.add(gBFavorite);
         jTBFunctions.add(jSeparator2);
 
-        gBDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/circle_delete.png"))); // NOI18N
-        gBDiscard.setEndColor(new java.awt.Color(51, 153, 255));
-        gBDiscard.setHorizontalTextPosition(0);
-        gBDiscard.setPressedIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/src/main/resources/IKONS/16/circle_delete.png")); // NOI18N
-        gBDiscard.setStartColor(new java.awt.Color(51, 102, 255));
-        gBDiscard.setToolTipText("Descartar");
-        gBDiscard.setVerticalTextPosition(3);
-        gBDiscard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gBDiscardActionPerformed(evt);
-            }
-        });
-        jTBFunctions.add(gBDiscard);
-
         gBConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/circle_ok.png"))); // NOI18N
         gBConfirm.setEndColor(new java.awt.Color(51, 153, 255));
         gBConfirm.setHorizontalTextPosition(0);
-        gBConfirm.setPressedIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/src/main/resources/IKONS/16/circle_ok.png")); // NOI18N
+        gBConfirm.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/circle_ok.png"))); // NOI18N
         gBConfirm.setStartColor(new java.awt.Color(51, 102, 255));
         gBConfirm.setToolTipText("Confirmar");
         gBConfirm.setVerticalTextPosition(3);
@@ -402,10 +475,24 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBFunctions.add(gBConfirm);
 
+        gBDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/circle_delete.png"))); // NOI18N
+        gBDiscard.setEndColor(new java.awt.Color(51, 153, 255));
+        gBDiscard.setHorizontalTextPosition(0);
+        gBDiscard.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/circle_delete.png"))); // NOI18N
+        gBDiscard.setStartColor(new java.awt.Color(51, 102, 255));
+        gBDiscard.setToolTipText("Descartar");
+        gBDiscard.setVerticalTextPosition(3);
+        gBDiscard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBDiscardActionPerformed(evt);
+            }
+        });
+        jTBFunctions.add(gBDiscard);
+
         gBProcess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/cog.png"))); // NOI18N
         gBProcess.setEndColor(new java.awt.Color(51, 153, 255));
         gBProcess.setHorizontalTextPosition(0);
-        gBProcess.setPressedIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/src/main/resources/IKONS/16/cog.png")); // NOI18N
+        gBProcess.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/cog.png"))); // NOI18N
         gBProcess.setStartColor(new java.awt.Color(51, 102, 255));
         gBProcess.setToolTipText("Processar");
         gBProcess.setVerticalTextPosition(3);
@@ -415,6 +502,43 @@ public class VisualApp extends javax.swing.JFrame {
             }
         });
         jTBFunctions.add(gBProcess);
+        jTBFunctions.add(jSeparator5);
+
+        gBClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/repeat_1.png"))); // NOI18N
+        gBClean.setEndColor(new java.awt.Color(51, 153, 255));
+        gBClean.setHorizontalTextPosition(0);
+        gBClean.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/cog.png"))); // NOI18N
+        gBClean.setStartColor(new java.awt.Color(51, 102, 255));
+        gBClean.setToolTipText("Limpar os campos da View");
+        gBClean.setVerticalTextPosition(3);
+        gBClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBCleanActionPerformed(evt);
+            }
+        });
+        jTBFunctions.add(gBClean);
+
+        jSplit.setDividerLocation(200);
+        jSplit.setDividerSize(4);
+
+        MenuContainer.setMinimumSize(new java.awt.Dimension(200, 60));
+        MenuContainer.setPreferredSize(new java.awt.Dimension(150, 60));
+        MenuContainer.setSize(new java.awt.Dimension(150, 0));
+        MenuContainer.setLayout(new org.jdesktop.swingx.VerticalLayout());
+
+        gMPTaskPane1.setFinalColor(new java.awt.Color(102, 102, 255));
+        gMPTaskPane1.setInitialColor(new java.awt.Color(153, 255, 0));
+        MenuContainer.add(gMPTaskPane1);
+        MenuContainer.add(gMPTaskPane2);
+
+        jSplit.setLeftComponent(MenuContainer);
+
+        gTPDesktops.setBackground(new java.awt.Color(51, 153, 255));
+        gTPDesktops.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        gTPDesktops.setMinimumSize(new java.awt.Dimension(350, 100));
+        gTPDesktops.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+        gTPDesktops.setTabPlacement(JTabbedPane.TOP);
+        jSplit.setRightComponent(gTPDesktops);
 
         jMOption.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/list_2.png"))); // NOI18N
         jMOption.setText("Opções");
@@ -460,10 +584,9 @@ public class VisualApp extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(TaskContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTBUser, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(jTBFunctions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTBUser, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTBFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTBDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
@@ -472,10 +595,8 @@ public class VisualApp extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTBMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
-                        .addComponent(jTBSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(gTPDesktops, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jTBSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addComponent(jSplit)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,9 +606,7 @@ public class VisualApp extends javax.swing.JFrame {
                     .addComponent(jTBDesktop, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTBFunctions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gTPDesktops, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TaskContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))
+                .addComponent(jSplit, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTBMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -550,6 +669,10 @@ public class VisualApp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_gBOrganizeActionPerformed
 
+    private void gBCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBCleanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gBCleanActionPerformed
+
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
     /**
      *
@@ -571,16 +694,16 @@ public class VisualApp extends javax.swing.JFrame {
      *
      * @return
      */
-    public org.jdesktop.swingx.JXTaskPaneContainer getTaskContainer() {
-        return TaskContainer;
+    public GMPTaskContainer getTaskContainer() {
+        return MenuContainer;
     }
 
     /**
      *
      * @param TaskContainer
      */
-    public void setTaskContainer(org.jdesktop.swingx.JXTaskPaneContainer TaskContainer) {
-        this.TaskContainer = TaskContainer;
+    public void setTaskContainer(GMPTaskContainer TaskContainer) {
+        this.MenuContainer = TaskContainer;
     }
 
     /**
@@ -663,26 +786,33 @@ public class VisualApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.jdesktop.swingx.JXTaskPaneContainer TaskContainer;
+    private br.com.gmp.comps.taskcontainer.GMPTaskContainer MenuContainer;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JDesktopPane desktop;
-    private comps.button.GMPButton gBAddDesk;
-    private comps.button.GMPButton gBConfirm;
-    private comps.button.GMPButton gBDiscard;
-    private comps.button.GMPButton gBFavorite;
-    private comps.button.GMPButton gBLogout;
-    private comps.button.GMPButton gBOrganize;
-    private comps.button.GMPButton gBProcess;
-    private comps.button.GMPButton gBRemoveDesks;
-    private comps.button.GMPButton gBSearch;
-    private comps.tabbedpane.GMPJTabbedPane gTPDesktops;
+    private br.com.gmp.comps.button.GMPButton gBAddDesk;
+    private br.com.gmp.comps.button.GMPButton gBClean;
+    private br.com.gmp.comps.button.GMPButton gBConfirm;
+    private br.com.gmp.comps.button.GMPButton gBDiscard;
+    private br.com.gmp.comps.button.GMPButton gBFavorite;
+    private br.com.gmp.comps.button.GMPButton gBLogout;
+    private br.com.gmp.comps.button.GMPButton gBOrganize;
+    private br.com.gmp.comps.button.GMPButton gBProcess;
+    private br.com.gmp.comps.button.GMPButton gBRemoveDesks;
+    private br.com.gmp.comps.button.GMPButton gBSearch;
+    private br.com.gmp.comps.taskpane.GMPTaskPane gMPTaskPane1;
+    private br.com.gmp.comps.taskpane.GMPTaskPane gMPTaskPane2;
+    private br.com.gmp.comps.tabbedpane.GMPJTabbedPane gTPDesktops;
+    private javax.swing.JLabel jLActualMenu;
+    private javax.swing.JLabel jLActualView;
     private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLSystem;
     private javax.swing.JLabel jLUser;
     private javax.swing.JLabel jLWeb;
     private javax.swing.JMenuItem jMIAdd;
+    private javax.swing.JMenuItem jMIClose;
     private javax.swing.JMenuItem jMICloseAll;
     private javax.swing.JMenuItem jMIExit;
+    private javax.swing.JMenuItem jMIInfo;
     private javax.swing.JMenuItem jMILogoff;
     private javax.swing.JRadioButtonMenuItem jMIMetal;
     private javax.swing.JRadioButtonMenuItem jMIMotif;
@@ -690,10 +820,14 @@ public class VisualApp extends javax.swing.JFrame {
     private javax.swing.JMenu jMOption;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPopupMenu jPopDesktop;
+    private javax.swing.JPopupMenu jPopTray;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
+    private javax.swing.JToolBar.Separator jSeparator5;
+    private javax.swing.JToolBar.Separator jSeparator6;
+    private javax.swing.JSplitPane jSplit;
     private javax.swing.JToolBar jTBDesktop;
     private javax.swing.JToolBar jTBFunctions;
     private javax.swing.JToolBar jTBMsg;

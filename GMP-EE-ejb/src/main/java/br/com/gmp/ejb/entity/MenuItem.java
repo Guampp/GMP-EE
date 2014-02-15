@@ -45,7 +45,7 @@ public class MenuItem implements Serializable {
     @NotNull
     @Size(min = 1, max = 6)
     @Column(name = "prefix")
-    private String prefix;
+    private String pref;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 64)
@@ -75,7 +75,7 @@ public class MenuItem implements Serializable {
     public MenuItem(Long idMenu, long id, String prefix, String title) {
         this.idMenu = idMenu;
         this.id = id;
-        this.prefix = prefix;
+        this.pref = prefix;
         this.title = title;
     }
 
@@ -88,11 +88,11 @@ public class MenuItem implements Serializable {
     }
 
     public String getPrefix() {
-        return prefix;
+        return pref;
     }
 
     public void setPrefix(String prefix) {
-        this.prefix = prefix;
+        this.pref = prefix;
     }
 
     public String getTitle() {
