@@ -4,6 +4,7 @@ package br.com.gmp.desktop.app.interfaces;
  * Interface do VisualBean
  *
  * @author kaciano
+ * @version 1.0
  */
 public interface IVisualAppBean {
 
