@@ -45,5 +45,11 @@
             <artifactId>swingx-all</artifactId>
             <version>1.6.5-1</version>
         </dependency>
+        <dependency>
+            <groupId>br.com.gmp</groupId>
+            <artifactId>GMPUtils</artifactId>
+            <version>1.1</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 </project>
