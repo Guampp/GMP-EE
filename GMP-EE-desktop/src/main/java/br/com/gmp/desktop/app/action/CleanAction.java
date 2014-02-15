@@ -16,6 +16,7 @@ public class CleanAction extends FrameAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("Clean event.");
         getVisualApp().getAppBean().confirm();
     }
 

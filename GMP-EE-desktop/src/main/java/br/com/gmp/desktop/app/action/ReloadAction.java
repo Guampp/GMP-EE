@@ -4,20 +4,20 @@ import br.com.gmp.desktop.app.VisualApp;
 import java.awt.event.ActionEvent;
 
 /**
- * Ação de confirmação
+ * Ação de recarregamento
  *
  * @author kaciano
  */
-public class ConfirmAction extends FrameAction {
+public class ReloadAction extends FrameAction {
 
-    public ConfirmAction(String name, VisualApp visualApp) {
+    public ReloadAction(String name, VisualApp visualApp) {
         super(name, visualApp);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Confirm event.");
-        getVisualApp().getAppBean().confirm();
+        System.out.println("Reload event.");
+        getVisualApp().getAppBean().reload();
     }
 
 }

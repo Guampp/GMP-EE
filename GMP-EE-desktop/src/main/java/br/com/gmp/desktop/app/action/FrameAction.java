@@ -26,7 +26,7 @@ public class FrameAction extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.visualApp.getAppBean().confirm();
+        // TODO
     }
 
     /**

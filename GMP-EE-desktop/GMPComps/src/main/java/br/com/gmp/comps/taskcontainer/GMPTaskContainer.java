@@ -18,7 +18,7 @@ import org.jdesktop.swingx.JXTaskPane;
  */
 public class GMPTaskContainer extends org.jdesktop.swingx.JXTaskPaneContainer {
 
-    private boolean accordion;
+    private boolean accordion = true;
     private Color initialColor;
     private Color finalColor;
     private Color textColor;
@@ -53,11 +53,7 @@ public class GMPTaskContainer extends org.jdesktop.swingx.JXTaskPaneContainer {
 
     @Override
     public Component add(Component comp) {
-        if (comp instanceof JXTaskPane) {
-            JXTaskPane task = (JXTaskPane) comp;
-            this.formatTask(task);
-            return super.add(task);
-        } else if (comp instanceof GMPTaskPane) {
+        if (comp instanceof GMPTaskPane) {
             GMPTaskPane task = (GMPTaskPane) comp;
             addListeners(task);
             return super.add(task);

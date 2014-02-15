@@ -1,7 +1,9 @@
 package br.com.gmp.desktop.app.bean;
 
+import br.com.gmp.desktop.app.interfaces.AppListener;
 import br.com.gmp.desktop.app.VisualApp;
 import br.com.gmp.comps.tabbedpane.GMPJTabbedPane;
+import br.com.gmp.desktop.views.ViewFrame;
 import br.com.gmp.desktop.views.interfaces.View;
 import java.awt.Color;
 import java.awt.Component;
@@ -9,18 +11,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 
 /**
- * Bean do VisualApp
+ * AppListener do VisualApp
  *
  * @author kaciano
  */
-public class VisualAppBean {
+public class VisualAppBean implements AppListener<VisualApp> {
 
     public static final String IS_ON_DESKTOP = "A view já está no desktop!";
     private VisualApp visualApp;
-    private View activeView;
+    private ViewFrame activeView;
 
     /**
-     * Constroi novo VisualAppBean
+     * Constroi novo VisualAppAppListener
      *
      * @param visualApp
      */
@@ -29,9 +31,19 @@ public class VisualAppBean {
     }
 
     /**
+     * Ativa o evento de ajuda do sistema
+     */
+    @Override
+    public void help() {
+        System.out.println("Open help window.");
+    }
+
+    /**
      * Ativa o evento de confirmação
      */
+    @Override
     public void confirm() {
+        System.out.println("Confirmation send to the view.");
         if (!checkNull()) {
             activeView.confirm();
         }
@@ -40,7 +52,9 @@ public class VisualAppBean {
     /**
      * Ativa o evento de descarte
      */
+    @Override
     public void discard() {
+        System.out.println("Discard sent to the view.");
         if (!checkNull()) {
             activeView.discard();
         }
@@ -49,7 +63,9 @@ public class VisualAppBean {
     /**
      * Ativa o evento de processamento
      */
+    @Override
     public void process() {
+        System.out.println("Process sent to the view.");
         if (!checkNull()) {
             activeView.process();
         }
@@ -58,7 +74,9 @@ public class VisualAppBean {
     /**
      * Ativa o evento de limpeza
      */
+    @Override
     public void clean() {
+        System.out.println("Cleaning sent to the view.");
         if (!checkNull()) {
             activeView.clean();
         }
@@ -67,15 +85,17 @@ public class VisualAppBean {
     /**
      * Carrega os dados
      */
+    @Override
     public void load() {
-
+        System.out.println("Loading...");
     }
 
     /**
      * Recarrega os dados
      */
+    @Override
     public void reload() {
-
+        System.out.println("Reloading...");
     }
 
     /**
@@ -84,6 +104,7 @@ public class VisualAppBean {
      * @return activeView <code><b>boolean</b></code> Existe uma View ativa?
      * <code>(true, false)</code>
      */
+    @Override
     public boolean checkNull() {
         return activeView == null;
     }
@@ -91,6 +112,7 @@ public class VisualAppBean {
     /**
      * Adiciona novo desktop
      */
+    @Override
     public void addDesktop() {
         ImageIcon icon = new ImageIcon(getClass()
                 .getResource("/IKONS/16/imac.png"));
@@ -105,6 +127,7 @@ public class VisualAppBean {
     /**
      * Remove todos os desktops
      */
+    @Override
     public void removeAllDesktops() {
         visualApp.getgTPDesktops().removeAll();
     }
@@ -112,6 +135,7 @@ public class VisualAppBean {
     /**
      * Adiciona View aos favoritos
      */
+    @Override
     public void favoriteView() {
 
     }
@@ -121,6 +145,7 @@ public class VisualAppBean {
      *
      * @return Desktop ativo
      */
+    @Override
     public JDesktopPane getActiveDesktop() {
         JDesktopPane selected = (JDesktopPane) visualApp.getgTPDesktops()
                 .getSelectedComponent();
@@ -139,12 +164,13 @@ public class VisualAppBean {
      *
      * @param view <code><b>View</b></code> View a ser adicionada
      */
-    public void insertView(View view) {
-        if (!isOnDesktop(view)) {
-
-        } else {
-            System.out.println(IS_ON_DESKTOP);
-        }
+    @Override
+    public void insertView(ViewFrame view) {
+//        if (!isOnDesktop(view)) {
+            getActiveDesktop().add(view);
+//        } else {
+//            System.out.println(IS_ON_DESKTOP);
+//        }
     }
 
     /**
@@ -154,16 +180,26 @@ public class VisualAppBean {
      * @return <code><b>boolean</b></code> Está no desktop ativo?
      * <code>(true, false)</code>
      */
-    private boolean isOnDesktop(View view) {
+    private boolean isOnDesktop(ViewFrame view) {
         for (Component c : getActiveDesktop().getComponents()) {
-            if (c instanceof View) {
-                View v = (View) c;
+            if (c instanceof ViewFrame) {
+                ViewFrame v = (ViewFrame) c;
                 if (v == view) {
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    /**
+     * Procura View a partir do nome
+     *
+     * @param name <code><b>String</b></code> Nome da View
+     */
+    @Override
+    public void searchView(String name) {
+
     }
 
     /**
@@ -180,6 +216,7 @@ public class VisualAppBean {
      *
      * @param visualApp <code><b>VisualApp</b></code> Aplicativo visual do bean
      */
+    @Override
     public void setVisualApp(VisualApp visualApp) {
         this.visualApp = visualApp;
     }
@@ -189,6 +226,7 @@ public class VisualAppBean {
      *
      * @return <code><b>View</b></code> View Ativa do desktop
      */
+    @Override
     public View getActiveView() {
         return activeView;
     }
@@ -198,7 +236,8 @@ public class VisualAppBean {
      *
      * @param activeView <code><b>View</b></code> View Ativa do desktop
      */
-    public void setActiveView(View activeView) {
+    @Override
+    public void setActiveView(ViewFrame activeView) {
         this.activeView = activeView;
     }
 

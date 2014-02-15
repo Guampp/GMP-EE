@@ -1,38 +1,100 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.gmp.comps.datefield;
 
+import br.com.gmp.comps.baloontip.src.BalloonUtil;
+import br.com.gmp.comps.interfaces.ValidableComponent;
+import br.com.gmp.utils.formatter.MaskFormats;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JPanel;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.text.DateFormatter;
+import javax.swing.text.DefaultFormatterFactory;
+import org.jdesktop.swingx.SwingXUtilities;
 
 /**
  *
  * @author kaciano
  */
-public class GMPDateField extends JPanel {
+public class GMPDateField extends JFormattedTextField implements ValidableComponent {
+
+    private Date date;
 
     /**
      * Creates new form GMPDateField
      */
     public GMPDateField() {
-        initComponents();
-        jPopDate.add(jPCalendar);
-        //jCBYear.setModel(new DefaultComboBoxModel(getYearList()));
+        initialize();
     }
 
-    public int[] getYearList() {
-        int actualYear = new Date().getYear();
-        int firstYear = actualYear - 100;
-        int[] yearList = new int[firstYear];
+    /**
+     * Inicializa o componente
+     */
+    private void initialize() {
+        initComponents();
+        setMask();
+        setDate(new Date());
+        this.setLayout(new BorderLayout());
+        this.add(gBDate, BorderLayout.EAST);
+        jPopDate.add(jPCalendar);
+        jSpinnerYear.setModel(new javax.swing.SpinnerListModel(getYearList()));
+    }
+
+    /**
+     * Adiciona a mascara ao campo
+     */
+    private void setMask() {
+        setFormatterFactory(new DefaultFormatterFactory(new MaskFormats()
+                .getMask(MaskFormats.DATE)));
+    }
+
+    /**
+     * Retorna a data selecionada
+     *
+     * @return Date Data selecionada
+     * @throws ParseException
+     */
+    public Date getDate() throws ParseException {
+        return date;
+    }
+
+    /**
+     * Modifica a data
+     *
+     * @param date
+     */
+    public void setDate(Date date) {
+        this.date = date;
+        jXCalendar.getCalendar().set(date.getYear(), date.getMonth(), date.getDay());
+        jXCalendar.setSelectionDate(date);
+        jXCalendar.setFirstDisplayedDay(date);
+        jXCalendar.repaint();
+        jXCalendar.revalidate();
+        setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
+    }
+
+    /**
+     *
+     * @return
+     */
+    private String[] getYearList() {
+        int actual = new Date().getYear() + 1900;
+        int initial = actual - 100;
+        int dif = 100;
+        String[] yearList = new String[dif];
         int j = 0;
-        for (int i = actualYear; i > firstYear; i--) {
-            yearList[j] = i;
-            j++;
-            if (j == (actualYear - firstYear)) {
+        for (int i = actual; i != initial; i--) {
+            if (j <= 100) {
+                yearList[j] = String.valueOf(i);
+                j++;
+            } else {
                 break;
             }
         }
@@ -56,29 +118,76 @@ public class GMPDateField extends JPanel {
     }
 
     /**
-     *
-     * @param month
+     * Vai para o próximo mês
      */
-    public void setMonth(int month) {
-        Date date = jXCalendar.getCalendar().getTime();
-        date.setMonth(month);
-        jXCalendar.getCalendar().setTime(date);
-        jXCalendar.repaint();
-        jXCalendar.revalidate();
+    public void nextMonth() {
+        if (date.getMonth() == 12) {
+            date.setMonth(1);
+            date.setYear(date.getYear() + 1);
+        } else {
+            date.setMonth(date.getMonth() + 1);
+        }
+        setDate(date);
     }
 
     /**
-     *
-     * @param month
-     * @param year
+     * Volta para o mês anterior
      */
-    public void setMonth(int month, int year) {
-        Date date = jXCalendar.getCalendar().getTime();
-        date.setMonth(month);
-        date.setYear(year);
-        jXCalendar.getCalendar().setTime(date);
-        jXCalendar.repaint();
-        jXCalendar.revalidate();
+    public void previousMonth() {
+        if (date.getMonth() == 1) {
+            date.setMonth(12);
+            date.setYear(date.getYear() - 1);
+        } else {
+            date.setMonth(date.getMonth() - 1);
+        }
+        setDate(date);
+    }
+
+    /**
+     * Ação de componente em foco
+     *
+     * @param e FocusEvent
+     */
+    public void focusGained(FocusEvent e) {
+        this.setBackground(new Color(255, 230, 166));
+    }
+
+    /**
+     * Ação de componente sem foco
+     *
+     * @param e FocusEvent
+     */
+    public void focusLost(FocusEvent e) {
+        this.setBackground(new JTextField().getBackground());
+        if (getText().equals("") || getText() == null) {
+            setDate(date);
+        }
+    }
+
+    @Override
+    public boolean validateComponent() {
+        if (this.getText().equals("") || this.getText() == null) {
+            new BalloonUtil().showModernBallon(jXCalendar, "Data invalida!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Mostra a PopUp de seleção de datas
+     */
+    private void openPopUp() {
+        gBDate.setComponentPopupMenu(jPopDate);
+        gBDate.getComponentPopupMenu().show(gBDate.getParent(), 0, getHeight());
+    }
+
+    public void checkPop() {
+        if (jPopDate.isShowing()) {
+            jPopDate.setVisible(false);
+        } else {
+            jPopDate.show(gBDate.getParent(), 0, getHeight());
+        }
     }
 
     /**
@@ -93,39 +202,63 @@ public class GMPDateField extends JPanel {
         jPopDate = new javax.swing.JPopupMenu();
         jPCalendar = new javax.swing.JPanel();
         jTBPrev = new javax.swing.JToolBar();
-        jBPreviousMonth = new javax.swing.JButton();
+        gBPrevious = new br.com.gmp.comps.button.GMPButton();
         jTBYear = new javax.swing.JToolBar();
-        jCBYear = new javax.swing.JComboBox();
+        jSpinnerYear = new javax.swing.JSpinner();
         jTBNext = new javax.swing.JToolBar();
-        jBNextMonth = new javax.swing.JButton();
+        gBNext = new br.com.gmp.comps.button.GMPButton();
         jXCalendar = new org.jdesktop.swingx.JXMonthView();
-        jFTDate = new javax.swing.JFormattedTextField();
-        jBDatePick = new javax.swing.JButton();
+        gBOk = new br.com.gmp.comps.button.GMPButton();
+        gBDate = new br.com.gmp.comps.button.GMPButton();
 
         jTBPrev.setFloatable(false);
         jTBPrev.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jBPreviousMonth.setIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/GMPComps/src/main/resources/res/datefield/16/circle_skip_previous.png")); // NOI18N
-        jBPreviousMonth.setFocusable(false);
-        jBPreviousMonth.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBPreviousMonth.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jBPreviousMonth.addActionListener(new java.awt.event.ActionListener() {
+        gBPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/circle_left.png"))); // NOI18N
+        gBPrevious.setHorizontalTextPosition(0);
+        gBPrevious.setVerticalTextPosition(3);
+        gBPrevious.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBPreviousMonthActionPerformed(evt);
+                gBPreviousActionPerformed(evt);
             }
         });
-        jTBPrev.add(jBPreviousMonth);
+        jTBPrev.add(gBPrevious);
 
         jTBYear.setFloatable(false);
-        jTBYear.add(jCBYear);
+
+        jSpinnerYear.setModel(new javax.swing.SpinnerListModel(new String[] {"Item 0", "Item 1", "Item 2", "Item 3"}));
+        jTBYear.add(jSpinnerYear);
 
         jTBNext.setFloatable(false);
 
-        jBNextMonth.setIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/GMPComps/src/main/resources/res/datefield/16/circle_skip_next.png")); // NOI18N
-        jBNextMonth.setFocusable(false);
-        jBNextMonth.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBNextMonth.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jTBNext.add(jBNextMonth);
+        gBNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/circle_right.png"))); // NOI18N
+        gBNext.setHorizontalTextPosition(0);
+        gBNext.setVerticalTextPosition(3);
+        gBNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBNextActionPerformed(evt);
+            }
+        });
+        jTBNext.add(gBNext);
+
+        jXCalendar.setBackground(new java.awt.Color(102, 153, 255));
+        jXCalendar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
+        jXCalendar.setDaysOfTheWeek(new String[] {"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"});
+        jXCalendar.setDaysOfTheWeekForeground(new java.awt.Color(0, 102, 153));
+        jXCalendar.setSelectionForeground(new java.awt.Color(255, 102, 0));
+        jXCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jXCalendarMouseClicked(evt);
+            }
+        });
+
+        gBOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/circle_ok.png"))); // NOI18N
+        gBOk.setText("Confirmar");
+        gBOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBOkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPCalendarLayout = new javax.swing.GroupLayout(jPCalendar);
         jPCalendar.setLayout(jPCalendarLayout);
@@ -137,7 +270,8 @@ public class GMPDateField extends JPanel {
                 .addComponent(jTBYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jTBNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jXCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+            .addComponent(jXCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+            .addComponent(gBOk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPCalendarLayout.setVerticalGroup(
             jPCalendarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,67 +280,95 @@ public class GMPDateField extends JPanel {
                     .addComponent(jTBNext, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTBPrev, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTBYear, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jXCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(jXCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(gBOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPCalendarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTBNext, jTBPrev, jTBYear});
 
-        jFTDate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        jFTDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-
-        jBDatePick.setIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/GMPComps/src/main/resources/res/datefield/16/calendar.png")); // NOI18N
-        jBDatePick.addActionListener(new java.awt.event.ActionListener() {
+        gBDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/calendar.png"))); // NOI18N
+        gBDate.setMaximumSize(new java.awt.Dimension(26, 26));
+        gBDate.setMinimumSize(new java.awt.Dimension(26, 26));
+        gBDate.setPreferredSize(new java.awt.Dimension(26, 26));
+        gBDate.setSize(new java.awt.Dimension(26, 26));
+        gBDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBDatePickActionPerformed(evt);
+                gBDateActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jFTDate, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jBDatePick))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jFTDate, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jBDatePick, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        setComponentPopupMenu(jPopDate);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                formFocusLost(evt);
+            }
+        });
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBDatePickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDatePickActionPerformed
-        jBDatePick.setComponentPopupMenu(jPopDate);
-        jBDatePick.getComponentPopupMenu().show();
-        jBDatePick.setComponentPopupMenu(null);
+
     }//GEN-LAST:event_jBDatePickActionPerformed
 
-    private void jBPreviousMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPreviousMonthActionPerformed
-        int month = getMonth();
-        if (month == 1) {
-            month = 12;
-            setMonth(month, getYear() - 1);
-        } else {
-            setMonth(month - 1);
-        }
-    }//GEN-LAST:event_jBPreviousMonthActionPerformed
+    private void jFTDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTDateFocusGained
 
+    }//GEN-LAST:event_jFTDateFocusGained
+
+    private void jFTDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTDateFocusLost
+
+    }//GEN-LAST:event_jFTDateFocusLost
+
+    private void gBDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBDateActionPerformed
+        checkPop();
+    }//GEN-LAST:event_gBDateActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        focusGained(evt);
+    }//GEN-LAST:event_formFocusGained
+
+    private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
+        focusLost(evt);
+    }//GEN-LAST:event_formFocusLost
+
+    private void jXCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jXCalendarMouseClicked
+        if (evt.getClickCount() == 2) {
+            setDate(jXCalendar.getSelectionDate());
+            checkPop();
+        } else {
+            setDate(jXCalendar.getSelectionDate());
+        }
+    }//GEN-LAST:event_jXCalendarMouseClicked
+
+    private void gBNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBNextActionPerformed
+        nextMonth();
+    }//GEN-LAST:event_gBNextActionPerformed
+
+    private void gBPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBPreviousActionPerformed
+        previousMonth();
+    }//GEN-LAST:event_gBPreviousActionPerformed
+
+    private void gBOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBOkActionPerformed
+        checkPop();
+    }//GEN-LAST:event_gBOkActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBDatePick;
-    private javax.swing.JButton jBNextMonth;
-    private javax.swing.JButton jBPreviousMonth;
-    private javax.swing.JComboBox jCBYear;
-    private javax.swing.JFormattedTextField jFTDate;
+    private br.com.gmp.comps.button.GMPButton gBDate;
+    private br.com.gmp.comps.button.GMPButton gBNext;
+    private br.com.gmp.comps.button.GMPButton gBOk;
+    private br.com.gmp.comps.button.GMPButton gBPrevious;
     private javax.swing.JPanel jPCalendar;
     private javax.swing.JPopupMenu jPopDate;
+    private javax.swing.JSpinner jSpinnerYear;
     private javax.swing.JToolBar jTBNext;
     private javax.swing.JToolBar jTBPrev;
     private javax.swing.JToolBar jTBYear;
     private org.jdesktop.swingx.JXMonthView jXCalendar;
     // End of variables declaration//GEN-END:variables
+
 }

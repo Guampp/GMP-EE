@@ -1,7 +1,6 @@
 package br.com.gmp.desktop.app.action;
 
 import br.com.gmp.desktop.app.VisualApp;
-import br.com.gmp.desktop.app.action.FrameAction;
 import java.awt.event.ActionEvent;
 
 /**
@@ -11,11 +10,10 @@ import java.awt.event.ActionEvent;
  */
 public class DiscardAction extends FrameAction {
 
-
     /**
-     * 
+     *
      * @param name
-     * @param visualApp 
+     * @param visualApp
      */
     public DiscardAction(String name, VisualApp visualApp) {
         super(name, visualApp);
@@ -23,7 +21,8 @@ public class DiscardAction extends FrameAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        getVisualApp().getAppBean().confirm();        
+        System.out.println("Discard event.");
+        getVisualApp().getAppBean().confirm();
     }
 
 }

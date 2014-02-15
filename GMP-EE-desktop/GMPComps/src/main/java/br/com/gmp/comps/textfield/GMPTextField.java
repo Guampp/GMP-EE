@@ -4,7 +4,6 @@ import br.com.gmp.comps.baloontip.src.BalloonUtil;
 import br.com.gmp.comps.interfaces.ValidableComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Insets;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,8 +11,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.border.Border;
 import javax.swing.text.Document;
 
 /**
@@ -31,7 +28,6 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
     private Icon icon = new ImageIcon();
     private int minimallength = 0;
     private int maximumlength = 999999;
-    private Insets newInsets = getBorderInsets();
     private boolean force = false;
 
     /**
@@ -122,14 +118,6 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
     }
 
     /**
-     * Retorna os Insets do componente
-     */
-    private Insets getBorderInsets() {
-        Border border = UIManager.getBorder("TextField.border");
-        return border.getBorderInsets(new JTextField());
-    }
-
-    /**
      * Controla o comprimento do texto
      */
     private void controlLength() {
@@ -140,24 +128,15 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
 
     @Override
     public boolean validateComponent() {
-        if (this.minimallength < this.getText().length()) {
-            invalidAction();
-            BalloonUtil.showTimedBallon(this, invalidMsg, new Long(5000));
+        if (this.minimallength != 0 && this.minimallength < this.getText().length()) {
+            new BalloonUtil().showModernBallon(this, invalidMsg);
+            return false;
+        } else if (this.getText().equals("") || this.getText() == null) {
+            new BalloonUtil().showModernBallon(this, invalidMsg);
             return false;
         } else {
-            validAction();
             return true;
         }
-    }
-
-    @Override
-    public void validAction() {
-        this.setForeground(Color.green);
-    }
-
-    @Override
-    public void invalidAction() {
-        this.setForeground(Color.red.darker());
     }
 
     @Override
@@ -330,14 +309,6 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
 
     public void setForce(boolean force) {
         this.force = force;
-    }
-
-    public Insets getNewInsets() {
-        return newInsets;
-    }
-
-    public void setNewInsets(Insets newInsets) {
-        this.newInsets = newInsets;
     }
 
     //</editor-fold>

@@ -4,20 +4,20 @@ import br.com.gmp.desktop.app.VisualApp;
 import java.awt.event.ActionEvent;
 
 /**
- * Ação de confirmação
+ * Ação de Ajuda
  *
  * @author kaciano
  */
-public class ConfirmAction extends FrameAction {
+public class HelpAction extends FrameAction {
 
-    public ConfirmAction(String name, VisualApp visualApp) {
+    public HelpAction(String name, VisualApp visualApp) {
         super(name, visualApp);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Confirm event.");
-        getVisualApp().getAppBean().confirm();
+        System.out.println("Help event.");
+        getVisualApp().getAppBean().help();
     }
 
 }

@@ -14,13 +14,4 @@ public interface ValidableComponent {
      */
     boolean validateComponent();
 
-    /**
-     * Ação executada quando o componente foi validado com sucesso
-     */
-    void validAction();
-
-    /**
-     * Ação executada quando o componente não foi validado
-     */
-    void invalidAction();
 }

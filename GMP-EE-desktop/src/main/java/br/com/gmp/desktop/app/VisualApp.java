@@ -4,24 +4,10 @@ import br.com.gmp.utils.interact.WindowUtil;
 import br.com.gmp.desktop.app.bean.VisualAppBean;
 import br.com.gmp.comps.tabbedpane.GMPJTabbedPane;
 import br.com.gmp.comps.taskcontainer.GMPTaskContainer;
-import java.awt.AWTException;
-import java.awt.Image;
-import java.awt.MenuItem;
-import java.awt.PopupMenu;
-import java.awt.SystemTray;
-import java.awt.TrayIcon;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.ImageIcon;
+import br.com.gmp.desktop.app.system.SystemProperties;
+import br.com.gmp.desktop.views.ViewFrame;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
-import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -35,14 +21,7 @@ import javax.swing.UIManager;
 public class VisualApp extends javax.swing.JFrame {
 
     private VisualAppBean appBean;
-    private final String confirmAct = "confirm";
-    private final String discardAct = "discard";
-    private final String processAct = "process";
-    private final String cleanAct = "clean";
-    private Action confirmAction;
-    private Action discardAction;
-    private Action processAction;
-    private Action cleanAction;
+    private SystemProperties systemProperties;
 
     /**
      * Cria nova instancia de VisualApp
@@ -58,115 +37,11 @@ public class VisualApp extends javax.swing.JFrame {
     /**
      * Inicializa o Frame
      *
-     * @see br.com.gmp.desktop.app.VisualApp#addKeyEvents()
-     * @see br.com.gmp.desktop.app.VisualApp#constructActions()
+     * @see br.com.gmp.desktop.app.system.SystemProperties#constructActions()
      */
     private void initialize() {
-        try {
-            generateTrayIcon();
-        } catch (AWTException e) {
-            Logger.getLogger(this.getClass().getName())
-                    .log(Level.SEVERE, e.getMessage(), e);
-        } finally {
-            constructActions();
-            addKeyEvents();
-            
-        }
-    }
-
-    /**
-     * Gera o icone da barra de ferramentas
-     *
-     * @see java.awt.SystemTray
-     * @see java.awt.TrayIcon
-     * @throws AWTException
-     */
-    private void generateTrayIcon() throws AWTException {
-        SystemTray sysTray = SystemTray.getSystemTray();
-        URL url = getClass().getResource("/logo/guampp24.png");
-        Image icon = new ImageIcon(url).getImage();
-        TrayIcon tray = new TrayIcon(icon);
-        PopupMenu pop = new PopupMenu();
-        MenuItem item = new MenuItem("Fechar");
-
-        // Adiciona os comandos no MenuItem
-        item.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Fechando o sistema");
-                System.exit(0);
-            }
-        });
-
-        // Adiciona os itens no PopUp
-        pop.add(item);
-        pop.add(new MenuItem());
-
-        // Adiciona o PopUp no Tray
-        tray.setPopupMenu(pop);
-        tray.setToolTip("Guampp");        
-        tray.setImageAutoSize(true);
-
-        // Adiciona o Tray no SystemTray
-        sysTray.add(tray);
-    }
-
-    /**
-     * Constroi as ações da tela
-     */
-    private void constructActions() {
-        this.confirmAction = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Confirmando...");
-            }
-        };
-        //----------------------------------------------------------------------
-        this.discardAction = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Descartando...");
-            }
-        };
-        //----------------------------------------------------------------------
-        this.processAction = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Processando...");
-            }
-        };
-        //----------------------------------------------------------------------
-        this.cleanAction = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Limpando...");
-            }
-        };
-    }
-
-    /**
-     * Adiciona os KeyEvents
-     *
-     * @see br.com.gmp.desktop.app.VisualApp#addKeyInput(String, int, Action)
-     */
-    private void addKeyEvents() {
-        addKeyInput(confirmAct, KeyEvent.VK_F2, confirmAction);
-        addKeyInput(discardAct, KeyEvent.VK_F4, discardAction);
-        addKeyInput(processAct, KeyEvent.VK_F6, processAction);
-        addKeyInput(cleanAct, KeyEvent.VK_F8, cleanAction);
-    }
-
-    /**
-     * Adiciona as ações especificas de cada tecla
-     *
-     * @param name <b><code>String</code></b> Nome da ação
-     * @param keycode <b><code>KeyEvent</code></b> Código da tecla
-     * @param action <b><code>Action</code></b> Ação da tecla
-     */
-    private void addKeyInput(String name, int keycode, Action action) {
-        this.getRootPane().getActionMap().put(name, action);
-        this.getRootPane().getInputMap()
-                .put(KeyStroke.getKeyStroke(keycode, 0), name);
+        systemProperties = new SystemProperties(this);
+        Task.add(item);
     }
 
     /**
@@ -221,7 +96,7 @@ public class VisualApp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup = new javax.swing.ButtonGroup();
         desktop = new javax.swing.JDesktopPane();
         jPopDesktop = new javax.swing.JPopupMenu();
         jMIAdd = new javax.swing.JMenuItem();
@@ -230,6 +105,7 @@ public class VisualApp extends javax.swing.JFrame {
         jPopTray = new javax.swing.JPopupMenu();
         jMIInfo = new javax.swing.JMenuItem();
         jMIClose = new javax.swing.JMenuItem();
+        item = new javax.swing.JMenuItem();
         jTBDesktop = new javax.swing.JToolBar();
         gBAddDesk = new br.com.gmp.comps.button.GMPButton();
         gBRemoveDesks = new br.com.gmp.comps.button.GMPButton();
@@ -260,8 +136,7 @@ public class VisualApp extends javax.swing.JFrame {
         gBClean = new br.com.gmp.comps.button.GMPButton();
         jSplit = new javax.swing.JSplitPane();
         MenuContainer = new br.com.gmp.comps.taskcontainer.GMPTaskContainer();
-        gMPTaskPane1 = new br.com.gmp.comps.taskpane.GMPTaskPane();
-        gMPTaskPane2 = new br.com.gmp.comps.taskpane.GMPTaskPane();
+        Task = new br.com.gmp.comps.taskpane.GMPTaskPane();
         gTPDesktops = new br.com.gmp.comps.tabbedpane.GMPJTabbedPane();
         jMenuBar = new javax.swing.JMenuBar();
         jMOption = new javax.swing.JMenu();
@@ -310,6 +185,13 @@ public class VisualApp extends javax.swing.JFrame {
         jMIClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/close.png"))); // NOI18N
         jMIClose.setText("Fechar");
         jPopTray.add(jMIClose);
+
+        item.setText("Bosta de cavalo");
+        item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Guampp 1.0");
@@ -365,16 +247,16 @@ public class VisualApp extends javax.swing.JFrame {
         jTBDesktop.add(gBOrganize);
         jTBDesktop.add(jSeparator6);
 
-        jLActualMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLActualMenu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLActualMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/arrow_right.png"))); // NOI18N
-        jLActualMenu.setText("Menu Atual");
+        jLActualMenu.setText("Menu Atual ");
         jLActualMenu.setMaximumSize(new java.awt.Dimension(32178, 100));
         jTBDesktop.add(jLActualMenu);
 
         jLActualView.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLActualView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/arrow_right.png"))); // NOI18N
         jLActualView.setText("View Atual");
-        jLActualView.setMaximumSize(new java.awt.Dimension(32178, 100));
+        jLActualView.setMaximumSize(new java.awt.Dimension(200, 100));
         jTBDesktop.add(jLActualView);
 
         jTBSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -525,11 +407,7 @@ public class VisualApp extends javax.swing.JFrame {
         MenuContainer.setPreferredSize(new java.awt.Dimension(150, 60));
         MenuContainer.setSize(new java.awt.Dimension(150, 0));
         MenuContainer.setLayout(new org.jdesktop.swingx.VerticalLayout());
-
-        gMPTaskPane1.setFinalColor(new java.awt.Color(102, 102, 255));
-        gMPTaskPane1.setInitialColor(new java.awt.Color(153, 255, 0));
-        MenuContainer.add(gMPTaskPane1);
-        MenuContainer.add(gMPTaskPane2);
+        MenuContainer.add(Task);
 
         jSplit.setLeftComponent(MenuContainer);
 
@@ -556,7 +434,7 @@ public class VisualApp extends javax.swing.JFrame {
         jMLookAndFeel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/map.png"))); // NOI18N
         jMLookAndFeel.setText("LookAndFeel");
 
-        buttonGroup1.add(jMIMetal);
+        buttonGroup.add(jMIMetal);
         jMIMetal.setSelected(true);
         jMIMetal.setText("Metal");
         jMIMetal.addActionListener(new java.awt.event.ActionListener() {
@@ -566,7 +444,7 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jMLookAndFeel.add(jMIMetal);
 
-        buttonGroup1.add(jMIMotif);
+        buttonGroup.add(jMIMotif);
         jMIMotif.setText("Motif");
         jMIMotif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -642,7 +520,7 @@ public class VisualApp extends javax.swing.JFrame {
     }//GEN-LAST:event_gBLogoutActionPerformed
 
     private void gBSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBSearchActionPerformed
-        // TODO add your handling code here:
+        appBean.searchView(jTSearchField.getText());
     }//GEN-LAST:event_gBSearchActionPerformed
 
     private void gBAddDeskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBAddDeskActionPerformed
@@ -673,11 +551,30 @@ public class VisualApp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_gBCleanActionPerformed
 
+    private void itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemActionPerformed
+        ViewFrame view = new ViewFrame();
+        view.setSize(400, 300);
+        view.setVisible(true);
+        appBean.insertView(view);
+    }//GEN-LAST:event_itemActionPerformed
+
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
     /**
      *
      * @return
      */
+    public SystemProperties getSystemProperties() {
+        return systemProperties;
+    }
+
+    /**
+     *
+     * @param systemProperties
+     */
+    public void setSystemProperties(SystemProperties systemProperties) {
+        this.systemProperties = systemProperties;
+    }
+
     public VisualAppBean getAppBean() {
         return appBean;
     }
@@ -787,7 +684,8 @@ public class VisualApp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private br.com.gmp.comps.taskcontainer.GMPTaskContainer MenuContainer;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private br.com.gmp.comps.taskpane.GMPTaskPane Task;
+    private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JDesktopPane desktop;
     private br.com.gmp.comps.button.GMPButton gBAddDesk;
     private br.com.gmp.comps.button.GMPButton gBClean;
@@ -799,9 +697,8 @@ public class VisualApp extends javax.swing.JFrame {
     private br.com.gmp.comps.button.GMPButton gBProcess;
     private br.com.gmp.comps.button.GMPButton gBRemoveDesks;
     private br.com.gmp.comps.button.GMPButton gBSearch;
-    private br.com.gmp.comps.taskpane.GMPTaskPane gMPTaskPane1;
-    private br.com.gmp.comps.taskpane.GMPTaskPane gMPTaskPane2;
     private br.com.gmp.comps.tabbedpane.GMPJTabbedPane gTPDesktops;
+    private javax.swing.JMenuItem item;
     private javax.swing.JLabel jLActualMenu;
     private javax.swing.JLabel jLActualView;
     private javax.swing.JLabel jLMsg;

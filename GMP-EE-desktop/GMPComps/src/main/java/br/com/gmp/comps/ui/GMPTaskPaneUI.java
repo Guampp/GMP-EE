@@ -3,10 +3,9 @@ package br.com.gmp.comps.ui;
 import br.com.gmp.comps.BaseColors;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 
@@ -29,10 +28,6 @@ public class GMPTaskPaneUI extends BasicTaskPaneUI {
      * Cria nova instancia de GMPTaskPaneUI
      */
     public GMPTaskPaneUI() {
-        initialColor = BaseColors.lightColor;
-        finalColor = BaseColors.darkColor;
-        textColor = Color.white;
-        highlight = BaseColors.systemColor;
     }
 
     /**
@@ -47,7 +42,7 @@ public class GMPTaskPaneUI extends BasicTaskPaneUI {
         this.initialColor = initialColor;
         this.finalColor = finalColor;
         this.textColor = textColor;
-        this.highlight = highlight;        
+        this.highlight = highlight;
     }
 
     /**
@@ -62,7 +57,7 @@ public class GMPTaskPaneUI extends BasicTaskPaneUI {
     @Override
     protected void installDefaults() {
         super.installDefaults();
-        group.setOpaque(false);
+        //group.setOpaque(false);
     }
 
     @Override
@@ -76,30 +71,111 @@ public class GMPTaskPaneUI extends BasicTaskPaneUI {
     class CustomPaneBorder extends PaneBorder {
 
         public CustomPaneBorder(Color start, Color end, Color foreground, Color highlight) {
-            titleBackgroundGradientStart = start != null ? start : BaseColors.lightColor;
-            titleBackgroundGradientEnd = end != null ? end : BaseColors.darkColor;
-            titleForeground = foreground != null ? foreground : Color.white;
-            titleOver = highlight != null ? highlight : BaseColors.systemColor;          
-            
+            titleBackgroundGradientStart = start;
+            titleBackgroundGradientEnd = end;
+            titleForeground = foreground;
+            titleOver = highlight;
+            specialTitleBackground = end;
+            specialTitleForeground = foreground;
+            specialTitleOver = highlight;
         }
 
         @Override
         protected void paintExpandedControls(JXTaskPane group, Graphics g, int x,
                 int y, int width, int height) {
-            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_OFF);
-            g.setColor(getPaintColor(group));
-            paintRectAroundControls(group, g, x, y, width, height, g.getColor(),
-                    g.getColor());
-            paintChevronControls(group, g, x, y, width, height);
-
-            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_OFF);
+//            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+//                    RenderingHints.VALUE_ANTIALIAS_ON);
+//            g.setColor(getPaintColor(group));
+//            paintRectAroundControls(group, g, x, y, width, height, g.getColor(),
+//                    g.getColor());
+//            paintChevronControls(group, g, x, y, width, height);
+//            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+//                    RenderingHints.VALUE_ANTIALIAS_ON);
+            if (group.isCollapsed()) {
+                group.setIcon(new javax.swing.ImageIcon(getClass()
+                        .getResource("/IKONS/16/invert/arrow_right.png")));
+            } else {
+                group.setIcon(new javax.swing.ImageIcon(getClass()
+                        .getResource("/IKONS/16/invert/arrow_up.png")));
+            }
+            super.paintExpandedControls(group, g, x, y, width, height);
         }
 
         @Override
         protected boolean isMouseOverBorder() {
             return true;
+        }
+
+        public Color getBorderColor() {
+            return borderColor;
+        }
+
+        public void setBorderColor(Color borderColor) {
+            this.borderColor = borderColor;
+        }
+
+        public Color getTitleForeground() {
+            return titleForeground;
+        }
+
+        public void setTitleForeground(Color titleForeground) {
+            this.titleForeground = titleForeground;
+        }
+
+        public Color getSpecialTitleBackground() {
+            return specialTitleBackground;
+        }
+
+        public void setSpecialTitleBackground(Color specialTitleBackground) {
+            this.specialTitleBackground = specialTitleBackground;
+        }
+
+        public Color getSpecialTitleForeground() {
+            return specialTitleForeground;
+        }
+
+        public void setSpecialTitleForeground(Color specialTitleForeground) {
+            this.specialTitleForeground = specialTitleForeground;
+        }
+
+        public Color getTitleBackgroundGradientStart() {
+            return titleBackgroundGradientStart;
+        }
+
+        public void setTitleBackgroundGradientStart(Color titleBackgroundGradientStart) {
+            this.titleBackgroundGradientStart = titleBackgroundGradientStart;
+        }
+
+        public Color getTitleBackgroundGradientEnd() {
+            return titleBackgroundGradientEnd;
+        }
+
+        public void setTitleBackgroundGradientEnd(Color titleBackgroundGradientEnd) {
+            this.titleBackgroundGradientEnd = titleBackgroundGradientEnd;
+        }
+
+        public Color getTitleOver() {
+            return titleOver;
+        }
+
+        public void setTitleOver(Color titleOver) {
+            this.titleOver = titleOver;
+        }
+
+        public Color getSpecialTitleOver() {
+            return specialTitleOver;
+        }
+
+        public void setSpecialTitleOver(Color specialTitleOver) {
+            this.specialTitleOver = specialTitleOver;
+        }
+
+        public JLabel getLabel() {
+            return label;
+        }
+
+        public void setLabel(JLabel label) {
+            this.label = label;
         }
     }
 

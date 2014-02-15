@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup">
     </Component>
     <Container class="javax.swing.JDesktopPane" name="desktop">
       <Properties>
@@ -79,6 +79,14 @@
         </MenuItem>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JMenuItem" name="item">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bosta de cavalo"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemActionPerformed"/>
+      </Events>
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMOption">
@@ -118,7 +126,7 @@
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="jMIMetal">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup1"/>
+                  <ComponentRef name="buttonGroup"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Metal"/>
@@ -130,7 +138,7 @@
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="jMIMotif">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup1"/>
+                  <ComponentRef name="buttonGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Motif"/>
               </Properties>
@@ -307,11 +315,11 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLActualMenu">
           <Properties>
-            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/IKONS/16/arrow_right.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Menu Atual"/>
+            <Property name="text" type="java.lang.String" value="Menu Atual "/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[32178, 100]"/>
             </Property>
@@ -325,7 +333,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="View Atual"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[32178, 100]"/>
+              <Dimension value="[200, 100]"/>
             </Property>
           </Properties>
         </Component>
@@ -660,17 +668,7 @@
             </Constraint>
           </Constraints>
           <SubComponents>
-            <Component class="br.com.gmp.comps.taskpane.GMPTaskPane" name="gMPTaskPane1">
-              <Properties>
-                <Property name="finalColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="66" red="66" type="rgb"/>
-                </Property>
-                <Property name="initialColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="ff" red="99" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="br.com.gmp.comps.taskpane.GMPTaskPane" name="gMPTaskPane2">
+            <Component class="br.com.gmp.comps.taskpane.GMPTaskPane" name="Task">
             </Component>
           </SubComponents>
           <LayoutCode>
@@ -702,27 +700,11 @@
                 <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
               </StatementProvider>
               <Parameters>
-                <CodeExpression id="3_gMPTaskPane1">
-                  <CodeVariable name="gMPTaskPane1" type="8194" declaredType="br.com.gmp.comps.taskpane.GMPTaskPane"/>
+                <CodeExpression id="3_Task">
+                  <CodeVariable name="Task" type="8194" declaredType="br.com.gmp.comps.taskpane.GMPTaskPane"/>
                   <ExpressionOrigin>
                     <ExpressionProvider type="ComponentRef">
-                      <ComponentRef name="gMPTaskPane1"/>
-                    </ExpressionProvider>
-                  </ExpressionOrigin>
-                </CodeExpression>
-              </Parameters>
-            </CodeStatement>
-            <CodeStatement>
-              <CodeExpression id="1_MenuContainer"/>
-              <StatementProvider type="CodeMethod">
-                <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
-              </StatementProvider>
-              <Parameters>
-                <CodeExpression id="4_gMPTaskPane2">
-                  <CodeVariable name="gMPTaskPane2" type="8194" declaredType="br.com.gmp.comps.taskpane.GMPTaskPane"/>
-                  <ExpressionOrigin>
-                    <ExpressionProvider type="ComponentRef">
-                      <ComponentRef name="gMPTaskPane2"/>
+                      <ComponentRef name="Task"/>
                     </ExpressionProvider>
                   </ExpressionOrigin>
                 </CodeExpression>

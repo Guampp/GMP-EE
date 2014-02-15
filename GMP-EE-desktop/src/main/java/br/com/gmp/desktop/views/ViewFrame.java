@@ -115,6 +115,7 @@ public class ViewFrame extends JInternalFrame implements View {
         jLMsg = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setVisible(true);
 
         jLMsg.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

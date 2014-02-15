@@ -16,6 +16,7 @@ public class ProcessAction extends FrameAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("Process event.");
         getVisualApp().getAppBean().confirm();
     }
 
