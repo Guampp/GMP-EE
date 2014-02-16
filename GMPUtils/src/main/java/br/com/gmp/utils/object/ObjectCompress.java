@@ -14,7 +14,7 @@ import java.util.zip.GZIPOutputStream;
  * @author kaciano
  * @since 1.0
  */
-public class ObjectCompressor {
+public class ObjectCompress {
 
     /**
      * Comprime o objeto enviado e retorna o array de bytes

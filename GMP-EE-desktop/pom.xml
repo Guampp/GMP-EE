@@ -67,6 +67,11 @@
             <artifactId>GMPComps-1.2</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>unknown.binary</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <description>Aplicação desktop do Guampp</description>
 </project>

@@ -9,7 +9,7 @@ import java.util.List;
  * @author kaciano
  * @since 1.0
  */
-public class ObjectDescriptor {
+public class ObjectDescript {
 
     /**
      * Descreve os nomes dos campos no objeto parametro

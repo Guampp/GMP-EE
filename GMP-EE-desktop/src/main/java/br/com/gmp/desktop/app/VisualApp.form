@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup">
     </Component>
@@ -87,69 +87,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemActionPerformed"/>
       </Events>
     </Component>
-    <Menu class="javax.swing.JMenuBar" name="jMenuBar">
-      <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMOption">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/list_2.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Op&#xe7;&#xf5;es"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMILogoff">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IKONS/16/logout.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Logout"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMIExit">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IKONS/16/power.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Sair"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMLookAndFeel">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/map.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="LookAndFeel"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JRadioButtonMenuItem" name="jMIMetal">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup"/>
-                </Property>
-                <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Metal"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIMetalActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JRadioButtonMenuItem" name="jMIMotif">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Motif"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIMotifActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-      </SubComponents>
-    </Menu>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -159,7 +96,6 @@
     </Property>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -179,36 +115,29 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTBUser" min="-2" pref="196" max="-2" attributes="0"/>
-                  <Component id="jTBFunctions" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jTBDesktop" pref="382" max="32767" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="jTBSearch" min="-2" pref="183" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jTBMsg" max="32767" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="jTBSystem" min="-2" pref="69" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <Component id="jTBUser" min="-2" pref="196" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="jTBMsg" pref="496" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="jTBSystem" min="-2" pref="69" max="-2" attributes="0"/>
           </Group>
           <Component id="jSplit" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Component id="jTBDesktop" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="jTBSearch" min="-2" pref="183" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jTBSearch" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="jTBDesktop" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="jTBFunctions" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jTBDesktop" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jTBSearch" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jSplit" pref="391" max="32767" attributes="0"/>
+              <Component id="jSplit" pref="389" max="32767" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jTBMsg" min="-2" pref="25" max="-2" attributes="0"/>
@@ -222,12 +151,11 @@
   <SubComponents>
     <Container class="javax.swing.JToolBar" name="jTBDesktop">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="66" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder>
-              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
-            </LineBorder>
-          </Border>
+          <Border info="null"/>
         </Property>
         <Property name="floatable" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -243,20 +171,132 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="br.com.gmp.comps.button.GMPButton" name="gBAddDesk">
+        <Component class="br.com.gmp.comps.button.GMPButton" name="gBClean">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/invert/browser_add.png"/>
+              <Image iconType="3" name="/IKONS/32/invert/repeat_1.png"/>
             </Property>
             <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="33" type="rgb"/>
+              <Color blue="ff" green="66" red="33" type="rgb"/>
             </Property>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/browser_add.png"/>
+              <Image iconType="3" name="/IKONS/32/repeat_1.png"/>
             </Property>
             <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="0" type="rgb"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Limpar os campos da View"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBCleanActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="br.com.gmp.comps.button.GMPButton" name="gBProcess">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IKONS/32/invert/cog.png"/>
+            </Property>
+            <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="66" red="33" type="rgb"/>
+            </Property>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IKONS/32/cog.png"/>
+            </Property>
+            <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="0" type="rgb"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Processar"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBProcessActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="br.com.gmp.comps.button.GMPButton" name="gBDiscard">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IKONS/32/invert/circle_delete.png"/>
+            </Property>
+            <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="66" red="33" type="rgb"/>
+            </Property>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IKONS/32/circle_delete.png"/>
+            </Property>
+            <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="0" type="rgb"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Descartar"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBDiscardActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="br.com.gmp.comps.button.GMPButton" name="gBConfirm">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IKONS/32/invert/circle_ok.png"/>
+            </Property>
+            <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="66" red="33" type="rgb"/>
+            </Property>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IKONS/32/circle_ok.png"/>
+            </Property>
+            <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="0" type="rgb"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Confirmar"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBConfirmActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
+        </Component>
+        <Component class="br.com.gmp.comps.button.GMPButton" name="gBFavorite">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IKONS/32/invert/star.png"/>
+            </Property>
+            <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="66" red="33" type="rgb"/>
+            </Property>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IKONS/32/star.png"/>
+            </Property>
+            <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="0" type="rgb"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Adicionar aos favoritos"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBFavoriteActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="br.com.gmp.comps.button.GMPButton" name="gBAddDesk">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IKONS/32/invert/browser_add.png"/>
+            </Property>
+            <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="66" red="33" type="rgb"/>
+            </Property>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IKONS/32/browser_add.png"/>
+            </Property>
+            <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Adicionar novo desktop"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -268,17 +308,17 @@
         <Component class="br.com.gmp.comps.button.GMPButton" name="gBRemoveDesks">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/invert/browser_delete.png"/>
+              <Image iconType="3" name="/IKONS/32/invert/browser_delete.png"/>
             </Property>
             <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="33" type="rgb"/>
+              <Color blue="ff" green="66" red="33" type="rgb"/>
             </Property>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/browser_delete.png"/>
+              <Image iconType="3" name="/IKONS/32/browser_delete.png"/>
             </Property>
             <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="33" type="rgb"/>
+              <Color blue="ff" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Remover todos os Desktops"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -292,17 +332,17 @@
         <Component class="br.com.gmp.comps.button.GMPButton" name="gBOrganize">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/invert/grid_1.png"/>
+              <Image iconType="3" name="/IKONS/32/invert/grid_1.png"/>
             </Property>
             <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="33" type="rgb"/>
+              <Color blue="ff" green="66" red="33" type="rgb"/>
             </Property>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/grid_1.png"/>
+              <Image iconType="3" name="/IKONS/32/grid_1.png"/>
             </Property>
             <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="33" type="rgb"/>
+              <Color blue="ff" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Organizar os itens no desktop"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -313,46 +353,23 @@
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator6">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLActualMenu">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/arrow_right.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Menu Atual "/>
-            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[32178, 100]"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLActualView">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/arrow_right.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="View Atual"/>
-            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[200, 100]"/>
-            </Property>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JToolBar" name="jTBSearch">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="66" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder>
-              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
-            </LineBorder>
-          </Border>
+          <Border info="null"/>
         </Property>
         <Property name="floatable" type="boolean" value="false"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator7">
+        </Component>
         <Component class="javax.swing.JTextField" name="jTSearchField">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -361,6 +378,9 @@
                   <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
                 </LineBorder>
               </Border>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[2147483647, 28]"/>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[120, 19]"/>
@@ -388,6 +408,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBSearchActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator8">
         </Component>
       </SubComponents>
     </Container>
@@ -512,136 +534,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JToolBar" name="jTBFunctions">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder>
-              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
-            </LineBorder>
-          </Border>
-        </Property>
-        <Property name="floatable" type="boolean" value="false"/>
-      </Properties>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
-      <SubComponents>
-        <Component class="br.com.gmp.comps.button.GMPButton" name="gBFavorite">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/invert/star.png"/>
-            </Property>
-            <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="33" type="rgb"/>
-            </Property>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/star.png"/>
-            </Property>
-            <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="33" type="rgb"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Adicionar aos favoritos"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBFavoriteActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
-        </Component>
-        <Component class="br.com.gmp.comps.button.GMPButton" name="gBConfirm">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/invert/circle_ok.png"/>
-            </Property>
-            <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="33" type="rgb"/>
-            </Property>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/circle_ok.png"/>
-            </Property>
-            <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="33" type="rgb"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Confirmar"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBConfirmActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="br.com.gmp.comps.button.GMPButton" name="gBDiscard">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/invert/circle_delete.png"/>
-            </Property>
-            <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="33" type="rgb"/>
-            </Property>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/circle_delete.png"/>
-            </Property>
-            <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="33" type="rgb"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Descartar"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBDiscardActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="br.com.gmp.comps.button.GMPButton" name="gBProcess">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/invert/cog.png"/>
-            </Property>
-            <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="33" type="rgb"/>
-            </Property>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/cog.png"/>
-            </Property>
-            <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="33" type="rgb"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Processar"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBProcessActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JToolBar$Separator" name="jSeparator5">
-        </Component>
-        <Component class="br.com.gmp.comps.button.GMPButton" name="gBClean">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/invert/repeat_1.png"/>
-            </Property>
-            <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="33" type="rgb"/>
-            </Property>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/cog.png"/>
-            </Property>
-            <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="33" type="rgb"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Limpar os campos da View"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBCleanActionPerformed"/>
-          </Events>
-        </Component>
-      </SubComponents>
-    </Container>
     <Container class="javax.swing.JSplitPane" name="jSplit">
       <Properties>
         <Property name="dividerLocation" type="int" value="200"/>
@@ -650,68 +542,6 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
       <SubComponents>
-        <Container class="br.com.gmp.comps.taskcontainer.GMPTaskContainer" name="MenuContainer">
-          <Properties>
-            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[200, 60]"/>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[150, 60]"/>
-            </Property>
-            <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[150, 0]"/>
-            </Property>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
-              <JSplitPaneConstraints position="left"/>
-            </Constraint>
-          </Constraints>
-          <SubComponents>
-            <Component class="br.com.gmp.comps.taskpane.GMPTaskPane" name="Task">
-            </Component>
-          </SubComponents>
-          <LayoutCode>
-            <CodeStatement>
-              <CodeExpression id="1_MenuContainer">
-                <CodeVariable name="MenuContainer" type="8194" declaredType="br.com.gmp.comps.taskcontainer.GMPTaskContainer"/>
-                <ExpressionOrigin>
-                  <ExpressionProvider type="ComponentRef">
-                    <ComponentRef name="MenuContainer"/>
-                  </ExpressionProvider>
-                </ExpressionOrigin>
-              </CodeExpression>
-              <StatementProvider type="CodeMethod">
-                <CodeMethod name="setLayout" class="java.awt.Container" parameterTypes="java.awt.LayoutManager"/>
-              </StatementProvider>
-              <Parameters>
-                <CodeExpression id="2">
-                  <ExpressionOrigin>
-                    <ExpressionProvider type="CodeConstructor">
-                      <CodeConstructor class="org.jdesktop.swingx.VerticalLayout" parameterTypes=""/>
-                    </ExpressionProvider>
-                  </ExpressionOrigin>
-                </CodeExpression>
-              </Parameters>
-            </CodeStatement>
-            <CodeStatement>
-              <CodeExpression id="1_MenuContainer"/>
-              <StatementProvider type="CodeMethod">
-                <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
-              </StatementProvider>
-              <Parameters>
-                <CodeExpression id="3_Task">
-                  <CodeVariable name="Task" type="8194" declaredType="br.com.gmp.comps.taskpane.GMPTaskPane"/>
-                  <ExpressionOrigin>
-                    <ExpressionProvider type="ComponentRef">
-                      <ComponentRef name="Task"/>
-                    </ExpressionProvider>
-                  </ExpressionOrigin>
-                </CodeExpression>
-              </Parameters>
-            </CodeStatement>
-          </LayoutCode>
-        </Container>
         <Container class="br.com.gmp.comps.tabbedpane.GMPJTabbedPane" name="gTPDesktops">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -739,6 +569,74 @@
           </Constraints>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+        </Container>
+        <Container class="javax.swing.JScrollPane" name="jSP">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[32767, 150]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[21, 150]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+              <JSplitPaneConstraints position="left"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Container class="br.com.gmp.comps.taskcontainer.GMPTaskContainer" name="MenuContainer">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                    <EmptyBorder/>
+                  </Border>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[200, 60]"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[150, 60]"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="jSP.add(MenuContainer);"/>
+              </AuxValues>
+              <SubComponents>
+                <Component class="br.com.gmp.comps.taskpane.GMPTaskPane" name="Task">
+                </Component>
+              </SubComponents>
+              <LayoutCode>
+                <CodeStatement>
+                  <CodeExpression id="1_MenuContainer">
+                    <CodeVariable name="MenuContainer" type="8194" declaredType="br.com.gmp.comps.taskcontainer.GMPTaskContainer"/>
+                    <ExpressionOrigin>
+                      <ExpressionProvider type="ComponentRef">
+                        <ComponentRef name="MenuContainer"/>
+                      </ExpressionProvider>
+                    </ExpressionOrigin>
+                  </CodeExpression>
+                  <StatementProvider type="CodeMethod">
+                    <CodeMethod name="setLayout" class="java.awt.Container" parameterTypes="java.awt.LayoutManager"/>
+                  </StatementProvider>
+                  <Parameters>
+                    <CodeExpression id="2">
+                      <ExpressionOrigin>
+                        <ExpressionProvider type="CodeConstructor">
+                          <CodeConstructor class="org.jdesktop.swingx.VerticalLayout" parameterTypes=""/>
+                        </ExpressionProvider>
+                      </ExpressionOrigin>
+                    </CodeExpression>
+                  </Parameters>
+                </CodeStatement>
+              </LayoutCode>
+            </Container>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>

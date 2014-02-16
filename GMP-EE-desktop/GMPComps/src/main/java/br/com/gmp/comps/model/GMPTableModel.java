@@ -4,58 +4,79 @@ import br.com.gmp.comps.annotations.ColumnName;
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.logging.*;
-import javax.swing.table.*;
+import javax.swing.table.AbstractTableModel;
 
 /**
+ * Modelo de tabelas padrão para GMPTables. Funcional para todas as JTables,
+ * desde que esteja configurado corretamente
+ *
+ * Exemplo de uso:
+ * <br><code>
+ * class NewTableModel extends GMPTableModel<<b>Object</b>> {<br>
+ * public NewTableModel() {<br>
+ * super(<b>Object</b>.class)<br>
+ * }<br>
+ * }<br>
+ * </code><br>
  *
  * @author kaciano
+ * @version 1.1
+ * @param <T> Tipo de objeto a ser mapeado
+ * @see javax.swing.table.TableModel
  */
-public class GMPTableModel extends AbstractTableModel {
-    //==========================================================================
-    // Nome da coluna da table
+public class GMPTableModel<T> extends AbstractTableModel {
 
-    String[] columns = null;
-    private final ArrayList list;
-    private Object obj;
+    private Class<T> objClass;
+    private String[] columns = null;
+    private List<T> list;
 
-    //==========================================================================
-    // Contrutor 1: Vazio
-    public GMPTableModel() {
-        this.list = new ArrayList();
-        this.columns = colunas(new Object().getClass());
+    /**
+     * Cria novo GMPTableModel
+     *
+     * @param objClass <code><b>Class</b><T></code> Classe a ser mapeada
+     */
+    public GMPTableModel(Class<T> objClass) {
+        initialize(objClass, null);
     }
 
-    //==========================================================================
-    // Contrutor 2: Lista
-    public GMPTableModel(ArrayList list) {
-        this.list = list;
-        this.obj = this.list.get(0);
-        this.columns = colunas(this.obj.getClass());
+    /**
+     * Cria novo GMPTableModel
+     *
+     * @param objClass <code><b>Class</b><T></code> Classe a ser mapeada
+     * @param list <code><b>List</b><T></code> Lista de objetos
+     */
+    public GMPTableModel(Class<T> objClass, List<T> list) {
+        initialize(objClass, list);
     }
 
-    //==========================================================================
-    // Contrutor 3: Objeto
-    public GMPTableModel(Object obj) {
-        this.list = new ArrayList();
-        this.obj = obj;
-        this.columns = colunas(obj.getClass());
+    /**
+     * Metodo de inicialização
+     *
+     * @param objClass <code><b>Class</b><T></code> Classe a ser mapeada
+     * @param list <code><b>List</b><T></code> Lista de objetos
+     */
+    private void initialize(Class<T> objClass, List<T> list) {
+        this.objClass = objClass;
+        this.list = list != null ? list : new LinkedList<T>();
+        this.columns = mapColumns(objClass);
     }
 
-    //==========================================================================
-    // Contrutor 1: Lista e objeto
-    public GMPTableModel(ArrayList list, Object obj) {
-        this.list = list;
-        this.obj = obj;
-        this.columns = colunas(obj.getClass());
-    }
-
+    /**
+     * Retorna os nomes das colunas
+     *
+     * @return <code><b>String[]</b></code> Colunas do objeto
+     */
     public String[] getColumnNames() {
         return this.columns;
     }
 
-    //==========================================================================
-    // Retorna array de informações da cl do objeto    
-    private String[] colunas(Class<?> cl) {
+    /**
+     * Busca as colunas na classe do objeto do modelo
+     *
+     * @param cl <code><b>Class</b></code> Classe a ser mapeada
+     * @return <code><b>String[]</b></code> Colunas do objeto
+     */
+    private String[] mapColumns(Class<?> cl) {
         String[] coluna = new String[cl.getDeclaredFields().length];
         for (int i = 0; i < cl.getDeclaredFields().length; i++) {
             if (cl.getDeclaredFields()[i]
@@ -69,58 +90,87 @@ public class GMPTableModel extends AbstractTableModel {
         return coluna;
     }
 
-    //==========================================================================
-    //
+    /**
+     * Retorna se a coluna é editavel
+     *
+     * @param row <code><b>int</b></code> Index da linha
+     * @param column <code><b>int</b></code> Index da coluna
+     * @return <code><b>boolean</b></code> É editavel?
+     */
     @Override
     public boolean isCellEditable(int row, int column) {
         return (column != 0);
     }
 
-    //==========================================================================
-    // Numero de linhas
+    /**
+     * Retorna a quantidade de linhas
+     *
+     * @return <code><b>int</b></code> Quantidade de linhas
+     */
     @Override
     public int getRowCount() {
         return list.size();
     }
 
-    //==========================================================================
-    // Numero de colunas
+    /**
+     * Retorna a quantidade de colunas
+     *
+     * @return <code><b>int</b></code> Quantidade de colunas
+     */
     @Override
     public int getColumnCount() {
         return columns.length;
     }
 
-    //==========================================================================
-    // Define o que cada coluna conterá do objeto
+    /**
+     * Retorna o valor com base na linha e na coluna recebidas
+     *
+     * @param row <code><b>int</b></code> Index da linha
+     * @param column <code><b>int</b></code> Index da coluna
+     * @return <code><b>int</b></code>
+     */
     @Override
-    public Object getValueAt(int row, int column) {
+    public T getValueAt(int row, int column) {
         try {
             Object u = list.get(row);
             Field f = u.getClass().getDeclaredFields()[column];
             f.setAccessible(true);
-            return f.get(u);
-        } catch (SecurityException | IllegalArgumentException | IllegalAccessException ex) {
-            System.out.println(ex.getMessage());
-            return new Object();
+            return (T) f.get(u);
+        } catch (IllegalArgumentException | IllegalAccessException ex) {
+            Logger.getLogger(GMPTableModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
 
-    //==========================================================================
-    // Determina o nome das colunas
+    /**
+     * Retorna o nome da coluna
+     *
+     * @param column <code><b>int</b></code> Index da coluna
+     * @return <code><b>String</b></code> Nome da coluna
+     */
     @Override
     public String getColumnName(int column) {
         return columns[column];
     }
 
-    //==========================================================================
-    // Determina que tipo de objeto cada coluna irá suportar
+    /**
+     * Retorna a classe da coluna recebida
+     *
+     * @param column <code><b>int</b></code> Index da coluna
+     * @return <code><b>Class</b><?></code> Classe da coluna
+     */
     @Override
-    public Class<?> getColumnClass(int columnIndex) {
-        return getFieldClass(obj.getClass(), columnIndex);
+    public Class<?> getColumnClass(int column) {
+        return getFieldClass(objClass, column);
     }
 
-    //==========================================================================
-    // Retorna array de informações da cl do objeto    
+    /**
+     * Retorna a classe do Field recebido
+     *
+     * @param cl <code><b>Class</b></code> Classe a ser mapeada
+     * @param id <code><b>int</b></code> ID do Field
+     * @return <code><b>Class</b><?></code> Classe do Field
+     */
     private Class<?> getFieldClass(Class<?> cl, int id) {
         try {
             Field[] f = cl.getDeclaredFields();
@@ -136,44 +186,57 @@ public class GMPTableModel extends AbstractTableModel {
         }
     }
 
-    //==========================================================================
-    //
-    public void add(Object obj) {
+    /**
+     * Adiciona novo objeto à lista
+     *
+     * @param obj <code><b>T</b></code> Novo objeto
+     */
+    public void add(T obj) {
         list.add(obj);
         this.fireTableRowsInserted(list.size() - 1, list.size() - 1);
     }
 
-    //==========================================================================
-    //
+    /**
+     * Remove a linha recebida
+     *
+     * @param row <code><b>int</b></code> Linha
+     */
     public void remove(int row) {
         list.remove(row);
         this.fireTableRowsDeleted(row, row);
     }
 
-    //==========================================================================
-    //
-    public void update(int row, Object obj) {
+    /**
+     * Atualiza o objeto da linha recebida com o novo objeto
+     *
+     * @param row <code><b>int</b></code> Linha
+     * @param obj <code><b>T</b></code> Novo conteudo da linha
+     */
+    public void update(int row, T obj) {
         list.set(row, obj);
         this.fireTableRowsUpdated(row, row);
     }
 
-    //==========================================================================
-    //
-    public Object getObject(int row) {
+    /**
+     * Retorna o objeto com base na linha recebida
+     *
+     * @param row <code><b>int</b></code> Linha
+     * @return Objeto da linha
+     */
+    public T getObject(int row) {
         return list.get(row);
     }
 
-    //==========================================================================
-    //
+    /**
+     * Recarrega o modelo
+     */
     public void reload() {
         this.fireTableDataChanged();
     }
 
-    //==========================================================================
-    // 
     @Override
     public void setValueAt(Object value, int row, int col) {
-        Object object = list.get(row);
+        T object = list.get(row);
         Field field = object.getClass().getDeclaredFields()[col];
         try {
             field.setAccessible(true);
@@ -184,4 +247,59 @@ public class GMPTableModel extends AbstractTableModel {
         }
         fireTableCellUpdated(row, col);
     }
+
+    /**
+     * Retorna a classe do modelo
+     *
+     * @return <code>Class</code> Classe do modelo
+     */
+    public Class<T> getObjClass() {
+        return objClass;
+    }
+
+    /**
+     * s
+     *
+     * @param objClass
+     */
+    public void setObjClass(Class<T> objClass) {
+        this.objClass = objClass;
+    }
+
+    /**
+     * Retorna as colunas
+     *
+     * @return <code>String[]</code> Colunas
+     */
+    public String[] getColumns() {
+        return columns;
+    }
+
+    /**
+     * Altera as colunas
+     *
+     * @param columns <code>String[]</code> Colunas
+     */
+    public void setColumns(String[] columns) {
+        this.columns = columns;
+    }
+
+    /**
+     * Retorna a lista do modelo
+     *
+     * @return <code>List<T></code> Lista do modelo
+     */
+    public List<T> getList() {
+        return list;
+    }
+
+    /**
+     * Modifica a lista do modelo
+     *
+     * @param list <code>List<T></code> Lista do modelo
+     */
+    public void setList(List<T> list) {
+        this.list = list;
+    }
+
 }

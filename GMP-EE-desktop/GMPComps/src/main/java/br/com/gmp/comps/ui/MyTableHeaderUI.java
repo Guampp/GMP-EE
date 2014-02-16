@@ -26,7 +26,7 @@ public class MyTableHeaderUI extends BasicTableHeaderUI {
     private GradientPaint GP;
 
     public MyTableHeaderUI() {
-        startColor = BaseColors.darkColor.darker();
+        startColor = BaseColors.darkColor;
         endColor = BaseColors.darkColor;
         disabledColor = new Color(192, 192, 192);
         normalColor = Color.white;
@@ -51,7 +51,7 @@ public class MyTableHeaderUI extends BasicTableHeaderUI {
 
     @Override
     public void paint(Graphics g, final JComponent c) {
-        c.setFont(new Font("Verdana", 0, 14));
+        c.setFont(new Font("Verdana", Font.BOLD, 14));
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
@@ -79,7 +79,7 @@ public class MyTableHeaderUI extends BasicTableHeaderUI {
         g2d.setPaint(p1);
         g2d.drawRect(0, 0, w - 1, h - 1);
         g2d.setPaint(p2);
-        g2d.drawRect(1, 1, w - 3, h - 3);
+        g2d.drawRect(0, 0, w - 3, h - 3);
         g2d.dispose();
         super.paint(g, c);
     }

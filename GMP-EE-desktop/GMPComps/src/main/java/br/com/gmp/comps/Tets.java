@@ -5,6 +5,9 @@
  */
 package br.com.gmp.comps;
 
+import br.com.gmp.comps.model.GMPTableModel;
+import java.util.Objects;
+
 /**
  *
  * @author kaciano
@@ -16,6 +19,14 @@ public class Tets extends javax.swing.JFrame {
      */
     public Tets() {
         initComponents();
+        try {
+            jTable.setModel(new DefaultModel());
+            gTable.setModel(new DefaultModel());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+
     }
 
     /**
@@ -31,11 +42,18 @@ public class Tets extends javax.swing.JFrame {
         gMPButton1 = new br.com.gmp.comps.button.GMPButton();
         gMPDateField1 = new br.com.gmp.comps.datefield.GMPDateField();
         gMPButton2 = new br.com.gmp.comps.button.GMPButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        gTable = new br.com.gmp.comps.table.GMPTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         gMPTextField1.setName("gMPTextField1"); // NOI18N
 
+        gMPButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/arrow_2.png"))); // NOI18N
         gMPButton1.setName("gMPButton1"); // NOI18N
         gMPButton1.setText("Validar");
         gMPButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +72,43 @@ public class Tets extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable.setName("jTable"); // NOI18N
+        jScrollPane1.setViewportView(jTable);
+
+        jButton1.setText("Add");
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Delete");
+        jButton2.setName("jButton2"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane3.setName("jScrollPane3"); // NOI18N
+
+        gTable.setName("gTable"); // NOI18N
+        jScrollPane3.setViewportView(gTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -61,29 +116,44 @@ public class Tets extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(471, 471, 471)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addComponent(gMPTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gMPDateField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gMPButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(92, Short.MAX_VALUE))
+                        .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(gMPDateField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(gMPButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gMPTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gMPDateField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gMPButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(gMPButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(gMPDateField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -96,6 +166,23 @@ public class Tets extends javax.swing.JFrame {
     private void gMPButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gMPButton2ActionPerformed
         gMPDateField1.validateComponent();
     }//GEN-LAST:event_gMPButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        GMPTableModel model = (GMPTableModel) jTable.getModel();
+        GMPTableModel gmpModel = (GMPTableModel) gTable.getModel();
+        model.add(new DefaultModelObject("Kaciano", 22, true));
+        gmpModel.add(new DefaultModelObject("Kaciano", 22, true));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            int row = jTable.getSelectedRow();
+            GMPTableModel model = (GMPTableModel) jTable.getModel();
+            model.remove(row);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,5 +202,108 @@ public class Tets extends javax.swing.JFrame {
     private br.com.gmp.comps.button.GMPButton gMPButton2;
     private br.com.gmp.comps.datefield.GMPDateField gMPDateField1;
     private br.com.gmp.comps.textfield.GMPTextField gMPTextField1;
+    private br.com.gmp.comps.table.GMPTable gTable;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
+}
+
+class DefaultModel extends GMPTableModel<DefaultModelObject> {
+
+    public DefaultModel() {
+        super(DefaultModelObject.class);
+    }
+
+}
+
+/**
+ * Objeto utilizado na construção do GMPTableModel quando o mesmo está sem
+ * nenhum parametro
+ *
+ * @author kaciano
+ */
+class DefaultModelObject {
+
+    private String name;
+    private int age;
+    private boolean alive;
+
+    /**
+     * Cria novo DefaultModelObject
+     */
+    public DefaultModelObject() {
+    }
+
+    /**
+     * Cria novo DefaultModelObject
+     *
+     * @param name
+     * @param age
+     * @param alive
+     */
+    public DefaultModelObject(String name, int age, boolean alive) {
+        this.name = name;
+        this.age = age;
+        this.alive = alive;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.name);
+        hash = 41 * hash + this.age;
+        hash = 41 * hash + (this.alive ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DefaultModelObject other = (DefaultModelObject) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (this.age != other.age) {
+            return false;
+        }
+        return this.alive == other.alive;
+    }
+
+    @Override
+    public String toString() {
+        return "DefaultModelObject{" + "name=" + name + ", age=" + age + ", alive=" + alive + '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
 }
