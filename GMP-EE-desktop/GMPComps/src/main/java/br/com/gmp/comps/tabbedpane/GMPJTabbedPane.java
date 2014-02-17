@@ -2,15 +2,13 @@ package br.com.gmp.comps.tabbedpane;
 
 import br.com.gmp.comps.BaseColors;
 import br.com.gmp.comps.button.ButtonTabComponent;
-import br.com.gmp.comps.ui.CustomTabbedPaneUI;
+import br.com.gmp.comps.ui.CWTabbedPaneUI;
 import br.com.gmp.comps.ui.GMPTabbedPaneUI;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import javax.swing.Icon;
 import javax.swing.JTabbedPane;
-import javax.swing.UIManager;
 
 /**
  *
@@ -33,8 +31,6 @@ public class GMPJTabbedPane extends JTabbedPane {
      * Cria nova instancia de GMPJTabbedPane
      */
     public GMPJTabbedPane() {
-        defaultColoring();
-        initComponents();
         changeTabbedPane();
     }
 
@@ -45,8 +41,6 @@ public class GMPJTabbedPane extends JTabbedPane {
      */
     public GMPJTabbedPane(Component locked) {
         this.locked = locked;
-        defaultColoring();
-        initComponents();
         changeTabbedPane();
     }
 
@@ -123,6 +117,8 @@ public class GMPJTabbedPane extends JTabbedPane {
      * Mudanças aplicadas no UIManager para customização do tabbedpane
      */
     private void changeTabbedPane() {
+        initComponents();
+        defaultColoring();
         this.setUI(new GMPTabbedPaneUI());
     }
 
@@ -161,6 +157,11 @@ public class GMPJTabbedPane extends JTabbedPane {
             }
         }
         return index;
+    }
+
+    @Override
+    public Component add(String title, Component component) {
+        return super.add(title, component);
     }
 
     /**
