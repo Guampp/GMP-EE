@@ -25,5 +25,6 @@
     <module>GMP-EE-ejb</module>
     <module>GMP-EE-desktop</module>
     <module>GMPUtils</module>
-  </modules>
+        <module>GMP-EE-desktop/GMPComps</module>
+    </modules>
 </project>
