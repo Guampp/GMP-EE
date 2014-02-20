@@ -27,7 +27,7 @@ public class GMPButtonUI extends BasicButtonUI {
     private Color startColor = BaseColors.darkColor;
     private Color endColor = BaseColors.lightColor;
     private Color rollOverColor = BaseColors.systemColor;
-    private Color pressedColor = new Color(204, 67, 0);
+    private Color pressedColor = BaseColors.alternativeColor;
     private GradientPaint GP;
 
     @Override

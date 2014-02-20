@@ -5,12 +5,30 @@ import br.com.gmp.desktop.app.bean.VisualAppBean;
 import br.com.gmp.comps.tabbedpane.GMPJTabbedPane;
 import br.com.gmp.comps.taskcontainer.GMPTaskContainer;
 import br.com.gmp.desktop.app.system.SystemProperties;
+import br.com.gmp.desktop.views.ProfileView;
 import br.com.gmp.desktop.views.ViewFrame;
+import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import com.jtattoo.plaf.aero.AeroLookAndFeel;
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+import com.jtattoo.plaf.fast.FastLookAndFeel;
+import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
+import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
+import com.jtattoo.plaf.luna.LunaLookAndFeel;
+import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
+import com.jtattoo.plaf.mint.MintLookAndFeel;
+import com.jtattoo.plaf.smart.SmartLookAndFeel;
+import com.jtattoo.plaf.texture.TextureLookAndFeel;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.GridLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.synth.SynthLookAndFeel;
 
 /**
  * Aplicação Visual Principal
@@ -32,7 +50,7 @@ public class VisualApp extends javax.swing.JFrame {
     public VisualApp() {
         initComponents();
         appBean = new VisualAppBean(this);
-        initialize();
+        initialize();        
     }
 
     /**
@@ -44,6 +62,7 @@ public class VisualApp extends javax.swing.JFrame {
         systemProperties = new SystemProperties(this);
         this.getGlassPane().setBackground(Color.red);
         Task.add(item);
+        changeMenu(MenuContainer);
     }
 
     /**
@@ -92,6 +111,19 @@ public class VisualApp extends javax.swing.JFrame {
     }
 
     /**
+     * Troca o menu do painel
+     *
+     * @param comp <code><b>Component</b></code> Componente do menu
+     */
+    private void changeMenu(Component comp) {
+        jPMenus.removeAll();
+        jPMenus.setLayout(new GridLayout(0, 1));
+        jPMenus.add(comp);
+        jPMenus.repaint();
+        jPMenus.revalidate();
+    }
+
+    /**
      *
      */
     @SuppressWarnings("unchecked")
@@ -108,11 +140,19 @@ public class VisualApp extends javax.swing.JFrame {
         jMIInfo = new javax.swing.JMenuItem();
         jMIClose = new javax.swing.JMenuItem();
         item = new javax.swing.JMenuItem();
+        MenuContainer = new br.com.gmp.comps.taskcontainer.GMPTaskContainer();
+        Task = new br.com.gmp.comps.taskpane.GMPTaskPane();
+        jSPTree = new javax.swing.JScrollPane();
+        jTree = new javax.swing.JTree();
+        gBLogout = new br.com.gmp.comps.button.GMPButton();
         jTBDesktop = new javax.swing.JToolBar();
-        gBClean = new br.com.gmp.comps.button.GMPButton();
-        gBProcess = new br.com.gmp.comps.button.GMPButton();
-        gBDiscard = new br.com.gmp.comps.button.GMPButton();
+        gBTaskMenu = new br.com.gmp.comps.button.GMPButton();
+        gBTreeMenu = new br.com.gmp.comps.button.GMPButton();
+        jSeparator5 = new javax.swing.JToolBar.Separator();
         gBConfirm = new br.com.gmp.comps.button.GMPButton();
+        gBDiscard = new br.com.gmp.comps.button.GMPButton();
+        gBProcess = new br.com.gmp.comps.button.GMPButton();
+        gBClean = new br.com.gmp.comps.button.GMPButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         gBFavorite = new br.com.gmp.comps.button.GMPButton();
         gBAddDesk = new br.com.gmp.comps.button.GMPButton();
@@ -120,25 +160,25 @@ public class VisualApp extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JToolBar.Separator();
         gBOrganize = new br.com.gmp.comps.button.GMPButton();
         jSeparator6 = new javax.swing.JToolBar.Separator();
+        jButton1 = new javax.swing.JButton();
         jTBSearch = new javax.swing.JToolBar();
         jSeparator7 = new javax.swing.JToolBar.Separator();
         jTSearchField = new javax.swing.JTextField();
         gBSearch = new br.com.gmp.comps.button.GMPButton();
         jSeparator8 = new javax.swing.JToolBar.Separator();
         jTBMsg = new javax.swing.JToolBar();
+        jLUser = new javax.swing.JLabel();
         jLMsg = new javax.swing.JLabel();
         jTBUser = new javax.swing.JToolBar();
-        gBLogout = new br.com.gmp.comps.button.GMPButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        jLUser = new javax.swing.JLabel();
         jTBSystem = new javax.swing.JToolBar();
         jLWeb = new javax.swing.JLabel();
         jLSystem = new javax.swing.JLabel();
-        jSplit = new javax.swing.JSplitPane();
         gTPDesktops = new br.com.gmp.comps.tabbedpane.GMPJTabbedPane();
-        jSP = new javax.swing.JScrollPane();
-        MenuContainer = new br.com.gmp.comps.taskcontainer.GMPTaskContainer();
-        Task = new br.com.gmp.comps.taskpane.GMPTaskPane();
+        jPMenus = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         desktop.setBackground(new java.awt.Color(51, 153, 255));
 
@@ -187,50 +227,91 @@ public class VisualApp extends javax.swing.JFrame {
             }
         });
 
+        MenuContainer.setAutoscrolls(true);
+        MenuContainer.setBackground(new java.awt.Color(255, 255, 255));
+        MenuContainer.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        MenuContainer.setMinimumSize(new java.awt.Dimension(200, 60));
+        MenuContainer.setPreferredSize(new java.awt.Dimension(150, 60));
+        MenuContainer.setLayout(new org.jdesktop.swingx.VerticalLayout());
+        MenuContainer.add(Task);
+
+        jSPTree.setBorder(null);
+        jSPTree.setViewportView(jTree);
+
+        gBLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Key.png"))); // NOI18N
+        gBLogout.setBackground(new java.awt.Color(255, 255, 255));
+        gBLogout.setEndColor(new java.awt.Color(255, 255, 255));
+        gBLogout.setHorizontalTextPosition(0);
+        gBLogout.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Key.png"))); // NOI18N
+        gBLogout.setStartColor(new java.awt.Color(204, 204, 204));
+        gBLogout.setToolTipText("Trocar usuário");
+        gBLogout.setVerticalTextPosition(3);
+        gBLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBLogoutActionPerformed(evt);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Guampp 1.0");
         setMinimumSize(new java.awt.Dimension(750, 475));
 
-        jTBDesktop.setBackground(new java.awt.Color(102, 153, 255));
         jTBDesktop.setBorder(null);
         jTBDesktop.setFloatable(false);
+        jTBDesktop.setBorderPainted(false);
         jTBDesktop.setMaximumSize(new java.awt.Dimension(88, 40));
         jTBDesktop.setMinimumSize(new java.awt.Dimension(88, 40));
         jTBDesktop.setPreferredSize(new java.awt.Dimension(88, 40));
 
-        gBClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/invert/repeat_1.png"))); // NOI18N
-        gBClean.setEndColor(new java.awt.Color(51, 102, 255));
-        gBClean.setHorizontalTextPosition(0);
-        gBClean.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/repeat_1.png"))); // NOI18N
-        gBClean.setStartColor(new java.awt.Color(0, 153, 255));
-        gBClean.setToolTipText("Limpar os campos da View");
-        gBClean.setVerticalTextPosition(3);
-        gBClean.addActionListener(new java.awt.event.ActionListener() {
+        gBTaskMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Layout.png"))); // NOI18N
+        gBTaskMenu.setBackground(new java.awt.Color(255, 255, 255));
+        gBTaskMenu.setEndColor(new java.awt.Color(255, 255, 255));
+        gBTaskMenu.setHorizontalTextPosition(0);
+        gBTaskMenu.setStartColor(new java.awt.Color(204, 204, 204));
+        gBTaskMenu.setVerticalTextPosition(3);
+        gBTaskMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gBCleanActionPerformed(evt);
+                gBTaskMenuActionPerformed(evt);
             }
         });
-        jTBDesktop.add(gBClean);
+        jTBDesktop.add(gBTaskMenu);
 
-        gBProcess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/invert/cog.png"))); // NOI18N
-        gBProcess.setEndColor(new java.awt.Color(51, 102, 255));
-        gBProcess.setHorizontalTextPosition(0);
-        gBProcess.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/cog.png"))); // NOI18N
-        gBProcess.setStartColor(new java.awt.Color(0, 153, 255));
-        gBProcess.setToolTipText("Processar");
-        gBProcess.setVerticalTextPosition(3);
-        gBProcess.addActionListener(new java.awt.event.ActionListener() {
+        gBTreeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Gealogy_view.png"))); // NOI18N
+        gBTreeMenu.setBackground(new java.awt.Color(255, 255, 255));
+        gBTreeMenu.setEndColor(new java.awt.Color(255, 255, 255));
+        gBTreeMenu.setHorizontalTextPosition(0);
+        gBTreeMenu.setStartColor(new java.awt.Color(204, 204, 204));
+        gBTreeMenu.setVerticalTextPosition(3);
+        gBTreeMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gBProcessActionPerformed(evt);
+                gBTreeMenuActionPerformed(evt);
             }
         });
-        jTBDesktop.add(gBProcess);
+        jTBDesktop.add(gBTreeMenu);
+        jTBDesktop.add(jSeparator5);
 
-        gBDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/invert/circle_delete.png"))); // NOI18N
-        gBDiscard.setEndColor(new java.awt.Color(51, 102, 255));
+        gBConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Save-icon.png"))); // NOI18N
+        gBConfirm.setMnemonic('<');
+        gBConfirm.setEndColor(new java.awt.Color(255, 255, 255));
+        gBConfirm.setHorizontalTextPosition(0);
+        gBConfirm.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Save-icon.png"))); // NOI18N
+        gBConfirm.setStartColor(new java.awt.Color(204, 204, 204));
+        gBConfirm.setToolTipText("Confirmar");
+        gBConfirm.setVerticalTextPosition(3);
+        gBConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBConfirmActionPerformed(evt);
+            }
+        });
+        jTBDesktop.add(gBConfirm);
+
+        gBDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Cancel.png"))); // NOI18N
+        gBDiscard.setBackground(new java.awt.Color(255, 255, 255));
+        gBDiscard.setEndColor(new java.awt.Color(255, 255, 255));
         gBDiscard.setHorizontalTextPosition(0);
-        gBDiscard.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/circle_delete.png"))); // NOI18N
-        gBDiscard.setStartColor(new java.awt.Color(0, 153, 255));
+        gBDiscard.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Cancel.png"))); // NOI18N
+        gBDiscard.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Cancel.png"))); // NOI18N
+        gBDiscard.setStartColor(new java.awt.Color(204, 204, 204));
         gBDiscard.setToolTipText("Descartar");
         gBDiscard.setVerticalTextPosition(3);
         gBDiscard.addActionListener(new java.awt.event.ActionListener() {
@@ -240,26 +321,46 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBDesktop.add(gBDiscard);
 
-        gBConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/invert/circle_ok.png"))); // NOI18N
-        gBConfirm.setEndColor(new java.awt.Color(51, 102, 255));
-        gBConfirm.setHorizontalTextPosition(0);
-        gBConfirm.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/circle_ok.png"))); // NOI18N
-        gBConfirm.setStartColor(new java.awt.Color(0, 153, 255));
-        gBConfirm.setToolTipText("Confirmar");
-        gBConfirm.setVerticalTextPosition(3);
-        gBConfirm.addActionListener(new java.awt.event.ActionListener() {
+        gBProcess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Wheel.png"))); // NOI18N
+        gBProcess.setBackground(new java.awt.Color(255, 255, 255));
+        gBProcess.setEndColor(new java.awt.Color(255, 255, 255));
+        gBProcess.setHorizontalTextPosition(0);
+        gBProcess.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Wheel.png"))); // NOI18N
+        gBProcess.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Wheel.png"))); // NOI18N
+        gBProcess.setStartColor(new java.awt.Color(204, 204, 204));
+        gBProcess.setToolTipText("Processar");
+        gBProcess.setVerticalTextPosition(3);
+        gBProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gBConfirmActionPerformed(evt);
+                gBProcessActionPerformed(evt);
             }
         });
-        jTBDesktop.add(gBConfirm);
+        jTBDesktop.add(gBProcess);
+
+        gBClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Refresh.png"))); // NOI18N
+        gBClean.setBackground(new java.awt.Color(255, 255, 255));
+        gBClean.setEndColor(new java.awt.Color(255, 255, 255));
+        gBClean.setHorizontalTextPosition(0);
+        gBClean.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Refresh.png"))); // NOI18N
+        gBClean.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Refresh.png"))); // NOI18N
+        gBClean.setStartColor(new java.awt.Color(204, 204, 204));
+        gBClean.setToolTipText("Limpar os campos da View");
+        gBClean.setVerticalTextPosition(3);
+        gBClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gBCleanActionPerformed(evt);
+            }
+        });
+        jTBDesktop.add(gBClean);
         jTBDesktop.add(jSeparator2);
 
-        gBFavorite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/invert/star.png"))); // NOI18N
-        gBFavorite.setEndColor(new java.awt.Color(51, 102, 255));
+        gBFavorite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Star_Full.png"))); // NOI18N
+        gBFavorite.setBackground(new java.awt.Color(255, 255, 255));
+        gBFavorite.setEndColor(new java.awt.Color(255, 255, 255));
         gBFavorite.setHorizontalTextPosition(0);
-        gBFavorite.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/star.png"))); // NOI18N
-        gBFavorite.setStartColor(new java.awt.Color(0, 153, 255));
+        gBFavorite.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Star_Full.png"))); // NOI18N
+        gBFavorite.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Star_Full.png"))); // NOI18N
+        gBFavorite.setStartColor(new java.awt.Color(204, 204, 204));
         gBFavorite.setToolTipText("Adicionar aos favoritos");
         gBFavorite.setVerticalTextPosition(3);
         gBFavorite.addActionListener(new java.awt.event.ActionListener() {
@@ -269,11 +370,13 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBDesktop.add(gBFavorite);
 
-        gBAddDesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/invert/browser_add.png"))); // NOI18N
-        gBAddDesk.setEndColor(new java.awt.Color(51, 102, 255));
+        gBAddDesk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Add_1.png"))); // NOI18N
+        gBAddDesk.setBackground(new java.awt.Color(255, 255, 255));
+        gBAddDesk.setEndColor(new java.awt.Color(255, 255, 255));
         gBAddDesk.setHorizontalTextPosition(0);
-        gBAddDesk.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/browser_add.png"))); // NOI18N
-        gBAddDesk.setStartColor(new java.awt.Color(0, 153, 255));
+        gBAddDesk.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Add_1.png"))); // NOI18N
+        gBAddDesk.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Add_1.png"))); // NOI18N
+        gBAddDesk.setStartColor(new java.awt.Color(204, 204, 204));
         gBAddDesk.setToolTipText("Adicionar novo desktop");
         gBAddDesk.setVerticalTextPosition(3);
         gBAddDesk.addActionListener(new java.awt.event.ActionListener() {
@@ -283,11 +386,13 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBDesktop.add(gBAddDesk);
 
-        gBRemoveDesks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/invert/browser_delete.png"))); // NOI18N
-        gBRemoveDesks.setEndColor(new java.awt.Color(51, 102, 255));
+        gBRemoveDesks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Close.png"))); // NOI18N
+        gBRemoveDesks.setBackground(new java.awt.Color(255, 255, 255));
+        gBRemoveDesks.setEndColor(new java.awt.Color(255, 255, 255));
         gBRemoveDesks.setHorizontalTextPosition(0);
-        gBRemoveDesks.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/browser_delete.png"))); // NOI18N
-        gBRemoveDesks.setStartColor(new java.awt.Color(0, 153, 255));
+        gBRemoveDesks.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Close.png"))); // NOI18N
+        gBRemoveDesks.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Close.png"))); // NOI18N
+        gBRemoveDesks.setStartColor(new java.awt.Color(204, 204, 204));
         gBRemoveDesks.setToolTipText("Remover todos os Desktops");
         gBRemoveDesks.setVerticalTextPosition(3);
         gBRemoveDesks.addActionListener(new java.awt.event.ActionListener() {
@@ -298,11 +403,13 @@ public class VisualApp extends javax.swing.JFrame {
         jTBDesktop.add(gBRemoveDesks);
         jTBDesktop.add(jSeparator4);
 
-        gBOrganize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/invert/grid_1.png"))); // NOI18N
-        gBOrganize.setEndColor(new java.awt.Color(51, 102, 255));
+        gBOrganize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Addons.png"))); // NOI18N
+        gBOrganize.setBackground(new java.awt.Color(255, 255, 255));
+        gBOrganize.setEndColor(new java.awt.Color(255, 255, 255));
         gBOrganize.setHorizontalTextPosition(0);
-        gBOrganize.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/32/grid_1.png"))); // NOI18N
-        gBOrganize.setStartColor(new java.awt.Color(0, 153, 255));
+        gBOrganize.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Addons.png"))); // NOI18N
+        gBOrganize.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/32/Addons.png"))); // NOI18N
+        gBOrganize.setStartColor(new java.awt.Color(204, 204, 204));
         gBOrganize.setToolTipText("Organizar os itens no desktop");
         gBOrganize.setVerticalTextPosition(3);
         gBOrganize.addActionListener(new java.awt.event.ActionListener() {
@@ -313,21 +420,29 @@ public class VisualApp extends javax.swing.JFrame {
         jTBDesktop.add(gBOrganize);
         jTBDesktop.add(jSeparator6);
 
-        jTBSearch.setBackground(new java.awt.Color(102, 153, 255));
+        jButton1.setText("jButton1");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jTBDesktop.add(jButton1);
+
         jTBSearch.setBorder(null);
         jTBSearch.setFloatable(false);
         jTBSearch.add(jSeparator7);
 
         jTSearchField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTSearchField.setMaximumSize(new java.awt.Dimension(2147483647, 28));
-        jTSearchField.setMinimumSize(new java.awt.Dimension(120, 19));
+        jTSearchField.setMinimumSize(new java.awt.Dimension(120, 20));
+        jTSearchField.setPreferredSize(new java.awt.Dimension(120, 20));
         jTBSearch.add(jTSearchField);
 
-        gBSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/magnifying_glass.png"))); // NOI18N
-        gBSearch.setEndColor(new java.awt.Color(51, 153, 255));
+        gBSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Search.png"))); // NOI18N
+        gBSearch.setBackground(new java.awt.Color(255, 255, 255));
+        gBSearch.setEndColor(new java.awt.Color(255, 255, 255));
         gBSearch.setHorizontalTextPosition(0);
-        gBSearch.setPressedIcon(new javax.swing.ImageIcon("/home/kaciano/NetBeansProjects/GMP-EE/GMP-EE-desktop/src/main/resources/IKONS/16/magnifying_glass.png")); // NOI18N
-        gBSearch.setStartColor(new java.awt.Color(51, 102, 255));
+        gBSearch.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Search.png"))); // NOI18N
+        gBSearch.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Search.png"))); // NOI18N
+        gBSearch.setStartColor(new java.awt.Color(204, 204, 204));
         gBSearch.setToolTipText("Procurar");
         gBSearch.setVerticalTextPosition(3);
         gBSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -341,89 +456,81 @@ public class VisualApp extends javax.swing.JFrame {
         jTBMsg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTBMsg.setFloatable(false);
 
+        jLUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Man_2.png"))); // NOI18N
+        jLUser.setText("Usuário");
+        jLUser.setMaximumSize(new java.awt.Dimension(32767, 32767));
+        jTBMsg.add(jLUser);
+
         jLMsg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/speech_bubble_1.png"))); // NOI18N
         jLMsg.setMaximumSize(new java.awt.Dimension(32174, 32174));
         jTBMsg.add(jLMsg);
 
         jTBUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTBUser.setFloatable(false);
-
-        gBLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/logout.png"))); // NOI18N
-        gBLogout.setEndColor(new java.awt.Color(51, 153, 255));
-        gBLogout.setHorizontalTextPosition(0);
-        gBLogout.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/logout.png"))); // NOI18N
-        gBLogout.setStartColor(new java.awt.Color(51, 102, 255));
-        gBLogout.setToolTipText("Trocar usuário");
-        gBLogout.setVerticalTextPosition(3);
-        gBLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gBLogoutActionPerformed(evt);
-            }
-        });
-        jTBUser.add(gBLogout);
         jTBUser.add(jSeparator1);
-
-        jLUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/user_circle.png"))); // NOI18N
-        jLUser.setText("Usuário");
-        jLUser.setMaximumSize(new java.awt.Dimension(32767, 32767));
-        jTBUser.add(jLUser);
 
         jTBSystem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTBSystem.setFloatable(false);
 
         jLWeb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLWeb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/globe.png"))); // NOI18N
+        jLWeb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Globe.png"))); // NOI18N
         jLWeb.setMaximumSize(new java.awt.Dimension(30, 32678));
         jLWeb.setMinimumSize(new java.awt.Dimension(30, 15));
         jTBSystem.add(jLWeb);
 
         jLSystem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/wifi_3.png"))); // NOI18N
+        jLSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Basic_data.png"))); // NOI18N
         jLSystem.setMaximumSize(new java.awt.Dimension(30, 32678));
         jLSystem.setMinimumSize(new java.awt.Dimension(30, 15));
         jTBSystem.add(jLSystem);
 
-        jSplit.setDividerLocation(200);
-        jSplit.setDividerSize(4);
-
-        gTPDesktops.setBackground(new java.awt.Color(51, 153, 255));
-        gTPDesktops.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        gTPDesktops.setBackground(new java.awt.Color(81, 179, 255));
+        gTPDesktops.setBorder(null);
         gTPDesktops.setMinimumSize(new java.awt.Dimension(350, 100));
+        gTPDesktops.setOpaque(true);
         gTPDesktops.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         gTPDesktops.setTabPlacement(JTabbedPane.TOP);
-        jSplit.setRightComponent(gTPDesktops);
 
-        jSP.setBorder(null);
-        jSP.setMaximumSize(new java.awt.Dimension(32767, 150));
-        jSP.setMinimumSize(new java.awt.Dimension(21, 150));
+        jPMenus.setBackground(new java.awt.Color(0, 51, 102));
+        jPMenus.setMinimumSize(new java.awt.Dimension(196, 0));
 
-        MenuContainer.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        MenuContainer.setMinimumSize(new java.awt.Dimension(200, 60));
-        MenuContainer.setPreferredSize(new java.awt.Dimension(150, 60));
-        MenuContainer.setLayout(new org.jdesktop.swingx.VerticalLayout());
-        MenuContainer.add(Task);
+        javax.swing.GroupLayout jPMenusLayout = new javax.swing.GroupLayout(jPMenus);
+        jPMenus.setLayout(jPMenusLayout);
+        jPMenusLayout.setHorizontalGroup(
+            jPMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 196, Short.MAX_VALUE)
+        );
+        jPMenusLayout.setVerticalGroup(
+            jPMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 394, Short.MAX_VALUE)
+        );
 
-        jSP.add(MenuContainer);
+        jMenu1.setText("Opções");
+        jMenuBar1.add(jMenu1);
 
-        jSP.setViewportView(MenuContainer);
+        jMenu2.setText("Look And Feel");
+        jMenuBar1.add(jMenu2);
 
-        jSplit.setLeftComponent(jSP);
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTBUser, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jTBMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jTBSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jSplit)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTBDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTBDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jTBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPMenus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTBUser, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTBMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jTBSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(gTPDesktops, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,7 +539,9 @@ public class VisualApp extends javax.swing.JFrame {
                     .addComponent(jTBDesktop, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTBSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
-                .addComponent(jSplit, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPMenus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(gTPDesktops, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTBMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -492,11 +601,19 @@ public class VisualApp extends javax.swing.JFrame {
     }//GEN-LAST:event_gBCleanActionPerformed
 
     private void itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemActionPerformed
-        ViewFrame view = new ViewFrame();
+        ViewFrame view = new ProfileView();
         view.setSize(400, 300);
         view.setVisible(true);
         appBean.insertView(view);
     }//GEN-LAST:event_itemActionPerformed
+
+    private void gBTaskMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBTaskMenuActionPerformed
+        changeMenu(MenuContainer);
+    }//GEN-LAST:event_gBTaskMenuActionPerformed
+
+    private void gBTreeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBTreeMenuActionPerformed
+        changeMenu(jSPTree);
+    }//GEN-LAST:event_gBTreeMenuActionPerformed
 
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
     /**
@@ -614,6 +731,11 @@ public class VisualApp extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel(new AluminiumLookAndFeel());
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(VisualApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -637,8 +759,11 @@ public class VisualApp extends javax.swing.JFrame {
     private br.com.gmp.comps.button.GMPButton gBProcess;
     private br.com.gmp.comps.button.GMPButton gBRemoveDesks;
     private br.com.gmp.comps.button.GMPButton gBSearch;
+    private br.com.gmp.comps.button.GMPButton gBTaskMenu;
+    private br.com.gmp.comps.button.GMPButton gBTreeMenu;
     private br.com.gmp.comps.tabbedpane.GMPJTabbedPane gTPDesktops;
     private javax.swing.JMenuItem item;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLSystem;
     private javax.swing.JLabel jLUser;
@@ -647,23 +772,28 @@ public class VisualApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIClose;
     private javax.swing.JMenuItem jMICloseAll;
     private javax.swing.JMenuItem jMIInfo;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPMenus;
     private javax.swing.JPopupMenu jPopDesktop;
     private javax.swing.JPopupMenu jPopTray;
-    private javax.swing.JScrollPane jSP;
+    private javax.swing.JScrollPane jSPTree;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
+    private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar.Separator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator7;
     private javax.swing.JToolBar.Separator jSeparator8;
-    private javax.swing.JSplitPane jSplit;
     private javax.swing.JToolBar jTBDesktop;
     private javax.swing.JToolBar jTBMsg;
     private javax.swing.JToolBar jTBSearch;
     private javax.swing.JToolBar jTBSystem;
     private javax.swing.JToolBar jTBUser;
     private javax.swing.JTextField jTSearchField;
+    private javax.swing.JTree jTree;
     // End of variables declaration//GEN-END:variables
 
 }

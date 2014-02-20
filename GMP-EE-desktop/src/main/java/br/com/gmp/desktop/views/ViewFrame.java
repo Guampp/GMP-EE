@@ -114,7 +114,6 @@ public class ViewFrame extends JInternalFrame implements View {
 
         jLMsg = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setVisible(true);
 
         jLMsg.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -125,13 +124,13 @@ public class ViewFrame extends JInternalFrame implements View {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(3, 3, 3)
-                .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                 .addGap(3, 3, 3))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(323, Short.MAX_VALUE)
+                .addContainerGap(317, Short.MAX_VALUE)
                 .addComponent(jLMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3))
         );

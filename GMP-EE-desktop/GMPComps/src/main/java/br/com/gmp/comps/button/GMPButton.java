@@ -1,6 +1,7 @@
 package br.com.gmp.comps.button;
 
 import br.com.gmp.comps.BaseColors;
+import br.com.gmp.comps.ui.GMPButtonUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GradientPaint;
@@ -19,8 +20,8 @@ public class GMPButton extends javax.swing.JButton {
 
     private Color startColor = BaseColors.darkColor;
     private Color endColor = BaseColors.lightColor;
-    private Color rollOverColor = BaseColors.systemColor;
-    private Color pressedColor = new Color(204, 67, 0);
+    private Color rollOverColor = BaseColors.darkColor.brighter();
+    private Color pressedColor = BaseColors.systemColor.brighter();
     private GradientPaint GP;
 
     public GMPButton() {
@@ -62,9 +63,6 @@ public class GMPButton extends javax.swing.JButton {
         setFont(new Font("Tahoma", Font.BOLD, 12));
     }
 
-    /**
-     *
-     */
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
@@ -75,12 +73,12 @@ public class GMPButton extends javax.swing.JButton {
         ButtonModel otherModel = getModel();
         if (!otherModel.isEnabled()) {
             setForeground(Color.GRAY);
-            GP = new GradientPaint(0, 0, new Color(192, 192, 192), 0, h, new Color(192, 192, 192),
+            GP = new GradientPaint(0, 0, new Color(192, 192, 192), 0, h, new Color(152, 152, 152),
                     true);
         } else {
             setForeground(Color.WHITE);
             if (otherModel.isRollover()) {
-                GP = new GradientPaint(0, 0, rollOverColor, 0, h, rollOverColor,
+                GP = new GradientPaint(0, 0, rollOverColor, 0, h, rollOverColor.darker(),
                         true);
             } else {
                 GP = new GradientPaint(0, 0, startColor, 0, h, endColor, true);
@@ -92,15 +90,15 @@ public class GMPButton extends javax.swing.JButton {
         if (otherModel.isPressed()) {
             GP = new GradientPaint(0, 0, pressedColor, 0, h, pressedColor, true);
             g2d.setPaint(GP);
-            p1 = new GradientPaint(0, 0, new Color(0, 0, 0), 0, h - 1,
-                    new Color(100, 100, 100));
-            p2 = new GradientPaint(0, 1, new Color(0, 0, 0, 50), 0, h - 3,
-                    new Color(255, 255, 255, 100));
+            p1 = new GradientPaint(0, 0,pressedColor, 0, h - 1,
+                    pressedColor.darker());
+            p2 = new GradientPaint(0, 1, pressedColor.darker(), 0, h - 3,
+                    pressedColor);
         } else {
-            p1 = new GradientPaint(0, 0, new Color(100, 100, 100), 0, h - 1,
-                    new Color(0, 0, 0));
-            p2 = new GradientPaint(0, 1, new Color(255, 255, 255, 100), 0,
-                    h - 3, new Color(0, 0, 0, 50));
+            p1 = new GradientPaint(0, 0, startColor, 0, h - 1,
+                    endColor);
+            p2 = new GradientPaint(0, 1, endColor, 0,
+                    h - 3, startColor);
             GP = new GradientPaint(0, 0, startColor, 0, h, endColor, true);
         }
         Rectangle2D.Float r2d = new Rectangle2D.Float(0, 0, w - 1, h - 1);

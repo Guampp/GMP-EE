@@ -19,8 +19,10 @@ import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 
 /**
@@ -158,7 +160,7 @@ public class SystemProperties {
     private void addKeyInput(String name, int keycode, Action action) {
         this.visualApp.getRootPane().getActionMap().put(name, action);
         this.visualApp.getRootPane().getInputMap()
-                .put(KeyStroke.getKeyStroke(keycode, 0), name);
+                .put(KeyStroke.getKeyStroke(keycode, 0), name);        
     }
 
     /**
