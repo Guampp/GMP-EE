@@ -184,6 +184,19 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
     }
 
     /**
+     * Retorna o valor Long do texto
+     *
+     * @return <code>Long</code> Valor Long do texto
+     */
+    public Long getLong() {
+        try {
+            return Long.parseLong(getText());
+        } catch (NumberFormatException e) {
+            throw e;
+        }
+    }
+
+    /**
      * Conteúdo gerado automáticamente pela IDEs
      */
     @SuppressWarnings("unchecked")
@@ -228,7 +241,6 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         });
         jPopActions.add(jMIPaste);
 
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         setComponentPopupMenu(jPopActions);
         setMinimumSize(new java.awt.Dimension(5, 28));
         setPreferredSize(new java.awt.Dimension(100, 28));

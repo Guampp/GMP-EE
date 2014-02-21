@@ -42,7 +42,7 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
         setMask();
         setDate(new Date());
         this.setLayout(new BorderLayout());
-        this.add(gBDate, BorderLayout.EAST);
+        this.add(jBDate, BorderLayout.EAST);
         jPopDate.add(jPCalendar);
         jSpinnerYear.setModel(new javax.swing.SpinnerListModel(getYearList()));
     }
@@ -210,6 +210,7 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
         jXCalendar = new org.jdesktop.swingx.JXMonthView();
         gBOk = new br.com.gmp.comps.button.GMPButton();
         gBDate = new br.com.gmp.comps.button.GMPButton();
+        jBDate = new javax.swing.JButton();
 
         jTBPrev.setFloatable(false);
         jTBPrev.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -299,6 +300,17 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
             }
         });
 
+        jBDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/calendar.png"))); // NOI18N
+        jBDate.setToolTipText("Escolher data");
+        jBDate.setMaximumSize(new java.awt.Dimension(26, 26));
+        jBDate.setMinimumSize(new java.awt.Dimension(26, 26));
+        jBDate.setPreferredSize(new java.awt.Dimension(26, 26));
+        jBDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDateActionPerformed(evt);
+            }
+        });
+
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         setComponentPopupMenu(jPopDate);
@@ -357,11 +369,16 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
         checkPop();
     }//GEN-LAST:event_gBOkActionPerformed
 
+    private void jBDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDateActionPerformed
+        checkPop();
+    }//GEN-LAST:event_jBDateActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private br.com.gmp.comps.button.GMPButton gBDate;
     private br.com.gmp.comps.button.GMPButton gBNext;
     private br.com.gmp.comps.button.GMPButton gBOk;
     private br.com.gmp.comps.button.GMPButton gBPrevious;
+    private javax.swing.JButton jBDate;
     private javax.swing.JPanel jPCalendar;
     private javax.swing.JPopupMenu jPopDate;
     private javax.swing.JSpinner jSpinnerYear;

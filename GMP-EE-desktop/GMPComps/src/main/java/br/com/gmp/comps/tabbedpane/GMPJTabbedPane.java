@@ -119,7 +119,7 @@ public class GMPJTabbedPane extends JTabbedPane {
     private void changeTabbedPane() {
         initComponents();
         defaultColoring();
-        this.setUI(new GMPTabbedPaneUI());
+        //this.setUI(new GMPTabbedPaneUI());
     }
 
     /**
@@ -355,7 +355,6 @@ public class GMPJTabbedPane extends JTabbedPane {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
     }// </editor-fold>//GEN-END:initComponents
 

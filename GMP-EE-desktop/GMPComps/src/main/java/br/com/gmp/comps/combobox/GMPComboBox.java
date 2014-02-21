@@ -16,10 +16,10 @@ public class GMPComboBox extends JComboBox {
     public GMPComboBox() {
         initComponents();
         setBackground(BaseColors.lightColor);
-        UIManager.put("ComboBox.selectionBackground", BaseColors.systemColor);
-        UIManager.put("ComboBox.selectionForeground", Color.white);
-        UIManager.put("ComboBox.border", new LineBorder(BaseColors.darkColor, 1));
-        setUI(new GMPComboBoxUI());
+//        UIManager.put("ComboBox.selectionBackground", BaseColors.systemColor);
+//        UIManager.put("ComboBox.selectionForeground", Color.white);
+//        UIManager.put("ComboBox.border", new LineBorder(BaseColors.darkColor, 1));
+//        setUI(new GMPComboBoxUI());
     }
 
     @SuppressWarnings("unchecked")

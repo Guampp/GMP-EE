@@ -100,7 +100,7 @@ public class GMPTaskPane extends JXTaskPane {
         if (isSpecial()) {
             finalColor = initialColor;
         }        
-        this.setUI(new GMPTaskPaneUI(initialColor, finalColor, textColor, highlight));
+        //this.setUI(new GMPTaskPaneUI(initialColor, finalColor, textColor, highlight));
         this.setCollapsed(true);
     }
 

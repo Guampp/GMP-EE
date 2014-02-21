@@ -69,7 +69,7 @@ public class GMPTable extends JTable {
      */
     private void initialize() {
         initComponents();
-        this.getTableHeader().setUI(new MyTableHeaderUI());
+        //this.getTableHeader().setUI(new MyTableHeaderUI());
         this.setSelectionBackground(BaseColors.systemColor);
         this.setShowGrid(true);
         this.setGridColor(BaseColors.darkColor.darker());
