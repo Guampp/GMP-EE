@@ -260,6 +260,7 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
 
         jXCalendar.setDaysOfTheWeek(new String[] {"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"});
         jXCalendar.setDaysOfTheWeekForeground(new java.awt.Color(102, 0, 0));
+        jXCalendar.setMaximumSize(new java.awt.Dimension(217, 120));
         jXCalendar.setSelectionForeground(new java.awt.Color(255, 102, 0));
         jXCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -271,10 +272,10 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
         jPCalendar.setLayout(jPCalendarLayout);
         jPCalendarLayout.setHorizontalGroup(
             jPCalendarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCalendarLayout.createSequentialGroup()
+            .addGroup(jPCalendarLayout.createSequentialGroup()
                 .addComponent(jTBPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jTBYear, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTBYear, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jTBNext, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jXCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -287,8 +288,7 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
                     .addComponent(jTBPrev, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTBYear, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jXCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jXCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
         );
 
         jPCalendarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTBNext, jTBPrev, jTBYear});
