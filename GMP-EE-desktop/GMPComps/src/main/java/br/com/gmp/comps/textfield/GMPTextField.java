@@ -208,6 +208,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         jMICut = new javax.swing.JMenuItem();
         jMIPaste = new javax.swing.JMenuItem();
 
+        jMICopy.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMICopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/textfield/16/documents.png"))); // NOI18N
         jMICopy.setMnemonic('c');
         jMICopy.setText("<html>Copiar <b>Ctrl+C</b></html>");
@@ -219,6 +220,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         });
         jPopActions.add(jMICopy);
 
+        jMICut.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMICut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/textfield/16/document_remove.png"))); // NOI18N
         jMICut.setMnemonic('x');
         jMICut.setText("<html>Recortar <b>Ctrl+X</b></html>");
@@ -230,6 +232,7 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         });
         jPopActions.add(jMICut);
 
+        jMIPaste.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jMIPaste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/textfield/16/document_add.png"))); // NOI18N
         jMIPaste.setMnemonic('v');
         jMIPaste.setText("<html>Colar <b>Ctrl+V</b></html>");

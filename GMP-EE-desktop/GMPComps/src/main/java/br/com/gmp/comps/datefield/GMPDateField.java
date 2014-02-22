@@ -44,7 +44,6 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
         this.setLayout(new BorderLayout());
         this.add(jBDate, BorderLayout.EAST);
         jPopDate.add(jPCalendar);
-        jSpinnerYear.setModel(new javax.swing.SpinnerListModel(getYearList()));
     }
 
     /**
@@ -80,26 +79,7 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
         setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
     }
 
-    /**
-     *
-     * @return
-     */
-    private String[] getYearList() {
-        int actual = new Date().getYear() + 1900;
-        int initial = actual - 100;
-        int dif = 100;
-        String[] yearList = new String[dif];
-        int j = 0;
-        for (int i = actual; i != initial; i--) {
-            if (j <= 100) {
-                yearList[j] = String.valueOf(i);
-                j++;
-            } else {
-                break;
-            }
-        }
-        return yearList;
-    }
+
 
     /**
      *
@@ -144,6 +124,22 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
     }
 
     /**
+     * Vai para o próximo ano
+     */
+    public void nextYear() {
+        date.setYear(date.getYear() + 1);
+        setDate(date);
+    }
+
+    /**
+     * Volta ao ano anterior
+     */
+    public void previousYear() {
+        date.setYear(date.getYear() - 1);
+        setDate(date);
+    }
+
+    /**
      * Ação de componente em foco
      *
      * @param e FocusEvent
@@ -178,15 +174,15 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
      * Mostra a PopUp de seleção de datas
      */
     private void openPopUp() {
-        gBDate.setComponentPopupMenu(jPopDate);
-        gBDate.getComponentPopupMenu().show(gBDate.getParent(), 0, getHeight());
+        jBDate.setComponentPopupMenu(jPopDate);
+        jBDate.getComponentPopupMenu().show(jBDate.getParent(), 0, getHeight());
     }
 
     public void checkPop() {
         if (jPopDate.isShowing()) {
             jPopDate.setVisible(false);
         } else {
-            jPopDate.show(gBDate.getParent(), 0, getHeight());
+            jPopDate.show(jBDate.getParent(), 0, getHeight());
         }
     }
 
@@ -202,50 +198,68 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
         jPopDate = new javax.swing.JPopupMenu();
         jPCalendar = new javax.swing.JPanel();
         jTBPrev = new javax.swing.JToolBar();
-        gBPrevious = new br.com.gmp.comps.button.GMPButton();
+        jBPreviousYear = new javax.swing.JButton();
+        jBPreviousMonth = new javax.swing.JButton();
         jTBYear = new javax.swing.JToolBar();
-        jSpinnerYear = new javax.swing.JSpinner();
         jTBNext = new javax.swing.JToolBar();
-        gBNext = new br.com.gmp.comps.button.GMPButton();
+        jBNextMonth = new javax.swing.JButton();
+        jBNextYear = new javax.swing.JButton();
         jXCalendar = new org.jdesktop.swingx.JXMonthView();
-        gBOk = new br.com.gmp.comps.button.GMPButton();
-        gBDate = new br.com.gmp.comps.button.GMPButton();
         jBDate = new javax.swing.JButton();
 
         jTBPrev.setFloatable(false);
         jTBPrev.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        gBPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/circle_left.png"))); // NOI18N
-        gBPrevious.setHorizontalTextPosition(0);
-        gBPrevious.setVerticalTextPosition(3);
-        gBPrevious.addActionListener(new java.awt.event.ActionListener() {
+        jBPreviousYear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Hide_left.png"))); // NOI18N
+        jBPreviousYear.setFocusable(false);
+        jBPreviousYear.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBPreviousYear.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBPreviousYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gBPreviousActionPerformed(evt);
+                jBPreviousYearActionPerformed(evt);
             }
         });
-        jTBPrev.add(gBPrevious);
+        jTBPrev.add(jBPreviousYear);
+
+        jBPreviousMonth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Navigate_left.png"))); // NOI18N
+        jBPreviousMonth.setFocusable(false);
+        jBPreviousMonth.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBPreviousMonth.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBPreviousMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPreviousMonthActionPerformed(evt);
+            }
+        });
+        jTBPrev.add(jBPreviousMonth);
 
         jTBYear.setFloatable(false);
 
-        jSpinnerYear.setModel(new javax.swing.SpinnerListModel(new String[] {"Item 0", "Item 1", "Item 2", "Item 3"}));
-        jTBYear.add(jSpinnerYear);
-
         jTBNext.setFloatable(false);
 
-        gBNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/circle_right.png"))); // NOI18N
-        gBNext.setHorizontalTextPosition(0);
-        gBNext.setVerticalTextPosition(3);
-        gBNext.addActionListener(new java.awt.event.ActionListener() {
+        jBNextMonth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Navigate_right.png"))); // NOI18N
+        jBNextMonth.setFocusable(false);
+        jBNextMonth.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBNextMonth.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBNextMonth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gBNextActionPerformed(evt);
+                jBNextMonthActionPerformed(evt);
             }
         });
-        jTBNext.add(gBNext);
+        jTBNext.add(jBNextMonth);
 
-        jXCalendar.setBackground(new java.awt.Color(102, 153, 255));
-        jXCalendar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
+        jBNextYear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Hide_right.png"))); // NOI18N
+        jBNextYear.setFocusable(false);
+        jBNextYear.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBNextYear.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBNextYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNextYearActionPerformed(evt);
+            }
+        });
+        jTBNext.add(jBNextYear);
+
         jXCalendar.setDaysOfTheWeek(new String[] {"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"});
-        jXCalendar.setDaysOfTheWeekForeground(new java.awt.Color(0, 102, 153));
+        jXCalendar.setDaysOfTheWeekForeground(new java.awt.Color(102, 0, 0));
         jXCalendar.setSelectionForeground(new java.awt.Color(255, 102, 0));
         jXCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -253,26 +267,17 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
             }
         });
 
-        gBOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/circle_ok.png"))); // NOI18N
-        gBOk.setText("Confirmar");
-        gBOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gBOkActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPCalendarLayout = new javax.swing.GroupLayout(jPCalendar);
         jPCalendar.setLayout(jPCalendarLayout);
         jPCalendarLayout.setHorizontalGroup(
             jPCalendarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPCalendarLayout.createSequentialGroup()
-                .addComponent(jTBPrev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCalendarLayout.createSequentialGroup()
+                .addComponent(jTBPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jTBYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTBYear, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jTBNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jXCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-            .addComponent(gBOk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTBNext, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jXCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPCalendarLayout.setVerticalGroup(
             jPCalendarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,26 +286,14 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
                     .addComponent(jTBNext, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTBPrev, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTBYear, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addComponent(jXCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(gBOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jXCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         jPCalendarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTBNext, jTBPrev, jTBYear});
 
-        gBDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/calendar.png"))); // NOI18N
-        gBDate.setMaximumSize(new java.awt.Dimension(26, 26));
-        gBDate.setMinimumSize(new java.awt.Dimension(26, 26));
-        gBDate.setPreferredSize(new java.awt.Dimension(26, 26));
-        gBDate.setSize(new java.awt.Dimension(26, 26));
-        gBDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gBDateActionPerformed(evt);
-            }
-        });
-
-        jBDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/invert/calendar.png"))); // NOI18N
+        jBDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Calendar_selection_all.png"))); // NOI18N
         jBDate.setToolTipText("Escolher data");
         jBDate.setMaximumSize(new java.awt.Dimension(26, 26));
         jBDate.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -336,10 +329,6 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
 
     }//GEN-LAST:event_jFTDateFocusLost
 
-    private void gBDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBDateActionPerformed
-        checkPop();
-    }//GEN-LAST:event_gBDateActionPerformed
-
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         focusGained(evt);
     }//GEN-LAST:event_formFocusGained
@@ -357,31 +346,34 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
         }
     }//GEN-LAST:event_jXCalendarMouseClicked
 
-    private void gBNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBNextActionPerformed
-        nextMonth();
-    }//GEN-LAST:event_gBNextActionPerformed
-
-    private void gBPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBPreviousActionPerformed
-        previousMonth();
-    }//GEN-LAST:event_gBPreviousActionPerformed
-
-    private void gBOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBOkActionPerformed
-        checkPop();
-    }//GEN-LAST:event_gBOkActionPerformed
-
     private void jBDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDateActionPerformed
         checkPop();
     }//GEN-LAST:event_jBDateActionPerformed
 
+    private void jBPreviousYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPreviousYearActionPerformed
+        previousYear();
+    }//GEN-LAST:event_jBPreviousYearActionPerformed
+
+    private void jBPreviousMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPreviousMonthActionPerformed
+        previousMonth();
+    }//GEN-LAST:event_jBPreviousMonthActionPerformed
+
+    private void jBNextMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNextMonthActionPerformed
+        nextMonth();
+    }//GEN-LAST:event_jBNextMonthActionPerformed
+
+    private void jBNextYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNextYearActionPerformed
+        nextYear();
+    }//GEN-LAST:event_jBNextYearActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private br.com.gmp.comps.button.GMPButton gBDate;
-    private br.com.gmp.comps.button.GMPButton gBNext;
-    private br.com.gmp.comps.button.GMPButton gBOk;
-    private br.com.gmp.comps.button.GMPButton gBPrevious;
     private javax.swing.JButton jBDate;
+    private javax.swing.JButton jBNextMonth;
+    private javax.swing.JButton jBNextYear;
+    private javax.swing.JButton jBPreviousMonth;
+    private javax.swing.JButton jBPreviousYear;
     private javax.swing.JPanel jPCalendar;
     private javax.swing.JPopupMenu jPopDate;
-    private javax.swing.JSpinner jSpinnerYear;
     private javax.swing.JToolBar jTBNext;
     private javax.swing.JToolBar jTBPrev;
     private javax.swing.JToolBar jTBYear;

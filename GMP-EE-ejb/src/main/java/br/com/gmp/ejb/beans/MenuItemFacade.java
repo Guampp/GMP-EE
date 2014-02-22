@@ -5,6 +5,8 @@
  */
 package br.com.gmp.ejb.beans;
 
+import br.com.gmp.ejb.dao.AbstractDao;
+import br.com.gmp.ejb.dao.MenuItemDaoRemote;
 import br.com.gmp.ejb.entity.MenuItem;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,7 +17,7 @@ import javax.persistence.PersistenceContext;
  * @author kaciano
  */
 @Stateless(mappedName = "EJB/MenuItemFacade", name = "MenuItemFacade")
-public class MenuItemFacade extends AbstractFacade<MenuItem> implements MenuItemFacadeRemote {
+public class MenuItemFacade extends AbstractDao<MenuItem> implements MenuItemDaoRemote {
 
     @PersistenceContext(unitName = "GMP-EJB-PU")
     private EntityManager em;

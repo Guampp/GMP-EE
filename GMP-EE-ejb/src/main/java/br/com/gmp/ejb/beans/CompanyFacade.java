@@ -5,6 +5,8 @@
  */
 package br.com.gmp.ejb.beans;
 
+import br.com.gmp.ejb.dao.AbstractDao;
+import br.com.gmp.ejb.dao.CompanyDaoRemote;
 import br.com.gmp.ejb.entity.Company;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,7 +17,7 @@ import javax.persistence.PersistenceContext;
  * @author kaciano
  */
 @Stateless(mappedName = "EJB/CompanyFacade", name = "CompanyFacade")
-public class CompanyFacade extends AbstractFacade<Company> implements CompanyFacadeRemote {
+public class CompanyFacade extends AbstractDao<Company> implements CompanyDaoRemote {
 
     @PersistenceContext(unitName = "GMP-EJB-PU")
     private EntityManager em;

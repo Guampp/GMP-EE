@@ -5,6 +5,8 @@
  */
 package br.com.gmp.ejb.beans;
 
+import br.com.gmp.ejb.dao.AbstractDao;
+import br.com.gmp.ejb.dao.UserBaseDaoRemote;
 import br.com.gmp.ejb.entity.UserBase;
 import br.com.gmp.ejb.entity.UserInfo;
 import br.com.gmp.ejb.enums.EntityBeans;
@@ -23,7 +25,7 @@ import javax.persistence.criteria.Root;
  * @author kaciano
  */
 @Stateless(mappedName = EntityBeans.USER_BASE_BEAN, name = "UserBaseFacade")
-public class UserBaseFacade extends AbstractFacade<UserBase> implements UserBaseFacadeRemote {
+public class UserBaseFacade extends AbstractDao<UserBase> implements UserBaseDaoRemote {
 
     @PersistenceContext(unitName = "GMP-EJB-PU")
     private EntityManager em;

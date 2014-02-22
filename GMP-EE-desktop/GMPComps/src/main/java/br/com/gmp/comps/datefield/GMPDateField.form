@@ -13,15 +13,14 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Component id="jTBPrev" min="-2" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <Component id="jTBPrev" min="-2" pref="66" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="jTBYear" max="32767" attributes="0"/>
+                  <Component id="jTBYear" min="-2" pref="107" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="jTBNext" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTBNext" min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
-              <Component id="jXCalendar" pref="240" max="32767" attributes="0"/>
-              <Component id="gBOk" alignment="1" max="32767" attributes="0"/>
+              <Component id="jXCalendar" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -32,10 +31,9 @@
                       <Component id="jTBPrev" linkSize="1" max="32767" attributes="0"/>
                       <Component id="jTBYear" linkSize="1" min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jXCalendar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="jXCalendar" pref="138" max="32767" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="gBOk" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -51,16 +49,30 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
           <SubComponents>
-            <Component class="br.com.gmp.comps.button.GMPButton" name="gBPrevious">
+            <Component class="javax.swing.JButton" name="jBPreviousYear">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IKONS/16/invert/circle_left.png"/>
+                  <Image iconType="3" name="/br/com/gmp/comps/icons/16/Hide_left.png"/>
                 </Property>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBPreviousActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBPreviousYearActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jBPreviousMonth">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/gmp/comps/icons/16/Navigate_left.png"/>
+                </Property>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
+                <Property name="verticalTextPosition" type="int" value="3"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBPreviousMonthActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -71,20 +83,6 @@
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JSpinner" name="jSpinnerYear">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel type="list">
-                    <ListItem value="Item 0"/>
-                    <ListItem value="Item 1"/>
-                    <ListItem value="Item 2"/>
-                    <ListItem value="Item 3"/>
-                  </SpinnerModel>
-                </Property>
-              </Properties>
-            </Component>
-          </SubComponents>
         </Container>
         <Container class="javax.swing.JToolBar" name="jTBNext">
           <Properties>
@@ -93,32 +91,36 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
           <SubComponents>
-            <Component class="br.com.gmp.comps.button.GMPButton" name="gBNext">
+            <Component class="javax.swing.JButton" name="jBNextMonth">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IKONS/16/invert/circle_right.png"/>
+                  <Image iconType="3" name="/br/com/gmp/comps/icons/16/Navigate_right.png"/>
                 </Property>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBNextActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBNextMonthActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jBNextYear">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/br/com/gmp/comps/icons/16/Hide_right.png"/>
+                </Property>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
+                <Property name="verticalTextPosition" type="int" value="3"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBNextYearActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
         <Component class="org.jdesktop.swingx.JXMonthView" name="jXCalendar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="66" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder>
-                  <Color PropertyName="color" blue="ff" green="66" red="33" type="rgb"/>
-                </LineBorder>
-              </Border>
-            </Property>
             <Property name="daysOfTheWeek" type="[Ljava.lang.String;" editor="org.netbeans.beaninfo.editors.StringArrayEditor">
               <StringArray count="7">
                 <StringItem index="0" value="Dom"/>
@@ -131,7 +133,7 @@
               </StringArray>
             </Property>
             <Property name="daysOfTheWeekForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="66" red="0" type="rgb"/>
+              <Color blue="0" green="0" red="66" type="rgb"/>
             </Property>
             <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="66" red="ff" type="rgb"/>
@@ -141,45 +143,12 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jXCalendarMouseClicked"/>
           </Events>
         </Component>
-        <Component class="br.com.gmp.comps.button.GMPButton" name="gBOk">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IKONS/16/invert/circle_ok.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Confirmar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBOkActionPerformed"/>
-          </Events>
-        </Component>
       </SubComponents>
     </Container>
-    <Component class="br.com.gmp.comps.button.GMPButton" name="gBDate">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/IKONS/16/invert/calendar.png"/>
-        </Property>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[26, 26]"/>
-        </Property>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[26, 26]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[26, 26]"/>
-        </Property>
-        <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[26, 26]"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gBDateActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="jBDate">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/IKONS/16/invert/calendar.png"/>
+          <Image iconType="3" name="/br/com/gmp/comps/icons/16/Calendar_selection_all.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Escolher data"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">

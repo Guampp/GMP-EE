@@ -5,6 +5,8 @@
  */
 package br.com.gmp.ejb.beans;
 
+import br.com.gmp.ejb.dao.AbstractDao;
+import br.com.gmp.ejb.dao.DemandInfoDaoRemote;
 import br.com.gmp.ejb.entity.DemandInfo;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,7 +17,7 @@ import javax.persistence.PersistenceContext;
  * @author kaciano
  */
 @Stateless(mappedName = "EJB/DemandInfoFacade", name = "DemandInfoFacade")
-public class DemandInfoFacade extends AbstractFacade<DemandInfo> implements DemandInfoFacadeRemote {
+public class DemandInfoFacade extends AbstractDao<DemandInfo> implements DemandInfoDaoRemote {
 
     @PersistenceContext(unitName = "GMP-EJB-PU")
     private EntityManager em;
