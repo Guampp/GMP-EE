@@ -16,7 +16,7 @@
               <Group type="102" attributes="0">
                   <Component id="jTBPrev" min="-2" pref="66" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                  <Component id="jTBYear" pref="151" max="32767" attributes="0"/>
+                  <Component id="jTBYear" pref="126" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                   <Component id="jTBNext" min="-2" pref="61" max="-2" attributes="0"/>
               </Group>

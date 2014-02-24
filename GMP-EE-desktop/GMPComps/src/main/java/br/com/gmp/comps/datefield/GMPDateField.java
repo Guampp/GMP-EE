@@ -275,7 +275,7 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
             .addGroup(jPCalendarLayout.createSequentialGroup()
                 .addComponent(jTBPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jTBYear, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                .addComponent(jTBYear, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jTBNext, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jXCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
