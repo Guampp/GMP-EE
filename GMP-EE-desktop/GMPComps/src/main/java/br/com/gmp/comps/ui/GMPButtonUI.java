@@ -77,6 +77,9 @@ public class GMPButtonUI extends BasicButtonUI {
         g2d.setClip(clip);
         g2d.setPaint(p1);
         g2d.setPaint(p2);
+        Color color = new Color(255, 255, 255, 100);
+        g2d.setColor(color);
+        g2d.drawRect(0, 0, w - 2, (h / 2));
         g2d.dispose();
         button.paintComponents(g);
     }

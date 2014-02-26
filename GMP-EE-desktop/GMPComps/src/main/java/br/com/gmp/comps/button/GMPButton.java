@@ -90,7 +90,7 @@ public class GMPButton extends javax.swing.JButton {
         if (otherModel.isPressed()) {
             GP = new GradientPaint(0, 0, pressedColor, 0, h, pressedColor, true);
             g2d.setPaint(GP);
-            p1 = new GradientPaint(0, 0,pressedColor, 0, h - 1,
+            p1 = new GradientPaint(0, 0, pressedColor, 0, h - 1,
                     pressedColor.darker());
             p2 = new GradientPaint(0, 1, pressedColor.darker(), 0, h - 3,
                     pressedColor);
@@ -110,6 +110,9 @@ public class GMPButton extends javax.swing.JButton {
         g2d.drawRect(0, 0, w - 1, h - 1);
         g2d.setPaint(p2);
         g2d.drawRect(1, 1, w - 3, h - 3);
+        Color color = new Color(255, 255, 255, 100);
+        g2d.setColor(color);
+        g2d.fillRect(1, 1, w - 2, (h / 2));
         g2d.dispose();
 
         super.paintComponent(g);
