@@ -110,7 +110,7 @@ public class GMPButton extends javax.swing.JButton {
         g2d.drawRect(0, 0, w - 1, h - 1);
         g2d.setPaint(p2);
         g2d.drawRect(1, 1, w - 3, h - 3);
-        Color color = new Color(255, 255, 255, 100);
+        Color color = new Color(255, 255, 255, 75);
         g2d.setColor(color);
         g2d.fillRect(1, 1, w - 2, (h / 2));
         g2d.dispose();
