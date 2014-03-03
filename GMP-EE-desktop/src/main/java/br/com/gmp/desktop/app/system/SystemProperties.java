@@ -7,6 +7,7 @@ import br.com.gmp.desktop.app.action.DiscardAction;
 import br.com.gmp.desktop.app.action.HelpAction;
 import br.com.gmp.desktop.app.action.ProcessAction;
 import br.com.gmp.desktop.app.action.ReloadAction;
+import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 import java.awt.AWTException;
 import java.awt.Image;
 import java.awt.MenuItem;
@@ -19,11 +20,11 @@ import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Classe que gerencia as propriedades padrão do sistema
@@ -56,6 +57,28 @@ public class SystemProperties {
     public static final String FILE_SEPARATOR = System.getProperties().getProperty("file.separator");
     public static final String JAVA_RUNTIME_VERSION = System.getProperties().getProperty("java.runtime.version");
     public static final String JAVA_VERSION = System.getProperties().getProperty("java.version");
+
+    /**
+     * Inicia toda a aplicação
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new GraphiteLookAndFeel());
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(VisualApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                VisualApp visualApp = new VisualApp();
+                SystemProperties system = new SystemProperties(visualApp);
+                visualApp.setVisible(true);
+            }
+        });
+    }
 
     /**
      * Cria nova instancia de SystemProperties
@@ -160,7 +183,7 @@ public class SystemProperties {
     private void addKeyInput(String name, int keycode, Action action) {
         this.visualApp.getRootPane().getActionMap().put(name, action);
         this.visualApp.getRootPane().getInputMap()
-                .put(KeyStroke.getKeyStroke(keycode, 0), name);        
+                .put(KeyStroke.getKeyStroke(keycode, 0), name);
     }
 
     /**

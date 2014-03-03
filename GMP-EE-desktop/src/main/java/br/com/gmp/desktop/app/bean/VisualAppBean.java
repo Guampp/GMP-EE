@@ -5,7 +5,6 @@ import br.com.gmp.desktop.app.VisualApp;
 import br.com.gmp.comps.tabbedpane.GMPJTabbedPane;
 import br.com.gmp.desktop.views.ViewFrame;
 import br.com.gmp.desktop.views.interfaces.View;
-import java.awt.Color;
 import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
@@ -116,8 +115,7 @@ public class VisualAppBean implements AppListener<VisualApp> {
     public void addDesktop() {
         ImageIcon icon = new ImageIcon(getClass()
                 .getResource("/IKONS/16/imac.png"));
-        JDesktopPane desktop = new JDesktopPane();
-        desktop.setBackground(new Color(51, 153, 255));
+        JDesktopPane desktop = new JDesktopPane();        
         GMPJTabbedPane tabs = visualApp.getgTPDesktops();
         tabs.addClosableTab("", icon, desktop,
                 "Área de trabalho");

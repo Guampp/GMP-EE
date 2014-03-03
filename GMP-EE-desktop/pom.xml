@@ -53,6 +53,11 @@
             <version>1.6.5-1</version>
         </dependency>
         <dependency>
+            <groupId>com.github.taksan</groupId>
+            <artifactId>native-tray-adapter</artifactId>
+            <version>1.1</version> 
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>GMPComps</artifactId>
             <version>1.2</version>

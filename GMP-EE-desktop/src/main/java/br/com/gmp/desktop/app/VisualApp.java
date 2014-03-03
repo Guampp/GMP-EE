@@ -45,7 +45,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class VisualApp extends javax.swing.JFrame {
 
     private VisualAppBean appBean;
-    private SystemProperties systemProperties;
 
     /**
      * Cria nova instancia de VisualApp
@@ -64,9 +63,8 @@ public class VisualApp extends javax.swing.JFrame {
      * @see br.com.gmp.desktop.app.system.SystemProperties#constructActions()
      */
     private void initialize() {
-        systemProperties = new SystemProperties(this);
         this.getGlassPane().setBackground(Color.red);
-        Task.add(item);        
+        Task.add(item);
         addLafItens();
     }
 
@@ -84,8 +82,6 @@ public class VisualApp extends javax.swing.JFrame {
         lafMap.put("Graphite", new GraphiteLookAndFeel());
         lafMap.put("HiFi", new HiFiLookAndFeel());
         lafMap.put("Luna", new LunaLookAndFeel());
-//        lafMap.put("Metal", new MetalLookAndFeel());
-//        lafMap.put("Nimbus", new NimbusLookAndFeel());
         lafMap.put("Noire", new NoireLookAndFeel());
         lafMap.put("Smart", new SmartLookAndFeel());
         lafMap.put("Texture", new TextureLookAndFeel());
@@ -266,7 +262,6 @@ public class VisualApp extends javax.swing.JFrame {
         setTitle("Guampp 1.0");
         setMinimumSize(new java.awt.Dimension(750, 475));
 
-        jTBDesktop.setBorder(null);
         jTBDesktop.setFloatable(false);
         jTBDesktop.setRollover(true);
         jTBDesktop.setBorderPainted(false);
@@ -291,7 +286,6 @@ public class VisualApp extends javax.swing.JFrame {
         gTSearch.setPreferredSize(new java.awt.Dimension(100, 16));
         jTBSearch.add(gTSearch);
 
-        jTBMsg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTBMsg.setFloatable(false);
         jTBMsg.setRollover(true);
 
@@ -299,7 +293,6 @@ public class VisualApp extends javax.swing.JFrame {
         jLMsg.setMaximumSize(new java.awt.Dimension(32174, 32174));
         jTBMsg.add(jLMsg);
 
-        jTBUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTBUser.setFloatable(false);
         jTBUser.setRollover(true);
         jTBUser.setMaximumSize(new java.awt.Dimension(12, 18));
@@ -340,7 +333,6 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBUser.add(jBToggleMenus);
 
-        jTBSystem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTBSystem.setFloatable(false);
         jTBSystem.setRollover(true);
 
@@ -362,12 +354,12 @@ public class VisualApp extends javax.swing.JFrame {
         jLSystem.setMinimumSize(new java.awt.Dimension(30, 15));
         jTBSystem.add(jLSystem);
 
+        gTPDesktops.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         gTPDesktops.setMinimumSize(new java.awt.Dimension(350, 100));
         gTPDesktops.setOpaque(true);
         gTPDesktops.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         gTPDesktops.setTabPlacement(JTabbedPane.BOTTOM);
 
-        jTBDesktop1.setBorder(null);
         jTBDesktop1.setFloatable(false);
         jTBDesktop1.setRollover(true);
         jTBDesktop1.setBorderPainted(false);
@@ -490,7 +482,7 @@ public class VisualApp extends javax.swing.JFrame {
                     .addComponent(jTBDesktop, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gTPDesktops, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSPMenus, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
+                    .addComponent(jSPMenus, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTBMsg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTBSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -552,22 +544,6 @@ public class VisualApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jBMenuActionPerformed
 
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
-    /**
-     *
-     * @return
-     */
-    public SystemProperties getSystemProperties() {
-        return systemProperties;
-    }
-
-    /**
-     *
-     * @param systemProperties
-     */
-    public void setSystemProperties(SystemProperties systemProperties) {
-        this.systemProperties = systemProperties;
-    }
-
     public VisualAppBean getAppBean() {
         return appBean;
     }
@@ -663,17 +639,6 @@ public class VisualApp extends javax.swing.JFrame {
     }
 
     //</editor-fold>
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new VisualApp().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private br.com.gmp.comps.taskcontainer.GMPTaskContainer MenuContainer;
