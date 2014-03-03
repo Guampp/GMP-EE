@@ -29,7 +29,7 @@ public class MaskFormats {
         MaskFormatter mask = new MaskFormatter();
         try {
             mask = new MaskFormatter(pattern);
-            mask.setPlaceholderCharacter('_');
+            mask.setPlaceholderCharacter(' ');
             mask.setCommitsOnValidEdit(true);
             mask.setValueContainsLiteralCharacters(false);
         } catch (java.text.ParseException e) {
