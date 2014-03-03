@@ -1,6 +1,6 @@
 package br.com.gmp.desktop.dao;
 
-import br.com.gmp.ejb.beans.UserBaseFacadeRemote;
+import br.com.gmp.ejb.dao.UserBaseDao;
 import br.com.gmp.ejb.enums.EntityBeans;
 import javax.naming.NamingException;
 
@@ -8,9 +8,9 @@ import javax.naming.NamingException;
  *
  * @author kaciano
  */
-public class UserBaseDAO extends GenericDAO<UserBaseFacadeRemote> {
+public class UserDAO extends GenericDAO<UserBaseDao> {
 
-    public UserBaseFacadeRemote getDAO() throws NamingException {
+    public UserBaseDao getDAO() throws NamingException {
         return super.getDAO(EntityBeans.USER_BASE_BEAN);
     }
 

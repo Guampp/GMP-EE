@@ -58,14 +58,14 @@
             <version>1.2</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>GMP-EE-ejb</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>com.jtattoo</groupId>
             <artifactId>JTattoo</artifactId>
             <version>1.6.10</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>GMP-EE-ejb</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
     <description>Aplicação desktop do Guampp</description>
