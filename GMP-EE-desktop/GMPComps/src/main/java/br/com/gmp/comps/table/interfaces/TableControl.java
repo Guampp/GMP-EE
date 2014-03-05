@@ -25,11 +25,25 @@ public interface TableControl {
     int getMaxRows();
 
     /**
+     * Modifica o limite de linhas por página
+     *
+     * @param maxrows <code><b>int</b></code> Máximo de linhas por página
+     */
+    void setMaxRows(int maxrows);
+
+    /**
      * Retorna página atual
      *
      * @return <code><b>int</b></code> Página atual
      */
     int getActualPage();
+
+    /**
+     * Modifica a página atual
+     *
+     * @param page <code><b>int</b></code> Página atual
+     */
+    void setActualPage(int page);
 
     /**
      * Indica a página para a qual a tabela deve ir
