@@ -184,6 +184,50 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
     }
 
     /**
+     * Retorna o valor Boolean do texto
+     *
+     * @return <code>Boolean</code> Valor Boolean do texto
+     */
+    public Boolean getBoolean() {
+        try {
+            return Boolean.getBoolean(getText());
+        } catch (NumberFormatException e) {
+            throw e;
+        }
+    }
+
+    /**
+     * Modifica o valor conforme o boolean recebido
+     *
+     * @param value <code>boolean</code> Valor Boolean do texto
+     */
+    public void setBoolean(boolean value) {
+        setText(String.valueOf(value));
+    }
+
+    /**
+     * Retorna o valor Integer do texto
+     *
+     * @return <code>Integer</code> Valor Integer do texto
+     */
+    public Integer getInteger() {
+        try {
+            return Integer.parseInt(getText());
+        } catch (NumberFormatException e) {
+            throw e;
+        }
+    }
+
+    /**
+     * Modifica o valor conforme o int recebido
+     *
+     * @param value <code>int</code> Valor Boolean do texto
+     */
+    public void setInt(int value) {
+        setText(String.valueOf(value));
+    }
+
+    /**
      * Retorna o valor Long do texto
      *
      * @return <code>Long</code> Valor Long do texto
@@ -194,6 +238,15 @@ public class GMPTextField extends JTextField implements ValidableComponent, KeyL
         } catch (NumberFormatException e) {
             throw e;
         }
+    }
+
+    /**
+     * Modifica o valor conforme o long recebido
+     *
+     * @param value <code>long</code> Valor Boolean do texto
+     */
+    public void setLong(long value) {
+        setText(String.valueOf(value));
     }
 
     /**

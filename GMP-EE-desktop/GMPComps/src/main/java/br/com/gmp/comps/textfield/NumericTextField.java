@@ -3,27 +3,39 @@ package br.com.gmp.comps.textfield;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
+ * Campo de texto numerico
  *
  * @author kaciano
+ * @version 1.0
  */
-public class NumericTextField extends JTextField {
+public class NumericTextField extends GMPTextField {
 
     private int limit = 0;
 
+    /**
+     * Cria novo campo de texto numerico
+     */
     public NumericTextField() {
         initComponents();
         addListeners();
     }
 
+    /**
+     * Cria novo campo de texto numerico
+     *
+     * @param limit
+     */
     public NumericTextField(int limit) {
         initComponents();
         this.limit = limit;
         addListeners();
     }
 
+    /**
+     * Adiciona os listeners especificos
+     */
     private void addListeners() {
         addKeyListener(new KeyAdapter() {
             @Override
@@ -58,7 +70,6 @@ public class NumericTextField extends JTextField {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         setPreferredSize(new java.awt.Dimension(100, 25));
     }// </editor-fold>//GEN-END:initComponents
 

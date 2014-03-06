@@ -19,7 +19,6 @@ import javax.swing.table.TableCellRenderer;
  * Tabela customizada
  *
  * @author kaciano
- * @param <T>
  */
 public class GMPTable extends JTable implements TableControl {
 
@@ -143,6 +142,11 @@ public class GMPTable extends JTable implements TableControl {
     }
 
     @Override
+    public void refresh() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public void nextPage() {
         if (actualPage < (pageCount - 1)) {
             setActualPage(actualPage + 1);
@@ -182,6 +186,16 @@ public class GMPTable extends JTable implements TableControl {
 
     @Override
     public void gotoPage(int page) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void gotoFirst() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void gotoLast() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

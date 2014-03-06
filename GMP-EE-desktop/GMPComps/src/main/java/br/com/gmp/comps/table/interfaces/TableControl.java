@@ -51,4 +51,19 @@ public interface TableControl {
      * @param page <code><b>int</b></code> Página indicada
      */
     void gotoPage(int page);
+
+    /**
+     * Vai para a primeira página
+     */
+    void gotoFirst();
+
+    /**
+     * Vai para a última página
+     */
+    void gotoLast();
+
+    /**
+     * Atualiza a tabela.
+     */
+    void refresh();
 }
