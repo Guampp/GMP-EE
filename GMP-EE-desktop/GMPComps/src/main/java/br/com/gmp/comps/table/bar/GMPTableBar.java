@@ -72,6 +72,7 @@ public class GMPTableBar extends javax.swing.JPanel {
         nTPage = new br.com.gmp.comps.textfield.NumericTextField();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jLPages = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
         jBRefresh = new javax.swing.JButton();
         jTBNext = new javax.swing.JToolBar();
         jBNext = new javax.swing.JButton();
@@ -81,6 +82,7 @@ public class GMPTableBar extends javax.swing.JPanel {
         jTBPrevious.setRollover(true);
 
         jBFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Hide_left.png"))); // NOI18N
+        jBFirst.setToolTipText("Voltar para a primeira página");
         jBFirst.setFocusable(false);
         jBFirst.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBFirst.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -92,6 +94,7 @@ public class GMPTableBar extends javax.swing.JPanel {
         jTBPrevious.add(jBFirst);
 
         jBPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Navigate_left.png"))); // NOI18N
+        jBPrevious.setToolTipText("Voltar para a página anterior");
         jBPrevious.setFocusable(false);
         jBPrevious.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBPrevious.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -107,6 +110,7 @@ public class GMPTableBar extends javax.swing.JPanel {
 
         nTPage.setMaximumSize(new java.awt.Dimension(100, 25));
         nTPage.setMinimumSize(new java.awt.Dimension(100, 25));
+        nTPage.setToolTipText("<html>Para trocar de página, <b>insira o número</b> da mesma e tecle <b>[ENTER]</b></html>");
         nTPage.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 nTPageKeyReleased(evt);
@@ -119,8 +123,10 @@ public class GMPTableBar extends javax.swing.JPanel {
         jLPages.setText("1/1");
         jLPages.setMaximumSize(new java.awt.Dimension(50, 15));
         jTBPage.add(jLPages);
+        jTBPage.add(jSeparator2);
 
         jBRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Refresh.png"))); // NOI18N
+        jBRefresh.setToolTipText("Atualizar a tabela");
         jBRefresh.setFocusable(false);
         jBRefresh.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBRefresh.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -135,6 +141,7 @@ public class GMPTableBar extends javax.swing.JPanel {
         jTBNext.setRollover(true);
 
         jBNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Navigate_right.png"))); // NOI18N
+        jBNext.setToolTipText("Ir para a próxima página");
         jBNext.setFocusable(false);
         jBNext.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBNext.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -146,6 +153,7 @@ public class GMPTableBar extends javax.swing.JPanel {
         jTBNext.add(jBNext);
 
         jBLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Hide_right.png"))); // NOI18N
+        jBLast.setToolTipText("Ir para a ultima página");
         jBLast.setFocusable(false);
         jBLast.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBLast.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -163,7 +171,7 @@ public class GMPTableBar extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTBPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jTBPage, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                .addComponent(jTBPage, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jTBNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -209,6 +217,7 @@ public class GMPTableBar extends javax.swing.JPanel {
     private javax.swing.JButton jBRefresh;
     private javax.swing.JLabel jLPages;
     private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar jTBNext;
     private javax.swing.JToolBar jTBPage;
     private javax.swing.JToolBar jTBPrevious;

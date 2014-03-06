@@ -19,7 +19,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jTBPrevious" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-              <Component id="jTBPage" pref="168" max="32767" attributes="0"/>
+              <Component id="jTBPage" pref="192" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Component id="jTBNext" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
@@ -48,6 +48,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/br/com/gmp/comps/icons/16/Hide_left.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Voltar para a primeira p&#xe1;gina"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -61,6 +62,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/br/com/gmp/comps/icons/16/Navigate_left.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Voltar para a p&#xe1;gina anterior"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -87,6 +89,7 @@
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 25]"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Para trocar de p&#xe1;gina, &lt;b&gt;insira o n&#xfa;mero&lt;/b&gt; da mesma e tecle &lt;b&gt;[ENTER]&lt;/b&gt;&lt;/html&gt;"/>
           </Properties>
           <Events>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nTPageKeyReleased"/>
@@ -103,11 +106,14 @@
             </Property>
           </Properties>
         </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
+        </Component>
         <Component class="javax.swing.JButton" name="jBRefresh">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/br/com/gmp/comps/icons/16/Refresh.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Atualizar a tabela"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -131,6 +137,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/br/com/gmp/comps/icons/16/Navigate_right.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ir para a pr&#xf3;xima p&#xe1;gina"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -144,6 +151,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/br/com/gmp/comps/icons/16/Hide_right.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ir para a ultima p&#xe1;gina"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
