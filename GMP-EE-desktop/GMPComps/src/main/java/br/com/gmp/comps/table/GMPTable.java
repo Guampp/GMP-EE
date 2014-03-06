@@ -14,6 +14,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 /**
  * Tabela customizada
@@ -71,7 +73,7 @@ public class GMPTable<T> extends JTable implements TableControl {
         this.source = source;
         this.gmpModel = model;
         this.setModel(model);
-        initialize();        
+        initialize();
     }
 
     /**
@@ -95,7 +97,7 @@ public class GMPTable<T> extends JTable implements TableControl {
         initComponents();
         this.setSelectionBackground(BaseColors.systemColor);
         this.setShowGrid(true);
-        this.setGridColor(BaseColors.darkColor.darker());
+        this.setGridColor(Color.gray.darker());
         this.setDefaultEditor(Boolean.TYPE, new DefaultCellEditor(new JCheckBox()));
         this.setDefaultRenderer(Boolean.TYPE, new DefaultTableCellRenderer() {
             @Override
@@ -103,22 +105,27 @@ public class GMPTable<T> extends JTable implements TableControl {
                     Object value, boolean isSelected, boolean hasFocus, int row,
                     int column) {
                 JCheckBox check = new JCheckBox("", (Boolean) value);
-                check.setAlignmentX(CENTER_ALIGNMENT);
+                check.setHorizontalAlignment(SwingConstants.CENTER);
+                check.setHorizontalTextPosition(SwingConstants.CENTER);
                 //--------------------------------------------------------------
                 // Par e não selecionado
                 if (row % 2 == 0 && !isCellSelected(row, column)) {
                     check.setOpaque(true);
-                    check.setBackground(BaseColors.alternativeRowColor);
+                    check.setBackground(Color.lightGray);
                 }
                 //--------------------------------------------------------------
                 // Selecionado
                 if (isCellSelected(row, column)) {
+                    check.setHorizontalAlignment(SwingConstants.CENTER);
+                    check.setHorizontalTextPosition(SwingConstants.CENTER);
                     check.setOpaque(true);
                     check.setBackground(getSelectionBackground());
                 }
                 //--------------------------------------------------------------
                 // Impar e não selecionado
                 if (!(row % 2 == 0) && !isCellSelected(row, column)) {
+                    check.setHorizontalAlignment(SwingConstants.CENTER);
+                    check.setHorizontalTextPosition(SwingConstants.CENTER);
                     check.setOpaque(true);
                     check.setBackground(getBackground());
                 }
@@ -213,7 +220,7 @@ public class GMPTable<T> extends JTable implements TableControl {
     public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component c = super.prepareRenderer(renderer, row, column);
         if (row % 2 == 0 && !isCellSelected(row, column)) {
-            c.setBackground(BaseColors.alternativeRowColor);
+            c.setBackground(Color.lightGray);
         } else if (isCellSelected(row, column)) {
             c.setBackground(getSelectionBackground());
         } else {
