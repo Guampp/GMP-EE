@@ -8,6 +8,10 @@ package br.com.gmp.comps;
 import br.com.gmp.comps.dialog.GMPDialog;
 import br.com.gmp.comps.model.GMPTableModel;
 import br.com.gmp.comps.panel.BlurGlassPane;
+import br.com.gmp.comps.table.GMPTable;
+import br.com.gmp.comps.table.interfaces.TableSource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.swing.JTable;
 
@@ -15,7 +19,7 @@ import javax.swing.JTable;
  *
  * @author kaciano
  */
-public class Tets extends javax.swing.JFrame {
+public class Tets extends javax.swing.JFrame implements TableSource<DefaultModelObject> {
 
     /**
      * Creates new form Tets
@@ -24,13 +28,22 @@ public class Tets extends javax.swing.JFrame {
         initComponents();
         try {
             jTable.setModel(new DefaultModel());
-            gTable.setModel(new DefaultModel());
+            gTable.setModel(new DefaultModel());            
             setGlassPane(new BlurGlassPane());
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
         }
 
+    }
+
+    @Override
+    public List<DefaultModelObject> getTableData() {
+        List<DefaultModelObject> list = new ArrayList<>();
+        for (int i = 0; i < 200; i++) {
+            list.add(new DefaultModelObject("Kaciano", 22, true));
+        }
+        return list;
     }
 
     /**
@@ -44,10 +57,6 @@ public class Tets extends javax.swing.JFrame {
 
         gMPJTabbedPane1 = new br.com.gmp.comps.tabbedpane.GMPJTabbedPane();
         gMPButton3 = new br.com.gmp.comps.button.GMPButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        gMPTable1 = new br.com.gmp.comps.table.GMPTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        gMPTable2 = new br.com.gmp.comps.table.GMPTable();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         gTable = new br.com.gmp.comps.table.GMPTable();
@@ -63,6 +72,7 @@ public class Tets extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jInternalFrame = new javax.swing.JInternalFrame();
         jButton3 = new javax.swing.JButton();
+        paginatedTable = new br.com.gmp.comps.table.paginated.GMPPaginatedTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,20 +86,6 @@ public class Tets extends javax.swing.JFrame {
             }
         });
         gMPJTabbedPane1.addTab("tab1", gMPButton3);
-
-        jScrollPane2.setName("jScrollPane2"); // NOI18N
-
-        gMPTable1.setName("gMPTable1"); // NOI18N
-        jScrollPane2.setViewportView(gMPTable1);
-
-        gMPJTabbedPane1.addTab("tab2", jScrollPane2);
-
-        jScrollPane4.setName("jScrollPane4"); // NOI18N
-
-        gMPTable2.setName("gMPTable2"); // NOI18N
-        jScrollPane4.setViewportView(gMPTable2);
-
-        gMPJTabbedPane1.addTab("tab3", jScrollPane4);
 
         jPanel1.setName("jPanel1"); // NOI18N
 
@@ -208,7 +204,7 @@ public class Tets extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         gMPJTabbedPane1.addTab("tab4", jPanel1);
@@ -250,18 +246,21 @@ public class Tets extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1.setLayer(jInternalFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         gMPJTabbedPane1.addTab("tab5", jDesktopPane1);
+
+        paginatedTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        paginatedTable.setName("paginatedTable"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,15 +268,19 @@ public class Tets extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gMPJTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(gMPJTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(paginatedTable, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gMPJTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gMPJTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(paginatedTable, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -294,8 +297,10 @@ public class Tets extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         GMPTableModel model = (GMPTableModel) jTable.getModel();
         GMPTableModel gmpModel = (GMPTableModel) gTable.getModel();
+
         model.add(new DefaultModelObject("Kaciano", 22, true));
         gmpModel.add(new DefaultModelObject("Kaciano", 22, true));
+        paginatedTable.getTable().getGmpModel().add(new DefaultModelObject("Kaciano", 22, true));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -346,8 +351,6 @@ public class Tets extends javax.swing.JFrame {
     private br.com.gmp.comps.button.GMPButton gMPButton4;
     private br.com.gmp.comps.datefield.GMPDateField gMPDateField1;
     private br.com.gmp.comps.tabbedpane.GMPJTabbedPane gMPJTabbedPane1;
-    private br.com.gmp.comps.table.GMPTable gMPTable1;
-    private br.com.gmp.comps.table.GMPTable gMPTable2;
     private br.com.gmp.comps.textfield.GMPTextField gMPTextField1;
     private br.com.gmp.comps.table.GMPTable gTable;
     private javax.swing.JButton jButton1;
@@ -357,10 +360,9 @@ public class Tets extends javax.swing.JFrame {
     private javax.swing.JInternalFrame jInternalFrame;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable;
+    private br.com.gmp.comps.table.paginated.GMPPaginatedTable paginatedTable;
     // End of variables declaration//GEN-END:variables
 }
 

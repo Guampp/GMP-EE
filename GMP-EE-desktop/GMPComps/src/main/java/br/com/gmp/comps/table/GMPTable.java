@@ -27,10 +27,12 @@ import javax.swing.SwingConstants;
  */
 public class GMPTable<T> extends JTable implements TableControl {
 
+    private Class objClass;
     private TableSource source;
     private int pageCount;
     private int actualPage;
     private int maxRows;
+    private List<T> mainList;
     private List<T>[] pages;
     private GMPTableModel gmpModel;
 
@@ -38,13 +40,15 @@ public class GMPTable<T> extends JTable implements TableControl {
      * Cria nova instancia de GMPTable
      */
     public GMPTable() {
+        this.objClass = TableObject.class;
         this.source = new TableSource() {
             @Override
             public List<TableObject> getTableData() {
                 return new ArrayList<>();
             }
         };
-        this.gmpModel = new GMPTableModel(TableObject.class);
+        mainList = source.getTableData();
+        this.gmpModel = new GMPTableModel(objClass);
         this.pageCount = 0;
         setModel(gmpModel);
         initialize();
@@ -54,10 +58,14 @@ public class GMPTable<T> extends JTable implements TableControl {
      * Cria nova instancia de GMPTable
      *
      * @param source <code>TableSource<code> Fonte de dados
+     * @param objClass <code><b>Class</b><T></code> Classe a ser mapeada
      */
-    public GMPTable(TableSource source) {
+    public GMPTable(TableSource source, Class objClass) {
         this.source = source;
-        this.gmpModel = new GMPTableModel(TableObject.class);
+        this.objClass = objClass;
+        this.mainList = source.getTableData();
+        this.gmpModel = new GMPTableModel(objClass);
+        this.maxRows = 0;
         this.pageCount = 0;
         setModel(gmpModel);
         initialize();
@@ -68,9 +76,12 @@ public class GMPTable<T> extends JTable implements TableControl {
      *
      * @param source <code>TableSource<code> Fonte de dados
      * @param model <code>GMPTableModel</code> Modelo da tabela
+     * @param objClass <code><b>Class</b><T></code> Classe a ser mapeada
      */
-    public GMPTable(TableSource source, GMPTableModel model) {
+    public GMPTable(TableSource source, GMPTableModel model, Class objClass) {
         this.source = source;
+        this.mainList = source.getTableData();
+        this.maxRows = 0;
         this.gmpModel = model;
         this.setModel(model);
         initialize();
@@ -82,11 +93,14 @@ public class GMPTable<T> extends JTable implements TableControl {
      * @param source <code>TableSource<code> Fonte de dados
      * @param maxRows <code>Integer</code> Numero máximo de linhas
      * @param gmpModel <code>GMPTableModel</code> Modelo da tabela
+     * @param objClass <code><b>Class</b><T></code> Classe a ser mapeada
      */
-    public GMPTable(TableSource source, int maxRows, GMPTableModel gmpModel) {
+    public GMPTable(TableSource source, int maxRows, GMPTableModel gmpModel, Class objClass) {
         this.source = source;
+        this.mainList = source.getTableData();
         this.maxRows = maxRows;
         this.gmpModel = gmpModel;
+        this.objClass = objClass;
         initialize();
     }
 
@@ -132,11 +146,13 @@ public class GMPTable<T> extends JTable implements TableControl {
                 return check;
             }
         });
+        //----------------------------------------------------------------------
+        splitData(mainList);
     }
 
     @Override
     public void refresh() {
-
+        this.mainList = source.getTableData();
     }
 
     @Override
@@ -175,6 +191,7 @@ public class GMPTable<T> extends JTable implements TableControl {
     @Override
     public void setActualPage(int actualPage) {
         this.actualPage = actualPage;
+        this.getGmpModel().setList(pages[actualPage]);
     }
 
     @Override
@@ -189,7 +206,9 @@ public class GMPTable<T> extends JTable implements TableControl {
 
     @Override
     public void gotoLast() {
-        this.setActualPage(pages.length > 0 ? (pages.length - 1) : 0);
+        if (pages != null) {
+            this.setActualPage(pages.length > 0 ? (pages.length - 1) : 0);
+        }
     }
 
     /**
@@ -204,6 +223,7 @@ public class GMPTable<T> extends JTable implements TableControl {
             this.pages = new ArrayList[1];
             this.pages[0] = list;
         }
+        setActualPage(0);
     }
 
     /**
@@ -230,6 +250,15 @@ public class GMPTable<T> extends JTable implements TableControl {
     }
 
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
+    /**
+     * Retorna a classe dos objetos mapeados
+     *
+     * @return <code><b>Class</b><T></code> Classe mapeada
+     */
+    public Class getObjClass() {
+        return objClass;
+    }
+
     /**
      * Retorna o modelo da tabela
      *
