@@ -4,8 +4,8 @@ import br.com.gmp.comps.BaseColors;
 import br.com.gmp.comps.baloontip.src.BalloonUtil;
 import br.com.gmp.comps.model.GMPTableModel;
 import br.com.gmp.comps.table.interfaces.TableControl;
+import br.com.gmp.comps.table.interfaces.TableSource;
 import br.com.gmp.utils.collections.CollectionUtil;
-import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,21 +19,29 @@ import javax.swing.table.TableCellRenderer;
  * Tabela customizada
  *
  * @author kaciano
+ * @version 1.0
+ * @param <T> Tipo de objeto da tabela
+ * @see javax.swing.JTable
  */
-public class GMPTable extends JTable implements TableControl {
+public class GMPTable<T> extends JTable implements TableControl {
 
+    private TableSource source;
     private int pageCount;
     private int actualPage;
     private int maxRows;
-    private List[] pages;
+    private List<T>[] pages;
     private GMPTableModel gmpModel;
-    private Color startHeaderColor;
-    private Color endHeaderColor;
 
     /**
-     *
+     * Cria nova instancia de GMPTable
      */
     public GMPTable() {
+        this.source = new TableSource() {
+            @Override
+            public List<TableObject> getTableData() {
+                return new ArrayList<>();
+            }
+        };
         this.gmpModel = new GMPTableModel(TableObject.class);
         this.pageCount = 0;
         setModel(gmpModel);
@@ -41,63 +49,42 @@ public class GMPTable extends JTable implements TableControl {
     }
 
     /**
+     * Cria nova instancia de GMPTable
      *
-     * @param model
+     * @param source <code>TableSource<code> Fonte de dados
      */
-    public GMPTable(GMPTableModel model) {
+    public GMPTable(TableSource source) {
+        this.source = source;
+        this.gmpModel = new GMPTableModel(TableObject.class);
+        this.pageCount = 0;
+        setModel(gmpModel);
+        initialize();
+    }
+
+    /**
+     * Cria nova instancia de GMPTable
+     *
+     * @param source <code>TableSource<code> Fonte de dados
+     * @param model <code>GMPTableModel</code> Modelo da tabela
+     */
+    public GMPTable(TableSource source, GMPTableModel model) {
+        this.source = source;
         this.gmpModel = model;
         this.setModel(model);
-        initialize();
+        initialize();        
     }
 
     /**
+     * Cria nova instancia de GMPTable
      *
-     * @param maxRows
-     * @param gmpModel
+     * @param source <code>TableSource<code> Fonte de dados
+     * @param maxRows <code>Integer</code> Numero máximo de linhas
+     * @param gmpModel <code>GMPTableModel</code> Modelo da tabela
      */
-    public GMPTable(int maxRows, GMPTableModel gmpModel) {
+    public GMPTable(TableSource source, int maxRows, GMPTableModel gmpModel) {
+        this.source = source;
         this.maxRows = maxRows;
         this.gmpModel = gmpModel;
-        initialize();
-    }
-
-    /**
-     *
-     * @param maxRows
-     * @param gmpModel
-     * @param startHeaderColor
-     * @param endHeaderColor
-     */
-    public GMPTable(int maxRows, GMPTableModel gmpModel, Color startHeaderColor, Color endHeaderColor) {
-        this.pageCount = maxRows;
-        this.gmpModel = gmpModel;
-        this.startHeaderColor = startHeaderColor;
-        this.endHeaderColor = endHeaderColor;
-        initialize();
-    }
-
-    /**
-     *
-     * @param startHeaderColor
-     * @param endHeaderColor
-     */
-    public GMPTable(Color startHeaderColor, Color endHeaderColor) {
-        this.gmpModel = new GMPTableModel(TableObject.class);
-        this.startHeaderColor = startHeaderColor;
-        this.endHeaderColor = endHeaderColor;
-        initialize();
-    }
-
-    /**
-     *
-     * @param gmpModel
-     * @param startHeaderColor
-     * @param endHeaderColor
-     */
-    public GMPTable(GMPTableModel gmpModel, Color startHeaderColor, Color endHeaderColor) {
-        this.gmpModel = gmpModel;
-        this.startHeaderColor = startHeaderColor;
-        this.endHeaderColor = endHeaderColor;
         initialize();
     }
 
@@ -106,7 +93,6 @@ public class GMPTable extends JTable implements TableControl {
      */
     private void initialize() {
         initComponents();
-        //this.getTableHeader().setUI(new MyTableHeaderUI());
         this.setSelectionBackground(BaseColors.systemColor);
         this.setShowGrid(true);
         this.setGridColor(BaseColors.darkColor.darker());
@@ -143,7 +129,7 @@ public class GMPTable extends JTable implements TableControl {
 
     @Override
     public void refresh() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
@@ -186,25 +172,25 @@ public class GMPTable extends JTable implements TableControl {
 
     @Override
     public void gotoPage(int page) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setActualPage(page);
     }
 
     @Override
     public void gotoFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setActualPage(0);
     }
 
     @Override
     public void gotoLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setActualPage(pages.length > 0 ? (pages.length - 1) : 0);
     }
 
     /**
      * Divide a lista principal em listas menores para gerar as páginas
      *
-     * @param list <code><b>List</b><?></code> Lista com os dados da tabela
+     * @param list <code><b>List</b><T></code> Lista com os dados da tabela
      */
-    private void splitData(List<?> list) {
+    private void splitData(List<T> list) {
         if (maxRows != 0) {
             this.pages = new CollectionUtil().splitList(list, maxRows);
         } else {
@@ -216,10 +202,10 @@ public class GMPTable extends JTable implements TableControl {
     /**
      * Monta a tabela
      *
-     * @param objectclass <code><b>Class</b><\/></code> Classe a ser mapeada
-     * @param list <code><b>List</b><?></code> Lista com os dados da tabela
+     * @param objectclass <code><b>Class</b><T></code> Classe a ser mapeada
+     * @param list <code><b>List</b><T></code> Lista com os dados da tabela
      */
-    public void mount(Class<?> objectclass, List<?> list) {
+    public void mount(Class<T> objectclass, List<T> list) {
         this.setModel(new GMPTableModel(objectclass, list));
     }
 
@@ -236,6 +222,74 @@ public class GMPTable extends JTable implements TableControl {
         return c;
     }
 
+    //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
+    /**
+     * Retorna o modelo da tabela
+     *
+     * @return <code>GMPTableModel</code> Modelo da tabela
+     */
+    public GMPTableModel getGmpModel() {
+        return gmpModel;
+    }
+
+    /**
+     * Modifica o modelo da tabela
+     *
+     * @param gmpModel <code>GMPTableModel</code> Modelo da tabela
+     */
+    public void setGmpModel(GMPTableModel gmpModel) {
+        this.gmpModel = gmpModel;
+    }
+
+    /**
+     * Retorna a fonte de dados
+     *
+     * @return <code>TableSource<code> Fonte de dados
+     */
+    public TableSource getSource() {
+        return source;
+    }
+
+    /**
+     * Modifica a fonte de dados
+     *
+     * @param source <code>TableSource<code> Fonte de dados
+     */
+    public void setSource(TableSource source) {
+        this.source = source;
+    }
+
+    /**
+     * Retorna a quantidade de páginas
+     *
+     * @return <code>int</code> Quantidade de páginas
+     */
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    /**
+     * Retorna as páginas
+     *
+     * @return <code>List[]</code> Array de listas das páginas
+     */
+    public List[] getPages() {
+        return pages;
+    }
+
+    /**
+     * Modifica as páginas
+     *
+     * @param pages <code>List[]</code> Array de listas das páginas
+     */
+    public void setPages(List[] pages) {
+        this.pages = pages;
+    }
+
+    //</editor-fold>
+    /**
+     * Código gerado automaticamente
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -244,30 +298,6 @@ public class GMPTable extends JTable implements TableControl {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    public GMPTableModel getGmpModel() {
-        return gmpModel;
-    }
-
-    public void setGmpModel(GMPTableModel gmpModel) {
-        this.gmpModel = gmpModel;
-    }
-
-    public Color getStartHeaderColor() {
-        return startHeaderColor;
-    }
-
-    public void setStartHeaderColor(Color startHeaderColor) {
-        this.startHeaderColor = startHeaderColor;
-    }
-
-    public Color getEndHeaderColor() {
-        return endHeaderColor;
-    }
-
-    public void setEndHeaderColor(Color endHeaderColor) {
-        this.endHeaderColor = endHeaderColor;
-    }
-
 }
 
 class TableObject {
