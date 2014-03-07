@@ -15,6 +15,10 @@ import java.util.List;
  */
 public class DateUtil {
 
+    private static String DAY = "d MMMMMM yyyy";
+    private static String HOUR = "HH:mm:ss";
+    private static String COMPLETE = "EEEEE, d MMMMMM yyyy - HH:mm:ss";
+
     /**
      * Retorna um array contendo todos ultimos 100 anos
      *
@@ -146,5 +150,149 @@ public class DateUtil {
         Date begin = sdf.parse(first);
         Date end = sdf.parse(last);
         return isBetween(p, begin, end);
+    }
+
+    /**
+     * Retorna a data formatada conforme o padrão recebido<br/>
+     * <table border=0 cellspacing=3 cellpadding=0 summary="Chart shows pattern
+     * letters, date/time component, presentation, and examples.">
+     * <tr bgcolor="#ccccff">
+     * <th align=left>Letter
+     * <th align=left>Date or Time Component
+     * <th align=left>Presentation
+     * <th align=left>Examples
+     * <tr>
+     * <td><code>G</code>
+     * <td>Era designator
+     * <td><a href="#text">Text</a>
+     * <td><code>AD</code>
+     * <tr bgcolor="#eeeeff">
+     * <td><code>y</code>
+     * <td>Year
+     * <td><a href="#year">Year</a>
+     * <td><code>1996</code>; <code>96</code>
+     * <tr>
+     * <td><code>Y</code>
+     * <td>Week year
+     * <td><a href="#year">Year</a>
+     * <td><code>2009</code>; <code>09</code>
+     * <tr bgcolor="#eeeeff">
+     * <td><code>M</code>
+     * <td>Month in year
+     * <td><a href="#month">Month</a>
+     * <td><code>July</code>; <code>Jul</code>; <code>07</code>
+     * <tr>
+     * <td><code>w</code>
+     * <td>Week in year
+     * <td><a href="#number">Number</a>
+     * <td><code>27</code>
+     * <tr bgcolor="#eeeeff">
+     * <td><code>W</code>
+     * <td>Week in month
+     * <td><a href="#number">Number</a>
+     * <td><code>2</code>
+     * <tr>
+     * <td><code>D</code>
+     * <td>Day in year
+     * <td><a href="#number">Number</a>
+     * <td><code>189</code>
+     * <tr bgcolor="#eeeeff">
+     * <td><code>d</code>
+     * <td>Day in month
+     * <td><a href="#number">Number</a>
+     * <td><code>10</code>
+     * <tr>
+     * <td><code>F</code>
+     * <td>Day of week in month
+     * <td><a href="#number">Number</a>
+     * <td><code>2</code>
+     * <tr bgcolor="#eeeeff">
+     * <td><code>E</code>
+     * <td>Day name in week
+     * <td><a href="#text">Text</a>
+     * <td><code>Tuesday</code>; <code>Tue</code>
+     * <tr>
+     * <td><code>u</code>
+     * <td>Day number of week (1 = Monday, ..., 7 = Sunday)
+     * <td><a href="#number">Number</a>
+     * <td><code>1</code>
+     * <tr bgcolor="#eeeeff">
+     * <td><code>a</code>
+     * <td>Am/pm marker
+     * <td><a href="#text">Text</a>
+     * <td><code>PM</code>
+     * <tr>
+     * <td><code>H</code>
+     * <td>Hour in day (0-23)
+     * <td><a href="#number">Number</a>
+     * <td><code>0</code>
+     * <tr bgcolor="#eeeeff">
+     * <td><code>k</code>
+     * <td>Hour in day (1-24)
+     * <td><a href="#number">Number</a>
+     * <td><code>24</code>
+     * <tr>
+     * <td><code>K</code>
+     * <td>Hour in am/pm (0-11)
+     * <td><a href="#number">Number</a>
+     * <td><code>0</code>
+     * <tr bgcolor="#eeeeff">
+     * <td><code>h</code>
+     * <td>Hour in am/pm (1-12)
+     * <td><a href="#number">Number</a>
+     * <td><code>12</code>
+     * <tr>
+     * <td><code>m</code>
+     * <td>Minute in hour
+     * <td><a href="#number">Number</a>
+     * <td><code>30</code>
+     * <tr bgcolor="#eeeeff">
+     * <td><code>s</code>
+     * <td>Second in minute
+     * <td><a href="#number">Number</a>
+     * <td><code>55</code>
+     * <tr>
+     * <td><code>S</code>
+     * <td>Millisecond
+     * <td><a href="#number">Number</a>
+     * <td><code>978</code>
+     * <tr bgcolor="#eeeeff">
+     * <td><code>z</code>
+     * <td>Time zone
+     * <td><a href="#timezone">General time zone</a>
+     * <td><code>Pacific Standard Time</code>; <code>PST</code>;
+     * <code>GMT-08:00</code>
+     * <tr>
+     * <td><code>Z</code>
+     * <td>Time zone
+     * <td><a href="#rfc822timezone">RFC 822 time zone</a>
+     * <td><code>-0800</code>
+     * <tr bgcolor="#eeeeff">
+     * <td><code>X</code>
+     * <td>Time zone
+     * <td><a href="#iso8601timezone">ISO 8601 time zone</a>
+     * <td><code>-08</code>; <code>-0800</code>;  <code>-08:00</code>
+     * </table>
+     *
+     * @param date <code><b>Date</b></code> Data parametro
+     * @param pattern <code><b>String</b></code> Padrão de formatação
+     * @return <code><b>String</b></code> Data formatada
+     */
+    public String getFormattedDate(Date date, String pattern) {
+        return new SimpleDateFormat(pattern).format(date);
+    }
+
+    /**
+     * Retorna a data por extenso
+     *
+     * @param date <code><b>Date</b></code> Data parametro
+     * @return <code><b>String</b></code> Data por extenso
+     */
+    public String getCompleteDate(Date date) {
+        return getFormattedDate(date, COMPLETE);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new DateUtil().getCompleteDate(new Date()));
     }
 }
