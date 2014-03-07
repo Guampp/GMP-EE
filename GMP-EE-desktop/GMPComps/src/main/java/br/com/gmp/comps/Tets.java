@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.gmp.comps;
 
 import br.com.gmp.comps.dialog.GMPDialog;
@@ -33,8 +28,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
         try {
             jTable.setModel(new DefaultModel());
             gTable.setModel(new DefaultModel());
-            setGlassPane(new BlurGlassPane());
-            gMPTable1.setTable(this, 20, new DefaultModel(), DefaultModelObject.class);
+            setGlassPane(new BlurGlassPane());            
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
@@ -45,7 +39,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
     public List<DefaultModelObject> getTableData() {
         List<DefaultModelObject> list = new ArrayList<>();
         for (int i = 0; i < 200; i++) {
-            list.add(new DefaultModelObject("Kaciano", 22, true));
+            list.add(new DefaultModelObject("Kaciano", i, true));
         }
         return list;
     }
@@ -77,10 +71,8 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
         jInternalFrame = new javax.swing.JInternalFrame();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        gMPTable1 = new br.com.gmp.comps.table.GMPTable();
+        gTable1 = new br.com.gmp.comps.table.GMPTable(this, 20, new DefaultModel(), DefaultModel.class);
         gMPTableBar1 = new br.com.gmp.comps.table.bar.GMPTableBar();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         gMPJTabbedPane1.setName("gMPJTabbedPane1"); // NOI18N
 
@@ -241,7 +233,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
             .addGroup(jInternalFrameLayout.createSequentialGroup()
                 .addGap(128, 128, 128)
                 .addComponent(jButton3)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -264,39 +256,29 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
 
         gMPJTabbedPane1.addTab("tab5", jDesktopPane1);
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
-        gMPTable1.setName("gMPTable1"); // NOI18N
-        jScrollPane2.setViewportView(gMPTable1);
+        gTable1.setName("gTable1"); // NOI18N
+        jScrollPane2.setViewportView(gTable1);
 
-        gMPTableBar1.setTable(gMPTable1);
+        gMPTableBar1.setTable(gTable1);
         gMPTableBar1.setName("gMPTableBar1"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(gMPJTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gMPTableBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addComponent(gMPTableBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(gMPJTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(gMPTableBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
         );
 
         pack();
@@ -316,7 +298,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
 
         model.add(new DefaultModelObject("Kaciano", 22, true));
         gmpModel.add(new DefaultModelObject("Kaciano", 22, true));
-        gMPTable1.getGmpModel().add(new DefaultModelObject("Kaciano", 22, true));
+        gTable1.getGmpModel().add(new DefaultModelObject("Kaciano", 22, true));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -367,10 +349,10 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
     private br.com.gmp.comps.button.GMPButton gMPButton4;
     private br.com.gmp.comps.datefield.GMPDateField gMPDateField1;
     private br.com.gmp.comps.tabbedpane.GMPJTabbedPane gMPJTabbedPane1;
-    private br.com.gmp.comps.table.GMPTable gMPTable1;
     private br.com.gmp.comps.table.bar.GMPTableBar gMPTableBar1;
     private br.com.gmp.comps.textfield.GMPTextField gMPTextField1;
     private br.com.gmp.comps.table.GMPTable gTable;
+    private br.com.gmp.comps.table.GMPTable gTable1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

@@ -2,6 +2,7 @@ package br.com.gmp.comps.table;
 
 import br.com.gmp.comps.BaseColors;
 import br.com.gmp.comps.baloontip.src.BalloonUtil;
+import br.com.gmp.comps.interfaces.Exporter;
 import br.com.gmp.comps.model.GMPTableModel;
 import br.com.gmp.comps.table.interfaces.TableControl;
 import br.com.gmp.comps.table.interfaces.TableSource;
@@ -25,7 +26,7 @@ import javax.swing.SwingConstants;
  * @param <T> Tipo de objeto da tabela
  * @see javax.swing.JTable
  */
-public class GMPTable<T> extends JTable implements TableControl {
+public class GMPTable<T> extends JTable implements TableControl, Exporter {
 
     private Class objClass;
     private TableSource source;
@@ -50,7 +51,6 @@ public class GMPTable<T> extends JTable implements TableControl {
         mainList = source.getTableData();
         this.gmpModel = new GMPTableModel(objClass);
         this.pageCount = 0;
-        setModel(gmpModel);
         initialize();
     }
 
@@ -66,8 +66,6 @@ public class GMPTable<T> extends JTable implements TableControl {
         this.mainList = source.getTableData();
         this.gmpModel = new GMPTableModel(objClass);
         this.maxRows = 0;
-        this.pageCount = 0;
-        setModel(gmpModel);
         initialize();
     }
 
@@ -83,7 +81,6 @@ public class GMPTable<T> extends JTable implements TableControl {
         this.mainList = source.getTableData();
         this.maxRows = 0;
         this.gmpModel = model;
-        this.setModel(model);
         initialize();
     }
 
@@ -112,49 +109,19 @@ public class GMPTable<T> extends JTable implements TableControl {
         this.setSelectionBackground(BaseColors.systemColor);
         this.setShowGrid(true);
         this.setGridColor(Color.gray.darker());
-        this.setDefaultEditor(Boolean.TYPE, new DefaultCellEditor(new JCheckBox()));
-        this.setDefaultRenderer(Boolean.TYPE, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table,
-                    Object value, boolean isSelected, boolean hasFocus, int row,
-                    int column) {
-                JCheckBox check = new JCheckBox("", (Boolean) value);
-                check.setHorizontalAlignment(SwingConstants.CENTER);
-                check.setHorizontalTextPosition(SwingConstants.CENTER);
-                //--------------------------------------------------------------
-                // Par e não selecionado
-                if (row % 2 == 0 && !isCellSelected(row, column)) {
-                    check.setOpaque(true);
-                    check.setBackground(Color.lightGray);
-                }
-                //--------------------------------------------------------------
-                // Selecionado
-                if (isCellSelected(row, column)) {
-                    check.setHorizontalAlignment(SwingConstants.CENTER);
-                    check.setHorizontalTextPosition(SwingConstants.CENTER);
-                    check.setOpaque(true);
-                    check.setBackground(getSelectionBackground());
-                }
-                //--------------------------------------------------------------
-                // Impar e não selecionado
-                if (!(row % 2 == 0) && !isCellSelected(row, column)) {
-                    check.setHorizontalAlignment(SwingConstants.CENTER);
-                    check.setHorizontalTextPosition(SwingConstants.CENTER);
-                    check.setOpaque(true);
-                    check.setBackground(getBackground());
-                }
-                return check;
-            }
-        });
-        //----------------------------------------------------------------------
-        refresh();
+        loadBooleanRender();
+        loadData();
+    }
+
+    private void loadData() {
+        this.mainList = source.getTableData();
+        this.splitData(source.getTableData(), maxRows);
+        this.setModel(gmpModel);
     }
 
     @Override
     public void refresh() {
-        this.mainList = source.getTableData();
-        this.splitData(mainList);
-        this.setActualPage(0);
+        this.loadData();
     }
 
     @Override
@@ -168,7 +135,7 @@ public class GMPTable<T> extends JTable implements TableControl {
 
     @Override
     public void previousPage() {
-        if (actualPage != 0) {
+        if (actualPage > 0) {
             setActualPage(actualPage - 1);
         } else {
             new BalloonUtil().showBallon(this, "Esta é a primeira pagina");
@@ -194,6 +161,8 @@ public class GMPTable<T> extends JTable implements TableControl {
     public void setActualPage(int actualPage) {
         this.actualPage = actualPage;
         this.getGmpModel().setList(pages[actualPage]);
+        this.repaint();
+        this.revalidate();
     }
 
     @Override
@@ -219,7 +188,7 @@ public class GMPTable<T> extends JTable implements TableControl {
         this.maxRows = maxRows;
         this.gmpModel = gmpModel;
         this.objClass = objClass;
-        this.refresh();
+        this.loadData();
         this.repaint();
         this.revalidate();
     }
@@ -229,13 +198,14 @@ public class GMPTable<T> extends JTable implements TableControl {
      *
      * @param list <code><b>List</b><T></code> Lista com os dados da tabela
      */
-    private void splitData(List<T> list) {
+    private void splitData(List<T> list, int maxRows) {
         if (maxRows != 0) {
             this.pages = new CollectionUtil().splitList(list, maxRows);
         } else {
             this.pages = new ArrayList[1];
             this.pages[0] = list;
         }
+        this.pageCount = pages.length;
         setActualPage(0);
     }
 
@@ -260,6 +230,58 @@ public class GMPTable<T> extends JTable implements TableControl {
             c.setBackground(getBackground());
         }
         return c;
+    }
+
+    /**
+     * Carrega o editor e o renderizador para colunas Boolean
+     */
+    private void loadBooleanRender() {
+        this.setDefaultEditor(Boolean.TYPE, new DefaultCellEditor(new JCheckBox()));
+        this.setDefaultRenderer(Boolean.TYPE, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table,
+                    Object value, boolean isSelected, boolean hasFocus, int row,
+                    int column) {
+                JCheckBox check = new JCheckBox();
+                check.setSelected((Boolean) value);
+                check.setHorizontalAlignment(SwingConstants.CENTER);
+                check.setHorizontalTextPosition(SwingConstants.CENTER);
+                //--------------------------------------------------------------
+                // Par e não selecionado
+                if (row % 2 == 0 && !isCellSelected(row, column)) {
+                    check.setOpaque(true);
+                    check.setBackground(Color.lightGray);
+                }
+                //--------------------------------------------------------------
+                // Selecionado
+                if (isCellSelected(row, column)) {
+                    check.setOpaque(true);
+                    check.setBackground(getSelectionBackground());
+                }
+                //--------------------------------------------------------------
+                // Impar e não selecionado
+                if (!(row % 2 == 0) && !isCellSelected(row, column)) {
+                    check.setOpaque(true);
+                    check.setBackground(getBackground());
+                }
+                return check;
+            }
+        });
+    }
+
+    @Override
+    public void exportXLS() {
+
+    }
+
+    @Override
+    public void exportTXT() {
+        
+    }
+
+    @Override
+    public void exportPDF() {
+        
     }
 
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
@@ -342,10 +364,61 @@ public class GMPTable<T> extends JTable implements TableControl {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        jPop = new javax.swing.JPopupMenu();
+        jMIExportXLS = new javax.swing.JMenuItem();
+        jMIExportTXT = new javax.swing.JMenuItem();
+        jMIExportPDF = new javax.swing.JMenuItem();
+
+        jMIExportXLS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/menubar/menubar/file_xls.png"))); // NOI18N
+        jMIExportXLS.setText("<html>Exportar para <b>XLS</b></html>");
+        jMIExportXLS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIExportXLSActionPerformed(evt);
+            }
+        });
+        jPop.add(jMIExportXLS);
+
+        jMIExportTXT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/collapsible/text.png"))); // NOI18N
+        jMIExportTXT.setText("<html>Exportar para <b>TXT</b></html>");
+        jMIExportTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIExportTXTActionPerformed(evt);
+            }
+        });
+        jPop.add(jMIExportTXT);
+
+        jMIExportPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/menubar/menubar/icon-pdf.png"))); // NOI18N
+        jMIExportPDF.setText("<html>Exportar para <b>PDF</b></html>");
+        jMIExportPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIExportPDFActionPerformed(evt);
+            }
+        });
+        jPop.add(jMIExportPDF);
+
+        setAutoCreateRowSorter(true);
+        setComponentPopupMenu(jPop);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMIExportXLSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIExportXLSActionPerformed
+        exportXLS();
+    }//GEN-LAST:event_jMIExportXLSActionPerformed
+
+    private void jMIExportTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIExportTXTActionPerformed
+        exportTXT();
+    }//GEN-LAST:event_jMIExportTXTActionPerformed
+
+    private void jMIExportPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIExportPDFActionPerformed
+        exportPDF();
+    }//GEN-LAST:event_jMIExportPDFActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jMIExportPDF;
+    private javax.swing.JMenuItem jMIExportTXT;
+    private javax.swing.JMenuItem jMIExportXLS;
+    private javax.swing.JPopupMenu jPop;
     // End of variables declaration//GEN-END:variables
 }
 

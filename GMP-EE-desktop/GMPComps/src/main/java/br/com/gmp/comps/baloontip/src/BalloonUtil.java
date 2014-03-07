@@ -7,8 +7,12 @@ import java.awt.Insets;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JTable;
 import net.java.balloontip.BalloonTip;
+import net.java.balloontip.TableCellBalloonTip;
+import net.java.balloontip.positioners.BalloonTipPositioner;
 import net.java.balloontip.styles.*;
 
 /**
@@ -86,6 +90,18 @@ public class BalloonUtil {
      */
     public void showModernBallon(final JComponent component, final String msg) {
         BalloonTip balloon = new BalloonTip(component, msg, mbs, true);
+    }
+
+    /**
+     * Mostra balão de mensagem na tabela conforme a posição da celula indicada
+     *
+     * @param table
+     * @param component
+     * @param row
+     * @param column
+     */
+    private void showTableBallon(JTable table, JComponent component, int row, int column) {
+        BalloonTip ballon = new TableCellBalloonTip(table, component, row, column, rbs, null, null);
     }
 
 }
