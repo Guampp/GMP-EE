@@ -25,16 +25,20 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
      * Creates new form Tets
      */
     public Tets() {
+        initialize();
+    }
+
+    private void initialize() {
         initComponents();
         try {
             jTable.setModel(new DefaultModel());
-            gTable.setModel(new DefaultModel());            
+            gTable.setModel(new DefaultModel());
             setGlassPane(new BlurGlassPane());
+            gMPTable1.setTable(this, 20, new DefaultModel(), DefaultModelObject.class);
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
         }
-
     }
 
     @Override
@@ -72,7 +76,9 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jInternalFrame = new javax.swing.JInternalFrame();
         jButton3 = new javax.swing.JButton();
-        paginatedTable = new br.com.gmp.comps.table.paginated.GMPPaginatedTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        gMPTable1 = new br.com.gmp.comps.table.GMPTable();
+        gMPTableBar1 = new br.com.gmp.comps.table.bar.GMPTableBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,9 +171,9 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
                         .addComponent(gMPTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(44, 44, 44)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(gMPButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -194,12 +200,11 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(gMPTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(gMPButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                        .addComponent(jButton2)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,8 +264,13 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
 
         gMPJTabbedPane1.addTab("tab5", jDesktopPane1);
 
-        paginatedTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        paginatedTable.setName("paginatedTable"); // NOI18N
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
+
+        gMPTable1.setName("gMPTable1"); // NOI18N
+        jScrollPane2.setViewportView(gMPTable1);
+
+        gMPTableBar1.setTable(gMPTable1);
+        gMPTableBar1.setName("gMPTableBar1"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,18 +279,24 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(gMPJTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(paginatedTable, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gMPTableBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gMPJTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(paginatedTable, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addComponent(gMPJTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(gMPTableBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
 
         pack();
@@ -300,7 +316,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
 
         model.add(new DefaultModelObject("Kaciano", 22, true));
         gmpModel.add(new DefaultModelObject("Kaciano", 22, true));
-        paginatedTable.getTable().getGmpModel().add(new DefaultModelObject("Kaciano", 22, true));
+        gMPTable1.getGmpModel().add(new DefaultModelObject("Kaciano", 22, true));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -351,6 +367,8 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
     private br.com.gmp.comps.button.GMPButton gMPButton4;
     private br.com.gmp.comps.datefield.GMPDateField gMPDateField1;
     private br.com.gmp.comps.tabbedpane.GMPJTabbedPane gMPJTabbedPane1;
+    private br.com.gmp.comps.table.GMPTable gMPTable1;
+    private br.com.gmp.comps.table.bar.GMPTableBar gMPTableBar1;
     private br.com.gmp.comps.textfield.GMPTextField gMPTextField1;
     private br.com.gmp.comps.table.GMPTable gTable;
     private javax.swing.JButton jButton1;
@@ -360,9 +378,9 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
     private javax.swing.JInternalFrame jInternalFrame;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable;
-    private br.com.gmp.comps.table.paginated.GMPPaginatedTable paginatedTable;
     // End of variables declaration//GEN-END:variables
 }
 

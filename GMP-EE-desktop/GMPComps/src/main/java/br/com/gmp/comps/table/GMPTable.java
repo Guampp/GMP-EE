@@ -147,12 +147,14 @@ public class GMPTable<T> extends JTable implements TableControl {
             }
         });
         //----------------------------------------------------------------------
-        splitData(mainList);
+        refresh();
     }
 
     @Override
     public void refresh() {
         this.mainList = source.getTableData();
+        this.splitData(mainList);
+        this.setActualPage(0);
     }
 
     @Override
@@ -209,6 +211,17 @@ public class GMPTable<T> extends JTable implements TableControl {
         if (pages != null) {
             this.setActualPage(pages.length > 0 ? (pages.length - 1) : 0);
         }
+    }
+
+    public void setTable(TableSource source, int maxRows, GMPTableModel gmpModel, Class objClass) {
+        this.source = source;
+        this.mainList = source.getTableData();
+        this.maxRows = maxRows;
+        this.gmpModel = gmpModel;
+        this.objClass = objClass;
+        this.refresh();
+        this.repaint();
+        this.revalidate();
     }
 
     /**
