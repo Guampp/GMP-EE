@@ -1,6 +1,8 @@
 package br.com.gmp.comps.table.bar;
 
+import br.com.gmp.comps.baloontip.src.BalloonUtil;
 import br.com.gmp.comps.table.GMPTable;
+import java.awt.event.KeyEvent;
 
 /**
  * Barra de controles padronizados para GMPTables
@@ -25,8 +27,19 @@ public class GMPTableBar extends javax.swing.JPanel {
      * @param gTable <code>GMPTable</code> Tabela
      */
     public GMPTableBar(GMPTable gTable) {
-        initComponents();
         this.gTable = gTable;
+        initComponents();
+        setPages(gTable.getActualPage(), gTable.getPageCount());
+    }
+
+    /**
+     * Modifica o rotulo das páginas
+     *
+     * @param actualpage <code>Integer</code> Página atual
+     * @param pages <code>Integer</code> Total de páginas
+     */
+    private void setPages(int actualpage, int pages) {
+        this.jLPages.setText(String.format("%s/%d", actualpage + 1, pages));
     }
 
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
@@ -48,16 +61,6 @@ public class GMPTableBar extends javax.swing.JPanel {
         this.gTable = table;
     }
     //</editor-fold>
-
-    /**
-     * Modifica o rotulo das páginas
-     *
-     * @param pages <code>Integer</code> Total de páginas
-     * @param actualpage <code>Integer</code> Página atual
-     */
-    public void setPages(int pages, int actualpage) {
-        this.nTPage.setText(String.format("%s/%d", pages, actualpage));
-    }
 
     /**
      * Código gerado automaticamente
@@ -191,22 +194,34 @@ public class GMPTableBar extends javax.swing.JPanel {
 
     private void jBFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFirstActionPerformed
         this.gTable.gotoFirst();
+        setPages(gTable.getActualPage(), gTable.getPageCount());
     }//GEN-LAST:event_jBFirstActionPerformed
 
     private void jBNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNextActionPerformed
         this.gTable.nextPage();
+        setPages(gTable.getActualPage(), gTable.getPageCount());
     }//GEN-LAST:event_jBNextActionPerformed
 
     private void jBLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLastActionPerformed
         this.gTable.gotoLast();
+        setPages(gTable.getActualPage(), gTable.getPageCount());
     }//GEN-LAST:event_jBLastActionPerformed
 
     private void jBRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRefreshActionPerformed
         this.gTable.refresh();
+        setPages(gTable.getActualPage(), gTable.getPageCount());
     }//GEN-LAST:event_jBRefreshActionPerformed
 
     private void nTPageKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nTPageKeyReleased
-        this.gTable.setActualPage(Integer.parseInt(nTPage.getText()));
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int page = Integer.parseInt(nTPage.getText()) - 1;
+            if (page < 0 || page > gTable.getPageCount()) {
+                new BalloonUtil().showTimedBallon(nTPage, "Página invalida.", new Long(5000));
+                return;
+            }
+            this.gTable.setActualPage(page);
+            setPages(gTable.getActualPage(), gTable.getPageCount());
+        }
     }//GEN-LAST:event_nTPageKeyReleased
 
 
