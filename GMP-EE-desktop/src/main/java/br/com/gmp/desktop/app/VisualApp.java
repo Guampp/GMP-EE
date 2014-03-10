@@ -5,7 +5,7 @@ import br.com.gmp.desktop.app.bean.VisualAppBean;
 import br.com.gmp.comps.tabbedpane.GMPJTabbedPane;
 import br.com.gmp.comps.taskcontainer.GMPTaskContainer;
 import br.com.gmp.comps.textfield.GMPTextField;
-import br.com.gmp.desktop.app.system.SystemProperties;
+import br.com.gmp.desktop.app.system.SystemControls;
 import br.com.gmp.desktop.views.ProfileView;
 import br.com.gmp.desktop.views.ViewFrame;
 import com.jtattoo.plaf.acryl.AcrylLookAndFeel;

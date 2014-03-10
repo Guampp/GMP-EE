@@ -1,4 +1,4 @@
-package encoding;
+package br.com.gmp.utils.encoding;
 
 import javax.xml.bind.DatatypeConverter;
 

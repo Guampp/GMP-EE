@@ -32,7 +32,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author kaciano
  * @since 1.0
  */
-public class SystemProperties {
+public class SystemControls {
 
     private VisualApp visualApp;
     private final String helpAct = "help";
@@ -47,16 +47,6 @@ public class SystemProperties {
     private Action reloadAction;
     private Action processAction;
     private Action cleanAction;
-    public static final String OS_NAME = System.getProperties().getProperty("os.name");
-    public static final String OS_ARCH = System.getProperties().getProperty("os.arch");
-    public static final String USER_NAME = System.getProperties().getProperty("user.name");
-    public static final String USER_HOME = System.getProperties().getProperty("user.home");
-    public static final String USER_TIMEZONE = System.getProperties().getProperty("user.timezone");
-    public static final String SYSTEM_ENCODING = System.getProperties().getProperty("sun.jnu.encoding");
-    public static final String FILE_ENCODING = System.getProperties().getProperty("file.encoding");
-    public static final String FILE_SEPARATOR = System.getProperties().getProperty("file.separator");
-    public static final String JAVA_RUNTIME_VERSION = System.getProperties().getProperty("java.runtime.version");
-    public static final String JAVA_VERSION = System.getProperties().getProperty("java.version");
 
     /**
      * Inicia toda a aplicação
@@ -74,7 +64,7 @@ public class SystemProperties {
             @Override
             public void run() {
                 VisualApp visualApp = new VisualApp();
-                SystemProperties system = new SystemProperties(visualApp);
+                SystemControls system = new SystemControls(visualApp);
                 visualApp.setVisible(true);
             }
         });
@@ -85,13 +75,13 @@ public class SystemProperties {
      *
      * @param visualApp <code><b>VisualApp</b></code> Aplicação visual
      */
-    public SystemProperties(VisualApp visualApp) {
+    public SystemControls(VisualApp visualApp) {
         this.visualApp = visualApp;
         constructActions();
         try {
             generateTrayIcon();
         } catch (AWTException ex) {
-            Logger.getLogger(SystemProperties.class.getName())
+            Logger.getLogger(SystemControls.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
     }

@@ -1,5 +1,7 @@
 package br.com.gmp.utils.export;
 
+import br.com.gmp.utils.date.DateUtil;
+import br.com.gmp.utils.system.SystemProperties;
 import br.com.gmp.utils.test.Test;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -8,13 +10,17 @@ import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.draw.LineSeparator;
 import java.awt.Color;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +32,7 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class PDFExporter {
-
+    
     /**
      * Exporta os dados da lista para o formato PDF
      *
@@ -59,12 +65,18 @@ public class PDFExporter {
             Document doc = new Document(PageSize.A4, 36, 36, 36, 36);
             PdfWriter.getInstance(doc, os);
             doc.open();
+            
+            doc.addAuthor(SystemProperties.USER_NAME.toString());
+            
+            doc.add(new Paragraph(new DateUtil().getCompleteDate(new Date())));
+            doc.add(new Paragraph(" "));
+            doc.add(new LineSeparator());
+            doc.add(new Paragraph(" "));
             PdfPTable table = new PdfPTable(objClass.getDeclaredFields().length);
-
             //------------------------------------------------------------------
             // Preenche o cabeçalho
             for (String name : getFieldNames(objClass)) {
-                PdfPCell header = new PdfPCell(new Paragraph(name));
+                PdfPCell header = new PdfPCell(new Paragraph(name.toUpperCase()));
                 header.setBackgroundColor(Color.lightGray);
                 header.setBorderWidth(1f);
                 table.addCell(header);
@@ -80,6 +92,11 @@ public class PDFExporter {
 
             doc.add(table);
             doc.close();
+            //------------------------------------------------------------------
+            // Abre o documento
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(new File(filename + ".pdf"));
+            }
         }
     }
 

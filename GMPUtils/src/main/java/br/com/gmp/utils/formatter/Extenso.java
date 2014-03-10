@@ -44,7 +44,7 @@ public class Extenso {
      * @since JDK 1.5
      */
     public Extenso() {
-        nro = new ArrayList<Integer>();
+        nro = new ArrayList<>();
     }
 
     /**
@@ -53,7 +53,8 @@ public class Extenso {
      * </p>
      *
      * @param dec Valor para colocar por extenso.
-     * @since JDK 1.5
+     *
+     * @throws java.lang.Exception @since JDK 1.5
      */
     public Extenso(BigDecimal dec) throws Exception {
         this();
