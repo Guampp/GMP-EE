@@ -23,6 +23,29 @@ public class BalloonUtil {
 
     /**
      * Mostra um balão contendo a mensagem por um determinado periodo de tempo
+     * (5 segundos)
+     *
+     * @param component <b>Component</b> Objeto de base
+     * @param msg <b>String</b> Mensagem
+     */
+    public void showTimedBallon(final JComponent component, final String msg) {
+        Thread tr = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    BalloonTip balloon = new BalloonTip(component, msg, rbs, true);
+                    sleep(5000);
+                    balloon.closeBalloon();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(BalloonUtil.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        tr.start();
+    }
+
+    /**
+     * Mostra um balão contendo a mensagem por um determinado periodo de tempo
      *
      * @param component <b>Component</b> Objeto de base
      * @param msg <b>String</b> Mensagem
@@ -41,7 +64,7 @@ public class BalloonUtil {
                 }
             }
         };
-        tr.start();        
+        tr.start();
     }
 
     /**

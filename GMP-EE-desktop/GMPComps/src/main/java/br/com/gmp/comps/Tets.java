@@ -3,12 +3,15 @@ package br.com.gmp.comps;
 import br.com.gmp.comps.dialog.GMPDialog;
 import br.com.gmp.comps.model.GMPTableModel;
 import br.com.gmp.comps.panel.BlurGlassPane;
-import br.com.gmp.comps.table.GMPTable;
 import br.com.gmp.comps.table.interfaces.TableSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -384,6 +387,11 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Tets.class.getName()).log(Level.SEVERE, null, ex);
+        }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

@@ -1,9 +1,11 @@
 package br.com.gmp.comps.model;
 
 import br.com.gmp.comps.annotations.ColumnName;
-import java.lang.reflect.*;
-import java.util.*;
-import java.util.logging.*;
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -177,7 +179,7 @@ public class GMPTableModel<T> extends AbstractTableModel {
             f[id].setAccessible(true);
             Class<?> c = cl.getDeclaredField(f[id].getName()).getType();
             if (c == boolean.class) {
-                c = Boolean.TYPE;
+                return Boolean.class;
             }
             return c;
         } catch (SecurityException | NoSuchFieldException ex) {

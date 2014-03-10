@@ -1,6 +1,5 @@
 package br.com.gmp.comps.table;
 
-import br.com.gmp.comps.BaseColors;
 import br.com.gmp.comps.baloontip.src.BalloonUtil;
 import br.com.gmp.comps.interfaces.Exporter;
 import br.com.gmp.comps.model.GMPTableModel;
@@ -18,11 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import jxl.write.WriteException;
 
@@ -58,7 +54,7 @@ public class GMPTable extends JTable implements TableControl, Exporter {
         mainList = source.getTableData();
         this.gmpModel = new GMPTableModel(objClass);
         this.pageCount = 0;
-        initialize();
+        this.initialize();
     }
 
     /**
@@ -73,7 +69,7 @@ public class GMPTable extends JTable implements TableControl, Exporter {
         this.mainList = source.getTableData();
         this.gmpModel = new GMPTableModel(objClass);
         this.maxRows = 0;
-        initialize();
+        this.initialize();
     }
 
     /**
@@ -88,7 +84,7 @@ public class GMPTable extends JTable implements TableControl, Exporter {
         this.mainList = source.getTableData();
         this.maxRows = 0;
         this.gmpModel = model;
-        initialize();
+        this.initialize();
     }
 
     /**
@@ -105,19 +101,17 @@ public class GMPTable extends JTable implements TableControl, Exporter {
         this.maxRows = maxRows;
         this.gmpModel = gmpModel;
         this.objClass = objClass;
-        initialize();
+        this.initialize();
     }
 
     /**
      * Metodo de inicialização
      */
     private void initialize() {
-        initComponents();
-        this.setSelectionBackground(BaseColors.systemColor);
+        this.initComponents();        
         this.setShowGrid(true);
-        this.setGridColor(Color.gray.darker());
-        loadBooleanRender();
-        loadData();
+        this.setGridColor(Color.gray.darker());        
+        this.loadData();
     }
 
     private void loadData() {
@@ -136,7 +130,7 @@ public class GMPTable extends JTable implements TableControl, Exporter {
         if (actualPage < (pageCount - 1)) {
             setActualPage(actualPage + 1);
         } else {
-            new BalloonUtil().showBallon(this, "Esta é a ultima pagina");
+            new BalloonUtil().showTimedBallon(this, "Esta é a ultima pagina");
         }
     }
 
@@ -145,7 +139,7 @@ public class GMPTable extends JTable implements TableControl, Exporter {
         if (actualPage > 0) {
             setActualPage(actualPage - 1);
         } else {
-            new BalloonUtil().showBallon(this, "Esta é a primeira pagina");
+            new BalloonUtil().showTimedBallon(this, "Esta é a primeira pagina");
         }
     }
 
@@ -157,6 +151,7 @@ public class GMPTable extends JTable implements TableControl, Exporter {
     @Override
     public void setMaxRows(int maxrows) {
         this.maxRows = maxrows;
+        loadData();
     }
 
     @Override
@@ -229,51 +224,18 @@ public class GMPTable extends JTable implements TableControl, Exporter {
     @Override
     public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component c = super.prepareRenderer(renderer, row, column);
+        if (c instanceof JCheckBox) {
+            JCheckBox check = (JCheckBox) c;
+            check.setOpaque(showVerticalLines);
+        }
         if (row % 2 == 0 && !isCellSelected(row, column)) {
-            c.setBackground(Color.lightGray);
+            c.setBackground(new Color(255, 230, 166));
         } else if (isCellSelected(row, column)) {
             c.setBackground(getSelectionBackground());
         } else {
             c.setBackground(getBackground());
         }
         return c;
-    }
-
-    /**
-     * Carrega o editor e o renderizador para colunas Boolean
-     */
-    private void loadBooleanRender() {
-        this.setDefaultEditor(Boolean.TYPE, new DefaultCellEditor(new JCheckBox()));
-        this.setDefaultRenderer(Boolean.TYPE, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table,
-                    Object value, boolean isSelected, boolean hasFocus, int row,
-                    int column) {
-                JCheckBox check = new JCheckBox();
-                check.setSelected((Boolean) value);
-                check.setHorizontalAlignment(SwingConstants.CENTER);
-                check.setHorizontalTextPosition(SwingConstants.CENTER);
-                //--------------------------------------------------------------
-                // Par e não selecionado
-                if (row % 2 == 0 && !isCellSelected(row, column)) {
-                    check.setOpaque(true);
-                    check.setBackground(Color.lightGray);
-                }
-                //--------------------------------------------------------------
-                // Selecionado
-                if (isCellSelected(row, column)) {
-                    check.setOpaque(true);
-                    check.setBackground(getSelectionBackground());
-                }
-                //--------------------------------------------------------------
-                // Impar e não selecionado
-                if (!(row % 2 == 0) && !isCellSelected(row, column)) {
-                    check.setOpaque(true);
-                    check.setBackground(getBackground());
-                }
-                return check;
-            }
-        });
     }
 
     @Override
