@@ -3,6 +3,7 @@ package br.com.gmp.comps.model;
 import br.com.gmp.comps.annotations.ColumnName;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -213,6 +214,16 @@ public class GMPTableModel extends AbstractTableModel {
     }
 
     /**
+     * Adiciona novos objetos à lista
+     *
+     * @param obj <code><b>Object[]</b></code> Novos objetos
+     */
+    public void addAll(Object... obj) {
+        list.addAll(Arrays.asList(obj));
+        this.fireTableDataChanged();
+    }
+
+    /**
      * Remove a linha recebida
      *
      * @param row <code><b>int</b></code> Linha
@@ -223,13 +234,31 @@ public class GMPTableModel extends AbstractTableModel {
     }
 
     /**
-     * Remove o Object recebido
+     * Remove o Objeto recebido
      *
-     * @param object <code><b>Object</b></code> Linha
+     * @param object <code><b>Object</b></code> Objeto
      */
     public void remove(Object object) {
-        list.remove(object);
-        this.fireTableRowsDeleted(getObjectRow(object), getObjectRow(object));
+        if (list.contains(object)) {
+            int row = getObjectRow(object);
+            list.remove(object);
+            this.fireTableRowsDeleted(row, row);
+        }
+    }
+
+    /**
+     * Remove os Objetos recebidos
+     *
+     * @param objects <code><b>Object[]</b></code> Objetos
+     */
+    public void remove(Object... objects) {
+        for (Object object : objects) {
+            if (list.contains(object)) {
+                int row = getObjectRow(object);
+                list.remove(object);
+                this.fireTableRowsDeleted(row, row);
+            }
+        }
     }
 
     /**

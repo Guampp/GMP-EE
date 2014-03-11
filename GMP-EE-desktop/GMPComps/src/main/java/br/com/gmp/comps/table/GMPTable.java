@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 import jxl.write.WriteException;
 
 /**
@@ -109,9 +110,9 @@ public class GMPTable extends JTable implements TableControl, Exporter {
      * Metodo de inicialização
      */
     private void initialize() {
-        this.initComponents();        
+        this.initComponents();
         this.setShowGrid(true);
-        this.setGridColor(Color.gray.darker());        
+        this.setGridColor(Color.gray.darker());
         this.loadData();
     }
 
@@ -210,6 +211,14 @@ public class GMPTable extends JTable implements TableControl, Exporter {
         }
         this.pageCount = pages.length;
         setActualPage(0);
+    }
+
+    @Override
+    public void setModel(TableModel dataModel) {
+        super.setModel(dataModel);
+        if (dataModel instanceof GMPTableModel) {
+            setGmpModel((GMPTableModel) dataModel);
+        }
     }
 
     /**

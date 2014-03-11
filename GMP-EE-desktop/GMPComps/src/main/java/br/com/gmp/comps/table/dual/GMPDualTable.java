@@ -1,8 +1,7 @@
 package br.com.gmp.comps.table.dual;
 
+import br.com.gmp.comps.model.GMPTableModel;
 import br.com.gmp.comps.objects.TableObject;
-import br.com.gmp.comps.table.dual.models.DestinationModel;
-import br.com.gmp.comps.table.dual.models.SourceModel;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,8 @@ public class GMPDualTable extends JPanel {
     private Class<?> objectClass;
     private String sourceText;
     private String destText;
-    private SourceModel sourceModel;
-    private DestinationModel destModel;
+    private GMPTableModel sourceModel;
+    private GMPTableModel destModel;
 
     /**
      * Cria nova instancia de GMPDualTable
@@ -44,9 +43,18 @@ public class GMPDualTable extends JPanel {
      * Método de inicialização
      */
     private void initialize() {
-        this.sourceModel = new SourceModel(objectClass);
-        this.destModel = new DestinationModel(objectClass);
+        this.sourceModel = new GMPTableModel(objectClass);
+        this.destModel = new GMPTableModel(objectClass);
         initComponents();
+        gTableSource.setModel(sourceModel);
+        gTableDest.setModel(destModel);
+    }
+
+    public void refresh() {
+        gTableSource.repaint();
+        gTableSource.revalidate();
+        gTableDest.repaint();
+        gTableDest.revalidate();
     }
 
     /**
@@ -55,9 +63,7 @@ public class GMPDualTable extends JPanel {
      * @param objects <code>Object[]</code> Objetos a serem adicionados
      */
     public void addSource(Object... objects) {
-        for (Object object : objects) {
-            gTableSource.getGmpModel().add(object);
-        }
+        sourceModel.addAll(objects);
     }
 
     /**
@@ -66,9 +72,7 @@ public class GMPDualTable extends JPanel {
      * @param objects <code>Object[]</code> Objetos a serem adicionados
      */
     public void addDest(Object... objects) {
-        for (Object object : objects) {
-            gTableDest.getGmpModel().add(object);
-        }
+        destModel.addAll(objects);
     }
 
     /**
@@ -110,6 +114,7 @@ public class GMPDualTable extends JPanel {
                 gTableSource.getGmpModel().remove(object);
             }
         }
+        refresh();
     }
 
     /**
@@ -117,13 +122,12 @@ public class GMPDualTable extends JPanel {
      * destino
      */
     private void addAllToDest(ActionEvent evt) {
-        if (getSourceSelected() != null) {
-            Object[] source = sourceModel.getList().toArray();
-            for (Object object : source) {
-                gTableDest.getGmpModel().add(object);                
-            }
-            gTableSource.getGmpModel().clear();
+        Object[] source = sourceModel.getList().toArray();
+        for (Object object : source) {
+            gTableDest.getGmpModel().add(object);
         }
+        gTableSource.getGmpModel().clear();
+        refresh();
     }
 
     /**
@@ -137,6 +141,7 @@ public class GMPDualTable extends JPanel {
                 gTableDest.getGmpModel().remove(object);
             }
         }
+        refresh();
     }
 
     /**
@@ -144,13 +149,12 @@ public class GMPDualTable extends JPanel {
      * fonte
      */
     private void removeAllFromDest(ActionEvent evt) {
-        if (getDestSelected() != null) {
-            Object[] dest = gTableDest.getGmpModel().getList().toArray();
-            for (Object object : dest) {
-                gTableSource.getGmpModel().add(object);                
-            }
-            gTableDest.getGmpModel().clear();
+        Object[] dest = gTableDest.getGmpModel().getList().toArray();
+        for (Object object : dest) {
+            gTableSource.getGmpModel().add(object);
         }
+        gTableDest.getGmpModel().clear();
+        refresh();
     }
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
     /**
@@ -201,13 +205,18 @@ public class GMPDualTable extends JPanel {
      */
     public void setObjectClass(Class<?> objectClass) {
         this.objectClass = objectClass;
+        this.sourceModel = new GMPTableModel(objectClass);
+        this.destModel = new GMPTableModel(objectClass);  
+        if (isVisible()) {
+            refresh();
+        }
     }
 
     /**
      *
      * @return
      */
-    public SourceModel getSourceModel() {
+    public GMPTableModel getSourceModel() {
         return sourceModel;
     }
 
@@ -215,15 +224,15 @@ public class GMPDualTable extends JPanel {
      *
      * @param sourceModel
      */
-    public void setSourceModel(SourceModel sourceModel) {
+    public void setSourceModel(GMPTableModel sourceModel) {
         this.sourceModel = sourceModel;
     }
 
-    public DestinationModel getDestModel() {
+    public GMPTableModel getDestModel() {
         return destModel;
     }
 
-    public void setDestModel(DestinationModel destModel) {
+    public void setDestModel(GMPTableModel destModel) {
         this.destModel = destModel;
     }
 
@@ -254,6 +263,22 @@ public class GMPDualTable extends JPanel {
 
         jSPDest.setName("jSPDest"); // NOI18N
 
+        gTableDest.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "a", "b", "c"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         gTableDest.setName("gTableDest"); // NOI18N
         jSPDest.setViewportView(gTableDest);
 
@@ -312,12 +337,28 @@ public class GMPDualTable extends JPanel {
 
         jSPSource.setName("jSPSource"); // NOI18N
 
+        gTableSource.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "a", "b", "c"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         gTableSource.setName("gTableSource"); // NOI18N
         jSPSource.setViewportView(gTableSource);
 
         jPLabels.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPLabels.setName("jPLabels"); // NOI18N
-        jPLabels.setLayout(new java.awt.GridLayout());
+        jPLabels.setLayout(new java.awt.GridLayout(1, 0));
 
         jLSource.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLSource.setText("Source");
