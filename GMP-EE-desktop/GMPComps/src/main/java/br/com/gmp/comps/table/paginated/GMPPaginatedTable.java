@@ -34,7 +34,7 @@ public class GMPPaginatedTable extends javax.swing.JPanel {
         this.maxRows = 0;
         this.objClass = PageObject.class;
         this.gmpModel = new PageModel(objClass, new ArrayList());
-        initComponents();
+        initialize();
     }
 
     /**
@@ -48,7 +48,7 @@ public class GMPPaginatedTable extends javax.swing.JPanel {
         this.maxRows = maxrows;
         this.objClass = PageObject.class;
         this.gmpModel = new PageModel(objClass, new ArrayList());
-        initComponents();
+        initialize();
     }
 
     /**
@@ -64,7 +64,14 @@ public class GMPPaginatedTable extends javax.swing.JPanel {
         this.maxRows = maxRows;
         this.gmpModel = gmpModel;
         this.objClass = objClass;
-        initComponents();        
+        initialize();
+    }
+
+    /**
+     * Método de inicialização
+     */
+    private void initialize() {
+        initComponents();
     }
 
     /**
@@ -85,12 +92,20 @@ public class GMPPaginatedTable extends javax.swing.JPanel {
         this.gTable = table;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMaxRows() {
-        return maxRows;
+        return gTable.getMaxRows();
     }
 
+    /**
+     *
+     * @param maxRows
+     */
     public void setMaxRows(int maxRows) {
-        this.maxRows = maxRows;
+        this.gTable.setMaxRows(maxRows);
     }
 
     /**
@@ -102,11 +117,9 @@ public class GMPPaginatedTable extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gTableBar = new br.com.gmp.comps.table.bar.GMPTableBar();
+        gTableBar = new br.com.gmp.comps.table.bar.GMPTableBar(gTable);
         jScrollPane1 = new javax.swing.JScrollPane();
         gTable = new br.com.gmp.comps.table.GMPTable(source, maxRows, gmpModel, objClass);
-
-        gTableBar.setTable(gTable);
 
         jScrollPane1.setViewportView(gTable);
 
@@ -178,7 +191,7 @@ class PageObject {
 
 }
 
-class PageModel extends GMPTableModel<PageObject> {
+class PageModel extends GMPTableModel {
 
     public PageModel(Class<PageObject> objClass, List<PageObject> list) {
         super(objClass, list);

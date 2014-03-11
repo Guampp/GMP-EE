@@ -2,7 +2,7 @@ package br.com.gmp.comps.model;
 
 import br.com.gmp.comps.annotations.ColumnName;
 import java.lang.reflect.Field;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,43 +23,42 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author kaciano
  * @version 1.1
- * @param <T> Tipo de objeto a ser mapeado
  * @see javax.swing.table.TableModel
  */
-public class GMPTableModel<T> extends AbstractTableModel {
+public class GMPTableModel extends AbstractTableModel {
 
-    private Class<T> objClass;
+    private Class<?> objClass;
     private String[] columns = null;
-    private List<T> list;
+    private List list;
 
     /**
      * Cria novo GMPTableModel
      *
-     * @param objClass <code><b>Class</b><T></code> Classe a ser mapeada
+     * @param objClass <code><b>Class</b><Object></code> Classe a ser mapeada
      */
-    public GMPTableModel(Class<T> objClass) {
+    public GMPTableModel(Class<?> objClass) {
         initialize(objClass, null);
     }
 
     /**
      * Cria novo GMPTableModel
      *
-     * @param objClass <code><b>Class</b><T></code> Classe a ser mapeada
-     * @param list <code><b>List</b><T></code> Lista de objetos
+     * @param objClass <code><b>Class</b><Object></code> Classe a ser mapeada
+     * @param list <code><b>List</b><Object></code> Lista de objetos
      */
-    public GMPTableModel(Class<T> objClass, List<T> list) {
+    public GMPTableModel(Class<?> objClass, List list) {
         initialize(objClass, list);
     }
 
     /**
      * Metodo de inicialização
      *
-     * @param objClass <code><b>Class</b><T></code> Classe a ser mapeada
-     * @param list <code><b>List</b><T></code> Lista de objetos
+     * @param objClass <code><b>Class</b><Object></code> Classe a ser mapeada
+     * @param list <code><b>List</b><Object></code> Lista de objetos
      */
-    private void initialize(Class<T> objClass, List<T> list) {
+    private void initialize(Class<?> objClass, List list) {
         this.objClass = objClass;
-        this.list = list != null ? list : new LinkedList<T>();
+        this.list = list != null ? list : new ArrayList<>();
         this.columns = mapColumns(objClass);
     }
 
@@ -132,12 +131,12 @@ public class GMPTableModel<T> extends AbstractTableModel {
      * @return <code><b>int</b></code>
      */
     @Override
-    public T getValueAt(int row, int column) {
+    public Object getValueAt(int row, int column) {
         try {
             Object u = list.get(row);
             Field f = u.getClass().getDeclaredFields()[column];
             f.setAccessible(true);
-            return (T) f.get(u);
+            return f.get(u);
         } catch (IllegalArgumentException | IllegalAccessException ex) {
             Logger.getLogger(GMPTableModel.class.getName()).log(Level.SEVERE, null, ex);
             return null;
@@ -189,11 +188,26 @@ public class GMPTableModel<T> extends AbstractTableModel {
     }
 
     /**
+     * Retorna a linha do objeto indicado
+     *
+     * @param obj <code>Object</code> Objeto
+     * @return <code>Integer</code> Linha do objeto
+     */
+    public Integer getObjectRow(Object obj) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(obj)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Adiciona novo objeto à lista
      *
-     * @param obj <code><b>T</b></code> Novo objeto
+     * @param obj <code><b>Object</b></code> Novo objeto
      */
-    public void add(T obj) {
+    public void add(Object obj) {
         list.add(obj);
         this.fireTableRowsInserted(list.size() - 1, list.size() - 1);
     }
@@ -209,12 +223,22 @@ public class GMPTableModel<T> extends AbstractTableModel {
     }
 
     /**
+     * Remove o Object recebido
+     *
+     * @param object <code><b>Object</b></code> Linha
+     */
+    public void remove(Object object) {
+        list.remove(object);
+        this.fireTableRowsDeleted(getObjectRow(object), getObjectRow(object));
+    }
+
+    /**
      * Atualiza o objeto da linha recebida com o novo objeto
      *
      * @param row <code><b>int</b></code> Linha
-     * @param obj <code><b>T</b></code> Novo conteudo da linha
+     * @param obj <code><b>Object</b></code> Novo conteudo da linha
      */
-    public void update(int row, T obj) {
+    public void update(int row, Object obj) {
         list.set(row, obj);
         this.fireTableRowsUpdated(row, row);
     }
@@ -225,7 +249,7 @@ public class GMPTableModel<T> extends AbstractTableModel {
      * @param row <code><b>int</b></code> Linha
      * @return Objeto da linha
      */
-    public T getObject(int row) {
+    public Object getObject(int row) {
         return list.get(row);
     }
 
@@ -238,7 +262,7 @@ public class GMPTableModel<T> extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object value, int row, int col) {
-        T object = list.get(row);
+        Object object = list.get(row);
         Field field = object.getClass().getDeclaredFields()[col];
         try {
             field.setAccessible(true);
@@ -251,11 +275,18 @@ public class GMPTableModel<T> extends AbstractTableModel {
     }
 
     /**
+     * Limpa os dados do modelo
+     */
+    public void clear() {
+        this.list.clear();
+    }
+
+    /**
      * Retorna a classe do modelo
      *
      * @return <code>Class</code> Classe do modelo
      */
-    public Class<T> getObjClass() {
+    public Class<?> getObjClass() {
         return objClass;
     }
 
@@ -264,7 +295,7 @@ public class GMPTableModel<T> extends AbstractTableModel {
      *
      * @param objClass
      */
-    public void setObjClass(Class<T> objClass) {
+    public void setObjClass(Class<?> objClass) {
         this.objClass = objClass;
     }
 
@@ -289,18 +320,18 @@ public class GMPTableModel<T> extends AbstractTableModel {
     /**
      * Retorna a lista do modelo
      *
-     * @return <code>List<T></code> Lista do modelo
+     * @return <code>List</code> Lista do modelo
      */
-    public List<T> getList() {
+    public List getList() {
         return list;
     }
 
     /**
      * Modifica a lista do modelo
      *
-     * @param list <code>List<T></code> Lista do modelo
+     * @param list <code>List</code> Lista do modelo
      */
-    public void setList(List<T> list) {
+    public void setList(List list) {
         this.list = list;
     }
 

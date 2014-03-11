@@ -3,6 +3,7 @@ package br.com.gmp.comps.table;
 import br.com.gmp.comps.baloontip.src.BalloonUtil;
 import br.com.gmp.comps.interfaces.Exporter;
 import br.com.gmp.comps.model.GMPTableModel;
+import br.com.gmp.comps.objects.TableObject;
 import br.com.gmp.comps.table.interfaces.TableControl;
 import br.com.gmp.comps.table.interfaces.TableSource;
 import br.com.gmp.utils.collections.CollectionUtil;
@@ -401,47 +402,4 @@ public class GMPTable extends JTable implements TableControl, Exporter {
     private javax.swing.JMenuItem jMIExportXLS;
     private javax.swing.JPopupMenu jPop;
     // End of variables declaration//GEN-END:variables
-}
-
-class TableObject {
-
-    private String a;
-    private String b;
-    private String c;
-
-    public TableObject(String a, String b, String c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-    }
-
-    public String getA() {
-        return a;
-    }
-
-    public String getB() {
-        return b;
-    }
-
-    public String getC() {
-        return c;
-    }
-
-    public void setA(String a) {
-        this.a = a;
-    }
-
-    public void setB(String b) {
-        this.b = b;
-    }
-
-    public void setC(String c) {
-        this.c = c;
-    }
-
-    @Override
-    public String toString() {
-        return a + b + c;
-    }
-
 }

@@ -429,7 +429,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
     // End of variables declaration//GEN-END:variables
 }
 
-class DefaultModel extends GMPTableModel<DefaultModelObject> {
+class DefaultModel extends GMPTableModel {
 
     public DefaultModel() {
         super(DefaultModelObject.class);

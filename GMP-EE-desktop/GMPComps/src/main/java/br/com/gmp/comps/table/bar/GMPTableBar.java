@@ -18,6 +18,7 @@ public class GMPTableBar extends javax.swing.JPanel {
      * Cria nova instancia da barra de controle para tabelas
      */
     public GMPTableBar() {
+        this.gTable = null;
         initComponents();
     }
 
