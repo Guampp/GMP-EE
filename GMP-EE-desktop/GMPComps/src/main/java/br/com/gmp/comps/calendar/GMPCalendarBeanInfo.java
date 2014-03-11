@@ -6,7 +6,13 @@
 
 package br.com.gmp.comps.calendar;
 
-import java.beans.*;
+import java.beans.BeanDescriptor;
+import java.beans.EventSetDescriptor;
+import java.beans.IndexedPropertyDescriptor;
+import java.beans.IntrospectionException;
+import java.beans.MethodDescriptor;
+import java.beans.PropertyDescriptor;
+import java.beans.SimpleBeanInfo;
 
 /**
  *
@@ -747,10 +753,10 @@ public class GMPCalendarBeanInfo extends SimpleBeanInfo {
     private static java.awt.Image iconColor32 = null;
     private static java.awt.Image iconMono16 = null;
     private static java.awt.Image iconMono32 = null;//GEN-END:IconsDef
-    private static String iconNameC16 = "/br/com/gmp/comps/icons/16/Calendar.png";//GEN-BEGIN:Icons
-    private static String iconNameC32 = "/br/com/gmp/comps/icons/32/Calendar.png";
-    private static String iconNameM16 = "/br/com/gmp/comps/icons/16/Calendar.png";
-    private static String iconNameM32 = "/br/com/gmp/comps/icons/32/Calendar.png";//GEN-END:Icons
+    private static String iconNameC16 = "/ComponentIcons/date/date.png";//GEN-BEGIN:Icons
+    private static String iconNameC32 = "/ComponentIcons/date/date.png";
+    private static String iconNameM16 = "/ComponentIcons/date/date.png";
+    private static String iconNameM32 = "/ComponentIcons/date/date.png";//GEN-END:Icons
 
     private static final int defaultPropertyIndex = -1;//GEN-BEGIN:Idx
     private static final int defaultEventIndex = -1;//GEN-END:Idx

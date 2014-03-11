@@ -70,7 +70,7 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
      */
     public void setDate(Date date) {
         this.date = date;
-        this.jPCalendar.setDate(date);
+        this.gCalendar.setDate(date);
         setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
     }
 
@@ -200,7 +200,7 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
      * @return <code>Integer</code> Mês atual do seletor de datas
      */
     public Integer getMonth() {
-        return jPCalendar.getCalendar().getTime().getMonth();
+        return gCalendar.getCalendar().getTime().getMonth();
     }
 
     /**
@@ -209,7 +209,7 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
      * @return <code>Integer</code> Ano atual do seletor de datas
      */
     public Integer getYear() {
-        return jPCalendar.getCalendar().getTime().getYear();
+        return gCalendar.getCalendar().getTime().getYear();
     }
 
     /**
@@ -241,12 +241,14 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
 
         jPopDate = new javax.swing.JPopupMenu();
         jBDate = new javax.swing.JButton();
-        jPCalendar = new br.com.gmp.comps.calendar.GMPCalendar();
+        jPCalendar = new javax.swing.JPanel();
+        gCalendar = new br.com.gmp.comps.calendar.GMPCalendar();
 
+        jPopDate.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPopDate.setMaximumSize(new java.awt.Dimension(32253, 32270));
-        jPopDate.setMinimumSize(new java.awt.Dimension(253, 170));
+        jPopDate.setMinimumSize(new java.awt.Dimension(253, 230));
 
-        jBDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Calendar_selection_all.png"))); // NOI18N
+        jBDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/date/date.png"))); // NOI18N
         jBDate.setToolTipText("Escolher data");
         jBDate.setMaximumSize(new java.awt.Dimension(26, 26));
         jBDate.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -257,7 +259,34 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
             }
         });
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPCalendar.setMaximumSize(new java.awt.Dimension(253, 230));
+        jPCalendar.setMinimumSize(new java.awt.Dimension(253, 230));
+        jPCalendar.setPreferredSize(new java.awt.Dimension(253, 230));
+
+        gCalendar.setMaximumSize(new java.awt.Dimension(253, 227));
+        gCalendar.setMinimumSize(new java.awt.Dimension(253, 227));
+        gCalendar.setPreferredSize(new java.awt.Dimension(253, 227));
+        gCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gCalendarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPCalendarLayout = new javax.swing.GroupLayout(jPCalendar);
+        jPCalendar.setLayout(jPCalendarLayout);
+        jPCalendarLayout.setHorizontalGroup(
+            jPCalendarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPCalendarLayout.createSequentialGroup()
+                .addComponent(gCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPCalendarLayout.setVerticalGroup(
+            jPCalendarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPCalendarLayout.createSequentialGroup()
+                .addComponent(gCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(3, Short.MAX_VALUE))
+        );
+
         setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         setToolTipText("<html>\nComandos padrão do seletor de datas:\n<ul>\n<li style='text-size:10px;'>Teclar <b>Cima</b> avança um ano</li>\n<li style='text-size:10px;'>Teclar <b>Baixo</b> volta um ano</li>\n<li style='text-size:10px;'>Teclar <b>Direita</b> avança um mês</li>\n<li style='text-size:10px;'>Teclar <b>Esquerda</b> volta um mês</li>\n</ul>\n</html>");
         setComponentPopupMenu(jPopDate);
@@ -304,9 +333,21 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
         keyControls(evt);
     }//GEN-LAST:event_formKeyReleased
 
+    private void gCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gCalendarMouseClicked
+        if (evt.getClickCount() == 2) {
+            Date dt = gCalendar.getjCalendar().getSelectionDate();
+            setDate(dt);
+            checkPop();
+        } else {
+            Date dt = gCalendar.getjCalendar().getSelectionDate();
+            setDate(dt);
+        }
+    }//GEN-LAST:event_gCalendarMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private br.com.gmp.comps.calendar.GMPCalendar gCalendar;
     private javax.swing.JButton jBDate;
-    private br.com.gmp.comps.calendar.GMPCalendar jPCalendar;
+    private javax.swing.JPanel jPCalendar;
     private javax.swing.JPopupMenu jPopDate;
     // End of variables declaration//GEN-END:variables
 

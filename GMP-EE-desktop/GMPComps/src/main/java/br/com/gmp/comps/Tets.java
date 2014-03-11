@@ -36,6 +36,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
             e.printStackTrace();
             System.exit(0);
         }
+        gMPTableBar1.setTable(gTable1);
         dual.addSourceElements(new String[]{"One", "Two", "Three"});
         dual.addSourceElements(new String[]{"Four", "Five", "Six"});
         dual.addSourceElements(new String[]{"Seven", "Eight", "Nine"});
@@ -84,9 +85,13 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
         jPanel2 = new javax.swing.JPanel();
         gMPTableBar1 = new br.com.gmp.comps.table.bar.GMPTableBar();
         jScrollPane2 = new javax.swing.JScrollPane();
-        gTable1 = new br.com.gmp.comps.table.GMPTable(this, 20, new DefaultModel(), DefaultModel.class);
+        gTable1 = new br.com.gmp.comps.table.GMPTable(this, new DefaultModel(), DefaultModelObject.class);
         jPanel3 = new javax.swing.JPanel();
         dual = new br.com.gmp.comps.list.dual.GMPDualList();
+        gMPDualTable1 = new br.com.gmp.comps.table.dual.GMPDualTable();
+        jPanel4 = new javax.swing.JPanel();
+        gMPDateField2 = new br.com.gmp.comps.datefield.GMPDateField();
+        jButton4 = new javax.swing.JButton();
 
         gMPJTabbedPane1.setName("gMPJTabbedPane1"); // NOI18N
 
@@ -276,19 +281,20 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
 
         jPanel2.setName("jPanel2"); // NOI18N
 
-        gMPTableBar1.setTable(gTable1);
         gMPTableBar1.setName("gMPTableBar1"); // NOI18N
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
+        gTable1.setEnabled(false);
         gTable1.setName("gTable1"); // NOI18N
+        gTable1.setShowGrid(true);
         jScrollPane2.setViewportView(gTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(gMPTableBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+            .addComponent(gMPTableBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -296,7 +302,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(gMPTableBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Tabela", jPanel2);
@@ -312,7 +318,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(dual, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                .addComponent(dual, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         jPanel3Layout.setVerticalGroup(
@@ -322,17 +328,50 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
                 .addGap(0, 0, 0))
         );
 
-        jTabbedPane1.addTab("Outros", jPanel3);
+        jTabbedPane1.addTab("Lista", jPanel3);
+
+        gMPDualTable1.setName("gMPDualTable1"); // NOI18N
+        jTabbedPane1.addTab("DualTable", gMPDualTable1);
+
+        jPanel4.setName("jPanel4"); // NOI18N
+
+        gMPDateField2.setName("gMPDateField2"); // NOI18N
+
+        jButton4.setText("Validar");
+        jButton4.setName("jButton4"); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(gMPDateField2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addContainerGap(362, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gMPDateField2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addContainerGap(389, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Outros", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
         );
 
         pack();
@@ -408,6 +447,8 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
     private br.com.gmp.comps.button.GMPButton gMPButton3;
     private br.com.gmp.comps.button.GMPButton gMPButton4;
     private br.com.gmp.comps.datefield.GMPDateField gMPDateField1;
+    private br.com.gmp.comps.datefield.GMPDateField gMPDateField2;
+    private br.com.gmp.comps.table.dual.GMPDualTable gMPDualTable1;
     private br.com.gmp.comps.tabbedpane.GMPJTabbedPane gMPJTabbedPane1;
     private br.com.gmp.comps.table.bar.GMPTableBar gMPTableBar1;
     private br.com.gmp.comps.textfield.GMPTextField gMPTextField1;
@@ -416,11 +457,13 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JInternalFrame jInternalFrame;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
