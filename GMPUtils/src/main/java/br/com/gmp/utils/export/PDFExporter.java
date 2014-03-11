@@ -5,6 +5,7 @@ import br.com.gmp.utils.system.SystemProperties;
 import br.com.gmp.utils.test.Test;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPCell;
@@ -32,7 +33,9 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class PDFExporter {
-    
+
+    private Font font = new Font(Font.HELVETICA, 8, Font.NORMAL);
+
     /**
      * Exporta os dados da lista para o formato PDF
      *
@@ -65,9 +68,8 @@ public class PDFExporter {
             Document doc = new Document(PageSize.A4, 36, 36, 36, 36);
             PdfWriter.getInstance(doc, os);
             doc.open();
-            
+
             doc.addAuthor(SystemProperties.USER_NAME.toString());
-            
             doc.add(new Paragraph(new DateUtil().getCompleteDate(new Date())));
             doc.add(new Paragraph(" "));
             doc.add(new LineSeparator());
@@ -76,7 +78,7 @@ public class PDFExporter {
             //------------------------------------------------------------------
             // Preenche o cabeçalho
             for (String name : getFieldNames(objClass)) {
-                PdfPCell header = new PdfPCell(new Paragraph(name.toUpperCase()));
+                PdfPCell header = new PdfPCell(new Paragraph(name.toUpperCase(), font));
                 header.setBackgroundColor(Color.lightGray);
                 header.setBorderWidth(1f);
                 table.addCell(header);
@@ -86,10 +88,9 @@ public class PDFExporter {
             for (Object obj : list) {
                 for (Field field : obj.getClass().getDeclaredFields()) {
                     field.setAccessible(true);
-                    table.addCell(String.valueOf(field.get(obj)));
+                    table.addCell(new Paragraph(String.valueOf(field.get(obj)), font));
                 }
             }
-
             doc.add(table);
             doc.close();
             //------------------------------------------------------------------
@@ -115,6 +116,26 @@ public class PDFExporter {
         return list.toArray(new String[]{});
     }
 
+    //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
+    /**
+     * Retorna a fonte do exportador
+     *
+     * @return <code>com.lowagie.text.Font</code> Fonte
+     */
+    public Font getFont() {
+        return font;
+    }
+
+    /**
+     * Modifica a fonte do exportador
+     *
+     * @param font <code>com.lowagie.text.Font</code> Fonte
+     */
+    public void setFont(Font font) {
+        this.font = font;
+    }
+
+    //</editor-fold>
     public static void main(String[] args) {
         List<Test> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {

@@ -32,7 +32,7 @@ import jxl.write.WriteException;
  * @see javax.swing.JTable
  */
 public class GMPTable extends JTable implements TableControl, Exporter {
-
+    
     private Class objClass;
     private TableSource source;
     private int pageCount;
@@ -115,18 +115,18 @@ public class GMPTable extends JTable implements TableControl, Exporter {
         this.setGridColor(Color.gray.darker());
         this.loadData();
     }
-
+    
     private void loadData() {
         this.mainList = source.getTableData();
         this.splitData(source.getTableData(), maxRows);
         this.setModel(gmpModel);
     }
-
+    
     @Override
     public void refresh() {
         this.loadData();
     }
-
+    
     @Override
     public void nextPage() {
         if (actualPage < (pageCount - 1)) {
@@ -135,7 +135,7 @@ public class GMPTable extends JTable implements TableControl, Exporter {
             new BalloonUtil().showTimedBallon(this, "Esta é a ultima pagina");
         }
     }
-
+    
     @Override
     public void previousPage() {
         if (actualPage > 0) {
@@ -144,23 +144,23 @@ public class GMPTable extends JTable implements TableControl, Exporter {
             new BalloonUtil().showTimedBallon(this, "Esta é a primeira pagina");
         }
     }
-
+    
     @Override
     public int getMaxRows() {
         return this.maxRows;
     }
-
+    
     @Override
     public void setMaxRows(int maxrows) {
         this.maxRows = maxrows;
         loadData();
     }
-
+    
     @Override
     public int getActualPage() {
         return this.actualPage;
     }
-
+    
     @Override
     public void setActualPage(int actualPage) {
         this.actualPage = actualPage;
@@ -168,24 +168,24 @@ public class GMPTable extends JTable implements TableControl, Exporter {
         this.repaint();
         this.revalidate();
     }
-
+    
     @Override
     public void gotoPage(int page) {
         this.setActualPage(page);
     }
-
+    
     @Override
     public void gotoFirst() {
         this.setActualPage(0);
     }
-
+    
     @Override
     public void gotoLast() {
         if (pages != null) {
             this.setActualPage(pages.length > 0 ? (pages.length - 1) : 0);
         }
     }
-
+    
     public void setTable(TableSource source, int maxRows, GMPTableModel gmpModel, Class objClass) {
         this.source = source;
         this.mainList = source.getTableData();
@@ -212,7 +212,7 @@ public class GMPTable extends JTable implements TableControl, Exporter {
         this.pageCount = pages.length;
         setActualPage(0);
     }
-
+    
     @Override
     public void setModel(TableModel dataModel) {
         super.setModel(dataModel);
@@ -230,7 +230,7 @@ public class GMPTable extends JTable implements TableControl, Exporter {
     public void mount(Class<Object> objectclass, List<Object> list) {
         this.setModel(new GMPTableModel(objectclass, list));
     }
-
+    
     @Override
     public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component c = super.prepareRenderer(renderer, row, column);
@@ -247,29 +247,42 @@ public class GMPTable extends JTable implements TableControl, Exporter {
         }
         return c;
     }
-
+    
+    private List assemblyData() {
+        List data = new ArrayList();
+        for (List<Object> list : pages) {
+            for (Object object : list) {
+                data.add(object);
+            }
+        }
+        return data;
+    }
+    
     @Override
     public void exportXLS() {
         try {
-            new XLSExporter().exportData(mainList, "TableExport", "TableExport");
+            List data = assemblyData();
+            new XLSExporter().exportData(data, "TableExport", "TableExport");
         } catch (IllegalAccessException | WriteException | IOException ex) {
             Logger.getLogger(GMPTable.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public void exportTXT() {
         try {
-            new TXTExporter().exportTableList(mainList, "TableExport");
+            List data = assemblyData();
+            new TXTExporter().exportTableList(data, "TableExport");
         } catch (IllegalAccessException | IOException ex) {
             Logger.getLogger(GMPTable.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public void exportPDF() {
         try {
-            new PDFExporter().export(mainList, "TableExport");
+            List data = assemblyData();
+            new PDFExporter().export(data, "TableExport");
         } catch (DocumentException | IOException | IllegalArgumentException | IllegalAccessException ex) {
             Logger.getLogger(GMPTable.class.getName()).log(Level.SEVERE, null, ex);
         }
