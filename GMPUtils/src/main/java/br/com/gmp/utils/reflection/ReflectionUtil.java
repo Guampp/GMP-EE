@@ -48,4 +48,31 @@ public class ReflectionUtil {
                 instance.getArguments());
     }
 
+    /**
+     * Invoca o método
+     *
+     * @param method <code><b>String</b></code> Nome do método
+     * @param cl <code><b>Class</b></code> Classe que contem o método
+     * @param argtypes <code><b>Class(?)[]</b></code> Tipos dos parametros
+     * @param args <code><b>Object</b>[]</code> Valores dos parametros
+     * @throws IllegalAccessException
+     * @throws IllegalArgumentException
+     * @throws InvocationTargetException
+     * @throws java.lang.NoSuchMethodException
+     */
+    public void callMethod(String method, Class<?> cl, Class<?>[] argtypes, Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException {
+        cl.getDeclaredMethod(method, argtypes).invoke(this, args);        
+    }
+
+    public void test(String nome) {
+        System.out.println("Meu nome é " + nome);
+    }
+
+    public static void main(String[] args) {
+        try {
+            new ReflectionUtil().callMethod("test", ReflectionUtil.class, new Class<?>[]{String.class}, "Jorge");
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException ex) {            
+            Logger.getLogger(ReflectionUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

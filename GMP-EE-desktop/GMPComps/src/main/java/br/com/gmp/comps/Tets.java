@@ -339,6 +339,11 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
 
         jButton4.setText("Validar");
         jButton4.setName("jButton4"); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -421,6 +426,12 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
         dialog.setLocationRelativeTo(jInternalFrame);
         dialog.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (gMPDateField2.validateComponent()) {
+            System.out.println("Válido!");
+        } 
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

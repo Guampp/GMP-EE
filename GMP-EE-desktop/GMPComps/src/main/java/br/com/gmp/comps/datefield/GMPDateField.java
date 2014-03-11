@@ -39,7 +39,7 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
     private void initialize() {
         initComponents();
         setMask();
-        setDate(new Date());
+        //setDate(new Date());
         this.setLayout(new BorderLayout());
         this.add(jBDate, BorderLayout.EAST);
         jPopDate.add(jPCalendar);
@@ -139,11 +139,12 @@ public class GMPDateField extends JFormattedTextField implements ValidableCompon
 
     @Override
     public boolean validateComponent() {
-        if (this.getText().equals("") || this.getText() == null) {
-            new BalloonUtil().showModernBallon(this, "Data invalida!");
-            return false;
-        } else {
+        try {
+            new SimpleDateFormat("dd/MM/yyyy").parse(this.getText());
             return true;
+        } catch (ParseException e) {
+            new BalloonUtil().showTimedBallon(this, "Data invalida!");
+            return false;
         }
     }
 
