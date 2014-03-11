@@ -4,7 +4,6 @@ import br.com.gmp.comps.list.dual.model.SortedListModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
 
@@ -34,7 +33,7 @@ public class GMPDualList extends JPanel {
         destListModel = new SortedListModel();
         initComponents();
         jBToRight.addActionListener(new AddListener());
-        jBToLeft.addActionListener(new RemoveListener());
+        jBAllToLeft.addActionListener(new RemoveListener());
     }
 
     /**
@@ -196,6 +195,16 @@ public class GMPDualList extends JPanel {
         }
     }
 
+    /**
+     * Revalida os dados
+     */
+    private void refresh() {
+        sourceList.repaint();
+        sourceList.revalidate();
+        destList.repaint();
+        destList.revalidate();
+    }
+
     //<editor-fold desc="Get's & Set's" defaultstate="collapsed">
     /**
      * Retorna o texto do rótulo da fonte
@@ -253,7 +262,9 @@ public class GMPDualList extends JPanel {
         destList = new javax.swing.JList();
         jPButtons = new javax.swing.JPanel();
         jBToRight = new javax.swing.JButton();
-        jBToLeft = new javax.swing.JButton();
+        jBAllToRight = new javax.swing.JButton();
+        jBAllToLeft = new javax.swing.JButton();
+        jBToLeft1 = new javax.swing.JButton();
 
         jPLabels.setName("jPLabels"); // NOI18N
         jPLabels.setLayout(new java.awt.GridLayout(1, 2));
@@ -290,15 +301,33 @@ public class GMPDualList extends JPanel {
         jPLists.add(jSP2);
 
         jPButtons.setName("jPButtons"); // NOI18N
-        jPButtons.setLayout(new java.awt.GridLayout(1, 2));
+        jPButtons.setLayout(new java.awt.GridLayout(1, 4));
 
         jBToRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/24/Navigate_right.png"))); // NOI18N
         jBToRight.setName("jBToRight"); // NOI18N
         jPButtons.add(jBToRight);
 
-        jBToLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/24/Navigate_left.png"))); // NOI18N
-        jBToLeft.setName("jBToLeft"); // NOI18N
-        jPButtons.add(jBToLeft);
+        jBAllToRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/24/Hide_right.png"))); // NOI18N
+        jBAllToRight.setName("jBAllToRight"); // NOI18N
+        jBAllToRight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAllToRightActionPerformed(evt);
+            }
+        });
+        jPButtons.add(jBAllToRight);
+
+        jBAllToLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/24/Hide_left.png"))); // NOI18N
+        jBAllToLeft.setName("jBAllToLeft"); // NOI18N
+        jBAllToLeft.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAllToLeftActionPerformed(evt);
+            }
+        });
+        jPButtons.add(jBAllToLeft);
+
+        jBToLeft1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/24/Navigate_left.png"))); // NOI18N
+        jBToLeft1.setName("jBToLeft1"); // NOI18N
+        jPButtons.add(jBToLeft1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -320,11 +349,27 @@ public class GMPDualList extends JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBAllToRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAllToRightActionPerformed
+        Object selected[] = sourceListModel.getElements();
+        addDestinationElements(selected);
+        sourceListModel.clear();
+        refresh();
+    }//GEN-LAST:event_jBAllToRightActionPerformed
+
+    private void jBAllToLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAllToLeftActionPerformed
+        Object selected[] = destListModel.getElements();
+        addSourceElements(selected);
+        destListModel.clear();
+        refresh();
+    }//GEN-LAST:event_jBAllToLeftActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel destLabel;
     private javax.swing.JList destList;
-    private javax.swing.JButton jBToLeft;
+    private javax.swing.JButton jBAllToLeft;
+    private javax.swing.JButton jBAllToRight;
+    private javax.swing.JButton jBToLeft1;
     private javax.swing.JButton jBToRight;
     private javax.swing.JPanel jPButtons;
     private javax.swing.JPanel jPLabels;

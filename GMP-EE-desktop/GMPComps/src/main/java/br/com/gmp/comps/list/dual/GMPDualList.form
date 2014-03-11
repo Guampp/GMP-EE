@@ -129,7 +129,7 @@
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
-        <Property name="columns" type="int" value="2"/>
+        <Property name="columns" type="int" value="4"/>
         <Property name="rows" type="int" value="1"/>
       </Layout>
       <SubComponents>
@@ -141,12 +141,34 @@
             <Property name="name" type="java.lang.String" value="jBToRight" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jBToLeft">
+        <Component class="javax.swing.JButton" name="jBAllToRight">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/br/com/gmp/comps/icons/24/Hide_right.png"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="jBAllToRight" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAllToRightActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBAllToLeft">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/br/com/gmp/comps/icons/24/Hide_left.png"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="jBAllToLeft" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAllToLeftActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBToLeft1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/br/com/gmp/comps/icons/24/Navigate_left.png"/>
             </Property>
-            <Property name="name" type="java.lang.String" value="jBToLeft" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="jBToLeft1" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>

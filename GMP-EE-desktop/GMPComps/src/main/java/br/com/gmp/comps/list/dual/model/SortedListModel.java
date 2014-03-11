@@ -36,6 +36,15 @@ public class SortedListModel extends AbstractListModel {
     }
 
     /**
+     * Retorna os elementos
+     *
+     * @return <code>Object[]</code> Objeto
+     */
+    public Object[] getElements() {
+        return model.toArray();
+    }
+
+    /**
      * Adiciona novo elemento
      *
      * @param element <code>Object</code> Objeto
