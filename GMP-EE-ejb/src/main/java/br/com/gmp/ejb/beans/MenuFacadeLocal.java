@@ -1,3 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package br.com.gmp.ejb.beans;
 
 import br.com.gmp.ejb.entity.Menu;
@@ -11,18 +17,18 @@ import javax.ejb.Local;
 @Local
 public interface MenuFacadeLocal {
 
-    void createLocal(Menu menu);
+    void create(Menu menu);
 
-    void editLocal(Menu menu);
+    void edit(Menu menu);
 
-    void removeLocal(Menu menu);
+    void remove(Menu menu);
 
-    Menu findLocal(Object id);
+    Menu find(Object id);
 
-    List<Menu> findAllLocal();
+    List<Menu> findAll();
 
-    List<Menu> findRangeLocal(int[] range);
+    List<Menu> findRange(int[] range);
 
-    int countLocal();
+    int count();
     
 }

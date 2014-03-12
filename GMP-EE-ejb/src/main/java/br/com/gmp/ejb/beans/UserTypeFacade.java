@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package br.com.gmp.ejb.beans;
 
-import br.com.gmp.ejb.dao.AbstractDao;
-import br.com.gmp.ejb.dao.UserTypeDaoRemote;
 import br.com.gmp.ejb.entity.UserType;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,9 +15,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author kaciano
  */
-@Stateless(mappedName = "EJB/UserTypeFacade", name = "UserTypeFacade")
-public class UserTypeFacade extends AbstractDao<UserType> implements UserTypeDaoRemote {
-
+@Stateless
+public class UserTypeFacade extends AbstractFacade<UserType> implements UserTypeFacadeLocal {
     @PersistenceContext(unitName = "GMP-EJB-PU")
     private EntityManager em;
 
@@ -30,5 +28,5 @@ public class UserTypeFacade extends AbstractDao<UserType> implements UserTypeDao
     public UserTypeFacade() {
         super(UserType.class);
     }
-
+    
 }

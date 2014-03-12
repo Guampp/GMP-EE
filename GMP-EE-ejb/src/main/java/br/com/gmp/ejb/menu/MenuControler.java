@@ -11,19 +11,14 @@ import javax.ejb.Stateless;
  * @author kaciano
  */
 @Stateless(mappedName = "EJB/MenuControler")
-public class MenuControler implements MenuControlerLocal, MenuControlerRemote {
+public class MenuControler implements MenuControlerLocal {
 
     @EJB
     MenuFacadeLocal menufacade;
 
     @Override
     public List<Menu> getMenuListLocal() throws Exception {
-        return menufacade.findAllLocal();
-    }
-
-    @Override
-    public List<Menu> getMenuList() throws Exception {
-        return getMenuListLocal();
+        return menufacade.findAll();
     }
 
 }

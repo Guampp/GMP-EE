@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 
-package br.com.gmp.ejb.dao;
+package br.com.gmp.ejb.beans;
 
 import br.com.gmp.ejb.entity.DemandInfo;
 import java.util.List;
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 /**
  *
  * @author kaciano
  */
-@Remote
-public interface DemandInfoDaoRemote {
+@Local
+public interface DemandInfoFacadeLocal {
 
     void create(DemandInfo demandInfo);
 

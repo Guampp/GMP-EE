@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.gmp.ejb.dao;
+
+package br.com.gmp.ejb.beans;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -11,67 +12,39 @@ import javax.persistence.EntityManager;
 /**
  *
  * @author kaciano
- * @param <T>
  */
-public abstract class AbstractDao<T> {
-
+public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
 
-    public AbstractDao(Class<T> entityClass) {
+    public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
     protected abstract EntityManager getEntityManager();
 
-    /**
-     *
-     * @param entity
-     */
-    public void createLocal(T entity) {
+    public void create(T entity) {
         getEntityManager().persist(entity);
     }
 
-    /**
-     *
-     * @param entity
-     */
-    public void editLocal(T entity) {
+    public void edit(T entity) {
         getEntityManager().merge(entity);
     }
 
-    /**
-     *
-     * @param entity
-     */
-    public void removeLocal(T entity) {
+    public void remove(T entity) {
         getEntityManager().remove(getEntityManager().merge(entity));
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
-    public T findLocal(Object id) {
+    public T find(Object id) {
         return getEntityManager().find(entityClass, id);
     }
 
-    /**
-     *
-     * @return
-     */
-    public List<T> findAllLocal() {
+    public List<T> findAll() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
     }
 
-    /**
-     *
-     * @param range
-     * @return
-     */
-    public List<T> findRangeLocal(int[] range) {
+    public List<T> findRange(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
@@ -80,74 +53,12 @@ public abstract class AbstractDao<T> {
         return q.getResultList();
     }
 
-    /**
-     *
-     * @return
-     */
-    public int countLocal() {
+    public int count() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-
-    /**
-     *
-     * @param entity
-     */
-    public void create(T entity) {
-        createLocal(entity);
-    }
-
-    /**
-     *
-     * @param entity
-     */
-    public void edit(T entity) {
-        editLocal(entity);
-    }
-
-    /**
-     *
-     * @param entity
-     */
-    public void remove(T entity) {
-        removeLocal(entity);
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     */
-    public T find(Object id) {
-        return findLocal(id);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public List<T> findAll() {
-        return findAllLocal();
-    }
-
-    /**
-     *
-     * @param range
-     * @return
-     */
-    public List<T> findRange(int[] range) {
-        return findRangeLocal(range);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int count() {
-        return countLocal();
-    }
-
+    
 }

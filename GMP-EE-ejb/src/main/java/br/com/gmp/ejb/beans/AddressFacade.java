@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package br.com.gmp.ejb.beans;
 
-import br.com.gmp.ejb.dao.AbstractDao;
-import br.com.gmp.ejb.dao.AddressDaoRemote;
 import br.com.gmp.ejb.entity.Address;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,9 +15,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author kaciano
  */
-@Stateless(mappedName = "EJB/AddressFacade", name = "AddressFacade")
-public class AddressFacade extends AbstractDao<Address> implements AddressDaoRemote {
-
+@Stateless
+public class AddressFacade extends AbstractFacade<Address> implements AddressFacadeLocal {
     @PersistenceContext(unitName = "GMP-EJB-PU")
     private EntityManager em;
 
@@ -30,5 +28,5 @@ public class AddressFacade extends AbstractDao<Address> implements AddressDaoRem
     public AddressFacade() {
         super(Address.class);
     }
-
+    
 }

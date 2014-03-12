@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package br.com.gmp.ejb.dao;
+package br.com.gmp.ejb.beans;
 
 import br.com.gmp.ejb.entity.UserType;
 import java.util.List;
@@ -15,7 +15,7 @@ import javax.ejb.Local;
  * @author kaciano
  */
 @Local
-public interface UserTypeDaoLocal {
+public interface UserTypeFacadeLocal {
 
     void create(UserType userType);
 

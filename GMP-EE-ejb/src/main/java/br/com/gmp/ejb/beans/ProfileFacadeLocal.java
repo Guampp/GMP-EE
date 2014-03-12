@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 
-package br.com.gmp.ejb.dao;
+package br.com.gmp.ejb.beans;
 
 import br.com.gmp.ejb.entity.Profile;
 import java.util.List;
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 /**
  *
  * @author kaciano
  */
-@Remote
-public interface ProfileDaoRemote {
+@Local
+public interface ProfileFacadeLocal {
 
     void create(Profile profile);
 

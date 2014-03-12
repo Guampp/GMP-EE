@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package br.com.gmp.ejb.beans;
 
-import br.com.gmp.ejb.dao.AbstractDao;
-import br.com.gmp.ejb.dao.CompanyDaoRemote;
 import br.com.gmp.ejb.entity.Company;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,9 +15,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author kaciano
  */
-@Stateless(mappedName = "EJB/CompanyFacade", name = "CompanyFacade")
-public class CompanyFacade extends AbstractDao<Company> implements CompanyDaoRemote {
-
+@Stateless
+public class CompanyFacade extends AbstractFacade<Company> implements CompanyFacadeLocal {
     @PersistenceContext(unitName = "GMP-EJB-PU")
     private EntityManager em;
 
@@ -30,5 +28,5 @@ public class CompanyFacade extends AbstractDao<Company> implements CompanyDaoRem
     public CompanyFacade() {
         super(Company.class);
     }
-
+    
 }

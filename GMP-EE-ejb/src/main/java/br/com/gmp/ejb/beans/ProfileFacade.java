@@ -6,8 +6,6 @@
 
 package br.com.gmp.ejb.beans;
 
-import br.com.gmp.ejb.dao.AbstractDao;
-import br.com.gmp.ejb.dao.ProfileDaoRemote;
 import br.com.gmp.ejb.entity.Profile;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,8 +15,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author kaciano
  */
-@Stateless(mappedName = "EJB/ProfileFacade", name = "ProfileFacade")
-public class ProfileFacade extends AbstractDao<Profile> implements ProfileDaoRemote {
+@Stateless
+public class ProfileFacade extends AbstractFacade<Profile> implements ProfileFacadeLocal {
     @PersistenceContext(unitName = "GMP-EJB-PU")
     private EntityManager em;
 

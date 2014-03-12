@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package br.com.gmp.ejb.beans;
 
-import br.com.gmp.ejb.dao.AbstractDao;
-import br.com.gmp.ejb.dao.DemandPriorityDaoRemote;
 import br.com.gmp.ejb.entity.DemandPriority;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,9 +15,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author kaciano
  */
-@Stateless(mappedName = "EJB/DemandPriorityFacade", name = "DemandPriorityFacade")
-public class DemandPriorityFacade extends AbstractDao<DemandPriority> implements DemandPriorityDaoRemote {
-
+@Stateless
+public class DemandPriorityFacade extends AbstractFacade<DemandPriority> implements DemandPriorityFacadeLocal {
     @PersistenceContext(unitName = "GMP-EJB-PU")
     private EntityManager em;
 
@@ -30,5 +28,5 @@ public class DemandPriorityFacade extends AbstractDao<DemandPriority> implements
     public DemandPriorityFacade() {
         super(DemandPriority.class);
     }
-
+    
 }

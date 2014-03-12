@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package br.com.gmp.ejb.dao;
+package br.com.gmp.ejb.beans;
 
-import br.com.gmp.ejb.entity.Profile;
+import br.com.gmp.ejb.entity.Demand;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -15,19 +15,19 @@ import javax.ejb.Local;
  * @author kaciano
  */
 @Local
-public interface ProfileDaoLocal {
+public interface DemandFacadeLocal {
 
-    void create(Profile profile);
+    void create(Demand demand);
 
-    void edit(Profile profile);
+    void edit(Demand demand);
 
-    void remove(Profile profile);
+    void remove(Demand demand);
 
-    Profile find(Object id);
+    Demand find(Object id);
 
-    List<Profile> findAll();
+    List<Demand> findAll();
 
-    List<Profile> findRange(int[] range);
+    List<Demand> findRange(int[] range);
 
     int count();
     
