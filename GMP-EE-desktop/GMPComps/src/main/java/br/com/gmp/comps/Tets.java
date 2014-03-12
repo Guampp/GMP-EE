@@ -1,15 +1,13 @@
 package br.com.gmp.comps;
 
-import br.com.gmp.comps.dialog.GMPDialog;
 import br.com.gmp.comps.model.GMPTableModel;
 import br.com.gmp.comps.panel.BlurGlassPane;
 import br.com.gmp.comps.table.interfaces.TableSource;
+import br.com.gmp.utils.test.Test;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -17,7 +15,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author kaciano
  */
-public class Tets extends javax.swing.JFrame implements TableSource<DefaultModelObject> {
+public class Tets extends javax.swing.JFrame implements TableSource<Test> {
 
     /**
      * Creates new form Tets
@@ -29,28 +27,29 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
     private void initialize() {
         initComponents();
         try {
-            jTable.setModel(new DefaultModel());
-            gTable.setModel(new DefaultModel());
             setGlassPane(new BlurGlassPane());
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
         }
-        gMPTableBar1.setTable(gTable1);
-        dual.addSourceElements(new String[]{"One", "Two", "Three"});
-        dual.addSourceElements(new String[]{"Four", "Five", "Six"});
-        dual.addSourceElements(new String[]{"Seven", "Eight", "Nine"});
-        dual.addSourceElements(new String[]{"Ten", "Eleven", "Twelve"});
-        dual.addSourceElements(new String[]{"Thirteen", "Fourteen", "Fifteen"});
-        dual.addSourceElements(new String[]{"Sixteen", "Seventeen", "Eighteen"});
-        dual.addSourceElements(new String[]{"Nineteen", "Twenty", "Thirty"});
+        gTableBar.setTable(gTable);        
+        dual.setSourceElements(getTable().toArray());         
+        gTree.mount(Test.class, getTableData());
     }
 
     @Override
-    public List<DefaultModelObject> getTableData() {
-        List<DefaultModelObject> list = new ArrayList<>();
+    public List<Test> getTableData() {
+        List<Test> list = new ArrayList<>();
         for (int i = 0; i < 200; i++) {
-            list.add(new DefaultModelObject("Kaciano", i, true));
+            list.add(new Test("Kaciano", i, true, new Test("Kaciano", 132, true)));
+        }
+        return list;
+    }
+
+    private List<String> getTable() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 15; i++) {
+            list.add(String.valueOf(i));            
         }
         return list;
     }
@@ -64,216 +63,19 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gMPJTabbedPane1 = new br.com.gmp.comps.tabbedpane.GMPJTabbedPane();
-        gMPButton3 = new br.com.gmp.comps.button.GMPButton();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        gTable = new br.com.gmp.comps.table.GMPTable();
-        gMPDateField1 = new br.com.gmp.comps.datefield.GMPDateField();
-        gMPButton2 = new br.com.gmp.comps.button.GMPButton();
-        gMPTextField1 = new br.com.gmp.comps.textfield.GMPTextField();
-        gMPButton1 = new br.com.gmp.comps.button.GMPButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
-        gMPButton4 = new br.com.gmp.comps.button.GMPButton();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jInternalFrame = new javax.swing.JInternalFrame();
-        jButton3 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        gMPTableBar1 = new br.com.gmp.comps.table.bar.GMPTableBar();
+        gTableBar = new br.com.gmp.comps.table.bar.GMPTableBar();
         jScrollPane2 = new javax.swing.JScrollPane();
-        gTable1 = new br.com.gmp.comps.table.GMPTable(this, new DefaultModel(), DefaultModelObject.class);
+        gTable = new br.com.gmp.comps.table.GMPTable(this, new DefaultModel(), Test.class);
         jPanel3 = new javax.swing.JPanel();
         dual = new br.com.gmp.comps.list.dual.GMPDualList();
         gMPDualTable1 = new br.com.gmp.comps.table.dual.GMPDualTable();
         jPanel4 = new javax.swing.JPanel();
         gMPDateField2 = new br.com.gmp.comps.datefield.GMPDateField();
         jButton4 = new javax.swing.JButton();
-
-        gMPJTabbedPane1.setName("gMPJTabbedPane1"); // NOI18N
-
-        gMPButton3.setName("gMPButton3"); // NOI18N
-        gMPButton3.setText("gMPButton3");
-        gMPButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gMPButton3ActionPerformed(evt);
-            }
-        });
-        gMPJTabbedPane1.addTab("tab1", gMPButton3);
-
-        jPanel1.setName("jPanel1"); // NOI18N
-
-        jScrollPane3.setName("jScrollPane3"); // NOI18N
-
-        gTable.setName("gTable"); // NOI18N
-        jScrollPane3.setViewportView(gTable);
-
-        gMPDateField1.setName("gMPDateField1"); // NOI18N
-
-        gMPButton2.setName("gMPButton2"); // NOI18N
-        gMPButton2.setText("Validar");
-        gMPButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gMPButton2ActionPerformed(evt);
-            }
-        });
-
-        gMPTextField1.setName("gMPTextField1"); // NOI18N
-
-        gMPButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IKONS/16/arrow_2.png"))); // NOI18N
-        gMPButton1.setName("gMPButton1"); // NOI18N
-        gMPButton1.setText("Validar");
-        gMPButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gMPButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Add");
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Delete");
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
-
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jTable.setName("jTable"); // NOI18N
-        jScrollPane1.setViewportView(jTable);
-
-        gMPButton4.setName("gMPButton4"); // NOI18N
-        gMPButton4.setText("Glass");
-        gMPButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gMPButton4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(gMPTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(44, 44, 44)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(gMPButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(gMPDateField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(gMPButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gMPDateField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gMPButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(gMPTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(gMPButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(gMPButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-
-        gMPJTabbedPane1.addTab("tab4", jPanel1);
-
-        jDesktopPane1.setName("jDesktopPane1"); // NOI18N
-
-        jInternalFrame.setName("jInternalFrame"); // NOI18N
-        jInternalFrame.setVisible(true);
-
-        jButton3.setText("Glass");
-        jButton3.setName("jButton3"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jInternalFrameLayout = new javax.swing.GroupLayout(jInternalFrame.getContentPane());
-        jInternalFrame.getContentPane().setLayout(jInternalFrameLayout);
-        jInternalFrameLayout.setHorizontalGroup(
-            jInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrameLayout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(138, 138, 138))
-        );
-        jInternalFrameLayout.setVerticalGroup(
-            jInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrameLayout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(jButton3)
-                .addContainerGap(163, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jDesktopPane1.setLayer(jInternalFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        gMPJTabbedPane1.addTab("tab5", jDesktopPane1);
+        jScrollPane4 = new javax.swing.JScrollPane();
+        gTree = new br.com.gmp.comps.tree.GMPTree();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -281,26 +83,26 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
 
         jPanel2.setName("jPanel2"); // NOI18N
 
-        gMPTableBar1.setName("gMPTableBar1"); // NOI18N
+        gTableBar.setName("gTableBar"); // NOI18N
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
-        gTable1.setEnabled(false);
-        gTable1.setName("gTable1"); // NOI18N
-        gTable1.setShowGrid(true);
-        jScrollPane2.setViewportView(gTable1);
+        gTable.setEnabled(false);
+        gTable.setName("gTable"); // NOI18N
+        gTable.setShowGrid(true);
+        jScrollPane2.setViewportView(gTable);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(gMPTableBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+            .addComponent(gTableBar, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(gMPTableBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(gTableBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE))
         );
@@ -345,16 +147,25 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
             }
         });
 
+        jScrollPane4.setName("jScrollPane4"); // NOI18N
+
+        gTree.setName("gTree"); // NOI18N
+        jScrollPane4.setViewportView(gTree);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gMPDateField2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addContainerGap(362, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(gMPDateField2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addGap(0, 350, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,7 +174,9 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gMPDateField2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4))
-                .addContainerGap(389, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Outros", jPanel4);
@@ -381,51 +194,6 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void gMPButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gMPButton1ActionPerformed
-        gMPTextField1.validateComponent();
-    }//GEN-LAST:event_gMPButton1ActionPerformed
-
-    private void gMPButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gMPButton2ActionPerformed
-        gMPDateField1.validateComponent();
-    }//GEN-LAST:event_gMPButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        GMPTableModel model = (GMPTableModel) jTable.getModel();
-        GMPTableModel gmpModel = (GMPTableModel) gTable.getModel();
-
-        model.add(new DefaultModelObject("Kaciano", 22, true));
-        gmpModel.add(new DefaultModelObject("Kaciano", 22, true));
-        gTable1.getGmpModel().add(new DefaultModelObject("Kaciano", 22, true));
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            int row = jTable.getSelectedRow();
-            GMPTableModel model = (GMPTableModel) jTable.getModel();
-            model.remove(row);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void gMPButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gMPButton3ActionPerformed
-        gMPJTabbedPane1.addClosableTab("1236548", new JTable());
-    }//GEN-LAST:event_gMPButton3ActionPerformed
-
-    private void gMPButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gMPButton4ActionPerformed
-        GMPDialog dialog = new GMPDialog(this, "Teste modal", true);
-        dialog.setSize(250, 100);
-        dialog.setLocationRelativeTo(this);
-        dialog.setVisible(true);
-    }//GEN-LAST:event_gMPButton4ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        GMPDialog dialog = new GMPDialog(jInternalFrame, "Teste", true);
-        dialog.setSize(250, 100);
-        dialog.setLocationRelativeTo(jInternalFrame);
-        dialog.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (gMPDateField2.validateComponent()) {
@@ -453,129 +221,25 @@ public class Tets extends javax.swing.JFrame implements TableSource<DefaultModel
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private br.com.gmp.comps.list.dual.GMPDualList dual;
-    private br.com.gmp.comps.button.GMPButton gMPButton1;
-    private br.com.gmp.comps.button.GMPButton gMPButton2;
-    private br.com.gmp.comps.button.GMPButton gMPButton3;
-    private br.com.gmp.comps.button.GMPButton gMPButton4;
-    private br.com.gmp.comps.datefield.GMPDateField gMPDateField1;
     private br.com.gmp.comps.datefield.GMPDateField gMPDateField2;
     private br.com.gmp.comps.table.dual.GMPDualTable gMPDualTable1;
-    private br.com.gmp.comps.tabbedpane.GMPJTabbedPane gMPJTabbedPane1;
-    private br.com.gmp.comps.table.bar.GMPTableBar gMPTableBar1;
-    private br.com.gmp.comps.textfield.GMPTextField gMPTextField1;
     private br.com.gmp.comps.table.GMPTable gTable;
-    private br.com.gmp.comps.table.GMPTable gTable1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private br.com.gmp.comps.table.bar.GMPTableBar gTableBar;
+    private br.com.gmp.comps.tree.GMPTree gTree;
     private javax.swing.JButton jButton4;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JInternalFrame jInternalFrame;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
 }
 
 class DefaultModel extends GMPTableModel {
 
     public DefaultModel() {
-        super(DefaultModelObject.class);
-    }
-
-}
-
-/**
- * Objeto utilizado na construção do GMPTableModel quando o mesmo está sem
- * nenhum parametro
- *
- * @author kaciano
- */
-class DefaultModelObject {
-
-    private String name;
-    private int age;
-    private boolean alive;
-
-    /**
-     * Cria novo DefaultModelObject
-     */
-    public DefaultModelObject() {
-    }
-
-    /**
-     * Cria novo DefaultModelObject
-     *
-     * @param name
-     * @param age
-     * @param alive
-     */
-    public DefaultModelObject(String name, int age, boolean alive) {
-        this.name = name;
-        this.age = age;
-        this.alive = alive;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.name);
-        hash = 41 * hash + this.age;
-        hash = 41 * hash + (this.alive ? 1 : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final DefaultModelObject other = (DefaultModelObject) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (this.age != other.age) {
-            return false;
-        }
-        return this.alive == other.alive;
-    }
-
-    @Override
-    public String toString() {
-        return "DefaultModelObject{" + "name=" + name + ", age=" + age + ", alive=" + alive + '}';
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public boolean isAlive() {
-        return alive;
-    }
-
-    public void setAlive(boolean alive) {
-        this.alive = alive;
+        super(Test.class);
     }
 
 }

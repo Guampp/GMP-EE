@@ -45,7 +45,7 @@ public class GMPDualTable extends JPanel {
     private void initialize() {
         this.sourceModel = new GMPTableModel(objectClass);
         this.destModel = new GMPTableModel(objectClass);
-        initComponents();
+        initComponents();        
         gTableSource.setModel(sourceModel);
         gTableDest.setModel(destModel);
     }
@@ -285,6 +285,8 @@ public class GMPDualTable extends JPanel {
         jTBControls.setFloatable(false);
         jTBControls.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jTBControls.setRollover(true);
+        jTBControls.setToolTipText("Controles dos itens");
+        jTBControls.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTBControls.setName("jTBControls"); // NOI18N
 
         jBAddToDest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/16/Navigate_right.png"))); // NOI18N
@@ -390,8 +392,8 @@ public class GMPDualTable extends JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPLabels, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPLabels, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jTBControls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

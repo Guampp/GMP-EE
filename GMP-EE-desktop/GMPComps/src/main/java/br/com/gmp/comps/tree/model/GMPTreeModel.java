@@ -4,6 +4,7 @@ import br.com.gmp.comps.model.AbstractTreeModel;
 import br.com.gmp.utils.annotations.TreeItem;
 import br.com.gmp.utils.annotations.TreeLeaf;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +19,17 @@ public class GMPTreeModel extends AbstractTreeModel {
 
     private final String root = "TreeModel";
     private List data;
-    private Class<?> objectclass;
+    private final Class<?> objectclass;
+
+    public GMPTreeModel(Class<?> objectclass) {
+        this.data = new ArrayList();
+        this.objectclass = objectclass;
+    }
+
+    public GMPTreeModel(List data, Class<?> objectclass) {
+        this.data = data;
+        this.objectclass = objectclass;
+    }
 
     @Override
     public Object getRoot() {
@@ -27,21 +38,20 @@ public class GMPTreeModel extends AbstractTreeModel {
 
     @Override
     public Object getChild(Object parent, int index) {
-        int count = 0;
-        for (Field field : parent.getClass().getDeclaredFields()) {
+        if (parent.equals(getRoot())) {
+            return data.get(index);
+        }
+        if (parent.getClass().isAnnotationPresent(TreeItem.class)) {
+            Field field = parent.getClass().getDeclaredFields()[index];
             field.setAccessible(true);
-            if (field.isAnnotationPresent(TreeItem.class) || field.isAnnotationPresent(TreeLeaf.class)) {
-                if (count == index) {
-                    try {
-                        return field.get(parent);
-                    } catch (IllegalArgumentException | IllegalAccessException ex) {
-                        Logger.getLogger(GMPTreeModel.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                count++;
+            try {
+                return field.get(parent);
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                Logger.getLogger(GMPTreeModel.class.getName()).log(Level.SEVERE, null, ex);
+                return new Object();
             }
         }
-        return null;
+        return new Object();
     }
 
     @Override
@@ -64,8 +74,44 @@ public class GMPTreeModel extends AbstractTreeModel {
     @Override
     public int getIndexOfChild(Object parent, Object child) {
         int count = 0;
-        
-        return count++;
+        for (Field field : parent.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            if (field.isAnnotationPresent(TreeItem.class) || field.isAnnotationPresent(TreeLeaf.class)) {
+                try {
+                    if (child.equals(field.get(parent))) {
+                        return count;
+                    }
+                } catch (IllegalArgumentException | IllegalAccessException ex) {
+                    Logger.getLogger(GMPTreeModel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Class<?> getObjectclass() {
+        return objectclass;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List getData() {
+        return data;
+    }
+
+    /**
+     *
+     * @param data
+     */
+    public void setData(List data) {
+        this.data = data;
     }
 
 }

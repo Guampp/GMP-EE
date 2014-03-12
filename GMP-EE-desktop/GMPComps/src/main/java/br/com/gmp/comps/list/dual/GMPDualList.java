@@ -33,7 +33,7 @@ public class GMPDualList extends JPanel {
         destListModel = new SortedListModel();
         initComponents();
         jBToRight.addActionListener(new AddListener());
-        jBAllToLeft.addActionListener(new RemoveListener());
+        jBToLeft.addActionListener(new RemoveListener());
     }
 
     /**
@@ -264,7 +264,7 @@ public class GMPDualList extends JPanel {
         jBToRight = new javax.swing.JButton();
         jBAllToRight = new javax.swing.JButton();
         jBAllToLeft = new javax.swing.JButton();
-        jBToLeft1 = new javax.swing.JButton();
+        jBToLeft = new javax.swing.JButton();
 
         jPLabels.setName("jPLabels"); // NOI18N
         jPLabels.setLayout(new java.awt.GridLayout(1, 2));
@@ -325,9 +325,14 @@ public class GMPDualList extends JPanel {
         });
         jPButtons.add(jBAllToLeft);
 
-        jBToLeft1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/24/Navigate_left.png"))); // NOI18N
-        jBToLeft1.setName("jBToLeft1"); // NOI18N
-        jPButtons.add(jBToLeft1);
+        jBToLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/comps/icons/24/Navigate_left.png"))); // NOI18N
+        jBToLeft.setName("jBToLeft"); // NOI18N
+        jBToLeft.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBToLeftActionPerformed(evt);
+            }
+        });
+        jPButtons.add(jBToLeft);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -363,13 +368,17 @@ public class GMPDualList extends JPanel {
         refresh();
     }//GEN-LAST:event_jBAllToLeftActionPerformed
 
+    private void jBToLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBToLeftActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBToLeftActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel destLabel;
     private javax.swing.JList destList;
     private javax.swing.JButton jBAllToLeft;
     private javax.swing.JButton jBAllToRight;
-    private javax.swing.JButton jBToLeft1;
+    private javax.swing.JButton jBToLeft;
     private javax.swing.JButton jBToRight;
     private javax.swing.JPanel jPButtons;
     private javax.swing.JPanel jPLabels;

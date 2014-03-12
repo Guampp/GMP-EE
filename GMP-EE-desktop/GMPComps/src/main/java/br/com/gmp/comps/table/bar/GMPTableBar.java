@@ -2,6 +2,7 @@ package br.com.gmp.comps.table.bar;
 
 import br.com.gmp.comps.baloontip.src.BalloonUtil;
 import br.com.gmp.comps.table.GMPTable;
+import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 
 /**
@@ -20,6 +21,7 @@ public class GMPTableBar extends javax.swing.JPanel {
     public GMPTableBar() {
         this.gTable = null;
         initComponents();
+        jTBPage.setLayout(new FlowLayout(FlowLayout.CENTER));
     }
 
     /**
@@ -30,6 +32,7 @@ public class GMPTableBar extends javax.swing.JPanel {
     public GMPTableBar(GMPTable gTable) {
         this.gTable = gTable;
         initComponents();
+        jTBPage.setLayout(new FlowLayout(FlowLayout.CENTER));
         setPages(gTable.getActualPage(), gTable.getPageCount());
     }
 
