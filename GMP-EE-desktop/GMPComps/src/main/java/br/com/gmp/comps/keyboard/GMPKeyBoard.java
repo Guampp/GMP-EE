@@ -1,5 +1,9 @@
 package br.com.gmp.comps.keyboard;
 
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -19,8 +23,8 @@ public class GMPKeyBoard extends JPanel {
     }
 
     /**
-     * 
-     * @param textField 
+     *
+     * @param textField
      */
     public GMPKeyBoard(JTextField textField) {
         this.textField = textField;
@@ -37,6 +41,26 @@ public class GMPKeyBoard extends JPanel {
 
     public void setTextField(JTextField textField) {
         this.textField = textField;
+    }
+
+    public void addKeyListeners() {
+        for (Component c : jPKeys.getComponents()) {
+            if (c instanceof JButton) {
+                final JButton button = (JButton) c;
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (jBUpperCase.isSelected()) {
+                            textField.setText(textField.getText()
+                                    + button.getText());
+                        } else {
+                            textField.setText(textField.getText()
+                                    + button.getText().toLowerCase());
+                        }
+                    }
+                });
+            }
+        }
     }
 
     /**
@@ -89,7 +113,7 @@ public class GMPKeyBoard extends JPanel {
         jBBackSpace = new javax.swing.JButton();
         jBSpace = new javax.swing.JButton();
         jBEnter = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jBUpperCase = new javax.swing.JToggleButton();
 
         jBA.setText("A");
         jPKeys.add(jBA);
@@ -398,13 +422,13 @@ public class GMPKeyBoard extends JPanel {
         });
         jPControls.add(jBEnter);
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/label/label.png"))); // NOI18N
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBUpperCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/label/label.png"))); // NOI18N
+        jBUpperCase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                jBUpperCaseActionPerformed(evt);
             }
         });
-        jPControls.add(jToggleButton1);
+        jPControls.add(jBUpperCase);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -423,9 +447,9 @@ public class GMPKeyBoard extends JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void jBUpperCaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBUpperCaseActionPerformed
+
+    }//GEN-LAST:event_jBUpperCaseActionPerformed
 
     private void jBEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEnterActionPerformed
         // TODO add your handling code here:
@@ -479,6 +503,7 @@ public class GMPKeyBoard extends JPanel {
     private javax.swing.JButton jBSpace;
     private javax.swing.JButton jBT;
     private javax.swing.JButton jBU;
+    private javax.swing.JToggleButton jBUpperCase;
     private javax.swing.JButton jBV;
     private javax.swing.JButton jBW;
     private javax.swing.JButton jBX;
@@ -486,6 +511,5 @@ public class GMPKeyBoard extends JPanel {
     private javax.swing.JButton jBZ;
     private javax.swing.JPanel jPControls;
     private javax.swing.JPanel jPKeys;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
