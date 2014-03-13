@@ -5,62 +5,102 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 /**
+ * Teclado virtual para campos de texto
  *
  * @author kaciano
  */
 public class GMPKeyBoard extends JPanel {
 
-    private JTextField textField;
+    private JTextComponent textField;
 
     /**
-     * Creates new form GMPKeyBoard
+     * Cria nova instancia de GMPKeyBoard
      */
     public GMPKeyBoard() {
         initialize();
     }
 
     /**
+     * Cria nova instancia de GMPKeyBoard
      *
-     * @param textField
+     * @param textField <code>JTextComponent</code> Campo de texto do teclado
      */
-    public GMPKeyBoard(JTextField textField) {
+    public GMPKeyBoard(JTextComponent textField) {
         this.textField = textField;
         initialize();
     }
 
+    /**
+     * Inicializa o componente
+     */
     private void initialize() {
         initComponents();
+        addKeyListeners();
     }
 
-    public JTextField getTextField() {
-        return textField;
-    }
-
-    public void setTextField(JTextField textField) {
-        this.textField = textField;
-    }
-
-    public void addKeyListeners() {
+    /**
+     * Adiciona a funçao das teclas
+     */
+    private void addKeyListeners() {
         for (Component c : jPKeys.getComponents()) {
             if (c instanceof JButton) {
                 final JButton button = (JButton) c;
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if (jBUpperCase.isSelected()) {
-                            textField.setText(textField.getText()
-                                    + button.getText());
-                        } else {
-                            textField.setText(textField.getText()
-                                    + button.getText().toLowerCase());
+                        if (textField != null) {
+                            if (!jBUpperCase.isSelected()) {
+                                textField.setText(textField.getText()
+                                        + button.getText());
+                            } else {
+                                textField.setText(textField.getText()
+                                        + button.getText().toUpperCase());
+                            }
                         }
                     }
                 });
             }
         }
+    }
+
+    /**
+     * Funçao do backspace
+     */
+    private void backspace() {
+        if (textField != null && textField.getText().length() > 0) {
+            String text = textField.getText();
+            textField.setText(text.substring(0, text.length() - 1));
+        }
+    }
+
+    /**
+     * Funçao da barra de espaço
+     */
+    private void space() {
+        if (textField != null) {
+            textField.setText(textField.getText() + " ");
+        }
+    }
+
+    /**
+     * Retorna o campo de texto do componente
+     *
+     * @return <code>JTextComponent</code> Campo de texto do teclado
+     */
+    public JTextComponent getTextField() {
+        return textField;
+    }
+
+    /**
+     * Modifica o campo de texto do componente
+     *
+     * @param textField <code>JTextComponent</code> Campo de texto do teclado
+     */
+    public void setTextField(JTextComponent textField) {
+        this.textField = textField;
     }
 
     /**
@@ -112,16 +152,24 @@ public class GMPKeyBoard extends JPanel {
         jPControls = new javax.swing.JPanel();
         jBBackSpace = new javax.swing.JButton();
         jBSpace = new javax.swing.JButton();
-        jBEnter = new javax.swing.JButton();
         jBUpperCase = new javax.swing.JToggleButton();
 
-        jBA.setText("A");
+        setMaximumSize(new java.awt.Dimension(575, 194));
+        setMinimumSize(new java.awt.Dimension(575, 194));
+        setPreferredSize(new java.awt.Dimension(575, 194));
+
+        jPKeys.setMaximumSize(new java.awt.Dimension(500, 145));
+        jPKeys.setMinimumSize(new java.awt.Dimension(500, 145));
+        jPKeys.setPreferredSize(new java.awt.Dimension(500, 145));
+        jPKeys.setLayout(new java.awt.GridLayout(3, 12));
+
+        jBA.setText("a");
         jPKeys.add(jBA);
 
-        jBB.setText("B");
+        jBB.setText("b");
         jPKeys.add(jBB);
 
-        jBC.setText("C");
+        jBC.setText("c");
         jBC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -129,7 +177,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBC);
 
-        jBD.setText("D");
+        jBD.setText("d");
         jBD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -137,7 +185,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBD);
 
-        jBE.setText("E");
+        jBE.setText("e");
         jBE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -145,7 +193,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBE);
 
-        jBF.setText("F");
+        jBF.setText("f");
         jBF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -153,7 +201,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBF);
 
-        jBG.setText("G");
+        jBG.setText("g");
         jBG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -161,7 +209,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBG);
 
-        jBH.setText("H");
+        jBH.setText("h");
         jBH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -169,7 +217,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBH);
 
-        jBI.setText("I");
+        jBI.setText("i");
         jBI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -177,7 +225,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBI);
 
-        jBJ.setText("J");
+        jBJ.setText("j");
         jBJ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -185,7 +233,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBJ);
 
-        jBK.setText("K");
+        jBK.setText("k");
         jBK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -193,7 +241,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBK);
 
-        jBL.setText("L");
+        jBL.setText("l");
         jBL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -201,7 +249,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBL);
 
-        jBM.setText("M");
+        jBM.setText("m");
         jBM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -209,7 +257,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBM);
 
-        jBN.setText("N");
+        jBN.setText("n");
         jBN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -217,7 +265,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBN);
 
-        jBO.setText("O");
+        jBO.setText("o");
         jBO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -225,7 +273,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBO);
 
-        jBP.setText("P");
+        jBP.setText("p");
         jBP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -233,7 +281,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBP);
 
-        jBQ.setText("Q");
+        jBQ.setText("q");
         jBQ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -241,7 +289,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBQ);
 
-        jBR.setText("R");
+        jBR.setText("r");
         jBR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -249,7 +297,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBR);
 
-        jBS.setText("S");
+        jBS.setText("s");
         jBS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -257,7 +305,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBS);
 
-        jBT.setText("T");
+        jBT.setText("t");
         jBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -265,7 +313,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBT);
 
-        jBU.setText("U");
+        jBU.setText("u");
         jBU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -273,7 +321,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBU);
 
-        jBV.setText("V");
+        jBV.setText("v");
         jBV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -281,7 +329,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBV);
 
-        jBX.setText("X");
+        jBX.setText("x");
         jBX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -289,7 +337,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBX);
 
-        jBW.setText("W");
+        jBW.setText("w");
         jBW.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -297,7 +345,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBW);
 
-        jBY.setText("Y");
+        jBY.setText("y");
         jBY.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -305,7 +353,7 @@ public class GMPKeyBoard extends JPanel {
         });
         jPKeys.add(jBY);
 
-        jBZ.setText("Z");
+        jBZ.setText("z");
         jBZ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAActionPerformed(evt);
@@ -403,24 +451,13 @@ public class GMPKeyBoard extends JPanel {
         });
         jPControls.add(jBBackSpace);
 
-        jBSpace.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/focus/focus.png"))); // NOI18N
-        jBSpace.setText("Space");
+        jBSpace.setText("                                                           ");
         jBSpace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSpaceActionPerformed(evt);
             }
         });
         jPControls.add(jBSpace);
-
-        jBEnter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/direction/rightCenter.png"))); // NOI18N
-        jBEnter.setText("Enter");
-        jBEnter.setToolTipText("Enter");
-        jBEnter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEnterActionPerformed(evt);
-            }
-        });
-        jPControls.add(jBEnter);
 
         jBUpperCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/label/label.png"))); // NOI18N
         jBUpperCase.addActionListener(new java.awt.event.ActionListener() {
@@ -434,16 +471,16 @@ public class GMPKeyBoard extends JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPControls, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-            .addComponent(jPKeys, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPKeys, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPControls, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPKeys, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPKeys, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPControls, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jPControls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 5, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -451,16 +488,12 @@ public class GMPKeyBoard extends JPanel {
 
     }//GEN-LAST:event_jBUpperCaseActionPerformed
 
-    private void jBEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEnterActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBEnterActionPerformed
-
     private void jBSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSpaceActionPerformed
-        // TODO add your handling code here:
+        space();
     }//GEN-LAST:event_jBSpaceActionPerformed
 
     private void jBBackSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBackSpaceActionPerformed
-        // TODO add your handling code here:
+        backspace();
     }//GEN-LAST:event_jBBackSpaceActionPerformed
 
     private void jBAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAActionPerformed
@@ -485,7 +518,6 @@ public class GMPKeyBoard extends JPanel {
     private javax.swing.JButton jBC;
     private javax.swing.JButton jBD;
     private javax.swing.JButton jBE;
-    private javax.swing.JButton jBEnter;
     private javax.swing.JButton jBF;
     private javax.swing.JButton jBG;
     private javax.swing.JButton jBH;
