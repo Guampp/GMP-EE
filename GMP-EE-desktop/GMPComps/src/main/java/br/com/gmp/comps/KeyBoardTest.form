@@ -24,11 +24,19 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="575" max="32767" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="692" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="gMPKeyBoard1" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="gMPNumericKeyBoard1" min="-2" pref="151" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="gMPKeyBoard1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -37,7 +45,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="80" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="gMPKeyBoard1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="gMPKeyBoard1" max="32767" attributes="0"/>
+                  <Component id="gMPNumericKeyBoard1" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -66,5 +77,12 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="br.com.gmp.comps.keyboard.GMPNumericKeyBoard" name="gMPNumericKeyBoard1">
+      <Properties>
+        <Property name="textField" type="javax.swing.text.JTextComponent" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="area"/>
+        </Property>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

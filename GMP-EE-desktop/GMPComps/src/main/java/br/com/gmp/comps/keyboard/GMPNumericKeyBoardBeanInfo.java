@@ -115,27 +115,28 @@ public class GMPNumericKeyBoardBeanInfo extends SimpleBeanInfo {
     private static final int PROPERTY_rootPane = 82;
     private static final int PROPERTY_showing = 83;
     private static final int PROPERTY_size = 84;
-    private static final int PROPERTY_toolkit = 85;
-    private static final int PROPERTY_toolTipText = 86;
-    private static final int PROPERTY_topLevelAncestor = 87;
-    private static final int PROPERTY_transferHandler = 88;
-    private static final int PROPERTY_treeLock = 89;
-    private static final int PROPERTY_UI = 90;
-    private static final int PROPERTY_UIClassID = 91;
-    private static final int PROPERTY_valid = 92;
-    private static final int PROPERTY_validateRoot = 93;
-    private static final int PROPERTY_verifyInputWhenFocusTarget = 94;
-    private static final int PROPERTY_vetoableChangeListeners = 95;
-    private static final int PROPERTY_visible = 96;
-    private static final int PROPERTY_visibleRect = 97;
-    private static final int PROPERTY_width = 98;
-    private static final int PROPERTY_x = 99;
-    private static final int PROPERTY_y = 100;
+    private static final int PROPERTY_textField = 85;
+    private static final int PROPERTY_toolkit = 86;
+    private static final int PROPERTY_toolTipText = 87;
+    private static final int PROPERTY_topLevelAncestor = 88;
+    private static final int PROPERTY_transferHandler = 89;
+    private static final int PROPERTY_treeLock = 90;
+    private static final int PROPERTY_UI = 91;
+    private static final int PROPERTY_UIClassID = 92;
+    private static final int PROPERTY_valid = 93;
+    private static final int PROPERTY_validateRoot = 94;
+    private static final int PROPERTY_verifyInputWhenFocusTarget = 95;
+    private static final int PROPERTY_vetoableChangeListeners = 96;
+    private static final int PROPERTY_visible = 97;
+    private static final int PROPERTY_visibleRect = 98;
+    private static final int PROPERTY_width = 99;
+    private static final int PROPERTY_x = 100;
+    private static final int PROPERTY_y = 101;
 
     // Property array 
     /*lazy PropertyDescriptor*/
     private static PropertyDescriptor[] getPdescriptor(){
-        PropertyDescriptor[] properties = new PropertyDescriptor[101];
+        PropertyDescriptor[] properties = new PropertyDescriptor[102];
     
         try {
             properties[PROPERTY_accessibleContext] = new PropertyDescriptor ( "accessibleContext", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "getAccessibleContext", null ); // NOI18N
@@ -148,6 +149,7 @@ public class GMPNumericKeyBoardBeanInfo extends SimpleBeanInfo {
             properties[PROPERTY_backgroundSet] = new PropertyDescriptor ( "backgroundSet", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "isBackgroundSet", null ); // NOI18N
             properties[PROPERTY_baselineResizeBehavior] = new PropertyDescriptor ( "baselineResizeBehavior", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "getBaselineResizeBehavior", null ); // NOI18N
             properties[PROPERTY_border] = new PropertyDescriptor ( "border", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "getBorder", "setBorder" ); // NOI18N
+            properties[PROPERTY_border].setPreferred ( true );
             properties[PROPERTY_bounds] = new PropertyDescriptor ( "bounds", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "getBounds", "setBounds" ); // NOI18N
             properties[PROPERTY_colorModel] = new PropertyDescriptor ( "colorModel", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "getColorModel", null ); // NOI18N
             properties[PROPERTY_component] = new IndexedPropertyDescriptor ( "component", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, null, null, "getComponent", null ); // NOI18N
@@ -223,6 +225,8 @@ public class GMPNumericKeyBoardBeanInfo extends SimpleBeanInfo {
             properties[PROPERTY_rootPane] = new PropertyDescriptor ( "rootPane", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "getRootPane", null ); // NOI18N
             properties[PROPERTY_showing] = new PropertyDescriptor ( "showing", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "isShowing", null ); // NOI18N
             properties[PROPERTY_size] = new PropertyDescriptor ( "size", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "getSize", "setSize" ); // NOI18N
+            properties[PROPERTY_textField] = new PropertyDescriptor ( "textField", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "getTextField", "setTextField" ); // NOI18N
+            properties[PROPERTY_textField].setPreferred ( true );
             properties[PROPERTY_toolkit] = new PropertyDescriptor ( "toolkit", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "getToolkit", null ); // NOI18N
             properties[PROPERTY_toolTipText] = new PropertyDescriptor ( "toolTipText", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "getToolTipText", "setToolTipText" ); // NOI18N
             properties[PROPERTY_topLevelAncestor] = new PropertyDescriptor ( "topLevelAncestor", br.com.gmp.comps.keyboard.GMPNumericKeyBoard.class, "getTopLevelAncestor", null ); // NOI18N
@@ -736,10 +740,10 @@ public class GMPNumericKeyBoardBeanInfo extends SimpleBeanInfo {
     private static java.awt.Image iconColor32 = null;
     private static java.awt.Image iconMono16 = null;
     private static java.awt.Image iconMono32 = null;//GEN-END:IconsDef
-    private static String iconNameC16 = null;//GEN-BEGIN:Icons
-    private static String iconNameC32 = null;
-    private static String iconNameM16 = null;
-    private static String iconNameM32 = null;//GEN-END:Icons
+    private static String iconNameC16 = "/ComponentIcons/button/buttons/6.png";//GEN-BEGIN:Icons
+    private static String iconNameC32 = "/ComponentIcons/button/buttons/6.png";
+    private static String iconNameM16 = "/ComponentIcons/button/buttons/6.png";
+    private static String iconNameM32 = "/ComponentIcons/button/buttons/6.png";//GEN-END:Icons
 
     private static final int defaultPropertyIndex = -1;//GEN-BEGIN:Idx
     private static final int defaultEventIndex = -1;//GEN-END:Idx

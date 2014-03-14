@@ -63,6 +63,14 @@ public class GMPNumericKeyBoard extends JPanel {
         }
     }
 
+    public JTextComponent getTextField() {
+        return textField;
+    }
+
+    public void setTextField(JTextComponent textField) {
+        this.textField = textField;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
