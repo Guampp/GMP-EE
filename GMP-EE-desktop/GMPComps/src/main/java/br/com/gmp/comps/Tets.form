@@ -174,7 +174,9 @@
                               <Component id="gMPDateField2" min="-2" pref="123" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="350" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="gMPButtonField1" min="-2" pref="146" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="186" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -188,9 +190,10 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="gMPDateField2" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="gMPButtonField1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="371" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="370" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -228,6 +231,14 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="br.com.gmp.comps.textfield.button.GMPButtonField" name="gMPButtonField1">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/ComponentIcons/label/icon.png"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="gMPButtonField1" noResource="true"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

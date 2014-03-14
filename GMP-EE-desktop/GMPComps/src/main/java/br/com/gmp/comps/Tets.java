@@ -76,6 +76,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<Test> {
         jButton4 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         gTree = new br.com.gmp.comps.tree.GMPTree();
+        gMPButtonField1 = new br.com.gmp.comps.textfield.button.GMPButtonField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,6 +153,9 @@ public class Tets extends javax.swing.JFrame implements TableSource<Test> {
         gTree.setName("gTree"); // NOI18N
         jScrollPane4.setViewportView(gTree);
 
+        gMPButtonField1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/label/icon.png"))); // NOI18N
+        gMPButtonField1.setName("gMPButtonField1"); // NOI18N
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -164,7 +168,9 @@ public class Tets extends javax.swing.JFrame implements TableSource<Test> {
                         .addComponent(gMPDateField2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
-                        .addGap(0, 350, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(gMPButtonField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 186, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -173,9 +179,10 @@ public class Tets extends javax.swing.JFrame implements TableSource<Test> {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gMPDateField2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(gMPButtonField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -189,7 +196,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<Test> {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, Short.MAX_VALUE)
         );
 
         pack();
@@ -221,6 +228,7 @@ public class Tets extends javax.swing.JFrame implements TableSource<Test> {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private br.com.gmp.comps.list.dual.GMPDualList dual;
+    private br.com.gmp.comps.textfield.button.GMPButtonField gMPButtonField1;
     private br.com.gmp.comps.datefield.GMPDateField gMPDateField2;
     private br.com.gmp.comps.table.dual.GMPDualTable gMPDualTable1;
     private br.com.gmp.comps.table.GMPTable gTable;
