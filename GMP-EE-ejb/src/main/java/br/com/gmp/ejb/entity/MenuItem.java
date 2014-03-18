@@ -10,11 +10,13 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,21 +32,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "MenuItem.findAll", query = "SELECT m FROM MenuItem m"),
     @NamedQuery(name = "MenuItem.findById", query = "SELECT m FROM MenuItem m WHERE m.id = :id"),
-    @NamedQuery(name = "MenuItem.findByPrefix", query = "SELECT m FROM MenuItem m WHERE m.prefix = :prefix"),
+    @NamedQuery(name = "MenuItem.findByPref", query = "SELECT m FROM MenuItem m WHERE m.pref = :pref"),
     @NamedQuery(name = "MenuItem.findByTitle", query = "SELECT m FROM MenuItem m WHERE m.title = :title"),
     @NamedQuery(name = "MenuItem.findByIco", query = "SELECT m FROM MenuItem m WHERE m.ico = :ico"),
-    @NamedQuery(name = "MenuItem.findByAccesslevel", query = "SELECT m FROM MenuItem m WHERE m.accesslevel = :accesslevel"),
-    @NamedQuery(name = "MenuItem.findByIdMenu", query = "SELECT m FROM MenuItem m WHERE m.idMenu = :idMenu")})
+    @NamedQuery(name = "MenuItem.findByItemclass", query = "SELECT m FROM MenuItem m WHERE m.itemclass = :itemclass")})
 public class MenuItem implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
-    private long id;
+    private Long id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 6)
-    @Column(name = "prefix")
+    @Column(name = "pref")
     private String pref;
     @Basic(optional = false)
     @NotNull
@@ -54,45 +56,40 @@ public class MenuItem implements Serializable {
     @Size(max = 64)
     @Column(name = "ico")
     private String ico;
-    @Column(name = "accesslevel")
-    private Integer accesslevel;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_menu")
-    private Long idMenu;
-    @JoinColumn(name = "id_menu", referencedColumnName = "id", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Menu menu;
+    @Size(max = 75)
+    @Column(name = "itemclass")
+    private String itemclass;
+    @JoinColumn(name = "id_menu", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Menu idMenu;
 
     public MenuItem() {
     }
 
-    public MenuItem(Long idMenu) {
-        this.idMenu = idMenu;
+    public MenuItem(Long id) {
+        this.id = id;
     }
 
-    public MenuItem(Long idMenu, long id, String prefix, String title) {
-        this.idMenu = idMenu;
+    public MenuItem(Long id, String pref, String title) {
         this.id = id;
-        this.pref = prefix;
+        this.pref = pref;
         this.title = title;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getPrefix() {
+    public String getPref() {
         return pref;
     }
 
-    public void setPrefix(String prefix) {
-        this.pref = prefix;
+    public void setPref(String pref) {
+        this.pref = pref;
     }
 
     public String getTitle() {
@@ -111,34 +108,26 @@ public class MenuItem implements Serializable {
         this.ico = ico;
     }
 
-    public Integer getAccesslevel() {
-        return accesslevel;
+    public String getItemclass() {
+        return itemclass;
     }
 
-    public void setAccesslevel(Integer accesslevel) {
-        this.accesslevel = accesslevel;
+    public void setItemclass(String itemclass) {
+        this.itemclass = itemclass;
     }
 
-    public Long getIdMenu() {
+    public Menu getIdMenu() {
         return idMenu;
     }
 
-    public void setIdMenu(Long idMenu) {
+    public void setIdMenu(Menu idMenu) {
         this.idMenu = idMenu;
-    }
-
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idMenu != null ? idMenu.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -149,7 +138,7 @@ public class MenuItem implements Serializable {
             return false;
         }
         MenuItem other = (MenuItem) object;
-        if ((this.idMenu == null && other.idMenu != null) || (this.idMenu != null && !this.idMenu.equals(other.idMenu))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -157,7 +146,7 @@ public class MenuItem implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.gmp.ejb.entity.MenuItem[ idMenu=" + idMenu + " ]";
+        return "br.com.gmp.ejb.entity.MenuItem[ id=" + id + " ]";
     }
     
 }

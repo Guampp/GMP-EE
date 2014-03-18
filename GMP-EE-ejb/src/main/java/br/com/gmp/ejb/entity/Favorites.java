@@ -13,12 +13,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -26,37 +25,27 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author kaciano
  */
 @Entity
-@Table(name = "user_type")
+@Table(name = "favorites")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "UserType.findAll", query = "SELECT u FROM UserType u"),
-    @NamedQuery(name = "UserType.findById", query = "SELECT u FROM UserType u WHERE u.id = :id"),
-    @NamedQuery(name = "UserType.findByTitle", query = "SELECT u FROM UserType u WHERE u.title = :title")})
-public class UserType implements Serializable {
+    @NamedQuery(name = "Favorites.findAll", query = "SELECT f FROM Favorites f"),
+    @NamedQuery(name = "Favorites.findById", query = "SELECT f FROM Favorites f WHERE f.id = :id")})
+public class Favorites implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 64)
-    @Column(name = "title")
-    private String title;
-    @OneToOne(mappedBy = "idUserType")
-    private UserInfo userInfo;
+    @JoinColumn(name = "id_user_base", referencedColumnName = "id")
+    @OneToOne
+    private UserBase idUserBase;
 
-    public UserType() {
+    public Favorites() {
     }
 
-    public UserType(Long id) {
+    public Favorites(Long id) {
         this.id = id;
-    }
-
-    public UserType(Long id, String title) {
-        this.id = id;
-        this.title = title;
     }
 
     public Long getId() {
@@ -67,20 +56,12 @@ public class UserType implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public UserBase getIdUserBase() {
+        return idUserBase;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
+    public void setIdUserBase(UserBase idUserBase) {
+        this.idUserBase = idUserBase;
     }
 
     @Override
@@ -93,10 +74,10 @@ public class UserType implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserType)) {
+        if (!(object instanceof Favorites)) {
             return false;
         }
-        UserType other = (UserType) object;
+        Favorites other = (Favorites) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -105,7 +86,7 @@ public class UserType implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.gmp.ejb.entity.UserType[ id=" + id + " ]";
+        return "br.com.gmp.ejb.entity.Favorites[ id=" + id + " ]";
     }
     
 }

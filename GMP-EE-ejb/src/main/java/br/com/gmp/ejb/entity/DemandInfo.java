@@ -10,12 +10,15 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,19 +35,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "DemandInfo.findAll", query = "SELECT d FROM DemandInfo d"),
+    @NamedQuery(name = "DemandInfo.findById", query = "SELECT d FROM DemandInfo d WHERE d.id = :id"),
     @NamedQuery(name = "DemandInfo.findByActive", query = "SELECT d FROM DemandInfo d WHERE d.active = :active"),
     @NamedQuery(name = "DemandInfo.findByNotes", query = "SELECT d FROM DemandInfo d WHERE d.notes = :notes"),
     @NamedQuery(name = "DemandInfo.findByAccomplished", query = "SELECT d FROM DemandInfo d WHERE d.accomplished = :accomplished"),
     @NamedQuery(name = "DemandInfo.findByTimeSpent", query = "SELECT d FROM DemandInfo d WHERE d.timeSpent = :timeSpent"),
-    @NamedQuery(name = "DemandInfo.findByDtmod", query = "SELECT d FROM DemandInfo d WHERE d.dtmod = :dtmod"),
-    @NamedQuery(name = "DemandInfo.findByIdDemandPriority", query = "SELECT d FROM DemandInfo d WHERE d.demandInfoPK.idDemandPriority = :idDemandPriority"),
-    @NamedQuery(name = "DemandInfo.findByIdDemandSituation", query = "SELECT d FROM DemandInfo d WHERE d.demandInfoPK.idDemandSituation = :idDemandSituation"),
-    @NamedQuery(name = "DemandInfo.findByIdDemandType", query = "SELECT d FROM DemandInfo d WHERE d.demandInfoPK.idDemandType = :idDemandType"),
-    @NamedQuery(name = "DemandInfo.findByIdDemand", query = "SELECT d FROM DemandInfo d WHERE d.demandInfoPK.idDemand = :idDemand")})
+    @NamedQuery(name = "DemandInfo.findByDtmod", query = "SELECT d FROM DemandInfo d WHERE d.dtmod = :dtmod")})
 public class DemandInfo implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected DemandInfoPK demandInfoPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Long id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "active")
@@ -62,41 +65,37 @@ public class DemandInfo implements Serializable {
     @JoinColumn(name = "id_user_base", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private UserBase idUserBase;
-    @JoinColumn(name = "id_demand_type", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_demand_type", referencedColumnName = "id")
+    @OneToOne
+    private DemandType idDemandType;
+    @JoinColumn(name = "id_demand_situation", referencedColumnName = "id")
+    @OneToOne
+    private DemandSituation idDemandSituation;
+    @JoinColumn(name = "id_demand_priority", referencedColumnName = "id")
+    @OneToOne
+    private DemandPriority idDemandPriority;
+    @JoinColumn(name = "id_demand", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private DemandType demandType;
-    @JoinColumn(name = "id_demand_situation", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private DemandSituation demandSituation;
-    @JoinColumn(name = "id_demand_priority", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private DemandPriority demandPriority;
-    @JoinColumn(name = "id_demand", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Demand demand;
+    private Demand idDemand;
 
     public DemandInfo() {
     }
 
-    public DemandInfo(DemandInfoPK demandInfoPK) {
-        this.demandInfoPK = demandInfoPK;
+    public DemandInfo(Long id) {
+        this.id = id;
     }
 
-    public DemandInfo(DemandInfoPK demandInfoPK, boolean active) {
-        this.demandInfoPK = demandInfoPK;
+    public DemandInfo(Long id, boolean active) {
+        this.id = id;
         this.active = active;
     }
 
-    public DemandInfo(long idDemandPriority, long idDemandSituation, long idDemandType, long idDemand) {
-        this.demandInfoPK = new DemandInfoPK(idDemandPriority, idDemandSituation, idDemandType, idDemand);
+    public Long getId() {
+        return id;
     }
 
-    public DemandInfoPK getDemandInfoPK() {
-        return demandInfoPK;
-    }
-
-    public void setDemandInfoPK(DemandInfoPK demandInfoPK) {
-        this.demandInfoPK = demandInfoPK;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean getActive() {
@@ -147,42 +146,42 @@ public class DemandInfo implements Serializable {
         this.idUserBase = idUserBase;
     }
 
-    public DemandType getDemandType() {
-        return demandType;
+    public DemandType getIdDemandType() {
+        return idDemandType;
     }
 
-    public void setDemandType(DemandType demandType) {
-        this.demandType = demandType;
+    public void setIdDemandType(DemandType idDemandType) {
+        this.idDemandType = idDemandType;
     }
 
-    public DemandSituation getDemandSituation() {
-        return demandSituation;
+    public DemandSituation getIdDemandSituation() {
+        return idDemandSituation;
     }
 
-    public void setDemandSituation(DemandSituation demandSituation) {
-        this.demandSituation = demandSituation;
+    public void setIdDemandSituation(DemandSituation idDemandSituation) {
+        this.idDemandSituation = idDemandSituation;
     }
 
-    public DemandPriority getDemandPriority() {
-        return demandPriority;
+    public DemandPriority getIdDemandPriority() {
+        return idDemandPriority;
     }
 
-    public void setDemandPriority(DemandPriority demandPriority) {
-        this.demandPriority = demandPriority;
+    public void setIdDemandPriority(DemandPriority idDemandPriority) {
+        this.idDemandPriority = idDemandPriority;
     }
 
-    public Demand getDemand() {
-        return demand;
+    public Demand getIdDemand() {
+        return idDemand;
     }
 
-    public void setDemand(Demand demand) {
-        this.demand = demand;
+    public void setIdDemand(Demand idDemand) {
+        this.idDemand = idDemand;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (demandInfoPK != null ? demandInfoPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -193,7 +192,7 @@ public class DemandInfo implements Serializable {
             return false;
         }
         DemandInfo other = (DemandInfo) object;
-        if ((this.demandInfoPK == null && other.demandInfoPK != null) || (this.demandInfoPK != null && !this.demandInfoPK.equals(other.demandInfoPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -201,7 +200,7 @@ public class DemandInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.gmp.ejb.entity.DemandInfo[ demandInfoPK=" + demandInfoPK + " ]";
+        return "br.com.gmp.ejb.entity.DemandInfo[ id=" + id + " ]";
     }
     
 }

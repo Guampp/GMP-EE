@@ -7,7 +7,7 @@
 package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -44,10 +45,10 @@ public class Company implements Serializable {
     @Size(max = 64)
     @Column(name = "comp_name")
     private String compName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
-    private List<UserInfo> userInfoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
-    private List<CompanyInfo> companyInfoList;
+    @OneToOne(mappedBy = "idCompany")
+    private UserInfo userInfo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompany")
+    private Collection<CompanyInfo> companyInfoCollection;
 
     public Company() {
     }
@@ -72,22 +73,21 @@ public class Company implements Serializable {
         this.compName = compName;
     }
 
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
     @XmlTransient
-    public List<UserInfo> getUserInfoList() {
-        return userInfoList;
+    public Collection<CompanyInfo> getCompanyInfoCollection() {
+        return companyInfoCollection;
     }
 
-    public void setUserInfoList(List<UserInfo> userInfoList) {
-        this.userInfoList = userInfoList;
-    }
-
-    @XmlTransient
-    public List<CompanyInfo> getCompanyInfoList() {
-        return companyInfoList;
-    }
-
-    public void setCompanyInfoList(List<CompanyInfo> companyInfoList) {
-        this.companyInfoList = companyInfoList;
+    public void setCompanyInfoCollection(Collection<CompanyInfo> companyInfoCollection) {
+        this.companyInfoCollection = companyInfoCollection;
     }
 
     @Override

@@ -10,12 +10,15 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UserInfo.findAll", query = "SELECT u FROM UserInfo u"),
+    @NamedQuery(name = "UserInfo.findById", query = "SELECT u FROM UserInfo u WHERE u.id = :id"),
     @NamedQuery(name = "UserInfo.findByActive", query = "SELECT u FROM UserInfo u WHERE u.active = :active"),
     @NamedQuery(name = "UserInfo.findByLogin", query = "SELECT u FROM UserInfo u WHERE u.login = :login"),
     @NamedQuery(name = "UserInfo.findByPass", query = "SELECT u FROM UserInfo u WHERE u.pass = :pass"),
@@ -39,16 +43,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "UserInfo.findByPhone", query = "SELECT u FROM UserInfo u WHERE u.phone = :phone"),
     @NamedQuery(name = "UserInfo.findByEmail", query = "SELECT u FROM UserInfo u WHERE u.email = :email"),
     @NamedQuery(name = "UserInfo.findByAvt", query = "SELECT u FROM UserInfo u WHERE u.avt = :avt"),
-    @NamedQuery(name = "UserInfo.findByDtmod", query = "SELECT u FROM UserInfo u WHERE u.dtmod = :dtmod"),
-    @NamedQuery(name = "UserInfo.findByIdUserType", query = "SELECT u FROM UserInfo u WHERE u.userInfoPK.idUserType = :idUserType"),
-    @NamedQuery(name = "UserInfo.findByIdAddress", query = "SELECT u FROM UserInfo u WHERE u.userInfoPK.idAddress = :idAddress"),
-    @NamedQuery(name = "UserInfo.findByIdCompany", query = "SELECT u FROM UserInfo u WHERE u.userInfoPK.idCompany = :idCompany"),
-    @NamedQuery(name = "UserInfo.findByIdProfile", query = "SELECT u FROM UserInfo u WHERE u.userInfoPK.idProfile = :idProfile"),
-    @NamedQuery(name = "UserInfo.findByIdUserBase", query = "SELECT u FROM UserInfo u WHERE u.userInfoPK.idUserBase = :idUserBase")})
+    @NamedQuery(name = "UserInfo.findByDtmod", query = "SELECT u FROM UserInfo u WHERE u.dtmod = :dtmod")})
 public class UserInfo implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected UserInfoPK userInfoPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Long id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "active")
@@ -76,44 +78,40 @@ public class UserInfo implements Serializable {
     @Column(name = "dtmod")
     @Temporal(TemporalType.DATE)
     private Date dtmod;
-    @JoinColumn(name = "id_user_type", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_user_type", referencedColumnName = "id")
+    @OneToOne
+    private UserType idUserType;
+    @JoinColumn(name = "id_user_base", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private UserType userType;
-    @JoinColumn(name = "id_user_base", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private UserBase userBase;
-    @JoinColumn(name = "id_profile", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Profile profile;
-    @JoinColumn(name = "id_company", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Company company;
-    @JoinColumn(name = "id_address", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Address address;
+    private UserBase idUserBase;
+    @JoinColumn(name = "id_profile", referencedColumnName = "id")
+    @OneToOne
+    private Profile idProfile;
+    @JoinColumn(name = "id_company", referencedColumnName = "id")
+    @OneToOne
+    private Company idCompany;
+    @JoinColumn(name = "id_address", referencedColumnName = "id")
+    @OneToOne
+    private Address idAddress;
 
     public UserInfo() {
     }
 
-    public UserInfo(UserInfoPK userInfoPK) {
-        this.userInfoPK = userInfoPK;
+    public UserInfo(Long id) {
+        this.id = id;
     }
 
-    public UserInfo(UserInfoPK userInfoPK, boolean active) {
-        this.userInfoPK = userInfoPK;
+    public UserInfo(Long id, boolean active) {
+        this.id = id;
         this.active = active;
     }
 
-    public UserInfo(long idUserType, long idAddress, long idCompany, long idProfile, long idUserBase) {
-        this.userInfoPK = new UserInfoPK(idUserType, idAddress, idCompany, idProfile, idUserBase);
+    public Long getId() {
+        return id;
     }
 
-    public UserInfoPK getUserInfoPK() {
-        return userInfoPK;
-    }
-
-    public void setUserInfoPK(UserInfoPK userInfoPK) {
-        this.userInfoPK = userInfoPK;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean getActive() {
@@ -180,50 +178,50 @@ public class UserInfo implements Serializable {
         this.dtmod = dtmod;
     }
 
-    public UserType getUserType() {
-        return userType;
+    public UserType getIdUserType() {
+        return idUserType;
     }
 
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+    public void setIdUserType(UserType idUserType) {
+        this.idUserType = idUserType;
     }
 
-    public UserBase getUserBase() {
-        return userBase;
+    public UserBase getIdUserBase() {
+        return idUserBase;
     }
 
-    public void setUserBase(UserBase userBase) {
-        this.userBase = userBase;
+    public void setIdUserBase(UserBase idUserBase) {
+        this.idUserBase = idUserBase;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public Profile getIdProfile() {
+        return idProfile;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setIdProfile(Profile idProfile) {
+        this.idProfile = idProfile;
     }
 
-    public Company getCompany() {
-        return company;
+    public Company getIdCompany() {
+        return idCompany;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setIdCompany(Company idCompany) {
+        this.idCompany = idCompany;
     }
 
-    public Address getAddress() {
-        return address;
+    public Address getIdAddress() {
+        return idAddress;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setIdAddress(Address idAddress) {
+        this.idAddress = idAddress;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (userInfoPK != null ? userInfoPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -234,7 +232,7 @@ public class UserInfo implements Serializable {
             return false;
         }
         UserInfo other = (UserInfo) object;
-        if ((this.userInfoPK == null && other.userInfoPK != null) || (this.userInfoPK != null && !this.userInfoPK.equals(other.userInfoPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -242,7 +240,7 @@ public class UserInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.gmp.ejb.entity.UserInfo[ userInfoPK=" + userInfoPK + " ]";
+        return "br.com.gmp.ejb.entity.UserInfo[ id=" + id + " ]";
     }
     
 }

@@ -7,7 +7,7 @@
 package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -57,8 +58,10 @@ public class Profile implements Serializable {
     @NotNull
     @Column(name = "accesslevel")
     private int accesslevel;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profile")
-    private List<UserInfo> userInfoList;
+    @OneToOne(mappedBy = "idProfile")
+    private UserInfo userInfo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfile")
+    private Collection<ProfileItem> profileItemCollection;
 
     public Profile() {
     }
@@ -106,13 +109,21 @@ public class Profile implements Serializable {
         this.accesslevel = accesslevel;
     }
 
-    @XmlTransient
-    public List<UserInfo> getUserInfoList() {
-        return userInfoList;
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public void setUserInfoList(List<UserInfo> userInfoList) {
-        this.userInfoList = userInfoList;
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    @XmlTransient
+    public Collection<ProfileItem> getProfileItemCollection() {
+        return profileItemCollection;
+    }
+
+    public void setProfileItemCollection(Collection<ProfileItem> profileItemCollection) {
+        this.profileItemCollection = profileItemCollection;
     }
 
     @Override

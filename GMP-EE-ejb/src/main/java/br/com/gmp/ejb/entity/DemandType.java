@@ -7,9 +7,7 @@
 package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,11 +15,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -44,8 +41,8 @@ public class DemandType implements Serializable {
     @Size(max = 255)
     @Column(name = "title")
     private String title;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "demandType")
-    private List<DemandInfo> demandInfoList;
+    @OneToOne(mappedBy = "idDemandType")
+    private DemandInfo demandInfo;
 
     public DemandType() {
     }
@@ -70,13 +67,12 @@ public class DemandType implements Serializable {
         this.title = title;
     }
 
-    @XmlTransient
-    public List<DemandInfo> getDemandInfoList() {
-        return demandInfoList;
+    public DemandInfo getDemandInfo() {
+        return demandInfo;
     }
 
-    public void setDemandInfoList(List<DemandInfo> demandInfoList) {
-        this.demandInfoList = demandInfoList;
+    public void setDemandInfo(DemandInfo demandInfo) {
+        this.demandInfo = demandInfo;
     }
 
     @Override

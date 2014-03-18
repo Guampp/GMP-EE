@@ -7,7 +7,7 @@
 package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -44,12 +45,14 @@ public class UserBase implements Serializable {
     @Size(max = 64)
     @Column(name = "login")
     private String login;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userBase")
-    private List<UserInfo> userInfoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUserBase")
-    private List<DemandInfo> demandInfoList;
+    private Collection<UserInfo> userInfoCollection;
+    @OneToOne(mappedBy = "idUserBase")
+    private Favorites favorites;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUserBase")
-    private List<Demand> demandList;
+    private Collection<DemandInfo> demandInfoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUserBase")
+    private Collection<Demand> demandCollection;
 
     public UserBase() {
     }
@@ -75,30 +78,38 @@ public class UserBase implements Serializable {
     }
 
     @XmlTransient
-    public List<UserInfo> getUserInfoList() {
-        return userInfoList;
+    public Collection<UserInfo> getUserInfoCollection() {
+        return userInfoCollection;
     }
 
-    public void setUserInfoList(List<UserInfo> userInfoList) {
-        this.userInfoList = userInfoList;
+    public void setUserInfoCollection(Collection<UserInfo> userInfoCollection) {
+        this.userInfoCollection = userInfoCollection;
+    }
+
+    public Favorites getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(Favorites favorites) {
+        this.favorites = favorites;
     }
 
     @XmlTransient
-    public List<DemandInfo> getDemandInfoList() {
-        return demandInfoList;
+    public Collection<DemandInfo> getDemandInfoCollection() {
+        return demandInfoCollection;
     }
 
-    public void setDemandInfoList(List<DemandInfo> demandInfoList) {
-        this.demandInfoList = demandInfoList;
+    public void setDemandInfoCollection(Collection<DemandInfo> demandInfoCollection) {
+        this.demandInfoCollection = demandInfoCollection;
     }
 
     @XmlTransient
-    public List<Demand> getDemandList() {
-        return demandList;
+    public Collection<Demand> getDemandCollection() {
+        return demandCollection;
     }
 
-    public void setDemandList(List<Demand> demandList) {
-        this.demandList = demandList;
+    public void setDemandCollection(Collection<Demand> demandCollection) {
+        this.demandCollection = demandCollection;
     }
 
     @Override

@@ -7,6 +7,7 @@
 package br.com.gmp.ejb.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,11 +17,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m"),
     @NamedQuery(name = "Menu.findById", query = "SELECT m FROM Menu m WHERE m.id = :id"),
-    @NamedQuery(name = "Menu.findByPrefix", query = "SELECT m FROM Menu m WHERE m.prefix = :prefix"),
+    @NamedQuery(name = "Menu.findByPref", query = "SELECT m FROM Menu m WHERE m.pref = :pref"),
     @NamedQuery(name = "Menu.findByTitle", query = "SELECT m FROM Menu m WHERE m.title = :title"),
     @NamedQuery(name = "Menu.findByIco", query = "SELECT m FROM Menu m WHERE m.ico = :ico"),
     @NamedQuery(name = "Menu.findByFather", query = "SELECT m FROM Menu m WHERE m.father = :father"),
@@ -47,8 +50,8 @@ public class Menu implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 6)
-    @Column(name = "prefix")
-    private String prefix;
+    @Column(name = "pref")
+    private String pref;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 64)
@@ -65,8 +68,10 @@ public class Menu implements Serializable {
     @NotNull
     @Column(name = "accesslevel")
     private int accesslevel;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "menu")
-    private MenuItem menuItem;
+    @OneToOne(mappedBy = "idMenu")
+    private ProfileItem profileItem;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMenu")
+    private Collection<MenuItem> menuItemCollection;
 
     public Menu() {
     }
@@ -75,9 +80,9 @@ public class Menu implements Serializable {
         this.id = id;
     }
 
-    public Menu(Long id, String prefix, String title, int father, int accesslevel) {
+    public Menu(Long id, String pref, String title, int father, int accesslevel) {
         this.id = id;
-        this.prefix = prefix;
+        this.pref = pref;
         this.title = title;
         this.father = father;
         this.accesslevel = accesslevel;
@@ -91,12 +96,12 @@ public class Menu implements Serializable {
         this.id = id;
     }
 
-    public String getPrefix() {
-        return prefix;
+    public String getPref() {
+        return pref;
     }
 
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
+    public void setPref(String pref) {
+        this.pref = pref;
     }
 
     public String getTitle() {
@@ -131,12 +136,21 @@ public class Menu implements Serializable {
         this.accesslevel = accesslevel;
     }
 
-    public MenuItem getMenuItem() {
-        return menuItem;
+    public ProfileItem getProfileItem() {
+        return profileItem;
     }
 
-    public void setMenuItem(MenuItem menuItem) {
-        this.menuItem = menuItem;
+    public void setProfileItem(ProfileItem profileItem) {
+        this.profileItem = profileItem;
+    }
+
+    @XmlTransient
+    public Collection<MenuItem> getMenuItemCollection() {
+        return menuItemCollection;
+    }
+
+    public void setMenuItemCollection(Collection<MenuItem> menuItemCollection) {
+        this.menuItemCollection = menuItemCollection;
     }
 
     @Override

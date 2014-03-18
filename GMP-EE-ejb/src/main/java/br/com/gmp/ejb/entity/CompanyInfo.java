@@ -10,12 +10,15 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CompanyInfo.findAll", query = "SELECT c FROM CompanyInfo c"),
+    @NamedQuery(name = "CompanyInfo.findById", query = "SELECT c FROM CompanyInfo c WHERE c.id = :id"),
     @NamedQuery(name = "CompanyInfo.findByActive", query = "SELECT c FROM CompanyInfo c WHERE c.active = :active"),
     @NamedQuery(name = "CompanyInfo.findByPhone", query = "SELECT c FROM CompanyInfo c WHERE c.phone = :phone"),
     @NamedQuery(name = "CompanyInfo.findByTpcomp", query = "SELECT c FROM CompanyInfo c WHERE c.tpcomp = :tpcomp"),
@@ -39,14 +43,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CompanyInfo.findByEmail", query = "SELECT c FROM CompanyInfo c WHERE c.email = :email"),
     @NamedQuery(name = "CompanyInfo.findByAvt", query = "SELECT c FROM CompanyInfo c WHERE c.avt = :avt"),
     @NamedQuery(name = "CompanyInfo.findByDtreg", query = "SELECT c FROM CompanyInfo c WHERE c.dtreg = :dtreg"),
-    @NamedQuery(name = "CompanyInfo.findByDtmod", query = "SELECT c FROM CompanyInfo c WHERE c.dtmod = :dtmod"),
-    @NamedQuery(name = "CompanyInfo.findByIdAddress", query = "SELECT c FROM CompanyInfo c WHERE c.companyInfoPK.idAddress = :idAddress"),
-    @NamedQuery(name = "CompanyInfo.findByIdCompany", query = "SELECT c FROM CompanyInfo c WHERE c.companyInfoPK.idCompany = :idCompany"),
-    @NamedQuery(name = "CompanyInfo.findByIdCompanyType", query = "SELECT c FROM CompanyInfo c WHERE c.companyInfoPK.idCompanyType = :idCompanyType")})
+    @NamedQuery(name = "CompanyInfo.findByDtmod", query = "SELECT c FROM CompanyInfo c WHERE c.dtmod = :dtmod")})
 public class CompanyInfo implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected CompanyInfoPK companyInfoPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Long id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "active")
@@ -73,38 +77,34 @@ public class CompanyInfo implements Serializable {
     @Column(name = "dtmod")
     @Temporal(TemporalType.DATE)
     private Date dtmod;
-    @JoinColumn(name = "id_company_type", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_company_type", referencedColumnName = "id")
+    @OneToOne
+    private CompanyType idCompanyType;
+    @JoinColumn(name = "id_company", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private CompanyType companyType;
-    @JoinColumn(name = "id_company", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Company company;
-    @JoinColumn(name = "id_address", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Address address;
+    private Company idCompany;
+    @JoinColumn(name = "id_address", referencedColumnName = "id")
+    @OneToOne
+    private Address idAddress;
 
     public CompanyInfo() {
     }
 
-    public CompanyInfo(CompanyInfoPK companyInfoPK) {
-        this.companyInfoPK = companyInfoPK;
+    public CompanyInfo(Long id) {
+        this.id = id;
     }
 
-    public CompanyInfo(CompanyInfoPK companyInfoPK, boolean active) {
-        this.companyInfoPK = companyInfoPK;
+    public CompanyInfo(Long id, boolean active) {
+        this.id = id;
         this.active = active;
     }
 
-    public CompanyInfo(long idAddress, long idCompany, long idCompanyType) {
-        this.companyInfoPK = new CompanyInfoPK(idAddress, idCompany, idCompanyType);
+    public Long getId() {
+        return id;
     }
 
-    public CompanyInfoPK getCompanyInfoPK() {
-        return companyInfoPK;
-    }
-
-    public void setCompanyInfoPK(CompanyInfoPK companyInfoPK) {
-        this.companyInfoPK = companyInfoPK;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean getActive() {
@@ -171,34 +171,34 @@ public class CompanyInfo implements Serializable {
         this.dtmod = dtmod;
     }
 
-    public CompanyType getCompanyType() {
-        return companyType;
+    public CompanyType getIdCompanyType() {
+        return idCompanyType;
     }
 
-    public void setCompanyType(CompanyType companyType) {
-        this.companyType = companyType;
+    public void setIdCompanyType(CompanyType idCompanyType) {
+        this.idCompanyType = idCompanyType;
     }
 
-    public Company getCompany() {
-        return company;
+    public Company getIdCompany() {
+        return idCompany;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setIdCompany(Company idCompany) {
+        this.idCompany = idCompany;
     }
 
-    public Address getAddress() {
-        return address;
+    public Address getIdAddress() {
+        return idAddress;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setIdAddress(Address idAddress) {
+        this.idAddress = idAddress;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (companyInfoPK != null ? companyInfoPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -209,7 +209,7 @@ public class CompanyInfo implements Serializable {
             return false;
         }
         CompanyInfo other = (CompanyInfo) object;
-        if ((this.companyInfoPK == null && other.companyInfoPK != null) || (this.companyInfoPK != null && !this.companyInfoPK.equals(other.companyInfoPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -217,7 +217,7 @@ public class CompanyInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.gmp.ejb.entity.CompanyInfo[ companyInfoPK=" + companyInfoPK + " ]";
+        return "br.com.gmp.ejb.entity.CompanyInfo[ id=" + id + " ]";
     }
     
 }
