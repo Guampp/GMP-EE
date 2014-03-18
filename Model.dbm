@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel author="Kaciano">
+<schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<database name="GMP" encoding="UTF8">
+	<tablespace name="pg_default"/>
+</database>
+
+<table name="user_base">
+	<schema name="public"/>
+	<comment><![CDATA[Tabela dos usuários]]></comment>
+	<position x="10.75" y="14.5"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+	</column>
+	<column name="login">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Login do usuário]]></comment>
+	</column>
+	<constraint name="pk_user_base_id" type="pk-constr" factor="10" table="public.user_base">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria do usuário]]></comment>
+	</constraint>
+	<index name="user_base_id_index" table="public.user_base"
+		 concurrent="false" unique="false" fast-update="false"
+		 index-type="btree" factor="0">
+		<comment><![CDATA[Indice do ID de usuário]]></comment>
+		<idxelement use-sorting="true" nulls-first="false" asc-order="true">
+			<column name="id"/>
+		</idxelement>
+	</index>
+</table>
+
+<table name="user_info">
+	<schema name="public"/>
+	<comment><![CDATA[Informações do usuário]]></comment>
+	<position x="678" y="40"/>
+	<column name="id">
+		<type name="bigint"/>
+	</column>
+	<column name="active" not-null="true" default-value="true">
+		<type name="boolean"/>
+		<comment><![CDATA[Flag de atividade]]></comment>
+	</column>
+	<column name="login">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Login do usuário]]></comment>
+	</column>
+	<column name="pass">
+		<type name="character" length="255"/>
+		<comment><![CDATA[Senha do usuário]]></comment>
+	</column>
+	<column name="user_name">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Nome do usuário]]></comment>
+	</column>
+	<column name="phone">
+		<type name="character" length="14"/>
+		<comment><![CDATA[Telefone do usuário]]></comment>
+	</column>
+	<column name="email">
+		<type name="character" length="96"/>
+		<comment><![CDATA[E-mail do usuário]]></comment>
+	</column>
+	<column name="avt">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Avatar do usuário]]></comment>
+	</column>
+	<column name="dtmod">
+		<type name="date"/>
+		<comment><![CDATA[Data da ultima modificação]]></comment>
+	</column>
+	<constraint name="user_info_id_pk" type="pk-constr" factor="10" table="public.user_info">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="address">
+	<schema name="public"/>
+	<comment><![CDATA[Endereços]]></comment>
+	<position x="1618.42" y="551.583"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+	</column>
+	<column name="street">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Rua]]></comment>
+	</column>
+	<column name="nbhood">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Bairro]]></comment>
+	</column>
+	<column name="number">
+		<type name="character" length="5"/>
+		<comment><![CDATA[Numero]]></comment>
+	</column>
+	<column name="city">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Cidade]]></comment>
+	</column>
+	<column name="st">
+		<type name="character" length="2"/>
+		<comment><![CDATA[Estado, apenas sigla]]></comment>
+	</column>
+	<column name="p_code">
+		<type name="character" length="10"/>
+		<comment><![CDATA[Código postal (CEP)]]></comment>
+	</column>
+	<column name="compl">
+		<type name="character" length="255"/>
+		<comment><![CDATA[Complemento]]></comment>
+	</column>
+	<column name="country">
+		<type name="character" length="64"/>
+		<comment><![CDATA[País]]></comment>
+	</column>
+	<constraint name="pk_end_id" type="pk-constr" factor="10" table="public.address">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria do endereço]]></comment>
+	</constraint>
+	<constraint name="unique_end_key" type="uq-constr" factor="10" table="public.address">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<index name="pk_index_end" table="public.address"
+		 concurrent="false" unique="false" fast-update="false"
+		 index-type="btree" factor="0">
+		<idxelement use-sorting="true" nulls-first="false" asc-order="true">
+			<column name="id"/>
+		</idxelement>
+	</index>
+</table>
+
+<table name="user_type">
+	<schema name="public"/>
+	<comment><![CDATA[Tipos de usuário]]></comment>
+	<position x="32.75" y="305.75"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+	</column>
+	<column name="title" not-null="true">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Descrição do tipo de usuário]]></comment>
+	</column>
+	<constraint name="pk_usutype" type="pk-constr" factor="10" table="public.user_type">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria do tipo de usuário]]></comment>
+	</constraint>
+	<constraint name="unique_type_key" type="uq-constr" factor="10" table="public.user_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="company_info">
+	<schema name="public"/>
+	<comment><![CDATA[Informações do usuário]]></comment>
+	<position x="1757.92" y="47.75"/>
+	<column name="id">
+		<type name="bigint"/>
+	</column>
+	<column name="active" not-null="true" default-value="true">
+		<type name="boolean"/>
+		<comment><![CDATA[Flag de atividade]]></comment>
+	</column>
+	<column name="phone">
+		<type name="character" length="14"/>
+		<comment><![CDATA[Telefone do usuário]]></comment>
+	</column>
+	<column name="tpcomp">
+		<type name="char"/>
+		<comment><![CDATA[Tipo de pessoa]]></comment>
+	</column>
+	<column name="nmbcomp">
+		<type name="character" length="14"/>
+		<comment><![CDATA[Numero do cadastro de pessoa]]></comment>
+	</column>
+	<column name="email">
+		<type name="character" length="96"/>
+		<comment><![CDATA[E-mail do usuário]]></comment>
+	</column>
+	<column name="avt">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Avatar do usuário]]></comment>
+	</column>
+	<column name="dtreg">
+		<type name="date"/>
+		<comment><![CDATA[Data de registro]]></comment>
+	</column>
+	<column name="dtmod">
+		<type name="date"/>
+		<comment><![CDATA[Data da ultima modificação]]></comment>
+	</column>
+	<constraint name="company_info_id_pk" type="pk-constr" factor="10" table="public.company_info">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="company">
+	<schema name="public"/>
+	<position x="1184.89" y="30.607"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+	</column>
+	<column name="comp_name">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Nome da empresa]]></comment>
+	</column>
+	<constraint name="pk_emp_id" type="pk-constr" factor="10" table="public.company">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria do ID da empresa]]></comment>
+	</constraint>
+	<constraint name="unique_pk_emp_id" type="uq-constr" factor="10" table="public.company">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<index name="pk_index_emp" table="public.company"
+		 concurrent="false" unique="false" fast-update="false"
+		 index-type="btree" factor="0">
+		<idxelement use-sorting="true" nulls-first="true" asc-order="true">
+			<column name="id"/>
+		</idxelement>
+	</index>
+</table>
+
+<table name="company_type">
+	<schema name="public"/>
+	<position x="1175.67" y="245.167"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+	</column>
+	<column name="title">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Descrição do tipo de empresa]]></comment>
+	</column>
+	<constraint name="pk_emptype_id" type="pk-constr" factor="10" table="public.company_type">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria do tipo de empresa]]></comment>
+	</constraint>
+	<constraint name="unique_pk_emp_type_id" type="uq-constr" factor="10" table="public.company_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="company_info_has_one_address" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="9" constr-indexes="0,1"
+	 src-table="public.address"
+	 dst-table="public.company_info"
+	 src-required="true" dst-required="false"/>
+
+<table name="profile">
+	<schema name="public"/>
+	<comment><![CDATA[Tabela de perfis de acesso]]></comment>
+	<position x="517.25" y="451"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+		<comment><![CDATA[ID do perfil]]></comment>
+	</column>
+	<column name="title" not-null="true" default-value="'title'">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Titulo do perfil]]></comment>
+	</column>
+	<column name="active" not-null="true" default-value="true">
+		<type name="boolean"/>
+		<comment><![CDATA[Perfil de acesso ativo?]]></comment>
+	</column>
+	<column name="accesslevel" not-null="true" default-value="1">
+		<type name="integer"/>
+		<comment><![CDATA[Nivel de permissão]]></comment>
+	</column>
+	<constraint name="pk_perfil_id" type="pk-constr" factor="10" table="public.profile">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="unique_pk_perfil" type="uq-constr" factor="10" table="public.profile">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<index name="index_perfil_id" table="public.profile"
+		 concurrent="false" unique="false" fast-update="false"
+		 index-type="btree" factor="0">
+		<idxelement use-sorting="true" nulls-first="true" asc-order="true">
+			<column name="id"/>
+		</idxelement>
+	</index>
+</table>
+
+<table name="menu">
+	<schema name="public"/>
+	<comment><![CDATA[Tabela para o cadastro de menus]]></comment>
+	<position x="1101.33" y="384.75"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+		<comment><![CDATA[ID do menu]]></comment>
+	</column>
+	<column name="pref" not-null="true" default-value="'GMP000'">
+		<type name="character" length="6"/>
+		<comment><![CDATA[Prefixo do titulo]]></comment>
+	</column>
+	<column name="title" not-null="true" default-value="'title'">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Descrição do menu]]></comment>
+	</column>
+	<column name="ico">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Icone do menu]]></comment>
+	</column>
+	<column name="father" not-null="true" default-value="0">
+		<type name="integer"/>
+		<comment><![CDATA[Pai do menu]]></comment>
+	</column>
+	<column name="accesslevel" not-null="true" default-value="1">
+		<type name="integer"/>
+		<comment><![CDATA[Nivel de permissão]]></comment>
+	</column>
+	<constraint name="id_menu_pk" type="pk-constr" factor="10" table="public.menu">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria da tabela de Menus]]></comment>
+	</constraint>
+</table>
+
+<table name="menu_item">
+	<schema name="public"/>
+	<comment><![CDATA[Itens dos menus]]></comment>
+	<position x="1114.33" y="611"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+		<comment><![CDATA[ID do item]]></comment>
+	</column>
+	<column name="pref" not-null="true" default-value="'GMP000'">
+		<type name="character" length="6"/>
+		<comment><![CDATA[Prefixo do titulo]]></comment>
+	</column>
+	<column name="title" not-null="true" default-value="'title'">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Descrição do item de menu]]></comment>
+	</column>
+	<column name="ico">
+		<type name="character" length="64"/>
+		<comment><![CDATA[Icone do item]]></comment>
+	</column>
+	<column name="itemclass">
+		<type name="character" length="75"/>
+		<comment><![CDATA[Classe JAVA do item]]></comment>
+	</column>
+	<constraint name="menu_item_id_pk" type="pk-constr" factor="100" table="public.menu_item">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria do item de menu]]></comment>
+	</constraint>
+</table>
+
+<relationship name="user_info_has_one_user_type" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="9" constr-indexes="0,1"
+	 src-table="public.user_type"
+	 dst-table="public.user_info"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="user_info_has_one_address" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="10" constr-indexes="2,6"
+	 src-table="public.address"
+	 dst-table="public.user_info"
+	 src-required="true" dst-required="false">
+	<label ref-type="src-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="user_info_has_one_company" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="11" constr-indexes="3,8"
+	 src-table="public.company"
+	 dst-table="public.user_info"
+	 src-required="true" dst-required="false">
+	<label ref-type="src-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="user_info_has_one_profile" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="12" constr-indexes="4,7"
+	 src-table="public.profile"
+	 dst-table="public.user_info"
+	 src-required="true" dst-required="false">
+	<label ref-type="src-label">
+		<position x="27.7318" y="0.800079"/>
+	</label>
+</relationship>
+
+<relationship name="company_has_many_company_info" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="10" constr-indexes="3"
+	 src-table="public.company"
+	 dst-table="public.company_info"
+	 src-required="true" dst-required="false">
+	<label ref-type="src-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="company_info_has_one_company_type" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="11" constr-indexes="2,4"
+	 src-table="public.company_type"
+	 dst-table="public.company_info"
+	 src-required="true" dst-required="false">
+	<label ref-type="src-label">
+		<position x="0" y="0"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<table name="demand">
+	<schema name="public"/>
+	<position x="24.4167" y="697"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+		<comment><![CDATA[ID da demanda]]></comment>
+	</column>
+	<column name="father">
+		<type name="bigint"/>
+		<comment><![CDATA[ID da tarega pai]]></comment>
+	</column>
+	<column name="title">
+		<type name="character" length="255"/>
+	</column>
+	<constraint name="demand_id_pk" type="pk-constr" factor="10" table="public.demand">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria da demanda]]></comment>
+	</constraint>
+	<index name="demand_id_pk_index" table="public.demand"
+		 concurrent="false" unique="false" fast-update="false"
+		 index-type="btree" factor="0">
+		<idxelement use-sorting="true" nulls-first="false" asc-order="true">
+			<column name="id"/>
+		</idxelement>
+	</index>
+</table>
+
+<table name="demand_situation">
+	<schema name="public"/>
+	<comment><![CDATA[Situação da demanda]]></comment>
+	<position x="886.917" y="911"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+		<comment><![CDATA[ID]]></comment>
+	</column>
+	<column name="title">
+		<type name="character" length="255"/>
+	</column>
+	<constraint name="demand_situation_id_pk" type="pk-constr" factor="10" table="public.demand_situation">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria da situação da demanda]]></comment>
+	</constraint>
+</table>
+
+<table name="demand_priority">
+	<schema name="public"/>
+	<comment><![CDATA[Prioridades de demanda]]></comment>
+	<position x="225.084" y="960"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+		<comment><![CDATA[Id]]></comment>
+	</column>
+	<column name="title">
+		<type name="character" length="255"/>
+	</column>
+	<constraint name="demand_priority_id_pk" type="pk-constr" factor="10" table="public.demand_priority">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria da prioridade de demanda]]></comment>
+	</constraint>
+</table>
+
+<table name="demand_info">
+	<schema name="public"/>
+	<comment><![CDATA[Indo da demanda]]></comment>
+	<position x="455.667" y="678"/>
+	<column name="id">
+		<type name="bigint"/>
+	</column>
+	<column name="active" not-null="true" default-value="true">
+		<type name="boolean"/>
+		<comment><![CDATA[Demanda ativa?]]></comment>
+	</column>
+	<column name="notes">
+		<type name="character" length="512"/>
+		<comment><![CDATA[Notas da demanda]]></comment>
+	</column>
+	<column name="accomplished">
+		<type name="smallint"/>
+		<comment><![CDATA[Porcentagem de conclusão]]></comment>
+	</column>
+	<column name="time_spent">
+		<type name="smallint"/>
+		<comment><![CDATA[Tempo gasto]]></comment>
+	</column>
+	<column name="dtmod">
+		<type name="date"/>
+		<comment><![CDATA[Data de modificação]]></comment>
+	</column>
+	<constraint name="demand_info_id_pk" type="pk-constr" factor="10" table="public.demand_info">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="demand_info_has_one_demand_priority" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="6" constr-indexes="0,1"
+	 src-table="public.demand_priority"
+	 dst-table="public.demand_info"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="136.896" y="7.82664"/>
+	</label>
+</relationship>
+
+<relationship name="demand_info_has_one_demand_situation" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="7" constr-indexes="2,6"
+	 src-table="public.demand_situation"
+	 dst-table="public.demand_info"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<table name="demand_type">
+	<schema name="public"/>
+	<comment><![CDATA[tipo de demanda]]></comment>
+	<position x="556.75" y="1049.92"/>
+	<column name="id">
+		<type name="bigint"/>
+		<comment><![CDATA[ID tipo de demanda]]></comment>
+	</column>
+	<column name="title">
+		<type name="character" length="255"/>
+		<comment><![CDATA[Titulo]]></comment>
+	</column>
+	<constraint name="demand_type_id_pk" type="pk-constr" factor="10" table="public.demand_type">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria do tipo de demanda]]></comment>
+	</constraint>
+</table>
+
+<relationship name="demand_info_has_one_demand_type" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="8" constr-indexes="3,7"
+	 src-table="public.demand_type"
+	 dst-table="public.demand_info"
+	 src-required="true" dst-required="false"/>
+
+<sequence name="user_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.user_base.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencia do id do usuário]]></comment>
+</sequence>
+
+<sequence name="company_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.company.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial do id de empresa]]></comment>
+</sequence>
+
+<sequence name="addrees_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.address.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial do id de endereço]]></comment>
+</sequence>
+
+<sequence name="menu_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.menu.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial do id de menu]]></comment>
+</sequence>
+
+<sequence name="demand_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.demand.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial do id de demanda]]></comment>
+</sequence>
+
+<sequence name="demand_type_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.demand_type.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial do id de tipo de demanda]]></comment>
+</sequence>
+
+<sequence name="demand_priority_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.demand_priority.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial do id de prioridade de demanda]]></comment>
+</sequence>
+
+<sequence name="demand_situation_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.demand_situation.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial do id de situação de demanda]]></comment>
+</sequence>
+
+<sequence name="profile_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.profile.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial do id de perfil]]></comment>
+</sequence>
+
+<sequence name="user_type_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.user_type.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial para o id de tipo de usuário]]></comment>
+</sequence>
+
+<sequence name="company_type_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.company_type.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial para o id de tipo de empresa]]></comment>
+</sequence>
+
+<relationship name="demand_has_many_demand_info" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="9" constr-indexes="4"
+	 src-table="public.demand"
+	 dst-table="public.demand_info"
+	 src-required="true" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="user_base_has_many_user_info" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="13" constr-indexes="5"
+	 src-table="public.user_base"
+	 dst-table="public.user_info"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="user_base_has_many_demand" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="1"
+	 src-table="public.user_base"
+	 dst-table="public.demand"
+	 src-required="true" dst-required="false">
+	<label ref-type="src-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="user_base_has_many_demand_info" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="10" constr-indexes="5"
+	 src-table="public.user_base"
+	 dst-table="public.demand_info"
+	 src-required="true" dst-required="false"/>
+
+<table name="favorites">
+	<schema name="public"/>
+	<position x="1589.58" y="384"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+		<comment><![CDATA[ID do favorito]]></comment>
+	</column>
+	<constraint name="favorites_id_pk" type="pk-constr" factor="10" table="public.favorites">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primária dos favoritos]]></comment>
+	</constraint>
+</table>
+
+<relationship name="favorites_has_one_user_base" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="1" constr-indexes="1,2"
+	 src-table="public.user_base"
+	 dst-table="public.favorites"
+	 src-required="true" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<sequence name="favorites_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.favorites.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial de ID dos favoritos]]></comment>
+</sequence>
+
+<table name="profile_item">
+	<schema name="public"/>
+	<comment><![CDATA[Item de perfil]]></comment>
+	<position x="841.25" y="661.25"/>
+	<column name="id" not-null="true" default-value="0">
+		<type name="bigint"/>
+		<comment><![CDATA[ID do item de perfil]]></comment>
+	</column>
+	<column name="cansave" not-null="true" default-value="false">
+		<type name="boolean"/>
+		<comment><![CDATA[Pode salvar?]]></comment>
+	</column>
+	<column name="candiscard" not-null="true" default-value="false">
+		<type name="boolean"/>
+		<comment><![CDATA[Pode descartar?]]></comment>
+	</column>
+	<column name="canprocess" not-null="true" default-value="false">
+		<type name="boolean"/>
+		<comment><![CDATA[Pode processar?]]></comment>
+	</column>
+	<constraint name="profile_item_id_pk" type="pk-constr" factor="100" table="public.profile_item">
+		<columns names="id" ref-type="src-columns"/>
+		<comment><![CDATA[Chave primaria do item de perfil]]></comment>
+	</constraint>
+</table>
+
+<sequence name="menu_item_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.menu_item.id">
+	<schema name="public"/>
+	<comment><![CDATA[Sequencial do id de item de menu]]></comment>
+</sequence>
+
+<relationship name="menu_has_many_menu_item" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="5" constr-indexes="1"
+	 src-table="public.menu"
+	 dst-table="public.menu_item"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="profile_has_many_profile_item" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="4" constr-indexes="1"
+	 src-table="public.profile"
+	 dst-table="public.profile_item"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="profile_item_has_one_menu" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="5" constr-indexes="2,3"
+	 src-table="public.menu"
+	 dst-table="public.profile_item"
+	 src-required="false" dst-required="false"/>
+
+<sequence name="demand_info_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.demand_info.id">
+	<schema name="public"/>
+</sequence>
+
+<sequence name="user_info_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.user_info.id">
+	<schema name="public"/>
+</sequence>
+
+<sequence name="company_info_id_seq"
+	 start="1" increment="1"
+	 min-value="1" max-value="2147483647"
+	 cache="1" cycle="false" owner-col="public.company_info.id">
+	<schema name="public"/>
+</sequence>
+
+</dbmodel>
