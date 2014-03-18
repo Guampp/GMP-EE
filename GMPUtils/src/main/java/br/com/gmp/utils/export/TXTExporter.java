@@ -50,11 +50,11 @@ public class TXTExporter {
      */
     private void exportTableList(List list, Class<?> cl, String filename) throws IllegalAccessException, FileNotFoundException, IOException {
         StringBuilder sb = new StringBuilder();
-        String space = "    ";
+        String tab = "\t";
         StringBuilder header = new StringBuilder();
         for (Field field : cl.getDeclaredFields()) {
             field.setAccessible(true);
-            header.append(field.getName()).append(space);
+            header.append(field.getName()).append(tab);
         }
         sb.append(header.toString().trim());
         sb.append("\n");
@@ -62,7 +62,7 @@ public class TXTExporter {
             StringBuilder body = new StringBuilder();
             for (Field field : obj.getClass().getDeclaredFields()) {
                 field.setAccessible(true);
-                body.append(field.get(obj)).append(space);
+                body.append(field.get(obj)).append(tab);
             }
             sb.append(body.toString().trim());
             sb.append("\n");
