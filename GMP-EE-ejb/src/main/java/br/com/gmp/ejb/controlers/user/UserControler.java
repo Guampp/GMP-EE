@@ -1,6 +1,7 @@
 package br.com.gmp.ejb.controlers.user;
 
 import br.com.gmp.ejb.controlers.GenericControler;
+import br.com.gmp.ejb.entity.UserBase_;
 import br.com.gmp.ejb.entity.UserInfo;
 import br.com.gmp.ejb.entity.UserInfo_;
 import br.com.gmp.ejb.enums.EJBConstants;
@@ -39,11 +40,11 @@ public class UserControler extends GenericControler implements UserControlerRemo
         CriteriaQuery query = cb.createQuery();
         Root<UserInfo> from = query.from(UserInfo.class);
         query.select(from);
-        List<Predicate> pred = new ArrayList<>();
-        pred.add(cb.equal(from.get(UserInfo_.active), true));
-        pred.add(cb.equal(from.get(UserInfo_.login), login));
-        pred.add(cb.equal(from.get(UserInfo_.pass), password));
-        query.where(pred.toArray(new Predicate[]{}));
+        List<Predicate> p = new ArrayList<>();
+        p.add(cb.equal(from.get(UserInfo_.active), true));
+        p.add(cb.equal(from.get(UserInfo_.idUserBase).get(UserBase_.login), login));
+        p.add(cb.equal(from.get(UserInfo_.pass), password));
+        query.where(p.toArray(new Predicate[]{}));
         Object result = em.createQuery(query).setMaxResults(1).getSingleResult();
         return (UserInfo) result;
     }

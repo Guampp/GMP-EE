@@ -5,6 +5,7 @@ import br.com.gmp.desktop.app.bean.VisualAppBean;
 import br.com.gmp.comps.tabbedpane.GMPJTabbedPane;
 import br.com.gmp.comps.taskcontainer.GMPTaskContainer;
 import br.com.gmp.comps.textfield.GMPTextField;
+import br.com.gmp.desktop.app.login.LoginPane;
 import br.com.gmp.desktop.app.system.SystemControls;
 import br.com.gmp.desktop.views.ProfileView;
 import br.com.gmp.desktop.views.ViewFrame;
@@ -52,7 +53,7 @@ public class VisualApp extends javax.swing.JFrame {
      * @see javax.swing.JFrame
      */
     public VisualApp() {
-        initComponents();
+        initComponents();             
         appBean = new VisualAppBean(this);
         initialize();
     }
@@ -299,7 +300,7 @@ public class VisualApp extends javax.swing.JFrame {
         jTBUser.setMinimumSize(new java.awt.Dimension(12, 18));
         jTBUser.add(jSeparator1);
 
-        jBMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/menu_icon_2012.png"))); // NOI18N
+        jBMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Navigate_right.png"))); // NOI18N
         jBMenu.setFocusable(false);
         jBMenu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBMenu.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
