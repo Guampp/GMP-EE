@@ -198,6 +198,7 @@ public class VisualApp extends javax.swing.JFrame {
         jBSave = new javax.swing.JButton();
         jBDiscard = new javax.swing.JButton();
         jBProccess = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
         jBClean = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JToolBar.Separator();
         jBAddDesktop = new javax.swing.JButton();
@@ -369,7 +370,7 @@ public class VisualApp extends javax.swing.JFrame {
         jTBDesktop1.setPreferredSize(new java.awt.Dimension(88, 40));
         jTBDesktop1.add(jSeparator9);
 
-        jBSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/save.png"))); // NOI18N
+        jBSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/save.png"))); // NOI18N
         jBSave.setFocusable(false);
         jBSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -380,7 +381,7 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBDesktop1.add(jBSave);
 
-        jBDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Cancel.png"))); // NOI18N
+        jBDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/exit.png"))); // NOI18N
         jBDiscard.setFocusable(false);
         jBDiscard.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBDiscard.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -391,7 +392,7 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBDesktop1.add(jBDiscard);
 
-        jBProccess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Wheel.png"))); // NOI18N
+        jBProccess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/settings.png"))); // NOI18N
         jBProccess.setFocusable(false);
         jBProccess.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBProccess.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -401,6 +402,7 @@ public class VisualApp extends javax.swing.JFrame {
             }
         });
         jTBDesktop1.add(jBProccess);
+        jTBDesktop1.add(jSeparator2);
 
         jBClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Order.png"))); // NOI18N
         jBClean.setFocusable(false);
@@ -414,7 +416,7 @@ public class VisualApp extends javax.swing.JFrame {
         jTBDesktop1.add(jBClean);
         jTBDesktop1.add(jSeparator6);
 
-        jBAddDesktop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Add_1.png"))); // NOI18N
+        jBAddDesktop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/new.png"))); // NOI18N
         jBAddDesktop.setFocusable(false);
         jBAddDesktop.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBAddDesktop.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -425,7 +427,7 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBDesktop1.add(jBAddDesktop);
 
-        jBRemoveDesktops.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Close.png"))); // NOI18N
+        jBRemoveDesktops.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/exit.png"))); // NOI18N
         jBRemoveDesktops.setFocusable(false);
         jBRemoveDesktops.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBRemoveDesktops.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -676,6 +678,7 @@ public class VisualApp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jSPMenus;
     private javax.swing.JScrollPane jSPTree;
     private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator7;

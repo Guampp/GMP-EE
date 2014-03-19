@@ -1,6 +1,7 @@
 package br.com.gmp.ejb.controlers.user;
 
 import br.com.gmp.ejb.controlers.GenericControler;
+import br.com.gmp.ejb.entity.UserBase;
 import br.com.gmp.ejb.entity.UserBase_;
 import br.com.gmp.ejb.entity.UserInfo;
 import br.com.gmp.ejb.entity.UserInfo_;
@@ -19,7 +20,7 @@ import javax.persistence.criteria.Root;
  * @author kaciano
  * @version 1.0
  */
-@Stateless(mappedName = EJBConstants.VALIDATE_USER)
+@Stateless(mappedName = EJBConstants.USER_CONTROLER)
 public class UserControler extends GenericControler implements UserControlerRemote {
 
     @Override
@@ -47,6 +48,15 @@ public class UserControler extends GenericControler implements UserControlerRemo
         query.where(p.toArray(new Predicate[]{}));
         Object result = em.createQuery(query).setMaxResults(1).getSingleResult();
         return (UserInfo) result;
+    }
+
+    @Override
+    public List<UserBase> getUsers() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery query = cb.createQuery();
+        Root<UserBase> from = query.from(UserBase.class);
+        query.select(from);
+        return em.createQuery(query).getResultList();
     }
 
 }
