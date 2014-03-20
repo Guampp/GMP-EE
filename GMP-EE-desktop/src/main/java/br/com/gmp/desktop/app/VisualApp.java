@@ -276,7 +276,7 @@ public class VisualApp extends javax.swing.JFrame {
         jTBSearch.setRollover(true);
         jTBSearch.add(jSeparator7);
 
-        jBSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Search.png"))); // NOI18N
+        jBSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/search.png"))); // NOI18N
         jBSearch.setFocusable(false);
         jBSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -404,7 +404,7 @@ public class VisualApp extends javax.swing.JFrame {
         jTBDesktop1.add(jBProccess);
         jTBDesktop1.add(jSeparator2);
 
-        jBClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Order.png"))); // NOI18N
+        jBClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/transition/switch.png"))); // NOI18N
         jBClean.setFocusable(false);
         jBClean.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBClean.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -427,7 +427,7 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBDesktop1.add(jBAddDesktop);
 
-        jBRemoveDesktops.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/exit.png"))); // NOI18N
+        jBRemoveDesktops.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/off.png"))); // NOI18N
         jBRemoveDesktops.setFocusable(false);
         jBRemoveDesktops.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBRemoveDesktops.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -485,7 +485,7 @@ public class VisualApp extends javax.swing.JFrame {
                     .addComponent(jTBDesktop, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gTPDesktops, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSPMenus, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
+                    .addComponent(jSPMenus, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTBMsg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTBSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
