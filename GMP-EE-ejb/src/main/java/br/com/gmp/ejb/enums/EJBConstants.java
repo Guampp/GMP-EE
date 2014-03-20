@@ -8,5 +8,5 @@ package br.com.gmp.ejb.enums;
  */
 public interface EJBConstants {
 
-    public final static String VALIDATE_USER = "EJB/ValidateUser";
+    public final static String USER_CONTROLER = "EJB/ValidateUser";
 }

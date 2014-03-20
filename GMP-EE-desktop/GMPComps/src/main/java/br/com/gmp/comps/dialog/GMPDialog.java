@@ -273,18 +273,22 @@ public class GMPDialog extends javax.swing.JDialog {
     private void toggleBlur(boolean state) {
         if (getParent() instanceof JFrame) {
             JFrame p = (JFrame) getParent();
+            setLocationRelativeTo(p);
             p.setGlassPane(new BlurGlassPane());
             p.getGlassPane().setVisible(state);
         } else if (getParent() instanceof JInternalFrame) {
             JInternalFrame p = (JInternalFrame) getParent();
+            setLocationRelativeTo(p);
             p.setGlassPane(new BlurGlassPane());
             p.getGlassPane().setVisible(state);
         } else if (getParent() instanceof JDialog) {
             JDialog p = (JDialog) getParent();
+            setLocationRelativeTo(p);
             p.setGlassPane(new BlurGlassPane());
             p.getGlassPane().setVisible(state);
         } else if (getParent() instanceof JWindow) {
             JWindow p = (JWindow) getParent();
+            setLocationRelativeTo(p);
             p.setGlassPane(new BlurGlassPane());
             p.getGlassPane().setVisible(state);
         }

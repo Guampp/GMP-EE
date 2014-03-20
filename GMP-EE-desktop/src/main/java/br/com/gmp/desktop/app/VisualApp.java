@@ -5,6 +5,7 @@ import br.com.gmp.desktop.app.bean.VisualAppBean;
 import br.com.gmp.comps.tabbedpane.GMPJTabbedPane;
 import br.com.gmp.comps.taskcontainer.GMPTaskContainer;
 import br.com.gmp.comps.textfield.GMPTextField;
+import br.com.gmp.desktop.app.login.LoginPane;
 import br.com.gmp.desktop.app.system.SystemControls;
 import br.com.gmp.desktop.views.ProfileView;
 import br.com.gmp.desktop.views.ViewFrame;
@@ -52,7 +53,7 @@ public class VisualApp extends javax.swing.JFrame {
      * @see javax.swing.JFrame
      */
     public VisualApp() {
-        initComponents();
+        initComponents();             
         appBean = new VisualAppBean(this);
         initialize();
     }
@@ -197,6 +198,7 @@ public class VisualApp extends javax.swing.JFrame {
         jBSave = new javax.swing.JButton();
         jBDiscard = new javax.swing.JButton();
         jBProccess = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
         jBClean = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JToolBar.Separator();
         jBAddDesktop = new javax.swing.JButton();
@@ -274,7 +276,7 @@ public class VisualApp extends javax.swing.JFrame {
         jTBSearch.setRollover(true);
         jTBSearch.add(jSeparator7);
 
-        jBSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Search.png"))); // NOI18N
+        jBSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/search.png"))); // NOI18N
         jBSearch.setFocusable(false);
         jBSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -299,7 +301,7 @@ public class VisualApp extends javax.swing.JFrame {
         jTBUser.setMinimumSize(new java.awt.Dimension(12, 18));
         jTBUser.add(jSeparator1);
 
-        jBMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/menu_icon_2012.png"))); // NOI18N
+        jBMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Navigate_right.png"))); // NOI18N
         jBMenu.setFocusable(false);
         jBMenu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBMenu.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -368,7 +370,7 @@ public class VisualApp extends javax.swing.JFrame {
         jTBDesktop1.setPreferredSize(new java.awt.Dimension(88, 40));
         jTBDesktop1.add(jSeparator9);
 
-        jBSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/save.png"))); // NOI18N
+        jBSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/save.png"))); // NOI18N
         jBSave.setFocusable(false);
         jBSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -379,7 +381,7 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBDesktop1.add(jBSave);
 
-        jBDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Cancel.png"))); // NOI18N
+        jBDiscard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/exit.png"))); // NOI18N
         jBDiscard.setFocusable(false);
         jBDiscard.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBDiscard.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -390,7 +392,7 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBDesktop1.add(jBDiscard);
 
-        jBProccess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Wheel.png"))); // NOI18N
+        jBProccess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/settings.png"))); // NOI18N
         jBProccess.setFocusable(false);
         jBProccess.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBProccess.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -400,8 +402,9 @@ public class VisualApp extends javax.swing.JFrame {
             }
         });
         jTBDesktop1.add(jBProccess);
+        jTBDesktop1.add(jSeparator2);
 
-        jBClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Order.png"))); // NOI18N
+        jBClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/transition/switch.png"))); // NOI18N
         jBClean.setFocusable(false);
         jBClean.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBClean.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -413,7 +416,7 @@ public class VisualApp extends javax.swing.JFrame {
         jTBDesktop1.add(jBClean);
         jTBDesktop1.add(jSeparator6);
 
-        jBAddDesktop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Add_1.png"))); // NOI18N
+        jBAddDesktop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/new.png"))); // NOI18N
         jBAddDesktop.setFocusable(false);
         jBAddDesktop.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBAddDesktop.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -424,7 +427,7 @@ public class VisualApp extends javax.swing.JFrame {
         });
         jTBDesktop1.add(jBAddDesktop);
 
-        jBRemoveDesktops.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gmp/desktop/icons/16/Close.png"))); // NOI18N
+        jBRemoveDesktops.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ComponentIcons/controlers/off.png"))); // NOI18N
         jBRemoveDesktops.setFocusable(false);
         jBRemoveDesktops.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBRemoveDesktops.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -482,7 +485,7 @@ public class VisualApp extends javax.swing.JFrame {
                     .addComponent(jTBDesktop, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gTPDesktops, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSPMenus, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
+                    .addComponent(jSPMenus, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTBMsg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTBSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -675,6 +678,7 @@ public class VisualApp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jSPMenus;
     private javax.swing.JScrollPane jSPTree;
     private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator7;

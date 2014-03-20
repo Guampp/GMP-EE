@@ -7,6 +7,7 @@ import br.com.gmp.desktop.app.action.DiscardAction;
 import br.com.gmp.desktop.app.action.HelpAction;
 import br.com.gmp.desktop.app.action.ProcessAction;
 import br.com.gmp.desktop.app.action.ReloadAction;
+import br.com.gmp.desktop.app.login.LoginPane;
 import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 import java.awt.AWTException;
 import java.awt.Image;
@@ -22,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -65,7 +67,9 @@ public class SystemControls {
             public void run() {
                 VisualApp visualApp = new VisualApp();
                 SystemControls system = new SystemControls(visualApp);
+                visualApp.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 visualApp.setVisible(true);
+                LoginPane loginPane = new LoginPane(visualApp);   
             }
         });
     }

@@ -1,5 +1,7 @@
 package br.com.gmp.ejb.controlers.user;
 
+import br.com.gmp.ejb.entity.UserBase;
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -19,5 +21,12 @@ public interface UserControlerRemote {
      * @return <code>Boolean</code> Resultado da verificação
      */
     java.lang.Boolean validateUser(String login, String password);
+
+    /**
+     * Retorna a lista de usuários
+     *
+     * @return
+     */
+    List<UserBase> getUsers();
 
 }

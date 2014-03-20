@@ -22,9 +22,6 @@
     <modules>
     <module>GMP-EE-ear</module>
     <module>GMP-EE-ejb</module>
-    <module>GMP-EE-desktop</module>
-    <module>GMPUtils</module>
-        <module>GMP-EE-desktop/GMPComps</module>
         <module>GMP-EE-web</module>
     </modules>
 </project>

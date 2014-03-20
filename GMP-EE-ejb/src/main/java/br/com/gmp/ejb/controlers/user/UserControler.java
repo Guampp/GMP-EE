@@ -1,6 +1,8 @@
 package br.com.gmp.ejb.controlers.user;
 
 import br.com.gmp.ejb.controlers.GenericControler;
+import br.com.gmp.ejb.entity.UserBase;
+import br.com.gmp.ejb.entity.UserBase_;
 import br.com.gmp.ejb.entity.UserInfo;
 import br.com.gmp.ejb.entity.UserInfo_;
 import br.com.gmp.ejb.enums.EJBConstants;
@@ -18,7 +20,7 @@ import javax.persistence.criteria.Root;
  * @author kaciano
  * @version 1.0
  */
-@Stateless(mappedName = EJBConstants.VALIDATE_USER)
+@Stateless(mappedName = EJBConstants.USER_CONTROLER)
 public class UserControler extends GenericControler implements UserControlerRemote {
 
     @Override
@@ -39,13 +41,22 @@ public class UserControler extends GenericControler implements UserControlerRemo
         CriteriaQuery query = cb.createQuery();
         Root<UserInfo> from = query.from(UserInfo.class);
         query.select(from);
-        List<Predicate> pred = new ArrayList<>();
-        pred.add(cb.equal(from.get(UserInfo_.active), true));
-        pred.add(cb.equal(from.get(UserInfo_.login), login));
-        pred.add(cb.equal(from.get(UserInfo_.pass), password));
-        query.where(pred.toArray(new Predicate[]{}));
+        List<Predicate> p = new ArrayList<>();
+        p.add(cb.equal(from.get(UserInfo_.active), true));
+        p.add(cb.equal(from.get(UserInfo_.idUserBase).get(UserBase_.login), login));
+        p.add(cb.equal(from.get(UserInfo_.pass), password));
+        query.where(p.toArray(new Predicate[]{}));
         Object result = em.createQuery(query).setMaxResults(1).getSingleResult();
         return (UserInfo) result;
+    }
+
+    @Override
+    public List<UserBase> getUsers() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery query = cb.createQuery();
+        Root<UserBase> from = query.from(UserBase.class);
+        query.select(from);
+        return em.createQuery(query).getResultList();
     }
 
 }

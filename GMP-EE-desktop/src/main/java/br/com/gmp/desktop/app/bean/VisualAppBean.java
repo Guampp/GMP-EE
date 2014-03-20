@@ -3,9 +3,15 @@ package br.com.gmp.desktop.app.bean;
 import br.com.gmp.desktop.app.interfaces.AppListener;
 import br.com.gmp.desktop.app.VisualApp;
 import br.com.gmp.comps.tabbedpane.GMPJTabbedPane;
+import br.com.gmp.desktop.dao.UserDAO;
 import br.com.gmp.desktop.views.ViewFrame;
 import br.com.gmp.desktop.views.interfaces.View;
+import br.com.gmp.ejb.controlers.user.UserControlerRemote;
+import br.com.gmp.ejb.enums.EJBConstants;
 import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 
@@ -27,6 +33,12 @@ public class VisualAppBean implements AppListener<VisualApp> {
      */
     public VisualAppBean(VisualApp visualApp) {
         this.visualApp = visualApp;
+        try {
+            UserControlerRemote dao = new UserDAO().getDAO(EJBConstants.USER_CONTROLER);
+            System.out.println(dao.getUsers().size());
+        } catch (NamingException ex) {
+            Logger.getLogger(VisualAppBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

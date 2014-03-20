@@ -179,7 +179,7 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="gTPDesktops" max="32767" attributes="0"/>
-                  <Component id="jSPMenus" pref="395" max="32767" attributes="0"/>
+                  <Component id="jSPMenus" pref="393" max="32767" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jTBMsg" alignment="1" max="32767" attributes="0"/>
@@ -225,7 +225,7 @@
         <Component class="javax.swing.JButton" name="jBSearch">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/com/gmp/desktop/icons/16/Search.png"/>
+              <Image iconType="3" name="/ComponentIcons/controlers/search.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -287,7 +287,7 @@
         <Component class="javax.swing.JButton" name="jBMenu">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/com/gmp/desktop/icons/16/menu_icon_2012.png"/>
+              <Image iconType="3" name="/br/com/gmp/desktop/icons/16/Navigate_right.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -425,7 +425,7 @@
         <Component class="javax.swing.JButton" name="jBSave">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/com/gmp/desktop/icons/16/save.png"/>
+              <Image iconType="3" name="/ComponentIcons/controlers/save.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -438,7 +438,7 @@
         <Component class="javax.swing.JButton" name="jBDiscard">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/com/gmp/desktop/icons/16/Cancel.png"/>
+              <Image iconType="3" name="/ComponentIcons/controlers/exit.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -451,7 +451,7 @@
         <Component class="javax.swing.JButton" name="jBProccess">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/com/gmp/desktop/icons/16/Wheel.png"/>
+              <Image iconType="3" name="/ComponentIcons/controlers/settings.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -461,10 +461,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBProccessActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
+        </Component>
         <Component class="javax.swing.JButton" name="jBClean">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/com/gmp/desktop/icons/16/Order.png"/>
+              <Image iconType="3" name="/ComponentIcons/transition/switch.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -479,7 +481,7 @@
         <Component class="javax.swing.JButton" name="jBAddDesktop">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/com/gmp/desktop/icons/16/Add_1.png"/>
+              <Image iconType="3" name="/ComponentIcons/controlers/new.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -492,7 +494,7 @@
         <Component class="javax.swing.JButton" name="jBRemoveDesktops">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/com/gmp/desktop/icons/16/Close.png"/>
+              <Image iconType="3" name="/ComponentIcons/controlers/off.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
