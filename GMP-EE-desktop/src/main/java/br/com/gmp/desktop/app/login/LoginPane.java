@@ -3,6 +3,7 @@ package br.com.gmp.desktop.app.login;
 import br.com.gmp.comps.dialog.GMPDialog;
 import br.com.gmp.desktop.app.event.BeanEvent;
 import br.com.gmp.desktop.app.login.bean.LoginBean;
+import java.awt.Dimension;
 import java.awt.Frame;
 
 /**
@@ -22,7 +23,7 @@ public class LoginPane extends GMPDialog {
     public LoginPane(Frame owner) {
         super(owner);
         this.initComponents();
-        //this.setUndecorated(true);
+        this.setUndecorated(true);
         this.loginBean = new LoginBean(this);
         this.setVisible(true);
     }
@@ -79,10 +80,12 @@ public class LoginPane extends GMPDialog {
         jBSubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(263, 175));
+        setMinimumSize(new java.awt.Dimension(278, 173));
         setModal(true);
 
         jPMain.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPMain.setMaximumSize(new java.awt.Dimension(278, 173));
+        jPMain.setMinimumSize(new java.awt.Dimension(278, 173));
 
         jLLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo/guampp32.png"))); // NOI18N
@@ -159,7 +162,7 @@ public class LoginPane extends GMPDialog {
                         .addComponent(jBSubmit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPMainLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCancel, jBSubmit});

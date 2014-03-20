@@ -63,8 +63,7 @@ public class VisualApp extends javax.swing.JFrame {
      *
      * @see br.com.gmp.desktop.app.system.SystemProperties#constructActions()
      */
-    private void initialize() {
-        this.getGlassPane().setBackground(Color.red);
+    private void initialize() {        
         Task.add(item);
         addLafItens();
     }

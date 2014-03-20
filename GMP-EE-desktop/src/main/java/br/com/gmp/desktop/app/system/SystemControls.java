@@ -57,9 +57,11 @@ public class SystemControls {
      */
     public static void main(String[] args) {
         try {
-            UIManager.setLookAndFeel(new GraphiteLookAndFeel());
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(VisualApp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(SystemControls.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {

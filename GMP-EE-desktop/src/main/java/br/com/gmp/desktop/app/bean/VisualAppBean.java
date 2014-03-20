@@ -33,12 +33,6 @@ public class VisualAppBean implements AppListener<VisualApp> {
      */
     public VisualAppBean(VisualApp visualApp) {
         this.visualApp = visualApp;
-        try {
-            UserControlerRemote dao = new UserDAO().getDAO(EJBConstants.USER_CONTROLER);
-            System.out.println(dao.getUsers().size());
-        } catch (NamingException ex) {
-            Logger.getLogger(VisualAppBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
