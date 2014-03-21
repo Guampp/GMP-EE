@@ -33,10 +33,11 @@ public class LoginBean {
      * @param evt <code>BeanEvent</code> Evento
      */
     public void submit(BeanEvent evt) {
-        evt.getObject();
+        String[] data = (String[]) evt.getObject();
         try {
             UserControlerRemote dao = new UserDAO().getDAO(EJBConstants.USER_CONTROLER);
-            System.out.println(dao.getUsers().size());
+            Boolean validateUser = dao.validateUser(data[0],data[1]);
+            System.out.println(validateUser);
         } catch (NamingException ex) {
             Logger.getLogger(VisualAppBean.class.getName()).log(Level.SEVERE, null, ex);
         }        

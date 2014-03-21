@@ -3,6 +3,8 @@ package br.com.gmp.desktop.app.login;
 import br.com.gmp.comps.dialog.GMPDialog;
 import br.com.gmp.desktop.app.event.BeanEvent;
 import br.com.gmp.desktop.app.login.bean.LoginBean;
+import br.com.gmp.desktop.utils.Hasher;
+import br.com.gmp.utils.encoding.StringEncoder;
 import java.awt.Dimension;
 import java.awt.Frame;
 
@@ -33,7 +35,9 @@ public class LoginPane extends GMPDialog {
      */
     private void submit() {
         if (this.gTUsu.validateComponent() && this.gPassword.validateComponent()) {
-            this.loginBean.submit(new BeanEvent(null, new String[]{}));
+            this.loginBean.submit(new BeanEvent(null, new String[]{
+                gTUsu.getText(), new Hasher().encode(gPassword.getText())
+            }));
         }
     }
 
@@ -94,7 +98,6 @@ public class LoginPane extends GMPDialog {
 
         jLUsu.setText("Usuário:");
 
-        gTUsu.setMinimallength(6);
         gTUsu.setPlaceholder("Login");
 
         jLPass.setText("Senha:");

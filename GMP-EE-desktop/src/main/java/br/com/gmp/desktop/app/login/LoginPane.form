@@ -156,7 +156,6 @@
             </Component>
             <Component class="br.com.gmp.comps.textfield.GMPTextField" name="gTUsu">
               <Properties>
-                <Property name="minimallength" type="int" value="6"/>
                 <Property name="placeholder" type="java.lang.String" value="Login"/>
               </Properties>
             </Component>
