@@ -145,4 +145,65 @@ public class ObjectCopy {
             }
         }
     }
+
+    /**
+     * Copia todos o valores das propriedades enviadas de A para B (Super
+     * classe), desde que ela exista em ambos os objetos
+     *
+     * @param a <code><b>Object</b></code> Objeto de base
+     * @param b <code><b>Object</b></code> Objeto receptor (Super)
+     * @throws java.lang.IllegalAccessException
+     */
+    public void copyToSuper(Object a, Object b) throws IllegalAccessException {
+        //----------------------------------------------------------------------
+        // Classes dos objetos
+        Class<? extends Object> aClass = a.getClass();
+        Class<? extends Object> bClass = b.getClass().getSuperclass();
+        //----------------------------------------------------------------------
+        // Array das propriedades dos objetos
+        Field[] aFields = aClass.getDeclaredFields();
+        Field[] bFields = bClass.getDeclaredFields();
+        //----------------------------------------------------------------------
+        // Mapeamento
+        for (Field aField : aFields) {
+            aField.setAccessible(true);
+            for (Field bField : bFields) {
+                bField.setAccessible(true);
+                if (aField.getName().equals(bField.getName())) {
+                    bField.set(b, aField.get(a));
+                }
+            }
+        }
+    }
+
+    /**
+     * Copia todos o valores das propriedades enviadas de A (Super classe) para
+     * B, desde que ela exista em ambos os objetos
+     *
+     * @param a <code><b>Object</b></code> Objeto de base (Super)
+     * @param b <code><b>Object</b></code> Objeto receptor
+     * @throws java.lang.IllegalAccessException
+     */
+    public void copyFromSuper(Object a, Object b) throws IllegalAccessException {
+        //----------------------------------------------------------------------
+        // Classes dos objetos
+        Class<? extends Object> aClass = a.getClass().getSuperclass();
+        Class<? extends Object> bClass = b.getClass();
+        //----------------------------------------------------------------------
+        // Array das propriedades dos objetos
+        Field[] aFields = aClass.getDeclaredFields();
+        Field[] bFields = bClass.getDeclaredFields();
+        //----------------------------------------------------------------------
+        // Mapeamento
+        for (Field aField : aFields) {
+            aField.setAccessible(true);
+            for (Field bField : bFields) {
+                bField.setAccessible(true);
+                if (aField.getName().equals(bField.getName())) {
+                    bField.set(b, aField.get(a));
+                }
+            }
+        }
+    }
+
 }
