@@ -16,7 +16,7 @@ public class Test {
     @TreeLeaf
     private int age;
     @TreeLeaf
-    private boolean alive;    
+    private boolean alive;
     private Test test;
 
     /**
@@ -32,6 +32,14 @@ public class Test {
         this.alive = alive;
     }
 
+    /**
+     * Constroi novo Test
+     *
+     * @param name Nome
+     * @param age Idade
+     * @param alive Vivo?
+     * @param test Test
+     */
     public Test(String name, int age, boolean alive, Test test) {
         this.name = name;
         this.age = age;
@@ -45,48 +53,54 @@ public class Test {
     }
 
     /**
+     * Retorna o nome
      *
-     * @return
+     * @return Nome
      */
     public String getName() {
         return name;
     }
 
     /**
+     * Modifica o nome
      *
-     * @param name
+     * @param name Nome
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
+     * Retorna idade
      *
-     * @return
+     * @return Idade
      */
     public int getAge() {
         return age;
     }
 
     /**
+     * Modifica idade
      *
-     * @param age
+     * @param age Idade
      */
     public void setAge(int age) {
         this.age = age;
     }
 
     /**
+     * Está vivo?
      *
-     * @return
+     * @return vivo?
      */
     public boolean isAlive() {
         return alive;
     }
 
     /**
+     * Está vivo?
      *
-     * @param alive
+     * @param alive vivo?
      */
     public void setAlive(boolean alive) {
         this.alive = alive;
@@ -94,7 +108,7 @@ public class Test {
 
     /**
      *
-     * @return
+     * @return Test
      */
     public Test getTest() {
         return test;
@@ -102,7 +116,7 @@ public class Test {
 
     /**
      *
-     * @param test
+     * @param test Test
      */
     public void setTest(Test test) {
         this.test = test;

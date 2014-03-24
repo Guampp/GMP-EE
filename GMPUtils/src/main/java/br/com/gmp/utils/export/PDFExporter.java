@@ -39,13 +39,13 @@ public class PDFExporter {
     /**
      * Exporta os dados da lista para o formato PDF
      *
-     * @param list <code>List<?></code> Lista contendo os dados
+     * @param list <code>List(?)</code> Lista contendo os dados
      * @param filename <code>String</code> Nome do arquivo exportado
-     * @throws FileNotFoundException
-     * @throws DocumentException
-     * @throws IOException
-     * @throws IllegalArgumentException
-     * @throws IllegalAccessException
+     * @throws FileNotFoundException Arquivo não encontrado
+     * @throws DocumentException Exceção de documento
+     * @throws IOException Exceção de I/O
+     * @throws IllegalArgumentException Argumento ilegal
+     * @throws IllegalAccessException Acesso restrito
      */
     public void export(final List<?> list, final String filename) throws FileNotFoundException, DocumentException, IOException, IllegalArgumentException, IllegalAccessException {
         export(list, list.get(0).getClass(), filename);
@@ -54,14 +54,14 @@ public class PDFExporter {
     /**
      * Exporta os dados da lista para o formato PDF
      *
-     * @param list <code>List<?></code> Lista contendo os dados
-     * @param objClass <code>Class<?></code> Classe dos objetos exportados
+     * @param list <code>List(?)</code> Lista contendo os dados
+     * @param objClass <code>Class(?)</code> Classe dos objetos exportados
      * @param filename <code>String</code> Nome do arquivo exportado
-     * @throws FileNotFoundException
-     * @throws DocumentException
-     * @throws IOException
-     * @throws IllegalArgumentException
-     * @throws IllegalAccessException
+     * @throws FileNotFoundException Arquivo não encontrado
+     * @throws DocumentException Exceção de documento
+     * @throws IOException Exceção de I/O
+     * @throws IllegalArgumentException Argumento ilegal
+     * @throws IllegalAccessException Acesso restrito
      */
     public void export(List<?> list, Class<?> objClass, String filename) throws FileNotFoundException, DocumentException, IOException, IllegalArgumentException, IllegalAccessException {
         try (OutputStream os = new FileOutputStream(filename + ".pdf")) {
@@ -104,7 +104,7 @@ public class PDFExporter {
     /**
      * Retorna os nomes das propriedades da classe indicada
      *
-     * @param cl <code>Class<?></code> Classe dos objetos exportados
+     * @param cl <code>Class(?)</code> Classe dos objetos exportados
      * @return <code>String</code> Nomes das propriedades
      */
     private String[] getFieldNames(Class<?> cl) {

@@ -19,7 +19,7 @@ public class ObjectCopy {
      *
      * @param a <code><b>Object</b></code> Objeto de base
      * @param b <code><b>Object</b></code> Objeto receptor
-     * @throws java.lang.IllegalAccessException
+     * @throws java.lang.IllegalAccessException Acesso restrito
      */
     public static void copy(Object a, Object b) throws IllegalArgumentException, IllegalAccessException {
         //----------------------------------------------------------------------
@@ -53,7 +53,7 @@ public class ObjectCopy {
      *
      * @param a <code><b>Object</b></code> Objeto de base
      * @param b <code><b>Object</b></code> Objeto receptor
-     * @throws java.lang.IllegalAccessException
+     * @throws java.lang.IllegalAccessException Acesso restrito
      */
     public static void copyAll(Object a, Object b) throws IllegalArgumentException, IllegalAccessException {
         //----------------------------------------------------------------------
@@ -85,7 +85,7 @@ public class ObjectCopy {
      * @param a <code><b>Object</b></code> Objeto de base
      * @param b <code><b>Object</b></code> Objeto receptor
      * @param name <code><b>String</b></code> Nome da propriedade a ser copiada
-     * @throws java.lang.IllegalAccessException
+     * @throws java.lang.IllegalAccessException Acesso restrito
      */
     public static void copyOnly(Object a, Object b, String name) throws IllegalArgumentException, IllegalAccessException {
         //----------------------------------------------------------------------
@@ -119,7 +119,7 @@ public class ObjectCopy {
      * @param b <code><b>Object</b></code> Objeto receptor
      * @param names <code><b>String[]</b></code> Nomes das propriedades a serem
      * copiadas
-     * @throws java.lang.IllegalAccessException
+     * @throws java.lang.IllegalAccessException Acesso restrito
      */
     public static void copyOnly(Object a, Object b, String... names) throws IllegalArgumentException, IllegalAccessException {
         List<String> list = Arrays.asList(names);
@@ -152,7 +152,7 @@ public class ObjectCopy {
      *
      * @param a <code><b>Object</b></code> Objeto de base
      * @param b <code><b>Object</b></code> Objeto receptor (Super)
-     * @throws java.lang.IllegalAccessException
+     * @throws java.lang.IllegalAccessException Acesso restrito
      */
     public void copyToSuper(Object a, Object b) throws IllegalAccessException {
         //----------------------------------------------------------------------
@@ -182,7 +182,7 @@ public class ObjectCopy {
      *
      * @param a <code><b>Object</b></code> Objeto de base (Super)
      * @param b <code><b>Object</b></code> Objeto receptor
-     * @throws java.lang.IllegalAccessException
+     * @throws java.lang.IllegalAccessException Acesso restrito
      */
     public void copyFromSuper(Object a, Object b) throws IllegalAccessException {
         //----------------------------------------------------------------------

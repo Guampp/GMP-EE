@@ -16,10 +16,10 @@ public class CollectionUtil<T> {
      * Divide uma lista em um array de listas menores, conforme a quantidade
      * especificada
      *
-     * @param list <code><b>List</b><T></code> Lista a ser dividida
+     * @param list <code><b>List</b>(T)</code> Lista a ser dividida
      * @param max <code><b>Integer</b></code> Quantidade máximo de itens por
      * lista
-     * @return <code><b>List</b><T>[]</code> Array de listas
+     * @return <code><b>List</b>(T)[]</code> Array de listas
      */
     public List<T>[] splitList(List<T> list, int max) {
         int size = 0;

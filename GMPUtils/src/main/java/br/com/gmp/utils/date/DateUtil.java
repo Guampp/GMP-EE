@@ -44,7 +44,7 @@ public class DateUtil {
     /**
      * Retorna um List contendo todos ultimos 100 anos
      *
-     * @return <code>List<String></code> Lista dos anos
+     * @return <code>List(String)</code> Lista dos anos
      */
     public List<String> getYearList() {
         return Arrays.asList(getYears());
@@ -57,7 +57,7 @@ public class DateUtil {
      * @param begin <code><b>String</b></code> Data inicial
      * @param end <code><b>String</b></code> Data final
      * @return <code><b>Integer</b></code> Diferença em dias
-     * @throws ParseException
+     * @throws java.text.ParseException Exceção de conversão
      */
     public int daysBetween(String begin, String end) throws ParseException {
         GregorianCalendar ini = new GregorianCalendar();
@@ -77,7 +77,7 @@ public class DateUtil {
      * @param end <code><b>String</b></code> Data final
      * @param format <code><b>String</b></code> Formato das datas
      * @return <code><b>Integer</b></code> Diferença em dias
-     * @throws ParseException
+     * @throws java.text.ParseException Exceção de conversão
      */
     public int daysBetween(String begin, String end, String format) throws ParseException {
         GregorianCalendar ini = new GregorianCalendar();
@@ -96,7 +96,7 @@ public class DateUtil {
      * @param begin <code><b>Date</b></code> Data inicial
      * @param end <code><b>Date</b></code> Data final
      * @return <code><b>Integer</b></code> Diferença em dias
-     * @throws ParseException
+     * @throws java.text.ParseException Exceção de conversão
      */
     public int daysBetween(Date begin, Date end) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -123,7 +123,7 @@ public class DateUtil {
      * @param first <code><b>String</b></code> Data inicial
      * @param last <code><b>String</b></code> Data final
      * @return <code>Boolean</code> Está no periodo?
-     * @throws java.text.ParseException
+     * @throws java.text.ParseException Exceção de conversão
      */
     public Boolean isBetween(String param, String first, String last) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -142,7 +142,7 @@ public class DateUtil {
      * @param last <code><b>String</b></code> Data final
      * @param format <code><b>String</b></code> Formato das datas
      * @return <code>Boolean</code> Está no periodo?
-     * @throws java.text.ParseException
+     * @throws java.text.ParseException Exceção de conversão
      */
     public Boolean isBetween(String param, String first, String last, String format) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -153,10 +153,10 @@ public class DateUtil {
     }
 
     /**
-     * Retorna a data formatada conforme o padrão recebido<br/>
+     * Retorna a data formatada conforme o padrão recebido<br>
      * <table border=0 cellspacing=3 cellpadding=0 summary="Chart shows pattern
      * letters, date/time component, presentation, and examples.">
-     * <tr bgcolor="#ccccff">
+     * <tr>
      * <th align=left>Letter
      * <th align=left>Date or Time Component
      * <th align=left>Presentation
@@ -166,7 +166,7 @@ public class DateUtil {
      * <td>Era designator
      * <td><a href="#text">Text</a>
      * <td><code>AD</code>
-     * <tr bgcolor="#eeeeff">
+     * <tr>
      * <td><code>y</code>
      * <td>Year
      * <td><a href="#year">Year</a>
@@ -176,7 +176,7 @@ public class DateUtil {
      * <td>Week year
      * <td><a href="#year">Year</a>
      * <td><code>2009</code>; <code>09</code>
-     * <tr bgcolor="#eeeeff">
+     * <tr>
      * <td><code>M</code>
      * <td>Month in year
      * <td><a href="#month">Month</a>
@@ -186,7 +186,7 @@ public class DateUtil {
      * <td>Week in year
      * <td><a href="#number">Number</a>
      * <td><code>27</code>
-     * <tr bgcolor="#eeeeff">
+     * <tr>
      * <td><code>W</code>
      * <td>Week in month
      * <td><a href="#number">Number</a>
@@ -196,7 +196,7 @@ public class DateUtil {
      * <td>Day in year
      * <td><a href="#number">Number</a>
      * <td><code>189</code>
-     * <tr bgcolor="#eeeeff">
+     * <tr>
      * <td><code>d</code>
      * <td>Day in month
      * <td><a href="#number">Number</a>
@@ -206,7 +206,7 @@ public class DateUtil {
      * <td>Day of week in month
      * <td><a href="#number">Number</a>
      * <td><code>2</code>
-     * <tr bgcolor="#eeeeff">
+     * <tr>
      * <td><code>E</code>
      * <td>Day name in week
      * <td><a href="#text">Text</a>
@@ -216,7 +216,7 @@ public class DateUtil {
      * <td>Day number of week (1 = Monday, ..., 7 = Sunday)
      * <td><a href="#number">Number</a>
      * <td><code>1</code>
-     * <tr bgcolor="#eeeeff">
+     * <tr>
      * <td><code>a</code>
      * <td>Am/pm marker
      * <td><a href="#text">Text</a>
@@ -226,7 +226,7 @@ public class DateUtil {
      * <td>Hour in day (0-23)
      * <td><a href="#number">Number</a>
      * <td><code>0</code>
-     * <tr bgcolor="#eeeeff">
+     * <tr>
      * <td><code>k</code>
      * <td>Hour in day (1-24)
      * <td><a href="#number">Number</a>
@@ -236,7 +236,7 @@ public class DateUtil {
      * <td>Hour in am/pm (0-11)
      * <td><a href="#number">Number</a>
      * <td><code>0</code>
-     * <tr bgcolor="#eeeeff">
+     * <tr>
      * <td><code>h</code>
      * <td>Hour in am/pm (1-12)
      * <td><a href="#number">Number</a>
@@ -246,7 +246,7 @@ public class DateUtil {
      * <td>Minute in hour
      * <td><a href="#number">Number</a>
      * <td><code>30</code>
-     * <tr bgcolor="#eeeeff">
+     * <tr>
      * <td><code>s</code>
      * <td>Second in minute
      * <td><a href="#number">Number</a>
@@ -256,7 +256,7 @@ public class DateUtil {
      * <td>Millisecond
      * <td><a href="#number">Number</a>
      * <td><code>978</code>
-     * <tr bgcolor="#eeeeff">
+     * <tr>
      * <td><code>z</code>
      * <td>Time zone
      * <td><a href="#timezone">General time zone</a>
@@ -267,7 +267,7 @@ public class DateUtil {
      * <td>Time zone
      * <td><a href="#rfc822timezone">RFC 822 time zone</a>
      * <td><code>-0800</code>
-     * <tr bgcolor="#eeeeff">
+     * <tr>
      * <td><code>X</code>
      * <td>Time zone
      * <td><a href="#iso8601timezone">ISO 8601 time zone</a>

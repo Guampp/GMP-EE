@@ -21,7 +21,7 @@ public class ReflectionUtil {
      * instancia(Classes dos objetos a serem passados como parametro)
      * @param arguments <code><b>Object</b>[]</code> Valores dos parametros
      * @return <code><b>Object</b></code> Objeto instanciado
-     * @throws java.lang.InstantiationException
+     * @throws java.lang.InstantiationException Exceção de instanciamento
      */
     public Object newInstance(Class cl, Class[] argTypes, Object[] arguments) throws InstantiationException {
         try {
@@ -41,7 +41,7 @@ public class ReflectionUtil {
      * @param instance <code><b>ObjectInstance</b></code> Objeto com os dados da
      * instancia
      * @return <code><b>Object</b></code> Objeto instanciado
-     * @throws java.lang.InstantiationException
+     * @throws java.lang.InstantiationException Exceção de instanciamento
      */
     public Object newInstance(ObjectInstance instance) throws InstantiationException {
         return newInstance(instance.getCl(), instance.getArgTypes(),
@@ -55,13 +55,13 @@ public class ReflectionUtil {
      * @param cl <code><b>Class</b></code> Classe que contem o método
      * @param argtypes <code><b>Class(?)[]</b></code> Tipos dos parametros
      * @param args <code><b>Object</b>[]</code> Valores dos parametros
-     * @throws IllegalAccessException
-     * @throws IllegalArgumentException
-     * @throws InvocationTargetException
-     * @throws java.lang.NoSuchMethodException
+     * @throws IllegalAccessException Acesso ilegal
+     * @throws IllegalArgumentException Argumento ilegal
+     * @throws InvocationTargetException Exceção de Invocação
+     * @throws java.lang.NoSuchMethodException Método não existe
      */
     public void callMethod(String method, Class<?> cl, Class<?>[] argtypes, Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException {
-        cl.getDeclaredMethod(method, argtypes).invoke(this, args);        
+        cl.getDeclaredMethod(method, argtypes).invoke(this, args);
     }
 
     public void test(String nome) {
@@ -71,7 +71,7 @@ public class ReflectionUtil {
     public static void main(String[] args) {
         try {
             new ReflectionUtil().callMethod("test", ReflectionUtil.class, new Class<?>[]{String.class}, "Jorge");
-        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException ex) {            
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException ex) {
             Logger.getLogger(ReflectionUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

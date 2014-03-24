@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
+ * Utilitário para objetos genéricos
  *
  * @author kaciano
  */
@@ -18,9 +19,9 @@ public class GenericUtil {
 
     /**
      *
-     * @param type
-     * @param targetClass
-     * @return
+     * @param type Tipo
+     * @param targetClass Classe
+     * @return Classe
      */
     public static Class<?> getActualClass(Type type, Class<?> targetClass) {
         Map<TypeVariable<?>, Type> map = getTypeVariableMap(targetClass);
@@ -29,9 +30,9 @@ public class GenericUtil {
 
     /**
      *
-     * @param type
-     * @param targetClass
-     * @return
+     * @param type Tipo
+     * @param targetClass Classe
+     * @return Tipo
      */
     public static Type getActualType(Type type, Class<?> targetClass) {
         Map<TypeVariable<?>, Type> map = getTypeVariableMap(targetClass);
@@ -40,9 +41,9 @@ public class GenericUtil {
 
     /**
      *
-     * @param type
-     * @param map
-     * @return
+     * @param type Tipo
+     * @param map Mapa
+     * @return Tipo
      */
     private static Class<?> getActualClass(Type type,
             Map<TypeVariable<?>, Type> map) {
@@ -69,9 +70,9 @@ public class GenericUtil {
 
     /**
      *
-     * @param type
-     * @param map
-     * @return
+     * @param type Tipo
+     * @param map Mapa
+     * @return Tipo
      */
     private static Type getActualType(Type type, Map<TypeVariable<?>, Type> map) {
         if (Class.class.isInstance(type)) {
@@ -87,22 +88,22 @@ public class GenericUtil {
 
     /**
      *
-     * @param clazz
-     * @return
+     * @param cl Classe
+     * @return Mapa
      */
     private static Map<TypeVariable<?>, Type> getTypeVariableMap(
-            final Class<?> clazz) {
-        if (clazz == null) {
+            final Class<?> cl) {
+        if (cl == null) {
             return Collections.emptyMap();
         }
         final Map<TypeVariable<?>, Type> map = new LinkedHashMap<>();
-        final Class<?> superClass = clazz.getSuperclass();
-        final Type superClassType = clazz.getGenericSuperclass();
+        final Class<?> superClass = cl.getSuperclass();
+        final Type superClassType = cl.getGenericSuperclass();
         if (superClass != null) {
             gatherTypeVariables(superClass, superClassType, map);
         }
-        final Class<?>[] interfaces = clazz.getInterfaces();
-        final Type[] interfaceTypes = clazz.getGenericInterfaces();
+        final Class<?>[] interfaces = cl.getInterfaces();
+        final Type[] interfaceTypes = cl.getGenericInterfaces();
         for (int i = 0; i < interfaces.length; ++i) {
             gatherTypeVariables(interfaces[i], interfaceTypes[i], map);
         }
@@ -111,24 +112,24 @@ public class GenericUtil {
 
     /**
      *
-     * @param clazz
-     * @param type
-     * @param map
+     * @param cl Classe
+     * @param type Tipo
+     * @param map Mapa
      */
-    private static void gatherTypeVariables(final Class<?> clazz,
+    private static void gatherTypeVariables(final Class<?> cl,
             final Type type, final Map<TypeVariable<?>, Type> map) {
-        if (clazz == null) {
+        if (cl == null) {
             return;
         }
         gatherTypeVariables(type, map);
 
-        final Class<?> superClass = clazz.getSuperclass();
-        final Type superClassType = clazz.getGenericSuperclass();
+        final Class<?> superClass = cl.getSuperclass();
+        final Type superClassType = cl.getGenericSuperclass();
         if (superClass != null) {
             gatherTypeVariables(superClass, superClassType, map);
         }
-        final Class<?>[] interfaces = clazz.getInterfaces();
-        final Type[] interfaceTypes = clazz.getGenericInterfaces();
+        final Class<?>[] interfaces = cl.getInterfaces();
+        final Type[] interfaceTypes = cl.getGenericInterfaces();
         for (int i = 0; i < interfaces.length; ++i) {
             gatherTypeVariables(interfaces[i], interfaceTypes[i], map);
         }
@@ -136,8 +137,8 @@ public class GenericUtil {
 
     /**
      *
-     * @param type
-     * @param map
+     * @param type Tipo
+     * @param map Mapa
      */
     private static void gatherTypeVariables(final Type type,
             final Map<TypeVariable<?>, Type> map) {

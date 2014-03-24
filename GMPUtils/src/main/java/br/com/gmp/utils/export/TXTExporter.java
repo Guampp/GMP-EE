@@ -26,9 +26,9 @@ public class TXTExporter {
      *
      * @param list <code>List</code> Lista para exportação
      * @param filename <code>String</code> Nome do arquivo
-     * @throws IllegalAccessException
-     * @throws FileNotFoundException
-     * @throws IOException
+     * @throws IllegalAccessException Acesso restrito
+     * @throws FileNotFoundException Arquivo não encontrado
+     * @throws IOException Exceção de I/O
      * @see java.io.FileWriter
      * @see java.io.PrintWriter
      */
@@ -42,9 +42,9 @@ public class TXTExporter {
      * @param list <code>List</code> Lista para exportação
      * @param cl <code>Class<?></code> Classe para a conversão
      * @param filename <code>String</code> Nome do arquivo
-     * @throws IllegalAccessException
-     * @throws FileNotFoundException
-     * @throws IOException
+     * @throws IllegalAccessException Acesso restrito
+     * @throws FileNotFoundException Arquivo não encontrado
+     * @throws IOException Exceção de I/O
      * @see java.io.FileWriter
      * @see java.io.PrintWriter
      */
@@ -78,6 +78,10 @@ public class TXTExporter {
         }
     }
 
+    /**
+     *
+     * @param args Argumentos
+     */
     public static void main(String[] args) {
         List<Test> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
