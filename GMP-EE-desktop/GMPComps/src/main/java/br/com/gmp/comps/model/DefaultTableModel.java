@@ -33,7 +33,7 @@ public class DefaultTableModel<T> extends AbstractTableModel {
 
     private Class<T> objClass;
     private String[] columns = null;
-    private List<T> list;
+    private List<T> data;
 
     /**
      * Cria novo DefaultTableModel
@@ -60,7 +60,7 @@ public class DefaultTableModel<T> extends AbstractTableModel {
     private void initialize(List list) {
         this.objClass = (Class<T>) ((ParameterizedType) (getClass()
                 .getGenericSuperclass())).getActualTypeArguments()[0];
-        this.list = list != null ? list : new ArrayList<>();
+        this.data = list != null ? list : new ArrayList<>();
         this.columns = mapColumns(objClass);
     }
 
@@ -112,7 +112,7 @@ public class DefaultTableModel<T> extends AbstractTableModel {
      */
     @Override
     public int getRowCount() {
-        return list.size();
+        return data.size();
     }
 
     /**
@@ -135,7 +135,7 @@ public class DefaultTableModel<T> extends AbstractTableModel {
     @Override
     public Object getValueAt(int row, int column) {
         try {
-            Object u = list.get(row);
+            Object u = data.get(row);
             Field f = u.getClass().getDeclaredFields()[column];
             f.setAccessible(true);
             return f.get(u);
@@ -196,8 +196,8 @@ public class DefaultTableModel<T> extends AbstractTableModel {
      * @return <code>Integer</code> Linha do objeto
      */
     public Integer getObjectRow(Object obj) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).equals(obj)) {
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).equals(obj)) {
                 return i;
             }
         }
@@ -210,8 +210,8 @@ public class DefaultTableModel<T> extends AbstractTableModel {
      * @param obj <code>Object</code> Novo objeto
      */
     public void add(T obj) {
-        list.add(obj);
-        this.fireTableRowsInserted(list.size() - 1, list.size() - 1);
+        data.add(obj);
+        this.fireTableRowsInserted(data.size() - 1, data.size() - 1);
     }
 
     /**
@@ -220,7 +220,7 @@ public class DefaultTableModel<T> extends AbstractTableModel {
      * @param obj <code>Object[]</code> Novos objetos
      */
     public void addAll(T... obj) {
-        list.addAll(Arrays.asList(obj));
+        data.addAll(Arrays.asList(obj));
         this.fireTableDataChanged();
     }
 
@@ -230,7 +230,7 @@ public class DefaultTableModel<T> extends AbstractTableModel {
      * @param row <code>int</code> Linha
      */
     public void remove(int row) {
-        list.remove(row);
+        data.remove(row);
         this.fireTableRowsDeleted(row, row);
     }
 
@@ -240,9 +240,9 @@ public class DefaultTableModel<T> extends AbstractTableModel {
      * @param object <code>Object</code> Objeto
      */
     public void remove(T object) {
-        if (list.contains(object)) {
+        if (data.contains(object)) {
             int row = getObjectRow(object);
-            list.remove(object);
+            data.remove(object);
             this.fireTableRowsDeleted(row, row);
         }
     }
@@ -254,9 +254,9 @@ public class DefaultTableModel<T> extends AbstractTableModel {
      */
     public void remove(T... objects) {
         for (T t : objects) {
-            if (list.contains(t)) {
+            if (data.contains(t)) {
                 int row = getObjectRow(t);
-                list.remove(t);
+                data.remove(t);
                 this.fireTableRowsDeleted(row, row);
             }
         }
@@ -269,7 +269,7 @@ public class DefaultTableModel<T> extends AbstractTableModel {
      * @param object <code>Object</code> Novo conteudo da linha
      */
     public void update(int row, T object) {
-        list.set(row, object);
+        data.set(row, object);
         this.fireTableRowsUpdated(row, row);
     }
 
@@ -280,7 +280,7 @@ public class DefaultTableModel<T> extends AbstractTableModel {
      * @return Objeto da linha
      */
     public T getObject(int row) {
-        return list.get(row);
+        return data.get(row);
     }
 
     /**
@@ -292,7 +292,7 @@ public class DefaultTableModel<T> extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object value, int row, int col) {
-        Object object = list.get(row);
+        Object object = data.get(row);
         Field field = object.getClass().getDeclaredFields()[col];
         try {
             field.setAccessible(true);
@@ -308,7 +308,7 @@ public class DefaultTableModel<T> extends AbstractTableModel {
      * Limpa os dados do modelo
      */
     public void clear() {
-        this.list.clear();
+        this.data.clear();
     }
 
     /**
@@ -352,17 +352,18 @@ public class DefaultTableModel<T> extends AbstractTableModel {
      *
      * @return <code>List</code> Lista do modelo
      */
-    public List getList() {
-        return list;
+    public List<T> getData() {
+        return data;
     }
 
     /**
      * Modifica a lista do modelo
      *
-     * @param list <code>List</code> Lista do modelo
+     * @param data <code>List</code> Lista do modelo
      */
-    public void setList(List list) {
-        this.list = list;
+    public void setData(List<T> data) {
+        this.data = data;
+        this.reload();
     }
 
 }
